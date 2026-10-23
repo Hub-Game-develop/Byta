@@ -18,10 +18,12 @@
     <None Include="..\..\PACKAGE-README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
-  <!-- 随包分发的原生实现：NuGet 的 runtimes/<rid>/native 约定会自动拷到使用方输出目录。
-       注意体积约 208 MB（LLVM 占 161 MB），压缩后进包。 -->
+  <!-- 随包分发的原生实现。注意体积约 208 MB（LLVM 占 161 MB），压缩后进包。
+       runtimes/<rid>/native 这条约定在**不带 RuntimeIdentifier 的项目里不会复制到输出目录**，
+       所以必须靠 buildTransitive 的 targets 显式落地，否则使用方永远拿不到内置实现。 -->
   <ItemGroup>
     <None Include="runtimes\osx-arm64\native\**\*" Pack="true" PackagePath="runtimes\osx-arm64\native\" />
+    <None Include="buildTransitive\Byta.GL.targets" Pack="true" PackagePath="buildTransitive\" />
   </ItemGroup>
 
 </Project>

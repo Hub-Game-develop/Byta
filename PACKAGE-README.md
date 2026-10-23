@@ -30,7 +30,17 @@ GlDraw.ElementsInstanced(PrimitiveType.Triangles, 36, IndexType.UnsignedInt, 0, 
 - `lib/net10.0/Byta.dll` —— 对象层（Buffer / VertexArray / Shader / Program / Uniform / Texture2D / Framebuffer / Query）
 - `runtimes/osx-arm64/native/` —— macOS Apple Silicon 的内置 GL 实现（Mesa 26.2.5 + llvmpipe，约 208 MB）
 
-不需要内置实现的话删掉 `runtimes/` 即可自动回退系统实现。
+引用本包后，构建时 `runtimes/osx-arm64/native` 会自动复制到你的输出目录
+（由包内 `buildTransitive/Byta.GL.targets` 完成 —— NuGet 原生约定只在指定
+`RuntimeIdentifier` 时才复制，普通项目会拿不到）。
+
+不想要这 208 MB 就在项目里关掉，Byta 会自动回退系统实现：
+
+```xml
+<PropertyGroup>
+  <BytaIncludeBundledNative>false</BytaIncludeBundledNative>
+</PropertyGroup>
+```
 
 ## 相关包
 

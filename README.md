@@ -250,6 +250,14 @@ dotnet run --project tests/Byta.Tests -c Release -- --system        # Apple 4.1 
 - **运行**要用 arm64 运行时才能拿到 4.6，arm64 运行时起不来时脚本会退回 x64 跑系统 4.1 路径，
   并明确告诉你"这次测的是 4.1"。
 
+**引用 NuGet 包后，内置实现为什么还是没启用？**
+`Byta.GL` 0.1.0 有这个坑：NuGet 的 `runtimes/<rid>/native` 约定**只在项目指定 `RuntimeIdentifier`
+或 `dotnet publish -r` 时才复制到输出目录**。普通框架依赖项目不写 RID，于是原生库只待在
+`~/.nuget/packages/` 里，输出目录空空 —— Byta 找不到 `libEGL`，安静回退系统实现。
+**0.1.1 起已修**：包内带 `buildTransitive/Byta.GL.targets` 显式复制。
+
+关掉自动复制：`<BytaIncludeBundledNative>false</BytaIncludeBundledNative>`。
+
 **208 MB 能不能砍？**
 能。删掉 `src/Byta/runtimes/` 就自动回退系统实现；要拿回来跑 `python3 tools/fetch_natives.py`。
 真正想瘦身的话，正规做法是把这份原生库走 NuGet RID 包（`runtimes/<rid>/native`）单独发布，

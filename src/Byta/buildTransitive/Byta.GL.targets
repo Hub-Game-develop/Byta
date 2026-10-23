@@ -1,0 +1,32 @@
+<Project>
+
+  <!--
+    让内置原生实现真正落到使用方的输出目录。
+
+    为什么需要这个文件：NuGet 的 runtimes/<rid>/native 约定**只在对项目指定了
+    RuntimeIdentifier（或 dotnet publish -r）时才复制**。框架依赖的普通项目
+    （不写 RID，最常见的情况）拿到的只是 NuGet 缓存里的一份副本，输出目录里
+    什么都没有 —— 于是 BytaRuntime 找不到 libEGL，安静地回退到系统实现，
+    用户会以为"内置 4.6 没用上"。
+
+    这里显式把 <包>/runtimes/osx-arm64/native 下的内容复制到
+    <输出目录>/runtimes/osx-arm64/native，保持目录结构（dri/ 子目录必须保留，
+    Mesa 靠它找驱动模块）。
+
+    不想要这 208 MB 的话，在项目里设置：
+      <BytaIncludeBundledNative>false</BytaIncludeBundledNative>
+  -->
+
+  <PropertyGroup>
+    <_BytaBundledNativeRoot>$(MSBuildThisFileDirectory)..\runtimes\osx-arm64\native\</_BytaBundledNativeRoot>
+    <_BytaCopyBundled Condition="'$(BytaIncludeBundledNative)' != 'false' and $([MSBuild]::IsOSPlatform('OSX'))">true</_BytaCopyBundled>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(_BytaCopyBundled)' == 'true' and Exists('$(_BytaBundledNativeRoot)')">
+    <None Include="$(_BytaBundledNativeRoot)**\*"
+          Link="runtimes\osx-arm64\native\%(RecursiveDir)%(Filename)%(Extension)"
+          CopyToOutputDirectory="PreserveNewest"
+          Visible="false" />
+  </ItemGroup>
+
+</Project>
