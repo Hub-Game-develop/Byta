@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>Byta</AssemblyName>
+    <RootNamespace>Byta</RootNamespace>
+    <Description>现代、零分配开销的 OpenGL 4.x 封装层。</Description>
+    <PackageId>Byta.GL</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Byta.Bindings\Byta.Bindings.csproj" />
+  </ItemGroup>
+
+
+  <!-- runtimes/<rid>/native 是随库分发的原生实现（Mesa/EGL），由 tools/fetch_natives.py 生成。
+       这里刻意不用 Content 拷贝：它有两百多 MB，复制进每个 bin/ 输出会让磁盘占用翻几倍。
+       运行时由 GlImplementationLocator 沿程序目录向上查找 runtimes/<rid>/native。 -->
+
+</Project>

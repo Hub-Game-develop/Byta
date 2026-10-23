@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>Byta.Bindings</AssemblyName>
+    <RootNamespace>Byta.Bindings</RootNamespace>
+    <!-- 生成的全量表：函数指针字段 + 6000 个常量，不需要文档注释 -->
+    <NoWarn>$(NoWarn);CS1591;CS8500;CS0649</NoWarn>
+  </PropertyGroup>
+
+</Project>
