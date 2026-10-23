@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 using Byta.Bindings;
 using Byta.Platform;
 

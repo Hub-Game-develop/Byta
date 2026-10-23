@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Byta.Bindings;

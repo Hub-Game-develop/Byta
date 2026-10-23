@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 using System.Buffers.Binary;
 using System.IO.Compression;
 using System.Text;

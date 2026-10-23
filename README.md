@@ -254,3 +254,12 @@ dotnet run --project tests/Byta.Tests -c Release -- --system        # Apple 4.1 
 能。删掉 `src/Byta/runtimes/` 就自动回退系统实现；要拿回来跑 `python3 tools/fetch_natives.py`。
 真正想瘦身的话，正规做法是把这份原生库走 NuGet RID 包（`runtimes/<rid>/native`）单独发布，
 而不是塞进源码仓库。
+
+## 许可证
+
+MIT，见 [LICENSE](LICENSE)。
+
+用到的第三方原生组件（随 Git LFS 分发的 `src/Byta/runtimes/`）各自保留原许可证：
+Mesa（MIT）、LLVM（Apache-2.0 WITH LLVM-exception）、MoltenVK（Apache-2.0）、
+Vulkan-Headers（Apache-2.0）、zstd（BSD-3-Clause）、z3（MIT）、SPIRV-Tools（Apache-2.0）。
+重新分发时请一并保留这些许可声明。
