@@ -178,6 +178,22 @@ dotnet run --project tests/Byta.Tests -c Release -- --system  # Apple 4.1
 - **错误检查不是逐调用**：只在创建/编译/链接/校验这类慢路径上查 `glGetError`，绘制热路径不查（查了就是每帧强制同步）。
 - Windows / Linux 解析器没有真机验证过，表格里已标注。
 
+## 克隆
+
+原生实现（20 个 dylib，208 MB）走 **Git LFS**，所以克隆前先装 lfs：
+
+```bash
+brew install git-lfs && git lfs install
+git clone https://github.com/Hub-Game-develop/Byta.git
+```
+
+不想拉 LFS 内容（只要源码）就先跳过：
+
+```bash
+GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/Hub-Game-develop/Byta.git
+python3 tools/fetch_natives.py     # 之后按需重建原生实现
+```
+
 ## 构建
 
 ```bash
