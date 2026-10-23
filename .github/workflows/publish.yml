@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           # 关键：原生实现由 Git LFS 跟踪。不拉 LFS 的话，
           # 打进包里的会是 134 字节的指针文件，包看起来正常但根本跑不起来。
