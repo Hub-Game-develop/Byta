@@ -255,6 +255,39 @@ dotnet run --project tests/Byta.Tests -c Release -- --system        # Apple 4.1 
 真正想瘦身的话，正规做法是把这份原生库走 NuGet RID 包（`runtimes/<rid>/native`）单独发布，
 而不是塞进源码仓库。
 
+## 发布（NuGet Trusted Publishing）
+
+用 OIDC 可信发布：**仓库里不存任何 API Key**。流程是「打 tag → GitHub Actions → 换取短期密钥 → 推送」。
+工作流在 [`publish.yml`](.github/workflows/publish.yml)。
+
+首次配置（各一次，在网页上点几下）：
+
+1. **nuget.org → 头像 → Trusted Publishing → Add new policy**
+
+   | 字段 | 填什么 |
+   | --- | --- |
+   | Repository Owner | `Hub-Game-develop` |
+   | Repository | `Byta` |
+   | Workflow File | `publish.yml` |
+   | Environment | 留空（本工作流不使用 environment） |
+
+2. **仓库 Settings → Secrets and variables → Actions → Variables** 新增
+   `NUGET_USER` = 你在 nuget.org 上的**用户名**（个人资料页那个，不是邮箱）
+
+发布：
+
+```bash
+git tag v0.1.0 && git push origin v0.1.0     # 触发发布
+gh workflow run publish.yml -f version=0.1.1  # 或手动触发并指定版本
+```
+
+产物两个：`Byta.Bindings`（裸绑定，156 KB）和 `Byta.GL`（对象层 + macOS 原生实现，压缩后约 67 MB）。
+本地打包：`dotnet pack src/Byta/Byta.csproj -c Release`，输出到 `artifacts/packages/`。
+
+> ⚠️ 工作流里 `actions/checkout` 必须带 `lfs: true`，而且打包后会校验 `Byta.GL` 的体积。
+> 否则 Git LFS 指针（134 字节）会被当成 dylib 打进包 —— 包看着正常，实际根本跑不起来。
+> 这个检查是特意加的，别删。
+
 ## 许可证
 
 MIT，见 [LICENSE](LICENSE)。

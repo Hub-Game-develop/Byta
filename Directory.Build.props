@@ -10,8 +10,26 @@
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <!-- 打包元数据：对 NuGet 包生效，示例/测试项目通过 IsPackable=false 排除 -->
+  <PropertyGroup>
     <Version>0.1.0</Version>
-    <Authors>cangjie</Authors>
+    <Authors>Hub-Game-develop</Authors>
+    <Company>Hub-Game-develop</Company>
     <Product>Byta</Product>
+    <Copyright>Copyright (c) 2026 Hub-Game-develop</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <RepositoryUrl>https://github.com/Hub-Game-develop/Byta</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/Hub-Game-develop/Byta</PackageProjectUrl>
+    <PackageTags>opengl;graphics;gamedev;rendering;bindings;silk-alternative;mesa;interop</PackageTags>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageOutputPath>$(MSBuildThisFileDirectory)artifacts/packages</PackageOutputPath>
+    <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
   </PropertyGroup>
 </Project>

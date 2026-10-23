@@ -3,6 +3,9 @@
   <PropertyGroup>
     <AssemblyName>Byta.Bindings</AssemblyName>
     <RootNamespace>Byta.Bindings</RootNamespace>
+    <PackageId>Byta.Bindings</PackageId>
+    <Title>Byta.Bindings — OpenGL 入口点（零开销函数指针表）</Title>
+    <Description>由 Khronos gl.xml 生成的 OpenGL 绑定：2651 条命令编译成 delegate* unmanaged 函数指针字段（无 DllImport stub、无可空引用类型、无反射），6073 个常量。通常不需要直接引用本包，请用 Byta.GL。</Description>
     <!-- 生成的全量表：函数指针字段 + 6000 个常量，不需要文档注释 -->
     <NoWarn>$(NoWarn);CS1591;CS8500;CS0649</NoWarn>
   </PropertyGroup>

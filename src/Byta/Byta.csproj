@@ -3,17 +3,25 @@
   <PropertyGroup>
     <AssemblyName>Byta</AssemblyName>
     <RootNamespace>Byta</RootNamespace>
-    <Description>现代、零分配开销的 OpenGL 4.x 封装层。</Description>
     <PackageId>Byta.GL</PackageId>
+    <Title>Byta — 现代、零分配开销的 .NET OpenGL 封装</Title>
+    <Description>面向 .NET 的现代 OpenGL 封装：gl.xml 生成的零开销绑定 + 值句柄对象层 + 线程局部状态缓存，热路径零托管分配。实现可插拔：自带 Mesa(EGL, GL 4.6 core) 优先，其次 BYTA_GL_DRIVER 指定的实现，最后回退系统实现（macOS 上即 Apple 的 GL 4.1）。</Description>
+    <PackageReadmeFile>PACKAGE-README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Byta.Bindings\Byta.Bindings.csproj" />
   </ItemGroup>
 
+  <!-- 包内 README（用绝对图片地址，nuget.org 上也能显示） -->
+  <ItemGroup>
+    <None Include="..\..\PACKAGE-README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
-  <!-- runtimes/<rid>/native 是随库分发的原生实现（Mesa/EGL），由 tools/fetch_natives.py 生成。
-       这里刻意不用 Content 拷贝：它有两百多 MB，复制进每个 bin/ 输出会让磁盘占用翻几倍。
-       运行时由 GlImplementationLocator 沿程序目录向上查找 runtimes/<rid>/native。 -->
+  <!-- 随包分发的原生实现：NuGet 的 runtimes/<rid>/native 约定会自动拷到使用方输出目录。
+       注意体积约 208 MB（LLVM 占 161 MB），压缩后进包。 -->
+  <ItemGroup>
+    <None Include="runtimes\osx-arm64\native\**\*" Pack="true" PackagePath="runtimes\osx-arm64\native\" />
+  </ItemGroup>
 
 </Project>

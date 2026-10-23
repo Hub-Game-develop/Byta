@@ -1,0 +1,122 @@
+name: publish
+
+# 用 NuGet 的 Trusted Publishing（OIDC）发布，仓库里不存任何长期 API Key。
+#
+# 前置条件（在 nuget.org 上做一次，见 README「发布」章节）：
+#   nuget.org → 头像 → Trusted Publishing → Add new policy
+#     Repository Owner : Hub-Game-develop
+#     Repository       : Byta
+#     Workflow File    : publish.yml
+#     Environment      : （留空；本工作流不使用 environment）
+# 然后在仓库 Settings → Secrets and variables → Actions → Variables 里加：
+#   NUGET_USER = 你的 nuget.org 用户名（个人资料页上的那个，不是邮箱）
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      version:
+        description: '要发布的版本（例如 0.1.0），留空则用 0.1.0'
+        required: false
+
+permissions:
+  contents: read
+  id-token: write   # Trusted Publishing 必需：用于换取短期 API Key
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # 关键：原生实现由 Git LFS 跟踪。不拉 LFS 的话，
+          # 打进包里的会是 134 字节的指针文件，包看起来正常但根本跑不起来。
+          lfs: true
+
+      - name: 确认 LFS 内容是真实二进制
+        run: |
+          set -euo pipefail
+          f=src/Byta/runtimes/osx-arm64/native/libLLVM.23.1.dylib
+          size=$(stat -c%s "$f")
+          echo "$f = $size 字节"
+          if [ "$size" -lt 100000000 ]; then
+            echo "::error::$f 只有 $size 字节，说明拿到的是 LFS 指针而不是真实文件"
+            head -3 "$f" || true
+            exit 1
+          fi
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: 解析版本号
+        id: version
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ -n "${{ inputs.version }}" ]; then
+            v="${{ inputs.version }}"
+          elif [[ "${{ github.ref_name }}" == v* ]]; then
+            v="${GITHUB_REF_NAME#v}"
+          else
+            v="0.1.0"
+          fi
+          echo "version=$v" >> "$GITHUB_OUTPUT"
+          echo "将要发布版本：$v"
+
+      - name: 还原与构建
+        run: |
+          dotnet build Byta.slnx -c Release -p:Version=${{ steps.version.outputs.version }}
+
+      - name: 打包
+        run: |
+          dotnet pack src/Byta.Bindings/Byta.Bindings.csproj -c Release \
+            -p:Version=${{ steps.version.outputs.version }} -o out
+          dotnet pack src/Byta/Byta.csproj -c Release \
+            -p:Version=${{ steps.version.outputs.version }} -o out
+          ls -lh out
+
+      - name: 校验包内容（防止把 LFS 指针打进去）
+        run: |
+          set -euo pipefail
+          pkg=$(ls out/Byta.GL.*.nupkg | head -1)
+          size=$(stat -c%s "$pkg")
+          echo "$pkg = $size 字节"
+          if [ "$size" -lt 30000000 ]; then
+            echo "::error::包只有 $size 字节，原生库很可能是指针文件"
+            unzip -l "$pkg" | tail -20
+            exit 1
+          fi
+          unzip -l "$pkg" | grep -q "runtimes/osx-arm64/native/libEGL.1.dylib" \
+            || { echo "::error::包里缺少原生实现"; exit 1; }
+
+      - name: 获取 nuget.org 短期密钥（OIDC）
+        id: nuget-login
+        uses: NuGet/login@v1
+        with:
+          user: ${{ vars.NUGET_USER }}
+
+      - name: 发布 Byta.Bindings
+        run: |
+          dotnet nuget push "out/Byta.Bindings.${{ steps.version.outputs.version }}.nupkg" \
+            --api-key "${{ steps.nuget-login.outputs.NUGET_API_KEY }}" \
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate
+
+      - name: 发布 Byta.GL
+        run: |
+          dotnet nuget push "out/Byta.GL.${{ steps.version.outputs.version }}.nupkg" \
+            --api-key "${{ steps.nuget-login.outputs.NUGET_API_KEY }}" \
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate
+
+      - name: 发布符号包
+        run: |
+          for f in out/*.snupkg; do
+            [ -e "$f" ] || continue
+            dotnet nuget push "$f" \
+              --api-key "${{ steps.nuget-login.outputs.NUGET_API_KEY }}" \
+              --source https://api.nuget.org/v3/index.json \
+              --skip-duplicate
+          done
