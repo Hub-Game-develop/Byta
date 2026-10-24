@@ -23,11 +23,12 @@ from mathutils import Vector
 OUT_DIR = "/Users/cangcang/WorkBuddy/2026-10-23-07-10-54/byta/promo"
 FPS = 24
 FRAME_START = 1
-FRAME_END = 240
+FRAME_END = 336
 
 FONT_BOLD = "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
 FONT_REGULAR = "/System/Library/Fonts/Supplemental/Arial.ttf"
 FONT_CJK = "/System/Library/Fonts/Hiragino Sans GB.ttc"
+FONT_MONO = "/System/Library/Fonts/SFNSMono.ttf"
 
 # ---------------------------------------------------------------- 工具
 
@@ -84,7 +85,7 @@ def setup_render():
     # EEVEE：开运动模糊，采样适度（这台机器 swap 紧张，别拉满）
     eevee = scene.eevee
     for attr, value in (
-        ("taa_render_samples", 48),
+        ("taa_render_samples", 40),
         ("use_gtao", True),
         ("use_bloom", True),          # 4.x 之后可能已移除，下面做兼容
         ("use_raytracing", True),
@@ -258,8 +259,10 @@ def build_cube_grid():
     return cubes
 
 
-def build_text(name, body, font, size, location, extrude=0.06, color=(0.92, 0.96, 1.0), strength=2.2):
-    # Text 默认躺在 XY 平面上、法线朝 +Z。绕 X 转 90° 才是"立着面向相机"。
+def build_text(name, body, font, size, location, extrude=0.06, color=(0.92, 0.96, 1.0), strength=2.2, align="CENTER"):
+    # 绕 X 转 90°：文字立在 XZ 平面、正面朝 -Y。
+    # 相机全程待在 -Y 半空间，所以不需要 Track To —— 那个约束在近水平视角下会
+    # 因为 up 轴与视线平行而退化成万向锁，把文字压成一条线。
     bpy.ops.object.text_add(location=location, rotation=(math.radians(90), 0, 0))
     text = bpy.context.object
     text.name = name
@@ -268,7 +271,7 @@ def build_text(name, body, font, size, location, extrude=0.06, color=(0.92, 0.96
     text.data.extrude = extrude
     text.data.bevel_depth = extrude * 0.12
     text.data.bevel_resolution = 3
-    text.data.align_x = "CENTER"
+    text.data.align_x = align
     text.data.align_y = "CENTER"
     if font is not None:
         text.data.font = font
@@ -278,52 +281,109 @@ def build_text(name, body, font, size, location, extrude=0.06, color=(0.92, 0.96
     return text
 
 
-def build_text_block():
+def build_text_block(camera):
+    """
+    文字分四章，每章只在自己的时间窗内可见（靠 scale 0.001 实现"从无到有"）。
+
+    所有文字都用 Track To 约束朝向相机 —— 否则相机环绕到侧面时会看到文字的侧边。
+    """
     bold = load_font(FONT_BOLD)
     regular = load_font(FONT_REGULAR)
     cjk = load_font(FONT_CJK)
+    mono = load_font(FONT_MONO) or regular
 
-    # 主标题
-    title = build_text("Title", "Byta", bold, 3.4, (0, 0, 12.0), extrude=0.14, color=(0.94, 0.97, 1.0), strength=4.2)
-    # 副标题
+    def mono_text(name, body, size, z, color, strength, align="CENTER", x=0.0):
+        return build_text(name, body, mono, size, (x, 0, z), extrude=0.02,
+                          color=color, strength=strength, align=align)
+
+    cyan = (0.35, 0.72, 1.0)
+    soft = (0.62, 0.78, 1.0)
+    white = (0.95, 0.97, 1.0)
+    dim = (0.55, 0.66, 0.85)
+
+    sequence = []   # (对象, 出现帧, 消失帧)
+
+    # ---- 第一章：标题
+    title = build_text("Title", "Byta", bold, 3.4, (0, 0, 12.0), extrude=0.14, color=white, strength=4.2)
     subtitle = build_text("Subtitle", "MODERN  .NET  OPENGL", regular, 0.86, (0, 0, 9.95),
-                          extrude=0.03, color=(0.35, 0.62, 1.0), strength=3.6)
-    # 三行要点
-    lines = [
-        ("Line1", "GL 4.6 core  ·  2651 命令  ·  零托管分配", 8.7),
-        ("Line2", "内置 Mesa  ·  WebGL2 后端  ·  可插拔实现", 7.9),
-        ("Line3", "同一个 API，本机与浏览器都能渲染", 7.1),
+                          extrude=0.03, color=cyan, strength=3.6)
+    tagline = build_text("Tagline", "一套 API，本机与浏览器都能渲染", cjk, 0.62, (0, 0, 8.7),
+                         extrude=0.02, color=dim, strength=2.6)
+    sequence += [(title, 46, 132), (subtitle, 56, 132), (tagline, 86, 132)]
+
+    # ---- 第二章：API 卡（两屏，每屏两个）
+    def api_pair(prefix, api, api_desc, z_api, z_desc, appear, disappear):
+        name = mono_text(f"{prefix}Api", api, 1.05, z_api, white, 3.4)
+        desc = build_text(f"{prefix}Desc", api_desc, cjk, 0.5, (0, 0, z_desc),
+                          extrude=0.015, color=soft, strength=2.2)
+        sequence.append((name, appear, disappear))
+        sequence.append((desc, appear + 6, disappear))
+
+    api_pair("A1", "GlBuffer",
+             "值句柄缓冲 · Span 直传 · 热路径零托管分配",
+             10.2, 9.1, 140, 200)
+    api_pair("A2", "GlProgram",
+             "编译失败直接抛异常，消息里带完整驱动日志",
+             7.5, 6.4, 152, 200)
+    api_pair("B1", "GlState",
+             "线程局部状态缓存 · 冗余绑定到不了驱动",
+             10.2, 9.1, 204, 262)
+    api_pair("B2", "GlApi",
+             "后端门面 · 原生与 WebGL2 走同一套调用",
+             7.5, 6.4, 216, 262)
+
+    # ---- 第三章：代码片段（左对齐，逐行出现）
+    code_lines = [
+        "var session = BytaRuntime.Initialize();",
+        "using var vbo = GlBuffer.Create();",
+        "vbo.Allocate(vertices);        // Span<T>, no allocation",
+        "GlDraw.ElementsInstanced(Triangles, 36, UnsignedInt, 0, 49);",
     ]
-    features = []
-    for name, body, z in lines:
-        font = cjk if any("\u4e00" <= ch <= "\u9fff" for ch in body) else regular
-        features.append(build_text(name, body, font, 0.62, (0, 0, z),
-                                   extrude=0.02, color=(0.55, 0.74, 1.0), strength=2.6))
+    for index, line in enumerate(code_lines):
+        obj = mono_text(f"Code{index}", line, 0.62, 9.6 - index * 1.5, cyan, 2.6,
+                        align="LEFT", x=-8.2)
+        sequence.append((obj, 268 + index * 9, 306))
 
-    # 文字时序：立方体先升完（约第 45 帧），文字再从第 58 帧起逐层浮出
-    for obj, delay in ((title, 0), (subtitle, 10), *[(f, 22 + i * 11) for i, f in enumerate(features)]):
-        base = obj.location.copy()
-        appear = 58 + delay
+    # ---- 第四章：结尾 + 文档链接
+    closing = build_text("Closing", "Byta", bold, 2.2, (0, 0, 9.9), extrude=0.08, color=white, strength=4.0)
+    url = mono_text("Url", "hub-game-develop.github.io/Byta/api/", 0.62, 7.5, cyan, 3.2)
+    hint = build_text("UrlHint", "API 参考", cjk, 0.46, (0, 0, 6.5), extrude=0.02,
+                      color=dim, strength=2.0)
+    sequence += [(closing, 310, 336), (url, 316, 336), (hint, 320, 336)]
 
-        # 出场前彻底不可见：scale 压到 0.001 并保持到出场帧。
-        # 只做位移不做缩放的话，前 2 秒画面上会一直挂着完整文字，
-        # 立方体升起的悬念就没了。
-        obj.scale = (0.001, 0.001, 0.001)
-        obj.keyframe_insert("scale", frame=FRAME_START)
-        obj.keyframe_insert("scale", frame=appear)
+    # ---- 统一打关键帧
+    for obj, appear, disappear in sequence:
+        animate_window(obj, appear, disappear, fade_out=disappear < FRAME_END)
 
-        obj.location = (base.x, base.y, base.z - 1.8)
-        obj.keyframe_insert("location", frame=appear)
-        obj.location = base
-        obj.keyframe_insert("location", frame=appear + 42)
+    # 不做 billboard：文字固定朝 -Y，相机全程在 -Y 半空间（见 build_camera 的 key），
+    # 最多 20° 左右的斜视，反而更有纵深。
 
-        obj.scale = (0.88, 0.88, 0.88)
-        obj.keyframe_insert("scale", frame=appear + 4)
-        obj.scale = (1.0, 1.0, 1.0)
-        obj.keyframe_insert("scale", frame=appear + 50)
+    log(f"文字层：{len(sequence)} 个对象，{len({a for _, a, _ in sequence})} 个出场时刻")
+    return title
 
-    log("文字层：1 标题 + 1 副标题 + 3 行要点")
-    return title, subtitle, features
+
+def animate_window(obj, appear, disappear, fade=9, fade_out=True):
+    """
+    在 [appear, disappear] 内可见，窗口外缩到 0.001（等于不可见）。
+
+    `fade_out=False` 用于结尾落版：不能再插一个 tiny 关键帧，否则它和
+    "保持到最后一帧"的关键帧撞在同一个 frame 上，Bezier 会在结束前十来帧
+    就把字缩没（表现为结尾文字忽然变成一条细线）。
+    """
+    tiny = (0.001, 0.001, 0.001)
+    full = (1.0, 1.0, 1.0)
+
+    obj.scale = tiny
+    obj.keyframe_insert("scale", frame=FRAME_START)
+    obj.keyframe_insert("scale", frame=max(FRAME_START, appear - fade))
+
+    obj.scale = full
+    obj.keyframe_insert("scale", frame=appear)
+    obj.keyframe_insert("scale", frame=disappear)
+
+    if fade_out:
+        obj.scale = tiny
+        obj.keyframe_insert("scale", frame=min(FRAME_END, disappear + fade))
 
 
 def build_lights():
@@ -350,7 +410,7 @@ def build_lights():
         if obj.type == "LIGHT":
             constraint = obj.constraints.new("TRACK_TO")
             constraint.target = target
-            constraint.track_axis = "TRACK_NEGATIVE_Z"
+            constraint.track_axis = "TRACK_Z"      # 文字正面（+Z）朝相机
             constraint.up_axis = "UP_Y"
 
 
@@ -363,11 +423,11 @@ def build_camera():
 
     target = bpy.data.objects.new("CameraTarget", None)
     bpy.context.collection.objects.link(target)
-    target.location = (0, 0, 5.2)
+    target.location = (0, 0, 6.0)
     target.keyframe_insert("location", frame=FRAME_START)
-    target.location = (0, 0, 7.4)
+    target.location = (0, 0, 8.4)
     target.keyframe_insert("location", frame=110)
-    target.location = (0, 0, 6.4)
+    target.location = (0, 0, 8.2)
     target.keyframe_insert("location", frame=FRAME_END)
 
     constraint = camera.constraints.new("TRACK_TO")
@@ -376,13 +436,17 @@ def build_camera():
     constraint.up_axis = "UP_Y"
 
     # 五段相机运动：低角度推进 → 环绕 → 拉高收尾
+    # 距离是重点：文字是世界空间的，离得远就必然小。
+    # 每一章都让相机停在"该章内容刚好占满画面"的位置。
     keys = [
         (FRAME_START, (34.0, -50.0, 12.0)),
-        (34, (19.0, -33.0, 11.5)),
-        (110, (-7.0, -30.0, 14.5)),
-        (160, (-16.0, -38.0, 19.0)),
-        (205, (3.0, -48.0, 24.0)),
-        (FRAME_END, (10.0, -42.0, 21.0)),
+        (34, (19.0, -33.0, 11.5)),     # 标题章，距离 ~40
+        (110, (-7.0, -30.0, 14.5)),    # 距离 ~35
+        (160, (-16.0, -38.0, 19.0)),   # API 章，距离 ~45
+        (205, (3.0, -44.0, 22.0)),     # 全景
+        (262, (0.0, -32.0, 16.0)),     # 第二屏 API，距离 ~37
+        (306, (0.0, -26.0, 15.0)),     # 代码章，距离 ~28
+        (FRAME_END, (0.0, -15.0, 13.5)), # 落版，距离 ~17，保留 ~17° 俯角
     ]
     for frame, location in keys:
         camera.location = location
@@ -421,9 +485,9 @@ def main():
     setup_world()
     build_floor()
     build_cube_grid()
-    build_text_block()
     build_lights()
-    build_camera()
+    camera = build_camera()          # 文字要朝相机，所以先建相机
+    build_text_block(camera)
 
     # 回到第一帧，打开时看到的是开头
     bpy.context.scene.frame_set(FRAME_START)
