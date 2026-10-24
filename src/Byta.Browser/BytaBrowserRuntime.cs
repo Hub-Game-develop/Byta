@@ -11,6 +11,13 @@ public static class BytaBrowserRuntime
     private static bool s_loaded;
 
     /// <summary>
+    /// byta-gl.js 的版本号。ES 模块的 URL 是强缓存的，改了 JS 而不改这里的值，
+    /// 浏览器会继续用旧文件 —— 表现是"改了代码但错误一模一样"。
+    /// 每次修改 byta-gl.js 都要递增它。
+    /// </summary>
+    private const string JsVersion = "4";
+
+    /// <summary>
     /// 把 <paramref name="canvasId"/> 对应的 canvas 变成 Byta 的渲染目标。
     /// 之后所有 <c>GlBuffer</c> / <c>GlProgram</c> / <c>GlDraw</c> 调用都会走 WebGL2。
     /// </summary>
@@ -23,7 +30,7 @@ public static class BytaBrowserRuntime
             // 注意路径基准：Blazor 的模块导入相对于 _framework/ 解析（"../" 也会被归一掉），
             // 所以这个文件必须真的放在 _framework/ 里 —— 由 Byta.Sample.Web.csproj 的
             // CopyBytaGlIntoFramework target 在 publish 后复制进去。
-            await JSHost.ImportAsync("byta-gl.js", "./byta-gl.js");
+            await JSHost.ImportAsync("byta-gl.js", $"./byta-gl.js?v={JsVersion}");
             s_loaded = true;
         }
 
