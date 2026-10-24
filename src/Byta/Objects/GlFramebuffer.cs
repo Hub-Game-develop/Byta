@@ -14,11 +14,11 @@ public readonly unsafe struct GlFramebuffer : IDisposable
 
     public static GlFramebuffer Create()
     {
-        if (GL.GenFramebuffers is null)
+        if (!GlApi.HasGenFramebuffers)
             throw new GlNotSupportedException("glGenFramebuffers", "需要 OpenGL 3.0+ / FBO 扩展");
 
         uint id;
-        GL.GenFramebuffers(1, &id);
+        GlApi.GenFramebuffers(1, &id);
         if (id == 0)
             throw new GlException("glGenFramebuffers 返回了 0 号对象");
         return new GlFramebuffer(id);
@@ -29,13 +29,13 @@ public readonly unsafe struct GlFramebuffer : IDisposable
     public void AttachTexture(GlTexture2D texture, FramebufferAttachment attachment = FramebufferAttachment.Color0, int level = 0)
     {
         Bind(FramebufferTarget.Draw);
-        GL.FramebufferTexture2D(GL.DRAW_FRAMEBUFFER, (uint)attachment, GL.TEXTURE_2D, texture.Id, level);
+        GlApi.FramebufferTexture2D(GL.DRAW_FRAMEBUFFER, (uint)attachment, GL.TEXTURE_2D, texture.Id, level);
     }
 
     public void AttachRenderbuffer(GlRenderbuffer renderbuffer, FramebufferAttachment attachment)
     {
         Bind(FramebufferTarget.Draw);
-        GL.FramebufferRenderbuffer(GL.DRAW_FRAMEBUFFER, (uint)attachment, GL.RENDERBUFFER, renderbuffer.Id);
+        GlApi.FramebufferRenderbuffer(GL.DRAW_FRAMEBUFFER, (uint)attachment, GL.RENDERBUFFER, renderbuffer.Id);
     }
 
     /// <summary>多个颜色附件（MRT）时指定绘制目标。</summary>
@@ -47,19 +47,19 @@ public readonly unsafe struct GlFramebuffer : IDisposable
             buffers[i] = (uint)attachments[i];
 
         fixed (uint* p = buffers)
-            GL.DrawBuffers(buffers.Length, p);
+            GlApi.DrawBuffers(buffers.Length, p);
     }
 
     public void SetReadBuffer(FramebufferAttachment attachment)
     {
         Bind(FramebufferTarget.Read);
-        GL.ReadBuffer((uint)attachment);
+        GlApi.ReadBuffer((uint)attachment);
     }
 
     public FramebufferStatus CheckStatus()
     {
         Bind(FramebufferTarget.Draw);
-        return (FramebufferStatus)GL.CheckFramebufferStatus(GL.DRAW_FRAMEBUFFER);
+        return (FramebufferStatus)GlApi.CheckFramebufferStatus(GL.DRAW_FRAMEBUFFER);
     }
 
     /// <summary>状态不是 COMPLETE 就抛异常（带具体原因）。</summary>
@@ -82,9 +82,9 @@ public readonly unsafe struct GlFramebuffer : IDisposable
             throw new ArgumentException($"目标缓冲太小：需要 {requiredBytes} 字节，实际 {availableBytes} 字节。", nameof(destination));
 
         Bind(FramebufferTarget.Read);
-        GL.PixelStorei(GL.PACK_ALIGNMENT, 1);
+        GlApi.PixelStorei(GL.PACK_ALIGNMENT, 1);
         fixed (T* p = destination)
-            GL.ReadPixels(x, y, width, height, (uint)format, (uint)type, p);
+            GlApi.ReadPixels(x, y, width, height, (uint)format, (uint)type, p);
     }
 
     public void Dispose()
@@ -93,7 +93,7 @@ public readonly unsafe struct GlFramebuffer : IDisposable
             return;
         GlState.BindFramebuffer(FramebufferTarget.Both, 0);
         uint id = Id;
-        GL.DeleteFramebuffers(1, &id);
+        GlApi.DeleteFramebuffers(1, &id);
     }
 }
 
@@ -108,11 +108,11 @@ public readonly unsafe struct GlRenderbuffer : IDisposable
 
     public static GlRenderbuffer Create()
     {
-        if (GL.GenRenderbuffers is null)
+        if (!GlApi.HasGenRenderbuffers)
             throw new GlNotSupportedException("glGenRenderbuffers", "需要 OpenGL 3.0+ / FBO 扩展");
 
         uint id;
-        GL.GenRenderbuffers(1, &id);
+        GlApi.GenRenderbuffers(1, &id);
         if (id == 0)
             throw new GlException("glGenRenderbuffers 返回了 0 号对象");
         return new GlRenderbuffer(id);
@@ -124,7 +124,7 @@ public readonly unsafe struct GlRenderbuffer : IDisposable
     {
         var (internalFormat, _, _) = TextureFormats.Describe(format);
         Bind();
-        GL.RenderbufferStorage(GL.RENDERBUFFER, internalFormat, width, height);
+        GlApi.RenderbufferStorage(GL.RENDERBUFFER, internalFormat, width, height);
     }
 
     public void Dispose()
@@ -133,6 +133,6 @@ public readonly unsafe struct GlRenderbuffer : IDisposable
             return;
         GlState.BindRenderbuffer(0);
         uint id = Id;
-        GL.DeleteRenderbuffers(1, &id);
+        GlApi.DeleteRenderbuffers(1, &id);
     }
 }

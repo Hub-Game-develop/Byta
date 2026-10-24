@@ -4,6 +4,7 @@
   </Folder>
   <Folder Name="/src/">
     <Project Path="src/Byta.Bindings/Byta.Bindings.csproj" />
+    <Project Path="src/Byta.Browser/Byta.Browser.csproj" />
     <Project Path="src/Byta/Byta.csproj" />
   </Folder>
   <Folder Name="/tests/">

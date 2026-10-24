@@ -36,9 +36,9 @@ public static unsafe class GlDebug
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void Check(string operation)
     {
-        if (!ThrowOnError || GL.GetError is null)
+        if (!ThrowOnError || !GlApi.HasGetError)
             return;
-        uint error = GL.GetError();
+        uint error = GlApi.GetError();
         if (error != 0)
             throw new GlException(operation, error);
     }
@@ -47,12 +47,12 @@ public static unsafe class GlDebug
     public static List<uint> Drain(int max = 16)
     {
         var list = new List<uint>(4);
-        if (GL.GetError is null)
+        if (!GlApi.HasGetError)
             return list;
 
         for (int i = 0; i < max; i++)
         {
-            uint error = GL.GetError();
+            uint error = GlApi.GetError();
             if (error == 0)
                 break;
             list.Add(error);
@@ -69,13 +69,13 @@ public static unsafe class GlDebug
         if (GL.DebugMessageCallback is null)
             return false;
 
-        GL.Enable(GL.DEBUG_OUTPUT);
-        GL.Enable(GL.DEBUG_OUTPUT_SYNCHRONOUS);
+        GlApi.Enable(GL.DEBUG_OUTPUT);
+        GlApi.Enable(GL.DEBUG_OUTPUT_SYNCHRONOUS);
 
         // 先把所有消息关掉，再按级别逐条打开。
         // 注意 DebugMessageControl 的 severity 只接受**单个** DEBUG_SEVERITY_* 枚举值（或 DONT_CARE），
         // 不是位掩码 —— 传位掩码会直接 INVALID_ENUM。
-        GL.DebugMessageControl(GL.DONT_CARE, GL.DONT_CARE, GL.DONT_CARE, 0, null, 0);
+        GlApi.DebugMessageControl(GL.DONT_CARE, GL.DONT_CARE, GL.DONT_CARE, 0, null, 0);
 
         int lowestAllowed = minimumSeverity switch
         {
@@ -87,7 +87,7 @@ public static unsafe class GlDebug
 
         for (int index = 0; index <= lowestAllowed; index++)
         {
-            GL.DebugMessageControl(
+            GlApi.DebugMessageControl(
                 GL.DONT_CARE, GL.DONT_CARE, s_severities[index], 0, null, 1);
         }
 

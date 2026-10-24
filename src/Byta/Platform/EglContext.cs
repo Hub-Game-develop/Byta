@@ -126,9 +126,9 @@ public sealed unsafe class EglContext : IGlContext
             var swap = (delegate* unmanaged<nint, nint, int>)NativeLibrary.GetExport(_library, "eglSwapBuffers");
             swap(_display, _surface);
         }
-        else if (GL.Flush is not null)
+        else if (GlApi.HasFlush)
         {
-            GL.Flush();
+            GlApi.Flush();
         }
     }
 

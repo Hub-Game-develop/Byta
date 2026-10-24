@@ -81,7 +81,7 @@ public static unsafe class GlState
         if (CacheEnabled && cache.VertexArray == id)
             return;
 
-        GL.BindVertexArray(id);
+        GlApi.BindVertexArray(id);
         cache.VertexArray = id;
         // 索引缓冲绑定是 VAO 状态而不是全局状态：换 VAO 必须让该缓存失效，
         // 否则会把上一个 VAO 的索引缓冲当成这一个的（很隐蔽的 bug）。
@@ -94,7 +94,7 @@ public static unsafe class GlState
         var cache = C;
         if (CacheEnabled && cache.Program == id)
             return;
-        GL.UseProgram(id);
+        GlApi.UseProgram(id);
         cache.Program = id;
     }
 
@@ -127,7 +127,7 @@ public static unsafe class GlState
             }
         }
 
-        GL.BindBuffer((uint)target, id);
+        GlApi.BindBuffer((uint)target, id);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -141,10 +141,10 @@ public static unsafe class GlState
             // 超出缓存范围的单元：直接直通，不进缓存
             if (cache.ActiveTextureUnit != unit)
             {
-                GL.ActiveTexture(GL.TEXTURE0 + unit);
+                GlApi.ActiveTexture(GL.TEXTURE0 + unit);
                 cache.ActiveTextureUnit = unit;
             }
-            GL.BindTexture(GL.TEXTURE_2D, id);
+            GlApi.BindTexture(GL.TEXTURE_2D, id);
             return;
         }
 
@@ -152,7 +152,7 @@ public static unsafe class GlState
         {
             if (cache.ActiveTextureUnit != unit)
             {
-                GL.ActiveTexture(GL.TEXTURE0 + unit);
+                GlApi.ActiveTexture(GL.TEXTURE0 + unit);
                 cache.ActiveTextureUnit = unit;
             }
             return;
@@ -160,10 +160,10 @@ public static unsafe class GlState
 
         if (cache.ActiveTextureUnit != unit)
         {
-            GL.ActiveTexture(GL.TEXTURE0 + unit);
+            GlApi.ActiveTexture(GL.TEXTURE0 + unit);
             cache.ActiveTextureUnit = unit;
         }
-        GL.BindTexture(GL.TEXTURE_2D, id);
+        GlApi.BindTexture(GL.TEXTURE_2D, id);
         if (CacheEnabled)
             units[unit] = id;
     }
@@ -176,17 +176,17 @@ public static unsafe class GlState
         {
             case FramebufferTarget.Draw:
                 if (CacheEnabled && cache.DrawFramebuffer == id) return;
-                GL.BindFramebuffer(GL.DRAW_FRAMEBUFFER, id);
+                GlApi.BindFramebuffer(GL.DRAW_FRAMEBUFFER, id);
                 cache.DrawFramebuffer = id;
                 return;
             case FramebufferTarget.Read:
                 if (CacheEnabled && cache.ReadFramebuffer == id) return;
-                GL.BindFramebuffer(GL.READ_FRAMEBUFFER, id);
+                GlApi.BindFramebuffer(GL.READ_FRAMEBUFFER, id);
                 cache.ReadFramebuffer = id;
                 return;
             default:
                 if (CacheEnabled && cache.DrawFramebuffer == id && cache.ReadFramebuffer == id) return;
-                GL.BindFramebuffer(GL.FRAMEBUFFER, id);
+                GlApi.BindFramebuffer(GL.FRAMEBUFFER, id);
                 cache.DrawFramebuffer = id;
                 cache.ReadFramebuffer = id;
                 return;
@@ -199,7 +199,7 @@ public static unsafe class GlState
         var cache = C;
         if (CacheEnabled && cache.Renderbuffer == id)
             return;
-        GL.BindRenderbuffer(GL.RENDERBUFFER, id);
+        GlApi.BindRenderbuffer(GL.RENDERBUFFER, id);
         cache.Renderbuffer = id;
     }
 
@@ -211,7 +211,7 @@ public static unsafe class GlState
             && cache.ViewportWidth == width && cache.ViewportHeight == height)
             return;
 
-        GL.Viewport(x, y, width, height);
+        GlApi.Viewport(x, y, width, height);
         cache.ViewportX = x;
         cache.ViewportY = y;
         cache.ViewportWidth = width;
@@ -226,7 +226,7 @@ public static unsafe class GlState
         if (CacheEnabled && (cache.CapabilitiesKnown & bit) != 0 && (cache.CapabilitiesEnabled & bit) != 0)
             return;
 
-        GL.Enable(CapabilityToGl(capability));
+        GlApi.Enable(CapabilityToGl(capability));
         cache.CapabilitiesEnabled |= bit;
         cache.CapabilitiesKnown |= bit;
     }
@@ -239,7 +239,7 @@ public static unsafe class GlState
         if (CacheEnabled && (cache.CapabilitiesKnown & bit) != 0 && (cache.CapabilitiesEnabled & bit) == 0)
             return;
 
-        GL.Disable(CapabilityToGl(capability));
+        GlApi.Disable(CapabilityToGl(capability));
         cache.CapabilitiesEnabled &= ~bit;
         cache.CapabilitiesKnown |= bit;
     }
@@ -251,7 +251,7 @@ public static unsafe class GlState
         if (CacheEnabled && (cache.CapabilitiesKnown & bit) != 0)
             return (cache.CapabilitiesEnabled & bit) != 0;
 
-        bool enabled = GL.IsEnabled(CapabilityToGl(capability)) != 0;
+        bool enabled = GlApi.IsEnabled(CapabilityToGl(capability)) != 0;
         if (enabled)
             cache.CapabilitiesEnabled |= bit;
         else
@@ -262,19 +262,19 @@ public static unsafe class GlState
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void BlendFunc(BlendFactor source, BlendFactor destination)
-        => GL.BlendFunc((uint)source, (uint)destination);
+        => GlApi.BlendFunc((uint)source, (uint)destination);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static void DepthFunc(DepthFunc func) => GL.DepthFunc((uint)func);
+    public static void DepthFunc(DepthFunc func) => GlApi.DepthFunc((uint)func);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static void DepthMask(bool write) => GL.DepthMask(write ? (byte)1 : (byte)0);
+    public static void DepthMask(bool write) => GlApi.DepthMask(write ? (byte)1 : (byte)0);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static void CullFace(FaceCulling face) => GL.CullFace((uint)face);
+    public static void CullFace(FaceCulling face) => GlApi.CullFace((uint)face);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static void ClearColor(float r, float g, float b, float a) => GL.ClearColor(r, g, b, a);
+    public static void ClearColor(float r, float g, float b, float a) => GlApi.ClearColor(r, g, b, a);
 
     private static uint CapabilityToGl(GlCapability capability) => capability switch
     {

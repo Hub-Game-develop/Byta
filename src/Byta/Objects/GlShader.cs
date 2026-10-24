@@ -23,12 +23,15 @@ public readonly unsafe struct GlShader : IDisposable
     /// 因为 macOS 的 GL 4.1 上限对应 GLSL 4.10）。
     /// 编译失败会抛 <see cref="GlException"/>，消息里带完整的驱动日志。
     /// </summary>
-    public static GlShader Compile(GlShaderType type, string source, int glslVersion = 410)
+    public static GlShader Compile(GlShaderType type, string source, int glslVersion = 0)
     {
-        if (GL.CreateShader is null)
+        if (glslVersion <= 0)
+            glslVersion = GlApi.IsBackendActive ? 300 : 410;
+
+        if (!GlApi.HasCreateShader)
             throw new GlNotSupportedException("glCreateShader", "需要 OpenGL 2.0+");
 
-        uint id = GL.CreateShader((uint)type);
+        uint id = GlApi.CreateShader((uint)type);
         if (id == 0)
             throw new GlException($"glCreateShader({type}) 返回 0");
 
@@ -39,17 +42,17 @@ public readonly unsafe struct GlShader : IDisposable
         {
             byte* pointers = p;
             int length = bytes.Length;
-            GL.ShaderSource(id, 1, &pointers, &length);
+            GlApi.ShaderSource(id, 1, &pointers, &length);
         }
 
-        GL.CompileShader(id);
+        GlApi.CompileShader(id);
 
         int status = 0;
-        GL.GetShaderiv(id, GL.COMPILE_STATUS, &status);
+        GlApi.GetShaderiv(id, GL.COMPILE_STATUS, &status);
         if (status == 0)
         {
             string log = ReadInfoLog(id, isProgram: false);
-            GL.DeleteShader(id);
+            GlApi.DeleteShader(id);
             throw new GlException($"{type} 着色器编译失败：\n{log}");
         }
 
@@ -79,16 +82,16 @@ public readonly unsafe struct GlShader : IDisposable
         if (Id == 0)
             return;
         uint id = Id;
-        GL.DeleteShader(id);
+        GlApi.DeleteShader(id);
     }
 
     internal static string ReadInfoLog(uint id, bool isProgram)
     {
         int length = 0;
         if (isProgram)
-            GL.GetProgramiv(id, GL.INFO_LOG_LENGTH, &length);
+            GlApi.GetProgramiv(id, GL.INFO_LOG_LENGTH, &length);
         else
-            GL.GetShaderiv(id, GL.INFO_LOG_LENGTH, &length);
+            GlApi.GetShaderiv(id, GL.INFO_LOG_LENGTH, &length);
 
         if (length <= 1)
             return string.Empty;
@@ -98,9 +101,9 @@ public readonly unsafe struct GlShader : IDisposable
         fixed (byte* p = buffer)
         {
             if (isProgram)
-                GL.GetProgramInfoLog(id, length, &written, p);
+                GlApi.GetProgramInfoLog(id, length, &written, p);
             else
-                GL.GetShaderInfoLog(id, length, &written, p);
+                GlApi.GetShaderInfoLog(id, length, &written, p);
         }
 
         int count = written > 0 ? Math.Min(written, length - 1) : length - 1;
@@ -112,6 +115,12 @@ public readonly unsafe struct GlShader : IDisposable
         var span = source.AsSpan().TrimStart();
         if (span.StartsWith("#version", StringComparison.Ordinal))
             return source;
+
+        // WebGL2 只吃 GLSL ES 3.00，写法是 "#version 300 es"（不是 "#version 300"），
+        // 而且片元着色器必须显式声明浮点精度。桌面 GL 则用 "#version 410"。
+        if (GlApi.IsBackendActive)
+            return $"#version {glslVersion} es\nprecision highp float;\nprecision highp int;\n{source}";
+
         return $"#version {glslVersion}\n{source}";
     }
 }

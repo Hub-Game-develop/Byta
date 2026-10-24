@@ -21,7 +21,7 @@ on:
         required: false
 
 permissions:
-  contents: read
+  contents: write   # 发布成功后要自动创建 Release
   id-token: write   # Trusted Publishing 必需：用于换取短期 API Key
 
 jobs:
@@ -34,6 +34,8 @@ jobs:
           # 关键：原生实现由 Git LFS 跟踪。不拉 LFS 的话，
           # 打进包里的会是 134 字节的指针文件，包看起来正常但根本跑不起来。
           lfs: true
+          # 生成 Release 简介要遍历提交历史
+          fetch-depth: 0
 
       - name: 确认 LFS 内容是真实二进制
         run: |
@@ -67,7 +69,10 @@ jobs:
 
       - name: 还原与构建
         run: |
-          dotnet build Byta.slnx -c Release -p:Version=${{ steps.version.outputs.version }}
+          # 只构建要发布的两个包所在的项目。整个 solution 里的 Byta.Sample.Web
+          # 是 Blazor WebAssembly，需要 wasm-tools，这个 job 刻意不装（构建它的是 build.yml）。
+          dotnet build src/Byta/Byta.csproj -c Release -p:Version=${{ steps.version.outputs.version }}
+          dotnet build src/Byta.Bindings/Byta.Bindings.csproj -c Release -p:Version=${{ steps.version.outputs.version }}
 
       - name: 打包
         run: |
@@ -120,3 +125,24 @@ jobs:
               --source https://api.nuget.org/v3/index.json \
               --skip-duplicate
           done
+
+      # ------------------------------------------------------------------
+      # 正式版简介由这里自动生成 —— 内容来自 git 历史，不手写。
+      # 提交信息请遵守 Conventional Commits（feat / fix / perf / docs ...），否则会落到"其他"里。
+      # ------------------------------------------------------------------
+      - name: 生成 Release 简介
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          python3 tools/release_notes.py "${{ github.ref_name }}" --artifacts out > release-notes.md
+          echo "----- 生成的简介 -----"
+          cat release-notes.md
+
+      - name: 创建 GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${{ github.ref_name }}" \
+            --title "Byta ${{ steps.version.outputs.version }}" \
+            --notes-file release-notes.md \
+            --verify-tag

@@ -5317,5310 +5317,7966 @@ public static unsafe partial class GL
     /// <summary>void glWriteMaskEXT(GLuint res, GLuint @in, GLenum outX, GLenum outY, GLenum outZ, GLenum outW)  [GL_EXT_vertex_shader]</summary>
     public static delegate* unmanaged<uint, uint, uint, uint, uint, uint, void> WriteMaskEXT;
 
+    private static readonly Dictionary<string, nint> s_byName = new(3000);
+
+    /// <summary>按 GL 原名（如 <c>glGenBuffers</c>）取入口点；当前上下文不提供时返回 0。</summary>
+    public static nint Resolve(string name) => s_byName.TryGetValue(name, out nint p) ? p : 0;
+
     static void ResolveAll(GlProcResolver resolver, List<string>? missing)
     {
         int missingCount = 0;
         AccumxOES = (delegate* unmanaged<uint, int, void>)resolver("glAccumxOES");
+        s_byName["glAccumxOES"] = (nint)AccumxOES;
         if (AccumxOES is null) { missingCount++; missing?.Add("glAccumxOES"); }
         AcquireKeyedMutexWin32EXT = (delegate* unmanaged<uint, ulong, uint, byte>)resolver("glAcquireKeyedMutexWin32EXT");
+        s_byName["glAcquireKeyedMutexWin32EXT"] = (nint)AcquireKeyedMutexWin32EXT;
         if (AcquireKeyedMutexWin32EXT is null) { missingCount++; missing?.Add("glAcquireKeyedMutexWin32EXT"); }
         ActiveProgramEXT = (delegate* unmanaged<uint, void>)resolver("glActiveProgramEXT");
+        s_byName["glActiveProgramEXT"] = (nint)ActiveProgramEXT;
         if (ActiveProgramEXT is null) { missingCount++; missing?.Add("glActiveProgramEXT"); }
         ActiveShaderProgram = (delegate* unmanaged<uint, uint, void>)resolver("glActiveShaderProgram");
+        s_byName["glActiveShaderProgram"] = (nint)ActiveShaderProgram;
         if (ActiveShaderProgram is null) { missingCount++; missing?.Add("glActiveShaderProgram"); }
         ActiveShaderProgramEXT = (delegate* unmanaged<uint, uint, void>)resolver("glActiveShaderProgramEXT");
+        s_byName["glActiveShaderProgramEXT"] = (nint)ActiveShaderProgramEXT;
         if (ActiveShaderProgramEXT is null) { missingCount++; missing?.Add("glActiveShaderProgramEXT"); }
         ActiveStencilFaceEXT = (delegate* unmanaged<uint, void>)resolver("glActiveStencilFaceEXT");
+        s_byName["glActiveStencilFaceEXT"] = (nint)ActiveStencilFaceEXT;
         if (ActiveStencilFaceEXT is null) { missingCount++; missing?.Add("glActiveStencilFaceEXT"); }
         ActiveTexture = (delegate* unmanaged<uint, void>)resolver("glActiveTexture");
+        s_byName["glActiveTexture"] = (nint)ActiveTexture;
         if (ActiveTexture is null) { missingCount++; missing?.Add("glActiveTexture"); }
         ActiveTextureARB = (delegate* unmanaged<uint, void>)resolver("glActiveTextureARB");
+        s_byName["glActiveTextureARB"] = (nint)ActiveTextureARB;
         if (ActiveTextureARB is null) { missingCount++; missing?.Add("glActiveTextureARB"); }
         ActiveVaryingNV = (delegate* unmanaged<uint, byte*, void>)resolver("glActiveVaryingNV");
+        s_byName["glActiveVaryingNV"] = (nint)ActiveVaryingNV;
         if (ActiveVaryingNV is null) { missingCount++; missing?.Add("glActiveVaryingNV"); }
         AddClientPointerRangeMESA = (delegate* unmanaged<void*, nint, void>)resolver("glAddClientPointerRangeMESA");
+        s_byName["glAddClientPointerRangeMESA"] = (nint)AddClientPointerRangeMESA;
         if (AddClientPointerRangeMESA is null) { missingCount++; missing?.Add("glAddClientPointerRangeMESA"); }
         AlphaFragmentOp1ATI = (delegate* unmanaged<uint, uint, uint, uint, uint, uint, void>)resolver("glAlphaFragmentOp1ATI");
+        s_byName["glAlphaFragmentOp1ATI"] = (nint)AlphaFragmentOp1ATI;
         if (AlphaFragmentOp1ATI is null) { missingCount++; missing?.Add("glAlphaFragmentOp1ATI"); }
         AlphaFragmentOp2ATI = (delegate* unmanaged<uint, uint, uint, uint, uint, uint, uint, uint, uint, void>)resolver("glAlphaFragmentOp2ATI");
+        s_byName["glAlphaFragmentOp2ATI"] = (nint)AlphaFragmentOp2ATI;
         if (AlphaFragmentOp2ATI is null) { missingCount++; missing?.Add("glAlphaFragmentOp2ATI"); }
         AlphaFragmentOp3ATI = (delegate* unmanaged<uint, uint, uint, uint, uint, uint, uint, uint, uint, uint, uint, uint, void>)resolver("glAlphaFragmentOp3ATI");
+        s_byName["glAlphaFragmentOp3ATI"] = (nint)AlphaFragmentOp3ATI;
         if (AlphaFragmentOp3ATI is null) { missingCount++; missing?.Add("glAlphaFragmentOp3ATI"); }
         AlphaFuncxOES = (delegate* unmanaged<uint, int, void>)resolver("glAlphaFuncxOES");
+        s_byName["glAlphaFuncxOES"] = (nint)AlphaFuncxOES;
         if (AlphaFuncxOES is null) { missingCount++; missing?.Add("glAlphaFuncxOES"); }
         AlphaToCoverageDitherControlNV = (delegate* unmanaged<uint, void>)resolver("glAlphaToCoverageDitherControlNV");
+        s_byName["glAlphaToCoverageDitherControlNV"] = (nint)AlphaToCoverageDitherControlNV;
         if (AlphaToCoverageDitherControlNV is null) { missingCount++; missing?.Add("glAlphaToCoverageDitherControlNV"); }
         ApplyFramebufferAttachmentCMAAINTEL = (delegate* unmanaged<void>)resolver("glApplyFramebufferAttachmentCMAAINTEL");
+        s_byName["glApplyFramebufferAttachmentCMAAINTEL"] = (nint)ApplyFramebufferAttachmentCMAAINTEL;
         if (ApplyFramebufferAttachmentCMAAINTEL is null) { missingCount++; missing?.Add("glApplyFramebufferAttachmentCMAAINTEL"); }
         ApplyTextureEXT = (delegate* unmanaged<uint, void>)resolver("glApplyTextureEXT");
+        s_byName["glApplyTextureEXT"] = (nint)ApplyTextureEXT;
         if (ApplyTextureEXT is null) { missingCount++; missing?.Add("glApplyTextureEXT"); }
         AreProgramsResidentNV = (delegate* unmanaged<int, uint*, byte*, byte>)resolver("glAreProgramsResidentNV");
+        s_byName["glAreProgramsResidentNV"] = (nint)AreProgramsResidentNV;
         if (AreProgramsResidentNV is null) { missingCount++; missing?.Add("glAreProgramsResidentNV"); }
         AreTexturesResidentEXT = (delegate* unmanaged<int, uint*, byte*, byte>)resolver("glAreTexturesResidentEXT");
+        s_byName["glAreTexturesResidentEXT"] = (nint)AreTexturesResidentEXT;
         if (AreTexturesResidentEXT is null) { missingCount++; missing?.Add("glAreTexturesResidentEXT"); }
         ArrayElementEXT = (delegate* unmanaged<int, void>)resolver("glArrayElementEXT");
+        s_byName["glArrayElementEXT"] = (nint)ArrayElementEXT;
         if (ArrayElementEXT is null) { missingCount++; missing?.Add("glArrayElementEXT"); }
         ArrayObjectATI = (delegate* unmanaged<uint, int, uint, int, uint, uint, void>)resolver("glArrayObjectATI");
+        s_byName["glArrayObjectATI"] = (nint)ArrayObjectATI;
         if (ArrayObjectATI is null) { missingCount++; missing?.Add("glArrayObjectATI"); }
         AsyncCopyBufferSubDataNVX = (delegate* unmanaged<int, uint*, ulong*, uint, uint, uint, uint, nint, nint, nint, int, uint*, ulong*, uint>)resolver("glAsyncCopyBufferSubDataNVX");
+        s_byName["glAsyncCopyBufferSubDataNVX"] = (nint)AsyncCopyBufferSubDataNVX;
         if (AsyncCopyBufferSubDataNVX is null) { missingCount++; missing?.Add("glAsyncCopyBufferSubDataNVX"); }
         AsyncCopyImageSubDataNVX = (delegate* unmanaged<int, uint*, ulong*, uint, uint, uint, uint, int, int, int, int, uint, uint, int, int, int, int, int, int, int, int, uint*, ulong*, uint>)resolver("glAsyncCopyImageSubDataNVX");
+        s_byName["glAsyncCopyImageSubDataNVX"] = (nint)AsyncCopyImageSubDataNVX;
         if (AsyncCopyImageSubDataNVX is null) { missingCount++; missing?.Add("glAsyncCopyImageSubDataNVX"); }
         AsyncMarkerSGIX = (delegate* unmanaged<uint, void>)resolver("glAsyncMarkerSGIX");
+        s_byName["glAsyncMarkerSGIX"] = (nint)AsyncMarkerSGIX;
         if (AsyncMarkerSGIX is null) { missingCount++; missing?.Add("glAsyncMarkerSGIX"); }
         AttachObjectARB = (delegate* unmanaged<uint, uint, void>)resolver("glAttachObjectARB");
+        s_byName["glAttachObjectARB"] = (nint)AttachObjectARB;
         if (AttachObjectARB is null) { missingCount++; missing?.Add("glAttachObjectARB"); }
         AttachShader = (delegate* unmanaged<uint, uint, void>)resolver("glAttachShader");
+        s_byName["glAttachShader"] = (nint)AttachShader;
         if (AttachShader is null) { missingCount++; missing?.Add("glAttachShader"); }
         BeginConditionalRender = (delegate* unmanaged<uint, uint, void>)resolver("glBeginConditionalRender");
+        s_byName["glBeginConditionalRender"] = (nint)BeginConditionalRender;
         if (BeginConditionalRender is null) { missingCount++; missing?.Add("glBeginConditionalRender"); }
         BeginConditionalRenderNV = (delegate* unmanaged<uint, uint, void>)resolver("glBeginConditionalRenderNV");
+        s_byName["glBeginConditionalRenderNV"] = (nint)BeginConditionalRenderNV;
         if (BeginConditionalRenderNV is null) { missingCount++; missing?.Add("glBeginConditionalRenderNV"); }
         BeginConditionalRenderNVX = (delegate* unmanaged<uint, void>)resolver("glBeginConditionalRenderNVX");
+        s_byName["glBeginConditionalRenderNVX"] = (nint)BeginConditionalRenderNVX;
         if (BeginConditionalRenderNVX is null) { missingCount++; missing?.Add("glBeginConditionalRenderNVX"); }
         BeginFragmentShaderATI = (delegate* unmanaged<void>)resolver("glBeginFragmentShaderATI");
+        s_byName["glBeginFragmentShaderATI"] = (nint)BeginFragmentShaderATI;
         if (BeginFragmentShaderATI is null) { missingCount++; missing?.Add("glBeginFragmentShaderATI"); }
         BeginOcclusionQueryNV = (delegate* unmanaged<uint, void>)resolver("glBeginOcclusionQueryNV");
+        s_byName["glBeginOcclusionQueryNV"] = (nint)BeginOcclusionQueryNV;
         if (BeginOcclusionQueryNV is null) { missingCount++; missing?.Add("glBeginOcclusionQueryNV"); }
         BeginPerfMonitorAMD = (delegate* unmanaged<uint, void>)resolver("glBeginPerfMonitorAMD");
+        s_byName["glBeginPerfMonitorAMD"] = (nint)BeginPerfMonitorAMD;
         if (BeginPerfMonitorAMD is null) { missingCount++; missing?.Add("glBeginPerfMonitorAMD"); }
         BeginPerfQueryINTEL = (delegate* unmanaged<uint, void>)resolver("glBeginPerfQueryINTEL");
+        s_byName["glBeginPerfQueryINTEL"] = (nint)BeginPerfQueryINTEL;
         if (BeginPerfQueryINTEL is null) { missingCount++; missing?.Add("glBeginPerfQueryINTEL"); }
         BeginQuery = (delegate* unmanaged<uint, uint, void>)resolver("glBeginQuery");
+        s_byName["glBeginQuery"] = (nint)BeginQuery;
         if (BeginQuery is null) { missingCount++; missing?.Add("glBeginQuery"); }
         BeginQueryARB = (delegate* unmanaged<uint, uint, void>)resolver("glBeginQueryARB");
+        s_byName["glBeginQueryARB"] = (nint)BeginQueryARB;
         if (BeginQueryARB is null) { missingCount++; missing?.Add("glBeginQueryARB"); }
         BeginQueryIndexed = (delegate* unmanaged<uint, uint, uint, void>)resolver("glBeginQueryIndexed");
+        s_byName["glBeginQueryIndexed"] = (nint)BeginQueryIndexed;
         if (BeginQueryIndexed is null) { missingCount++; missing?.Add("glBeginQueryIndexed"); }
         BeginTransformFeedback = (delegate* unmanaged<uint, void>)resolver("glBeginTransformFeedback");
+        s_byName["glBeginTransformFeedback"] = (nint)BeginTransformFeedback;
         if (BeginTransformFeedback is null) { missingCount++; missing?.Add("glBeginTransformFeedback"); }
         BeginTransformFeedbackEXT = (delegate* unmanaged<uint, void>)resolver("glBeginTransformFeedbackEXT");
+        s_byName["glBeginTransformFeedbackEXT"] = (nint)BeginTransformFeedbackEXT;
         if (BeginTransformFeedbackEXT is null) { missingCount++; missing?.Add("glBeginTransformFeedbackEXT"); }
         BeginTransformFeedbackNV = (delegate* unmanaged<uint, void>)resolver("glBeginTransformFeedbackNV");
+        s_byName["glBeginTransformFeedbackNV"] = (nint)BeginTransformFeedbackNV;
         if (BeginTransformFeedbackNV is null) { missingCount++; missing?.Add("glBeginTransformFeedbackNV"); }
         BeginVertexShaderEXT = (delegate* unmanaged<void>)resolver("glBeginVertexShaderEXT");
+        s_byName["glBeginVertexShaderEXT"] = (nint)BeginVertexShaderEXT;
         if (BeginVertexShaderEXT is null) { missingCount++; missing?.Add("glBeginVertexShaderEXT"); }
         BeginVideoCaptureNV = (delegate* unmanaged<uint, void>)resolver("glBeginVideoCaptureNV");
+        s_byName["glBeginVideoCaptureNV"] = (nint)BeginVideoCaptureNV;
         if (BeginVideoCaptureNV is null) { missingCount++; missing?.Add("glBeginVideoCaptureNV"); }
         BindAttribLocation = (delegate* unmanaged<uint, uint, byte*, void>)resolver("glBindAttribLocation");
+        s_byName["glBindAttribLocation"] = (nint)BindAttribLocation;
         if (BindAttribLocation is null) { missingCount++; missing?.Add("glBindAttribLocation"); }
         BindAttribLocationARB = (delegate* unmanaged<uint, uint, byte*, void>)resolver("glBindAttribLocationARB");
+        s_byName["glBindAttribLocationARB"] = (nint)BindAttribLocationARB;
         if (BindAttribLocationARB is null) { missingCount++; missing?.Add("glBindAttribLocationARB"); }
         BindBuffer = (delegate* unmanaged<uint, uint, void>)resolver("glBindBuffer");
+        s_byName["glBindBuffer"] = (nint)BindBuffer;
         if (BindBuffer is null) { missingCount++; missing?.Add("glBindBuffer"); }
         BindBufferARB = (delegate* unmanaged<uint, uint, void>)resolver("glBindBufferARB");
+        s_byName["glBindBufferARB"] = (nint)BindBufferARB;
         if (BindBufferARB is null) { missingCount++; missing?.Add("glBindBufferARB"); }
         BindBufferBase = (delegate* unmanaged<uint, uint, uint, void>)resolver("glBindBufferBase");
+        s_byName["glBindBufferBase"] = (nint)BindBufferBase;
         if (BindBufferBase is null) { missingCount++; missing?.Add("glBindBufferBase"); }
         BindBufferBaseEXT = (delegate* unmanaged<uint, uint, uint, void>)resolver("glBindBufferBaseEXT");
+        s_byName["glBindBufferBaseEXT"] = (nint)BindBufferBaseEXT;
         if (BindBufferBaseEXT is null) { missingCount++; missing?.Add("glBindBufferBaseEXT"); }
         BindBufferBaseNV = (delegate* unmanaged<uint, uint, uint, void>)resolver("glBindBufferBaseNV");
+        s_byName["glBindBufferBaseNV"] = (nint)BindBufferBaseNV;
         if (BindBufferBaseNV is null) { missingCount++; missing?.Add("glBindBufferBaseNV"); }
         BindBufferOffsetEXT = (delegate* unmanaged<uint, uint, uint, nint, void>)resolver("glBindBufferOffsetEXT");
+        s_byName["glBindBufferOffsetEXT"] = (nint)BindBufferOffsetEXT;
         if (BindBufferOffsetEXT is null) { missingCount++; missing?.Add("glBindBufferOffsetEXT"); }
         BindBufferOffsetNV = (delegate* unmanaged<uint, uint, uint, nint, void>)resolver("glBindBufferOffsetNV");
+        s_byName["glBindBufferOffsetNV"] = (nint)BindBufferOffsetNV;
         if (BindBufferOffsetNV is null) { missingCount++; missing?.Add("glBindBufferOffsetNV"); }
         BindBufferRange = (delegate* unmanaged<uint, uint, uint, nint, nint, void>)resolver("glBindBufferRange");
+        s_byName["glBindBufferRange"] = (nint)BindBufferRange;
         if (BindBufferRange is null) { missingCount++; missing?.Add("glBindBufferRange"); }
         BindBufferRangeEXT = (delegate* unmanaged<uint, uint, uint, nint, nint, void>)resolver("glBindBufferRangeEXT");
+        s_byName["glBindBufferRangeEXT"] = (nint)BindBufferRangeEXT;
         if (BindBufferRangeEXT is null) { missingCount++; missing?.Add("glBindBufferRangeEXT"); }
         BindBufferRangeNV = (delegate* unmanaged<uint, uint, uint, nint, nint, void>)resolver("glBindBufferRangeNV");
+        s_byName["glBindBufferRangeNV"] = (nint)BindBufferRangeNV;
         if (BindBufferRangeNV is null) { missingCount++; missing?.Add("glBindBufferRangeNV"); }
         BindBuffersBase = (delegate* unmanaged<uint, uint, int, uint*, void>)resolver("glBindBuffersBase");
+        s_byName["glBindBuffersBase"] = (nint)BindBuffersBase;
         if (BindBuffersBase is null) { missingCount++; missing?.Add("glBindBuffersBase"); }
         BindBuffersRange = (delegate* unmanaged<uint, uint, int, uint*, nint*, nint*, void>)resolver("glBindBuffersRange");
+        s_byName["glBindBuffersRange"] = (nint)BindBuffersRange;
         if (BindBuffersRange is null) { missingCount++; missing?.Add("glBindBuffersRange"); }
         BindFragDataLocation = (delegate* unmanaged<uint, uint, byte*, void>)resolver("glBindFragDataLocation");
+        s_byName["glBindFragDataLocation"] = (nint)BindFragDataLocation;
         if (BindFragDataLocation is null) { missingCount++; missing?.Add("glBindFragDataLocation"); }
         BindFragDataLocationEXT = (delegate* unmanaged<uint, uint, byte*, void>)resolver("glBindFragDataLocationEXT");
+        s_byName["glBindFragDataLocationEXT"] = (nint)BindFragDataLocationEXT;
         if (BindFragDataLocationEXT is null) { missingCount++; missing?.Add("glBindFragDataLocationEXT"); }
         BindFragDataLocationIndexed = (delegate* unmanaged<uint, uint, uint, byte*, void>)resolver("glBindFragDataLocationIndexed");
+        s_byName["glBindFragDataLocationIndexed"] = (nint)BindFragDataLocationIndexed;
         if (BindFragDataLocationIndexed is null) { missingCount++; missing?.Add("glBindFragDataLocationIndexed"); }
         BindFragmentShaderATI = (delegate* unmanaged<uint, void>)resolver("glBindFragmentShaderATI");
+        s_byName["glBindFragmentShaderATI"] = (nint)BindFragmentShaderATI;
         if (BindFragmentShaderATI is null) { missingCount++; missing?.Add("glBindFragmentShaderATI"); }
         BindFramebuffer = (delegate* unmanaged<uint, uint, void>)resolver("glBindFramebuffer");
+        s_byName["glBindFramebuffer"] = (nint)BindFramebuffer;
         if (BindFramebuffer is null) { missingCount++; missing?.Add("glBindFramebuffer"); }
         BindFramebufferEXT = (delegate* unmanaged<uint, uint, void>)resolver("glBindFramebufferEXT");
+        s_byName["glBindFramebufferEXT"] = (nint)BindFramebufferEXT;
         if (BindFramebufferEXT is null) { missingCount++; missing?.Add("glBindFramebufferEXT"); }
         BindImageTexture = (delegate* unmanaged<uint, uint, int, byte, int, uint, uint, void>)resolver("glBindImageTexture");
+        s_byName["glBindImageTexture"] = (nint)BindImageTexture;
         if (BindImageTexture is null) { missingCount++; missing?.Add("glBindImageTexture"); }
         BindImageTextureEXT = (delegate* unmanaged<uint, uint, int, byte, int, uint, int, void>)resolver("glBindImageTextureEXT");
+        s_byName["glBindImageTextureEXT"] = (nint)BindImageTextureEXT;
         if (BindImageTextureEXT is null) { missingCount++; missing?.Add("glBindImageTextureEXT"); }
         BindImageTextures = (delegate* unmanaged<uint, int, uint*, void>)resolver("glBindImageTextures");
+        s_byName["glBindImageTextures"] = (nint)BindImageTextures;
         if (BindImageTextures is null) { missingCount++; missing?.Add("glBindImageTextures"); }
         BindLightParameterEXT = (delegate* unmanaged<uint, uint, uint>)resolver("glBindLightParameterEXT");
+        s_byName["glBindLightParameterEXT"] = (nint)BindLightParameterEXT;
         if (BindLightParameterEXT is null) { missingCount++; missing?.Add("glBindLightParameterEXT"); }
         BindMaterialParameterEXT = (delegate* unmanaged<uint, uint, uint>)resolver("glBindMaterialParameterEXT");
+        s_byName["glBindMaterialParameterEXT"] = (nint)BindMaterialParameterEXT;
         if (BindMaterialParameterEXT is null) { missingCount++; missing?.Add("glBindMaterialParameterEXT"); }
         BindMultiTextureEXT = (delegate* unmanaged<uint, uint, uint, void>)resolver("glBindMultiTextureEXT");
+        s_byName["glBindMultiTextureEXT"] = (nint)BindMultiTextureEXT;
         if (BindMultiTextureEXT is null) { missingCount++; missing?.Add("glBindMultiTextureEXT"); }
         BindParameterEXT = (delegate* unmanaged<uint, uint>)resolver("glBindParameterEXT");
+        s_byName["glBindParameterEXT"] = (nint)BindParameterEXT;
         if (BindParameterEXT is null) { missingCount++; missing?.Add("glBindParameterEXT"); }
         BindProgramARB = (delegate* unmanaged<uint, uint, void>)resolver("glBindProgramARB");
+        s_byName["glBindProgramARB"] = (nint)BindProgramARB;
         if (BindProgramARB is null) { missingCount++; missing?.Add("glBindProgramARB"); }
         BindProgramNV = (delegate* unmanaged<uint, uint, void>)resolver("glBindProgramNV");
+        s_byName["glBindProgramNV"] = (nint)BindProgramNV;
         if (BindProgramNV is null) { missingCount++; missing?.Add("glBindProgramNV"); }
         BindProgramPipeline = (delegate* unmanaged<uint, void>)resolver("glBindProgramPipeline");
+        s_byName["glBindProgramPipeline"] = (nint)BindProgramPipeline;
         if (BindProgramPipeline is null) { missingCount++; missing?.Add("glBindProgramPipeline"); }
         BindProgramPipelineEXT = (delegate* unmanaged<uint, void>)resolver("glBindProgramPipelineEXT");
+        s_byName["glBindProgramPipelineEXT"] = (nint)BindProgramPipelineEXT;
         if (BindProgramPipelineEXT is null) { missingCount++; missing?.Add("glBindProgramPipelineEXT"); }
         BindRenderbuffer = (delegate* unmanaged<uint, uint, void>)resolver("glBindRenderbuffer");
+        s_byName["glBindRenderbuffer"] = (nint)BindRenderbuffer;
         if (BindRenderbuffer is null) { missingCount++; missing?.Add("glBindRenderbuffer"); }
         BindRenderbufferEXT = (delegate* unmanaged<uint, uint, void>)resolver("glBindRenderbufferEXT");
+        s_byName["glBindRenderbufferEXT"] = (nint)BindRenderbufferEXT;
         if (BindRenderbufferEXT is null) { missingCount++; missing?.Add("glBindRenderbufferEXT"); }
         BindSampler = (delegate* unmanaged<uint, uint, void>)resolver("glBindSampler");
+        s_byName["glBindSampler"] = (nint)BindSampler;
         if (BindSampler is null) { missingCount++; missing?.Add("glBindSampler"); }
         BindSamplers = (delegate* unmanaged<uint, int, uint*, void>)resolver("glBindSamplers");
+        s_byName["glBindSamplers"] = (nint)BindSamplers;
         if (BindSamplers is null) { missingCount++; missing?.Add("glBindSamplers"); }
         BindShadingRateImageNV = (delegate* unmanaged<uint, void>)resolver("glBindShadingRateImageNV");
+        s_byName["glBindShadingRateImageNV"] = (nint)BindShadingRateImageNV;
         if (BindShadingRateImageNV is null) { missingCount++; missing?.Add("glBindShadingRateImageNV"); }
         BindTexGenParameterEXT = (delegate* unmanaged<uint, uint, uint, uint>)resolver("glBindTexGenParameterEXT");
+        s_byName["glBindTexGenParameterEXT"] = (nint)BindTexGenParameterEXT;
         if (BindTexGenParameterEXT is null) { missingCount++; missing?.Add("glBindTexGenParameterEXT"); }
         BindTexture = (delegate* unmanaged<uint, uint, void>)resolver("glBindTexture");
+        s_byName["glBindTexture"] = (nint)BindTexture;
         if (BindTexture is null) { missingCount++; missing?.Add("glBindTexture"); }
         BindTextureEXT = (delegate* unmanaged<uint, uint, void>)resolver("glBindTextureEXT");
+        s_byName["glBindTextureEXT"] = (nint)BindTextureEXT;
         if (BindTextureEXT is null) { missingCount++; missing?.Add("glBindTextureEXT"); }
         BindTextureUnit = (delegate* unmanaged<uint, uint, void>)resolver("glBindTextureUnit");
+        s_byName["glBindTextureUnit"] = (nint)BindTextureUnit;
         if (BindTextureUnit is null) { missingCount++; missing?.Add("glBindTextureUnit"); }
         BindTextureUnitParameterEXT = (delegate* unmanaged<uint, uint, uint>)resolver("glBindTextureUnitParameterEXT");
+        s_byName["glBindTextureUnitParameterEXT"] = (nint)BindTextureUnitParameterEXT;
         if (BindTextureUnitParameterEXT is null) { missingCount++; missing?.Add("glBindTextureUnitParameterEXT"); }
         BindTextures = (delegate* unmanaged<uint, int, uint*, void>)resolver("glBindTextures");
+        s_byName["glBindTextures"] = (nint)BindTextures;
         if (BindTextures is null) { missingCount++; missing?.Add("glBindTextures"); }
         BindTransformFeedback = (delegate* unmanaged<uint, uint, void>)resolver("glBindTransformFeedback");
+        s_byName["glBindTransformFeedback"] = (nint)BindTransformFeedback;
         if (BindTransformFeedback is null) { missingCount++; missing?.Add("glBindTransformFeedback"); }
         BindTransformFeedbackNV = (delegate* unmanaged<uint, uint, void>)resolver("glBindTransformFeedbackNV");
+        s_byName["glBindTransformFeedbackNV"] = (nint)BindTransformFeedbackNV;
         if (BindTransformFeedbackNV is null) { missingCount++; missing?.Add("glBindTransformFeedbackNV"); }
         BindVertexArray = (delegate* unmanaged<uint, void>)resolver("glBindVertexArray");
+        s_byName["glBindVertexArray"] = (nint)BindVertexArray;
         if (BindVertexArray is null) { missingCount++; missing?.Add("glBindVertexArray"); }
         BindVertexArrayAPPLE = (delegate* unmanaged<uint, void>)resolver("glBindVertexArrayAPPLE");
+        s_byName["glBindVertexArrayAPPLE"] = (nint)BindVertexArrayAPPLE;
         if (BindVertexArrayAPPLE is null) { missingCount++; missing?.Add("glBindVertexArrayAPPLE"); }
         BindVertexBuffer = (delegate* unmanaged<uint, uint, nint, int, void>)resolver("glBindVertexBuffer");
+        s_byName["glBindVertexBuffer"] = (nint)BindVertexBuffer;
         if (BindVertexBuffer is null) { missingCount++; missing?.Add("glBindVertexBuffer"); }
         BindVertexBuffers = (delegate* unmanaged<uint, int, uint*, nint*, int*, void>)resolver("glBindVertexBuffers");
+        s_byName["glBindVertexBuffers"] = (nint)BindVertexBuffers;
         if (BindVertexBuffers is null) { missingCount++; missing?.Add("glBindVertexBuffers"); }
         BindVertexShaderEXT = (delegate* unmanaged<uint, void>)resolver("glBindVertexShaderEXT");
+        s_byName["glBindVertexShaderEXT"] = (nint)BindVertexShaderEXT;
         if (BindVertexShaderEXT is null) { missingCount++; missing?.Add("glBindVertexShaderEXT"); }
         BindVideoCaptureStreamBufferNV = (delegate* unmanaged<uint, uint, uint, nint, void>)resolver("glBindVideoCaptureStreamBufferNV");
+        s_byName["glBindVideoCaptureStreamBufferNV"] = (nint)BindVideoCaptureStreamBufferNV;
         if (BindVideoCaptureStreamBufferNV is null) { missingCount++; missing?.Add("glBindVideoCaptureStreamBufferNV"); }
         BindVideoCaptureStreamTextureNV = (delegate* unmanaged<uint, uint, uint, uint, uint, void>)resolver("glBindVideoCaptureStreamTextureNV");
+        s_byName["glBindVideoCaptureStreamTextureNV"] = (nint)BindVideoCaptureStreamTextureNV;
         if (BindVideoCaptureStreamTextureNV is null) { missingCount++; missing?.Add("glBindVideoCaptureStreamTextureNV"); }
         Binormal3bEXT = (delegate* unmanaged<sbyte, sbyte, sbyte, void>)resolver("glBinormal3bEXT");
+        s_byName["glBinormal3bEXT"] = (nint)Binormal3bEXT;
         if (Binormal3bEXT is null) { missingCount++; missing?.Add("glBinormal3bEXT"); }
         Binormal3bvEXT = (delegate* unmanaged<sbyte*, void>)resolver("glBinormal3bvEXT");
+        s_byName["glBinormal3bvEXT"] = (nint)Binormal3bvEXT;
         if (Binormal3bvEXT is null) { missingCount++; missing?.Add("glBinormal3bvEXT"); }
         Binormal3dEXT = (delegate* unmanaged<double, double, double, void>)resolver("glBinormal3dEXT");
+        s_byName["glBinormal3dEXT"] = (nint)Binormal3dEXT;
         if (Binormal3dEXT is null) { missingCount++; missing?.Add("glBinormal3dEXT"); }
         Binormal3dvEXT = (delegate* unmanaged<double*, void>)resolver("glBinormal3dvEXT");
+        s_byName["glBinormal3dvEXT"] = (nint)Binormal3dvEXT;
         if (Binormal3dvEXT is null) { missingCount++; missing?.Add("glBinormal3dvEXT"); }
         Binormal3fEXT = (delegate* unmanaged<float, float, float, void>)resolver("glBinormal3fEXT");
+        s_byName["glBinormal3fEXT"] = (nint)Binormal3fEXT;
         if (Binormal3fEXT is null) { missingCount++; missing?.Add("glBinormal3fEXT"); }
         Binormal3fvEXT = (delegate* unmanaged<float*, void>)resolver("glBinormal3fvEXT");
+        s_byName["glBinormal3fvEXT"] = (nint)Binormal3fvEXT;
         if (Binormal3fvEXT is null) { missingCount++; missing?.Add("glBinormal3fvEXT"); }
         Binormal3iEXT = (delegate* unmanaged<int, int, int, void>)resolver("glBinormal3iEXT");
+        s_byName["glBinormal3iEXT"] = (nint)Binormal3iEXT;
         if (Binormal3iEXT is null) { missingCount++; missing?.Add("glBinormal3iEXT"); }
         Binormal3ivEXT = (delegate* unmanaged<int*, void>)resolver("glBinormal3ivEXT");
+        s_byName["glBinormal3ivEXT"] = (nint)Binormal3ivEXT;
         if (Binormal3ivEXT is null) { missingCount++; missing?.Add("glBinormal3ivEXT"); }
         Binormal3sEXT = (delegate* unmanaged<short, short, short, void>)resolver("glBinormal3sEXT");
+        s_byName["glBinormal3sEXT"] = (nint)Binormal3sEXT;
         if (Binormal3sEXT is null) { missingCount++; missing?.Add("glBinormal3sEXT"); }
         Binormal3svEXT = (delegate* unmanaged<short*, void>)resolver("glBinormal3svEXT");
+        s_byName["glBinormal3svEXT"] = (nint)Binormal3svEXT;
         if (Binormal3svEXT is null) { missingCount++; missing?.Add("glBinormal3svEXT"); }
         BinormalPointerEXT = (delegate* unmanaged<uint, int, void*, void>)resolver("glBinormalPointerEXT");
+        s_byName["glBinormalPointerEXT"] = (nint)BinormalPointerEXT;
         if (BinormalPointerEXT is null) { missingCount++; missing?.Add("glBinormalPointerEXT"); }
         BitmapxOES = (delegate* unmanaged<int, int, int, int, int, int, byte*, void>)resolver("glBitmapxOES");
+        s_byName["glBitmapxOES"] = (nint)BitmapxOES;
         if (BitmapxOES is null) { missingCount++; missing?.Add("glBitmapxOES"); }
         BlendBarrierKHR = (delegate* unmanaged<void>)resolver("glBlendBarrierKHR");
+        s_byName["glBlendBarrierKHR"] = (nint)BlendBarrierKHR;
         if (BlendBarrierKHR is null) { missingCount++; missing?.Add("glBlendBarrierKHR"); }
         BlendBarrierNV = (delegate* unmanaged<void>)resolver("glBlendBarrierNV");
+        s_byName["glBlendBarrierNV"] = (nint)BlendBarrierNV;
         if (BlendBarrierNV is null) { missingCount++; missing?.Add("glBlendBarrierNV"); }
         BlendColor = (delegate* unmanaged<float, float, float, float, void>)resolver("glBlendColor");
+        s_byName["glBlendColor"] = (nint)BlendColor;
         if (BlendColor is null) { missingCount++; missing?.Add("glBlendColor"); }
         BlendColorEXT = (delegate* unmanaged<float, float, float, float, void>)resolver("glBlendColorEXT");
+        s_byName["glBlendColorEXT"] = (nint)BlendColorEXT;
         if (BlendColorEXT is null) { missingCount++; missing?.Add("glBlendColorEXT"); }
         BlendColorxOES = (delegate* unmanaged<int, int, int, int, void>)resolver("glBlendColorxOES");
+        s_byName["glBlendColorxOES"] = (nint)BlendColorxOES;
         if (BlendColorxOES is null) { missingCount++; missing?.Add("glBlendColorxOES"); }
         BlendEquation = (delegate* unmanaged<uint, void>)resolver("glBlendEquation");
+        s_byName["glBlendEquation"] = (nint)BlendEquation;
         if (BlendEquation is null) { missingCount++; missing?.Add("glBlendEquation"); }
         BlendEquationEXT = (delegate* unmanaged<uint, void>)resolver("glBlendEquationEXT");
+        s_byName["glBlendEquationEXT"] = (nint)BlendEquationEXT;
         if (BlendEquationEXT is null) { missingCount++; missing?.Add("glBlendEquationEXT"); }
         BlendEquationIndexedAMD = (delegate* unmanaged<uint, uint, void>)resolver("glBlendEquationIndexedAMD");
+        s_byName["glBlendEquationIndexedAMD"] = (nint)BlendEquationIndexedAMD;
         if (BlendEquationIndexedAMD is null) { missingCount++; missing?.Add("glBlendEquationIndexedAMD"); }
         BlendEquationSeparate = (delegate* unmanaged<uint, uint, void>)resolver("glBlendEquationSeparate");
+        s_byName["glBlendEquationSeparate"] = (nint)BlendEquationSeparate;
         if (BlendEquationSeparate is null) { missingCount++; missing?.Add("glBlendEquationSeparate"); }
         BlendEquationSeparateEXT = (delegate* unmanaged<uint, uint, void>)resolver("glBlendEquationSeparateEXT");
+        s_byName["glBlendEquationSeparateEXT"] = (nint)BlendEquationSeparateEXT;
         if (BlendEquationSeparateEXT is null) { missingCount++; missing?.Add("glBlendEquationSeparateEXT"); }
         BlendEquationSeparateIndexedAMD = (delegate* unmanaged<uint, uint, uint, void>)resolver("glBlendEquationSeparateIndexedAMD");
+        s_byName["glBlendEquationSeparateIndexedAMD"] = (nint)BlendEquationSeparateIndexedAMD;
         if (BlendEquationSeparateIndexedAMD is null) { missingCount++; missing?.Add("glBlendEquationSeparateIndexedAMD"); }
         BlendEquationSeparatei = (delegate* unmanaged<uint, uint, uint, void>)resolver("glBlendEquationSeparatei");
+        s_byName["glBlendEquationSeparatei"] = (nint)BlendEquationSeparatei;
         if (BlendEquationSeparatei is null) { missingCount++; missing?.Add("glBlendEquationSeparatei"); }
         BlendEquationSeparateiARB = (delegate* unmanaged<uint, uint, uint, void>)resolver("glBlendEquationSeparateiARB");
+        s_byName["glBlendEquationSeparateiARB"] = (nint)BlendEquationSeparateiARB;
         if (BlendEquationSeparateiARB is null) { missingCount++; missing?.Add("glBlendEquationSeparateiARB"); }
         BlendEquationi = (delegate* unmanaged<uint, uint, void>)resolver("glBlendEquationi");
+        s_byName["glBlendEquationi"] = (nint)BlendEquationi;
         if (BlendEquationi is null) { missingCount++; missing?.Add("glBlendEquationi"); }
         BlendEquationiARB = (delegate* unmanaged<uint, uint, void>)resolver("glBlendEquationiARB");
+        s_byName["glBlendEquationiARB"] = (nint)BlendEquationiARB;
         if (BlendEquationiARB is null) { missingCount++; missing?.Add("glBlendEquationiARB"); }
         BlendFunc = (delegate* unmanaged<uint, uint, void>)resolver("glBlendFunc");
+        s_byName["glBlendFunc"] = (nint)BlendFunc;
         if (BlendFunc is null) { missingCount++; missing?.Add("glBlendFunc"); }
         BlendFuncIndexedAMD = (delegate* unmanaged<uint, uint, uint, void>)resolver("glBlendFuncIndexedAMD");
+        s_byName["glBlendFuncIndexedAMD"] = (nint)BlendFuncIndexedAMD;
         if (BlendFuncIndexedAMD is null) { missingCount++; missing?.Add("glBlendFuncIndexedAMD"); }
         BlendFuncSeparate = (delegate* unmanaged<uint, uint, uint, uint, void>)resolver("glBlendFuncSeparate");
+        s_byName["glBlendFuncSeparate"] = (nint)BlendFuncSeparate;
         if (BlendFuncSeparate is null) { missingCount++; missing?.Add("glBlendFuncSeparate"); }
         BlendFuncSeparateEXT = (delegate* unmanaged<uint, uint, uint, uint, void>)resolver("glBlendFuncSeparateEXT");
+        s_byName["glBlendFuncSeparateEXT"] = (nint)BlendFuncSeparateEXT;
         if (BlendFuncSeparateEXT is null) { missingCount++; missing?.Add("glBlendFuncSeparateEXT"); }
         BlendFuncSeparateINGR = (delegate* unmanaged<uint, uint, uint, uint, void>)resolver("glBlendFuncSeparateINGR");
+        s_byName["glBlendFuncSeparateINGR"] = (nint)BlendFuncSeparateINGR;
         if (BlendFuncSeparateINGR is null) { missingCount++; missing?.Add("glBlendFuncSeparateINGR"); }
         BlendFuncSeparateIndexedAMD = (delegate* unmanaged<uint, uint, uint, uint, uint, void>)resolver("glBlendFuncSeparateIndexedAMD");
+        s_byName["glBlendFuncSeparateIndexedAMD"] = (nint)BlendFuncSeparateIndexedAMD;
         if (BlendFuncSeparateIndexedAMD is null) { missingCount++; missing?.Add("glBlendFuncSeparateIndexedAMD"); }
         BlendFuncSeparatei = (delegate* unmanaged<uint, uint, uint, uint, uint, void>)resolver("glBlendFuncSeparatei");
+        s_byName["glBlendFuncSeparatei"] = (nint)BlendFuncSeparatei;
         if (BlendFuncSeparatei is null) { missingCount++; missing?.Add("glBlendFuncSeparatei"); }
         BlendFuncSeparateiARB = (delegate* unmanaged<uint, uint, uint, uint, uint, void>)resolver("glBlendFuncSeparateiARB");
+        s_byName["glBlendFuncSeparateiARB"] = (nint)BlendFuncSeparateiARB;
         if (BlendFuncSeparateiARB is null) { missingCount++; missing?.Add("glBlendFuncSeparateiARB"); }
         BlendFunci = (delegate* unmanaged<uint, uint, uint, void>)resolver("glBlendFunci");
+        s_byName["glBlendFunci"] = (nint)BlendFunci;
         if (BlendFunci is null) { missingCount++; missing?.Add("glBlendFunci"); }
         BlendFunciARB = (delegate* unmanaged<uint, uint, uint, void>)resolver("glBlendFunciARB");
+        s_byName["glBlendFunciARB"] = (nint)BlendFunciARB;
         if (BlendFunciARB is null) { missingCount++; missing?.Add("glBlendFunciARB"); }
         BlendParameteriNV = (delegate* unmanaged<uint, int, void>)resolver("glBlendParameteriNV");
+        s_byName["glBlendParameteriNV"] = (nint)BlendParameteriNV;
         if (BlendParameteriNV is null) { missingCount++; missing?.Add("glBlendParameteriNV"); }
         BlitFramebuffer = (delegate* unmanaged<int, int, int, int, int, int, int, int, uint, uint, void>)resolver("glBlitFramebuffer");
+        s_byName["glBlitFramebuffer"] = (nint)BlitFramebuffer;
         if (BlitFramebuffer is null) { missingCount++; missing?.Add("glBlitFramebuffer"); }
         BlitFramebufferEXT = (delegate* unmanaged<int, int, int, int, int, int, int, int, uint, uint, void>)resolver("glBlitFramebufferEXT");
+        s_byName["glBlitFramebufferEXT"] = (nint)BlitFramebufferEXT;
         if (BlitFramebufferEXT is null) { missingCount++; missing?.Add("glBlitFramebufferEXT"); }
         BlitFramebufferLayerEXT = (delegate* unmanaged<int, int, int, int, int, int, int, int, int, int, uint, uint, void>)resolver("glBlitFramebufferLayerEXT");
+        s_byName["glBlitFramebufferLayerEXT"] = (nint)BlitFramebufferLayerEXT;
         if (BlitFramebufferLayerEXT is null) { missingCount++; missing?.Add("glBlitFramebufferLayerEXT"); }
         BlitFramebufferLayersEXT = (delegate* unmanaged<int, int, int, int, int, int, int, int, uint, uint, void>)resolver("glBlitFramebufferLayersEXT");
+        s_byName["glBlitFramebufferLayersEXT"] = (nint)BlitFramebufferLayersEXT;
         if (BlitFramebufferLayersEXT is null) { missingCount++; missing?.Add("glBlitFramebufferLayersEXT"); }
         BlitNamedFramebuffer = (delegate* unmanaged<uint, uint, int, int, int, int, int, int, int, int, uint, uint, void>)resolver("glBlitNamedFramebuffer");
+        s_byName["glBlitNamedFramebuffer"] = (nint)BlitNamedFramebuffer;
         if (BlitNamedFramebuffer is null) { missingCount++; missing?.Add("glBlitNamedFramebuffer"); }
         BufferAddressRangeNV = (delegate* unmanaged<uint, uint, ulong, nint, void>)resolver("glBufferAddressRangeNV");
+        s_byName["glBufferAddressRangeNV"] = (nint)BufferAddressRangeNV;
         if (BufferAddressRangeNV is null) { missingCount++; missing?.Add("glBufferAddressRangeNV"); }
         BufferAttachMemoryNV = (delegate* unmanaged<uint, uint, ulong, void>)resolver("glBufferAttachMemoryNV");
+        s_byName["glBufferAttachMemoryNV"] = (nint)BufferAttachMemoryNV;
         if (BufferAttachMemoryNV is null) { missingCount++; missing?.Add("glBufferAttachMemoryNV"); }
         BufferData = (delegate* unmanaged<uint, nint, void*, uint, void>)resolver("glBufferData");
+        s_byName["glBufferData"] = (nint)BufferData;
         if (BufferData is null) { missingCount++; missing?.Add("glBufferData"); }
         BufferDataARB = (delegate* unmanaged<uint, nint, void*, uint, void>)resolver("glBufferDataARB");
+        s_byName["glBufferDataARB"] = (nint)BufferDataARB;
         if (BufferDataARB is null) { missingCount++; missing?.Add("glBufferDataARB"); }
         BufferPageCommitmentARB = (delegate* unmanaged<uint, nint, nint, byte, void>)resolver("glBufferPageCommitmentARB");
+        s_byName["glBufferPageCommitmentARB"] = (nint)BufferPageCommitmentARB;
         if (BufferPageCommitmentARB is null) { missingCount++; missing?.Add("glBufferPageCommitmentARB"); }
         BufferPageCommitmentMemNV = (delegate* unmanaged<uint, nint, nint, uint, ulong, byte, void>)resolver("glBufferPageCommitmentMemNV");
+        s_byName["glBufferPageCommitmentMemNV"] = (nint)BufferPageCommitmentMemNV;
         if (BufferPageCommitmentMemNV is null) { missingCount++; missing?.Add("glBufferPageCommitmentMemNV"); }
         BufferParameteriAPPLE = (delegate* unmanaged<uint, uint, int, void>)resolver("glBufferParameteriAPPLE");
+        s_byName["glBufferParameteriAPPLE"] = (nint)BufferParameteriAPPLE;
         if (BufferParameteriAPPLE is null) { missingCount++; missing?.Add("glBufferParameteriAPPLE"); }
         BufferStorage = (delegate* unmanaged<uint, nint, void*, uint, void>)resolver("glBufferStorage");
+        s_byName["glBufferStorage"] = (nint)BufferStorage;
         if (BufferStorage is null) { missingCount++; missing?.Add("glBufferStorage"); }
         BufferStorageMemEXT = (delegate* unmanaged<uint, nint, uint, ulong, void>)resolver("glBufferStorageMemEXT");
+        s_byName["glBufferStorageMemEXT"] = (nint)BufferStorageMemEXT;
         if (BufferStorageMemEXT is null) { missingCount++; missing?.Add("glBufferStorageMemEXT"); }
         BufferSubData = (delegate* unmanaged<uint, nint, nint, void*, void>)resolver("glBufferSubData");
+        s_byName["glBufferSubData"] = (nint)BufferSubData;
         if (BufferSubData is null) { missingCount++; missing?.Add("glBufferSubData"); }
         BufferSubDataARB = (delegate* unmanaged<uint, nint, nint, void*, void>)resolver("glBufferSubDataARB");
+        s_byName["glBufferSubDataARB"] = (nint)BufferSubDataARB;
         if (BufferSubDataARB is null) { missingCount++; missing?.Add("glBufferSubDataARB"); }
         CallCommandListNV = (delegate* unmanaged<uint, void>)resolver("glCallCommandListNV");
+        s_byName["glCallCommandListNV"] = (nint)CallCommandListNV;
         if (CallCommandListNV is null) { missingCount++; missing?.Add("glCallCommandListNV"); }
         CheckFramebufferStatus = (delegate* unmanaged<uint, uint>)resolver("glCheckFramebufferStatus");
+        s_byName["glCheckFramebufferStatus"] = (nint)CheckFramebufferStatus;
         if (CheckFramebufferStatus is null) { missingCount++; missing?.Add("glCheckFramebufferStatus"); }
         CheckFramebufferStatusEXT = (delegate* unmanaged<uint, uint>)resolver("glCheckFramebufferStatusEXT");
+        s_byName["glCheckFramebufferStatusEXT"] = (nint)CheckFramebufferStatusEXT;
         if (CheckFramebufferStatusEXT is null) { missingCount++; missing?.Add("glCheckFramebufferStatusEXT"); }
         CheckNamedFramebufferStatus = (delegate* unmanaged<uint, uint, uint>)resolver("glCheckNamedFramebufferStatus");
+        s_byName["glCheckNamedFramebufferStatus"] = (nint)CheckNamedFramebufferStatus;
         if (CheckNamedFramebufferStatus is null) { missingCount++; missing?.Add("glCheckNamedFramebufferStatus"); }
         CheckNamedFramebufferStatusEXT = (delegate* unmanaged<uint, uint, uint>)resolver("glCheckNamedFramebufferStatusEXT");
+        s_byName["glCheckNamedFramebufferStatusEXT"] = (nint)CheckNamedFramebufferStatusEXT;
         if (CheckNamedFramebufferStatusEXT is null) { missingCount++; missing?.Add("glCheckNamedFramebufferStatusEXT"); }
         ClampColor = (delegate* unmanaged<uint, uint, void>)resolver("glClampColor");
+        s_byName["glClampColor"] = (nint)ClampColor;
         if (ClampColor is null) { missingCount++; missing?.Add("glClampColor"); }
         ClampColorARB = (delegate* unmanaged<uint, uint, void>)resolver("glClampColorARB");
+        s_byName["glClampColorARB"] = (nint)ClampColorARB;
         if (ClampColorARB is null) { missingCount++; missing?.Add("glClampColorARB"); }
         Clear = (delegate* unmanaged<uint, void>)resolver("glClear");
+        s_byName["glClear"] = (nint)Clear;
         if (Clear is null) { missingCount++; missing?.Add("glClear"); }
         ClearAccumxOES = (delegate* unmanaged<int, int, int, int, void>)resolver("glClearAccumxOES");
+        s_byName["glClearAccumxOES"] = (nint)ClearAccumxOES;
         if (ClearAccumxOES is null) { missingCount++; missing?.Add("glClearAccumxOES"); }
         ClearBufferData = (delegate* unmanaged<uint, uint, uint, uint, void*, void>)resolver("glClearBufferData");
+        s_byName["glClearBufferData"] = (nint)ClearBufferData;
         if (ClearBufferData is null) { missingCount++; missing?.Add("glClearBufferData"); }
         ClearBufferSubData = (delegate* unmanaged<uint, uint, nint, nint, uint, uint, void*, void>)resolver("glClearBufferSubData");
+        s_byName["glClearBufferSubData"] = (nint)ClearBufferSubData;
         if (ClearBufferSubData is null) { missingCount++; missing?.Add("glClearBufferSubData"); }
         ClearBufferfi = (delegate* unmanaged<uint, int, float, int, void>)resolver("glClearBufferfi");
+        s_byName["glClearBufferfi"] = (nint)ClearBufferfi;
         if (ClearBufferfi is null) { missingCount++; missing?.Add("glClearBufferfi"); }
         ClearBufferfv = (delegate* unmanaged<uint, int, float*, void>)resolver("glClearBufferfv");
+        s_byName["glClearBufferfv"] = (nint)ClearBufferfv;
         if (ClearBufferfv is null) { missingCount++; missing?.Add("glClearBufferfv"); }
         ClearBufferiv = (delegate* unmanaged<uint, int, int*, void>)resolver("glClearBufferiv");
+        s_byName["glClearBufferiv"] = (nint)ClearBufferiv;
         if (ClearBufferiv is null) { missingCount++; missing?.Add("glClearBufferiv"); }
         ClearBufferuiv = (delegate* unmanaged<uint, int, uint*, void>)resolver("glClearBufferuiv");
+        s_byName["glClearBufferuiv"] = (nint)ClearBufferuiv;
         if (ClearBufferuiv is null) { missingCount++; missing?.Add("glClearBufferuiv"); }
         ClearColor = (delegate* unmanaged<float, float, float, float, void>)resolver("glClearColor");
+        s_byName["glClearColor"] = (nint)ClearColor;
         if (ClearColor is null) { missingCount++; missing?.Add("glClearColor"); }
         ClearColorIiEXT = (delegate* unmanaged<int, int, int, int, void>)resolver("glClearColorIiEXT");
+        s_byName["glClearColorIiEXT"] = (nint)ClearColorIiEXT;
         if (ClearColorIiEXT is null) { missingCount++; missing?.Add("glClearColorIiEXT"); }
         ClearColorIuiEXT = (delegate* unmanaged<uint, uint, uint, uint, void>)resolver("glClearColorIuiEXT");
+        s_byName["glClearColorIuiEXT"] = (nint)ClearColorIuiEXT;
         if (ClearColorIuiEXT is null) { missingCount++; missing?.Add("glClearColorIuiEXT"); }
         ClearColorxOES = (delegate* unmanaged<int, int, int, int, void>)resolver("glClearColorxOES");
+        s_byName["glClearColorxOES"] = (nint)ClearColorxOES;
         if (ClearColorxOES is null) { missingCount++; missing?.Add("glClearColorxOES"); }
         ClearDepth = (delegate* unmanaged<double, void>)resolver("glClearDepth");
+        s_byName["glClearDepth"] = (nint)ClearDepth;
         if (ClearDepth is null) { missingCount++; missing?.Add("glClearDepth"); }
         ClearDepthdNV = (delegate* unmanaged<double, void>)resolver("glClearDepthdNV");
+        s_byName["glClearDepthdNV"] = (nint)ClearDepthdNV;
         if (ClearDepthdNV is null) { missingCount++; missing?.Add("glClearDepthdNV"); }
         ClearDepthf = (delegate* unmanaged<float, void>)resolver("glClearDepthf");
+        s_byName["glClearDepthf"] = (nint)ClearDepthf;
         if (ClearDepthf is null) { missingCount++; missing?.Add("glClearDepthf"); }
         ClearDepthfOES = (delegate* unmanaged<float, void>)resolver("glClearDepthfOES");
+        s_byName["glClearDepthfOES"] = (nint)ClearDepthfOES;
         if (ClearDepthfOES is null) { missingCount++; missing?.Add("glClearDepthfOES"); }
         ClearDepthxOES = (delegate* unmanaged<int, void>)resolver("glClearDepthxOES");
+        s_byName["glClearDepthxOES"] = (nint)ClearDepthxOES;
         if (ClearDepthxOES is null) { missingCount++; missing?.Add("glClearDepthxOES"); }
         ClearNamedBufferData = (delegate* unmanaged<uint, uint, uint, uint, void*, void>)resolver("glClearNamedBufferData");
+        s_byName["glClearNamedBufferData"] = (nint)ClearNamedBufferData;
         if (ClearNamedBufferData is null) { missingCount++; missing?.Add("glClearNamedBufferData"); }
         ClearNamedBufferDataEXT = (delegate* unmanaged<uint, uint, uint, uint, void*, void>)resolver("glClearNamedBufferDataEXT");
+        s_byName["glClearNamedBufferDataEXT"] = (nint)ClearNamedBufferDataEXT;
         if (ClearNamedBufferDataEXT is null) { missingCount++; missing?.Add("glClearNamedBufferDataEXT"); }
         ClearNamedBufferSubData = (delegate* unmanaged<uint, uint, nint, nint, uint, uint, void*, void>)resolver("glClearNamedBufferSubData");
+        s_byName["glClearNamedBufferSubData"] = (nint)ClearNamedBufferSubData;
         if (ClearNamedBufferSubData is null) { missingCount++; missing?.Add("glClearNamedBufferSubData"); }
         ClearNamedBufferSubDataEXT = (delegate* unmanaged<uint, uint, nint, nint, uint, uint, void*, void>)resolver("glClearNamedBufferSubDataEXT");
+        s_byName["glClearNamedBufferSubDataEXT"] = (nint)ClearNamedBufferSubDataEXT;
         if (ClearNamedBufferSubDataEXT is null) { missingCount++; missing?.Add("glClearNamedBufferSubDataEXT"); }
         ClearNamedFramebufferfi = (delegate* unmanaged<uint, uint, int, float, int, void>)resolver("glClearNamedFramebufferfi");
+        s_byName["glClearNamedFramebufferfi"] = (nint)ClearNamedFramebufferfi;
         if (ClearNamedFramebufferfi is null) { missingCount++; missing?.Add("glClearNamedFramebufferfi"); }
         ClearNamedFramebufferfv = (delegate* unmanaged<uint, uint, int, float*, void>)resolver("glClearNamedFramebufferfv");
+        s_byName["glClearNamedFramebufferfv"] = (nint)ClearNamedFramebufferfv;
         if (ClearNamedFramebufferfv is null) { missingCount++; missing?.Add("glClearNamedFramebufferfv"); }
         ClearNamedFramebufferiv = (delegate* unmanaged<uint, uint, int, int*, void>)resolver("glClearNamedFramebufferiv");
+        s_byName["glClearNamedFramebufferiv"] = (nint)ClearNamedFramebufferiv;
         if (ClearNamedFramebufferiv is null) { missingCount++; missing?.Add("glClearNamedFramebufferiv"); }
         ClearNamedFramebufferuiv = (delegate* unmanaged<uint, uint, int, uint*, void>)resolver("glClearNamedFramebufferuiv");
+        s_byName["glClearNamedFramebufferuiv"] = (nint)ClearNamedFramebufferuiv;
         if (ClearNamedFramebufferuiv is null) { missingCount++; missing?.Add("glClearNamedFramebufferuiv"); }
         ClearStencil = (delegate* unmanaged<int, void>)resolver("glClearStencil");
+        s_byName["glClearStencil"] = (nint)ClearStencil;
         if (ClearStencil is null) { missingCount++; missing?.Add("glClearStencil"); }
         ClearTexImage = (delegate* unmanaged<uint, int, uint, uint, void*, void>)resolver("glClearTexImage");
+        s_byName["glClearTexImage"] = (nint)ClearTexImage;
         if (ClearTexImage is null) { missingCount++; missing?.Add("glClearTexImage"); }
         ClearTexSubImage = (delegate* unmanaged<uint, int, int, int, int, int, int, int, uint, uint, void*, void>)resolver("glClearTexSubImage");
+        s_byName["glClearTexSubImage"] = (nint)ClearTexSubImage;
         if (ClearTexSubImage is null) { missingCount++; missing?.Add("glClearTexSubImage"); }
         ClientActiveTextureARB = (delegate* unmanaged<uint, void>)resolver("glClientActiveTextureARB");
+        s_byName["glClientActiveTextureARB"] = (nint)ClientActiveTextureARB;
         if (ClientActiveTextureARB is null) { missingCount++; missing?.Add("glClientActiveTextureARB"); }
         ClientActiveVertexStreamATI = (delegate* unmanaged<uint, void>)resolver("glClientActiveVertexStreamATI");
+        s_byName["glClientActiveVertexStreamATI"] = (nint)ClientActiveVertexStreamATI;
         if (ClientActiveVertexStreamATI is null) { missingCount++; missing?.Add("glClientActiveVertexStreamATI"); }
         ClientAttribDefaultEXT = (delegate* unmanaged<uint, void>)resolver("glClientAttribDefaultEXT");
+        s_byName["glClientAttribDefaultEXT"] = (nint)ClientAttribDefaultEXT;
         if (ClientAttribDefaultEXT is null) { missingCount++; missing?.Add("glClientAttribDefaultEXT"); }
         ClientWaitSemaphoreui64NVX = (delegate* unmanaged<int, uint*, ulong*, void>)resolver("glClientWaitSemaphoreui64NVX");
+        s_byName["glClientWaitSemaphoreui64NVX"] = (nint)ClientWaitSemaphoreui64NVX;
         if (ClientWaitSemaphoreui64NVX is null) { missingCount++; missing?.Add("glClientWaitSemaphoreui64NVX"); }
         ClientWaitSync = (delegate* unmanaged<nint, uint, ulong, uint>)resolver("glClientWaitSync");
+        s_byName["glClientWaitSync"] = (nint)ClientWaitSync;
         if (ClientWaitSync is null) { missingCount++; missing?.Add("glClientWaitSync"); }
         ClipControl = (delegate* unmanaged<uint, uint, void>)resolver("glClipControl");
+        s_byName["glClipControl"] = (nint)ClipControl;
         if (ClipControl is null) { missingCount++; missing?.Add("glClipControl"); }
         ClipPlanefOES = (delegate* unmanaged<uint, float*, void>)resolver("glClipPlanefOES");
+        s_byName["glClipPlanefOES"] = (nint)ClipPlanefOES;
         if (ClipPlanefOES is null) { missingCount++; missing?.Add("glClipPlanefOES"); }
         ClipPlanexOES = (delegate* unmanaged<uint, int*, void>)resolver("glClipPlanexOES");
+        s_byName["glClipPlanexOES"] = (nint)ClipPlanexOES;
         if (ClipPlanexOES is null) { missingCount++; missing?.Add("glClipPlanexOES"); }
         Color3fVertex3fSUN = (delegate* unmanaged<float, float, float, float, float, float, void>)resolver("glColor3fVertex3fSUN");
+        s_byName["glColor3fVertex3fSUN"] = (nint)Color3fVertex3fSUN;
         if (Color3fVertex3fSUN is null) { missingCount++; missing?.Add("glColor3fVertex3fSUN"); }
         Color3fVertex3fvSUN = (delegate* unmanaged<float*, float*, void>)resolver("glColor3fVertex3fvSUN");
+        s_byName["glColor3fVertex3fvSUN"] = (nint)Color3fVertex3fvSUN;
         if (Color3fVertex3fvSUN is null) { missingCount++; missing?.Add("glColor3fVertex3fvSUN"); }
         Color3hNV = (delegate* unmanaged<ushort, ushort, ushort, void>)resolver("glColor3hNV");
+        s_byName["glColor3hNV"] = (nint)Color3hNV;
         if (Color3hNV is null) { missingCount++; missing?.Add("glColor3hNV"); }
         Color3hvNV = (delegate* unmanaged<ushort*, void>)resolver("glColor3hvNV");
+        s_byName["glColor3hvNV"] = (nint)Color3hvNV;
         if (Color3hvNV is null) { missingCount++; missing?.Add("glColor3hvNV"); }
         Color3xOES = (delegate* unmanaged<int, int, int, void>)resolver("glColor3xOES");
+        s_byName["glColor3xOES"] = (nint)Color3xOES;
         if (Color3xOES is null) { missingCount++; missing?.Add("glColor3xOES"); }
         Color3xvOES = (delegate* unmanaged<int*, void>)resolver("glColor3xvOES");
+        s_byName["glColor3xvOES"] = (nint)Color3xvOES;
         if (Color3xvOES is null) { missingCount++; missing?.Add("glColor3xvOES"); }
         Color4fNormal3fVertex3fSUN = (delegate* unmanaged<float, float, float, float, float, float, float, float, float, float, void>)resolver("glColor4fNormal3fVertex3fSUN");
+        s_byName["glColor4fNormal3fVertex3fSUN"] = (nint)Color4fNormal3fVertex3fSUN;
         if (Color4fNormal3fVertex3fSUN is null) { missingCount++; missing?.Add("glColor4fNormal3fVertex3fSUN"); }
         Color4fNormal3fVertex3fvSUN = (delegate* unmanaged<float*, float*, float*, void>)resolver("glColor4fNormal3fVertex3fvSUN");
+        s_byName["glColor4fNormal3fVertex3fvSUN"] = (nint)Color4fNormal3fVertex3fvSUN;
         if (Color4fNormal3fVertex3fvSUN is null) { missingCount++; missing?.Add("glColor4fNormal3fVertex3fvSUN"); }
         Color4hNV = (delegate* unmanaged<ushort, ushort, ushort, ushort, void>)resolver("glColor4hNV");
+        s_byName["glColor4hNV"] = (nint)Color4hNV;
         if (Color4hNV is null) { missingCount++; missing?.Add("glColor4hNV"); }
         Color4hvNV = (delegate* unmanaged<ushort*, void>)resolver("glColor4hvNV");
+        s_byName["glColor4hvNV"] = (nint)Color4hvNV;
         if (Color4hvNV is null) { missingCount++; missing?.Add("glColor4hvNV"); }
         Color4ubVertex2fSUN = (delegate* unmanaged<byte, byte, byte, byte, float, float, void>)resolver("glColor4ubVertex2fSUN");
+        s_byName["glColor4ubVertex2fSUN"] = (nint)Color4ubVertex2fSUN;
         if (Color4ubVertex2fSUN is null) { missingCount++; missing?.Add("glColor4ubVertex2fSUN"); }
         Color4ubVertex2fvSUN = (delegate* unmanaged<byte*, float*, void>)resolver("glColor4ubVertex2fvSUN");
+        s_byName["glColor4ubVertex2fvSUN"] = (nint)Color4ubVertex2fvSUN;
         if (Color4ubVertex2fvSUN is null) { missingCount++; missing?.Add("glColor4ubVertex2fvSUN"); }
         Color4ubVertex3fSUN = (delegate* unmanaged<byte, byte, byte, byte, float, float, float, void>)resolver("glColor4ubVertex3fSUN");
+        s_byName["glColor4ubVertex3fSUN"] = (nint)Color4ubVertex3fSUN;
         if (Color4ubVertex3fSUN is null) { missingCount++; missing?.Add("glColor4ubVertex3fSUN"); }
         Color4ubVertex3fvSUN = (delegate* unmanaged<byte*, float*, void>)resolver("glColor4ubVertex3fvSUN");
+        s_byName["glColor4ubVertex3fvSUN"] = (nint)Color4ubVertex3fvSUN;
         if (Color4ubVertex3fvSUN is null) { missingCount++; missing?.Add("glColor4ubVertex3fvSUN"); }
         Color4xOES = (delegate* unmanaged<int, int, int, int, void>)resolver("glColor4xOES");
+        s_byName["glColor4xOES"] = (nint)Color4xOES;
         if (Color4xOES is null) { missingCount++; missing?.Add("glColor4xOES"); }
         Color4xvOES = (delegate* unmanaged<int*, void>)resolver("glColor4xvOES");
+        s_byName["glColor4xvOES"] = (nint)Color4xvOES;
         if (Color4xvOES is null) { missingCount++; missing?.Add("glColor4xvOES"); }
         ColorFormatNV = (delegate* unmanaged<int, uint, int, void>)resolver("glColorFormatNV");
+        s_byName["glColorFormatNV"] = (nint)ColorFormatNV;
         if (ColorFormatNV is null) { missingCount++; missing?.Add("glColorFormatNV"); }
         ColorFragmentOp1ATI = (delegate* unmanaged<uint, uint, uint, uint, uint, uint, uint, void>)resolver("glColorFragmentOp1ATI");
+        s_byName["glColorFragmentOp1ATI"] = (nint)ColorFragmentOp1ATI;
         if (ColorFragmentOp1ATI is null) { missingCount++; missing?.Add("glColorFragmentOp1ATI"); }
         ColorFragmentOp2ATI = (delegate* unmanaged<uint, uint, uint, uint, uint, uint, uint, uint, uint, uint, void>)resolver("glColorFragmentOp2ATI");
+        s_byName["glColorFragmentOp2ATI"] = (nint)ColorFragmentOp2ATI;
         if (ColorFragmentOp2ATI is null) { missingCount++; missing?.Add("glColorFragmentOp2ATI"); }
         ColorFragmentOp3ATI = (delegate* unmanaged<uint, uint, uint, uint, uint, uint, uint, uint, uint, uint, uint, uint, uint, void>)resolver("glColorFragmentOp3ATI");
+        s_byName["glColorFragmentOp3ATI"] = (nint)ColorFragmentOp3ATI;
         if (ColorFragmentOp3ATI is null) { missingCount++; missing?.Add("glColorFragmentOp3ATI"); }
         ColorMask = (delegate* unmanaged<byte, byte, byte, byte, void>)resolver("glColorMask");
+        s_byName["glColorMask"] = (nint)ColorMask;
         if (ColorMask is null) { missingCount++; missing?.Add("glColorMask"); }
         ColorMaskIndexedEXT = (delegate* unmanaged<uint, byte, byte, byte, byte, void>)resolver("glColorMaskIndexedEXT");
+        s_byName["glColorMaskIndexedEXT"] = (nint)ColorMaskIndexedEXT;
         if (ColorMaskIndexedEXT is null) { missingCount++; missing?.Add("glColorMaskIndexedEXT"); }
         ColorMaski = (delegate* unmanaged<uint, byte, byte, byte, byte, void>)resolver("glColorMaski");
+        s_byName["glColorMaski"] = (nint)ColorMaski;
         if (ColorMaski is null) { missingCount++; missing?.Add("glColorMaski"); }
         ColorP3ui = (delegate* unmanaged<uint, uint, void>)resolver("glColorP3ui");
+        s_byName["glColorP3ui"] = (nint)ColorP3ui;
         if (ColorP3ui is null) { missingCount++; missing?.Add("glColorP3ui"); }
         ColorP3uiv = (delegate* unmanaged<uint, uint*, void>)resolver("glColorP3uiv");
+        s_byName["glColorP3uiv"] = (nint)ColorP3uiv;
         if (ColorP3uiv is null) { missingCount++; missing?.Add("glColorP3uiv"); }
         ColorP4ui = (delegate* unmanaged<uint, uint, void>)resolver("glColorP4ui");
+        s_byName["glColorP4ui"] = (nint)ColorP4ui;
         if (ColorP4ui is null) { missingCount++; missing?.Add("glColorP4ui"); }
         ColorP4uiv = (delegate* unmanaged<uint, uint*, void>)resolver("glColorP4uiv");
+        s_byName["glColorP4uiv"] = (nint)ColorP4uiv;
         if (ColorP4uiv is null) { missingCount++; missing?.Add("glColorP4uiv"); }
         ColorPointerEXT = (delegate* unmanaged<int, uint, int, int, void*, void>)resolver("glColorPointerEXT");
+        s_byName["glColorPointerEXT"] = (nint)ColorPointerEXT;
         if (ColorPointerEXT is null) { missingCount++; missing?.Add("glColorPointerEXT"); }
         ColorPointerListIBM = (delegate* unmanaged<int, uint, int, void**, int, void>)resolver("glColorPointerListIBM");
+        s_byName["glColorPointerListIBM"] = (nint)ColorPointerListIBM;
         if (ColorPointerListIBM is null) { missingCount++; missing?.Add("glColorPointerListIBM"); }
         ColorPointervINTEL = (delegate* unmanaged<int, uint, void**, void>)resolver("glColorPointervINTEL");
+        s_byName["glColorPointervINTEL"] = (nint)ColorPointervINTEL;
         if (ColorPointervINTEL is null) { missingCount++; missing?.Add("glColorPointervINTEL"); }
         ColorSubTable = (delegate* unmanaged<uint, int, int, uint, uint, void*, void>)resolver("glColorSubTable");
+        s_byName["glColorSubTable"] = (nint)ColorSubTable;
         if (ColorSubTable is null) { missingCount++; missing?.Add("glColorSubTable"); }
         ColorSubTableEXT = (delegate* unmanaged<uint, int, int, uint, uint, void*, void>)resolver("glColorSubTableEXT");
+        s_byName["glColorSubTableEXT"] = (nint)ColorSubTableEXT;
         if (ColorSubTableEXT is null) { missingCount++; missing?.Add("glColorSubTableEXT"); }
         ColorTable = (delegate* unmanaged<uint, uint, int, uint, uint, void*, void>)resolver("glColorTable");
+        s_byName["glColorTable"] = (nint)ColorTable;
         if (ColorTable is null) { missingCount++; missing?.Add("glColorTable"); }
         ColorTableEXT = (delegate* unmanaged<uint, uint, int, uint, uint, void*, void>)resolver("glColorTableEXT");
+        s_byName["glColorTableEXT"] = (nint)ColorTableEXT;
         if (ColorTableEXT is null) { missingCount++; missing?.Add("glColorTableEXT"); }
         ColorTableParameterfv = (delegate* unmanaged<uint, uint, float*, void>)resolver("glColorTableParameterfv");
+        s_byName["glColorTableParameterfv"] = (nint)ColorTableParameterfv;
         if (ColorTableParameterfv is null) { missingCount++; missing?.Add("glColorTableParameterfv"); }
         ColorTableParameterfvSGI = (delegate* unmanaged<uint, uint, float*, void>)resolver("glColorTableParameterfvSGI");
+        s_byName["glColorTableParameterfvSGI"] = (nint)ColorTableParameterfvSGI;
         if (ColorTableParameterfvSGI is null) { missingCount++; missing?.Add("glColorTableParameterfvSGI"); }
         ColorTableParameteriv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glColorTableParameteriv");
+        s_byName["glColorTableParameteriv"] = (nint)ColorTableParameteriv;
         if (ColorTableParameteriv is null) { missingCount++; missing?.Add("glColorTableParameteriv"); }
         ColorTableParameterivSGI = (delegate* unmanaged<uint, uint, int*, void>)resolver("glColorTableParameterivSGI");
+        s_byName["glColorTableParameterivSGI"] = (nint)ColorTableParameterivSGI;
         if (ColorTableParameterivSGI is null) { missingCount++; missing?.Add("glColorTableParameterivSGI"); }
         ColorTableSGI = (delegate* unmanaged<uint, uint, int, uint, uint, void*, void>)resolver("glColorTableSGI");
+        s_byName["glColorTableSGI"] = (nint)ColorTableSGI;
         if (ColorTableSGI is null) { missingCount++; missing?.Add("glColorTableSGI"); }
         CombinerInputNV = (delegate* unmanaged<uint, uint, uint, uint, uint, uint, void>)resolver("glCombinerInputNV");
+        s_byName["glCombinerInputNV"] = (nint)CombinerInputNV;
         if (CombinerInputNV is null) { missingCount++; missing?.Add("glCombinerInputNV"); }
         CombinerOutputNV = (delegate* unmanaged<uint, uint, uint, uint, uint, uint, uint, byte, byte, byte, void>)resolver("glCombinerOutputNV");
+        s_byName["glCombinerOutputNV"] = (nint)CombinerOutputNV;
         if (CombinerOutputNV is null) { missingCount++; missing?.Add("glCombinerOutputNV"); }
         CombinerParameterfNV = (delegate* unmanaged<uint, float, void>)resolver("glCombinerParameterfNV");
+        s_byName["glCombinerParameterfNV"] = (nint)CombinerParameterfNV;
         if (CombinerParameterfNV is null) { missingCount++; missing?.Add("glCombinerParameterfNV"); }
         CombinerParameterfvNV = (delegate* unmanaged<uint, float*, void>)resolver("glCombinerParameterfvNV");
+        s_byName["glCombinerParameterfvNV"] = (nint)CombinerParameterfvNV;
         if (CombinerParameterfvNV is null) { missingCount++; missing?.Add("glCombinerParameterfvNV"); }
         CombinerParameteriNV = (delegate* unmanaged<uint, int, void>)resolver("glCombinerParameteriNV");
+        s_byName["glCombinerParameteriNV"] = (nint)CombinerParameteriNV;
         if (CombinerParameteriNV is null) { missingCount++; missing?.Add("glCombinerParameteriNV"); }
         CombinerParameterivNV = (delegate* unmanaged<uint, int*, void>)resolver("glCombinerParameterivNV");
+        s_byName["glCombinerParameterivNV"] = (nint)CombinerParameterivNV;
         if (CombinerParameterivNV is null) { missingCount++; missing?.Add("glCombinerParameterivNV"); }
         CombinerStageParameterfvNV = (delegate* unmanaged<uint, uint, float*, void>)resolver("glCombinerStageParameterfvNV");
+        s_byName["glCombinerStageParameterfvNV"] = (nint)CombinerStageParameterfvNV;
         if (CombinerStageParameterfvNV is null) { missingCount++; missing?.Add("glCombinerStageParameterfvNV"); }
         CommandListSegmentsNV = (delegate* unmanaged<uint, uint, void>)resolver("glCommandListSegmentsNV");
+        s_byName["glCommandListSegmentsNV"] = (nint)CommandListSegmentsNV;
         if (CommandListSegmentsNV is null) { missingCount++; missing?.Add("glCommandListSegmentsNV"); }
         CompileCommandListNV = (delegate* unmanaged<uint, void>)resolver("glCompileCommandListNV");
+        s_byName["glCompileCommandListNV"] = (nint)CompileCommandListNV;
         if (CompileCommandListNV is null) { missingCount++; missing?.Add("glCompileCommandListNV"); }
         CompileShader = (delegate* unmanaged<uint, void>)resolver("glCompileShader");
+        s_byName["glCompileShader"] = (nint)CompileShader;
         if (CompileShader is null) { missingCount++; missing?.Add("glCompileShader"); }
         CompileShaderARB = (delegate* unmanaged<uint, void>)resolver("glCompileShaderARB");
+        s_byName["glCompileShaderARB"] = (nint)CompileShaderARB;
         if (CompileShaderARB is null) { missingCount++; missing?.Add("glCompileShaderARB"); }
         CompileShaderIncludeARB = (delegate* unmanaged<uint, int, byte**, int*, void>)resolver("glCompileShaderIncludeARB");
+        s_byName["glCompileShaderIncludeARB"] = (nint)CompileShaderIncludeARB;
         if (CompileShaderIncludeARB is null) { missingCount++; missing?.Add("glCompileShaderIncludeARB"); }
         CompressedMultiTexImage1DEXT = (delegate* unmanaged<uint, uint, int, uint, int, int, int, void*, void>)resolver("glCompressedMultiTexImage1DEXT");
+        s_byName["glCompressedMultiTexImage1DEXT"] = (nint)CompressedMultiTexImage1DEXT;
         if (CompressedMultiTexImage1DEXT is null) { missingCount++; missing?.Add("glCompressedMultiTexImage1DEXT"); }
         CompressedMultiTexImage2DEXT = (delegate* unmanaged<uint, uint, int, uint, int, int, int, int, void*, void>)resolver("glCompressedMultiTexImage2DEXT");
+        s_byName["glCompressedMultiTexImage2DEXT"] = (nint)CompressedMultiTexImage2DEXT;
         if (CompressedMultiTexImage2DEXT is null) { missingCount++; missing?.Add("glCompressedMultiTexImage2DEXT"); }
         CompressedMultiTexImage3DEXT = (delegate* unmanaged<uint, uint, int, uint, int, int, int, int, int, void*, void>)resolver("glCompressedMultiTexImage3DEXT");
+        s_byName["glCompressedMultiTexImage3DEXT"] = (nint)CompressedMultiTexImage3DEXT;
         if (CompressedMultiTexImage3DEXT is null) { missingCount++; missing?.Add("glCompressedMultiTexImage3DEXT"); }
         CompressedMultiTexSubImage1DEXT = (delegate* unmanaged<uint, uint, int, int, int, uint, int, void*, void>)resolver("glCompressedMultiTexSubImage1DEXT");
+        s_byName["glCompressedMultiTexSubImage1DEXT"] = (nint)CompressedMultiTexSubImage1DEXT;
         if (CompressedMultiTexSubImage1DEXT is null) { missingCount++; missing?.Add("glCompressedMultiTexSubImage1DEXT"); }
         CompressedMultiTexSubImage2DEXT = (delegate* unmanaged<uint, uint, int, int, int, int, int, uint, int, void*, void>)resolver("glCompressedMultiTexSubImage2DEXT");
+        s_byName["glCompressedMultiTexSubImage2DEXT"] = (nint)CompressedMultiTexSubImage2DEXT;
         if (CompressedMultiTexSubImage2DEXT is null) { missingCount++; missing?.Add("glCompressedMultiTexSubImage2DEXT"); }
         CompressedMultiTexSubImage3DEXT = (delegate* unmanaged<uint, uint, int, int, int, int, int, int, int, uint, int, void*, void>)resolver("glCompressedMultiTexSubImage3DEXT");
+        s_byName["glCompressedMultiTexSubImage3DEXT"] = (nint)CompressedMultiTexSubImage3DEXT;
         if (CompressedMultiTexSubImage3DEXT is null) { missingCount++; missing?.Add("glCompressedMultiTexSubImage3DEXT"); }
         CompressedTexImage1D = (delegate* unmanaged<uint, int, uint, int, int, int, void*, void>)resolver("glCompressedTexImage1D");
+        s_byName["glCompressedTexImage1D"] = (nint)CompressedTexImage1D;
         if (CompressedTexImage1D is null) { missingCount++; missing?.Add("glCompressedTexImage1D"); }
         CompressedTexImage1DARB = (delegate* unmanaged<uint, int, uint, int, int, int, void*, void>)resolver("glCompressedTexImage1DARB");
+        s_byName["glCompressedTexImage1DARB"] = (nint)CompressedTexImage1DARB;
         if (CompressedTexImage1DARB is null) { missingCount++; missing?.Add("glCompressedTexImage1DARB"); }
         CompressedTexImage2D = (delegate* unmanaged<uint, int, uint, int, int, int, int, void*, void>)resolver("glCompressedTexImage2D");
+        s_byName["glCompressedTexImage2D"] = (nint)CompressedTexImage2D;
         if (CompressedTexImage2D is null) { missingCount++; missing?.Add("glCompressedTexImage2D"); }
         CompressedTexImage2DARB = (delegate* unmanaged<uint, int, uint, int, int, int, int, void*, void>)resolver("glCompressedTexImage2DARB");
+        s_byName["glCompressedTexImage2DARB"] = (nint)CompressedTexImage2DARB;
         if (CompressedTexImage2DARB is null) { missingCount++; missing?.Add("glCompressedTexImage2DARB"); }
         CompressedTexImage3D = (delegate* unmanaged<uint, int, uint, int, int, int, int, int, void*, void>)resolver("glCompressedTexImage3D");
+        s_byName["glCompressedTexImage3D"] = (nint)CompressedTexImage3D;
         if (CompressedTexImage3D is null) { missingCount++; missing?.Add("glCompressedTexImage3D"); }
         CompressedTexImage3DARB = (delegate* unmanaged<uint, int, uint, int, int, int, int, int, void*, void>)resolver("glCompressedTexImage3DARB");
+        s_byName["glCompressedTexImage3DARB"] = (nint)CompressedTexImage3DARB;
         if (CompressedTexImage3DARB is null) { missingCount++; missing?.Add("glCompressedTexImage3DARB"); }
         CompressedTexSubImage1D = (delegate* unmanaged<uint, int, int, int, uint, int, void*, void>)resolver("glCompressedTexSubImage1D");
+        s_byName["glCompressedTexSubImage1D"] = (nint)CompressedTexSubImage1D;
         if (CompressedTexSubImage1D is null) { missingCount++; missing?.Add("glCompressedTexSubImage1D"); }
         CompressedTexSubImage1DARB = (delegate* unmanaged<uint, int, int, int, uint, int, void*, void>)resolver("glCompressedTexSubImage1DARB");
+        s_byName["glCompressedTexSubImage1DARB"] = (nint)CompressedTexSubImage1DARB;
         if (CompressedTexSubImage1DARB is null) { missingCount++; missing?.Add("glCompressedTexSubImage1DARB"); }
         CompressedTexSubImage2D = (delegate* unmanaged<uint, int, int, int, int, int, uint, int, void*, void>)resolver("glCompressedTexSubImage2D");
+        s_byName["glCompressedTexSubImage2D"] = (nint)CompressedTexSubImage2D;
         if (CompressedTexSubImage2D is null) { missingCount++; missing?.Add("glCompressedTexSubImage2D"); }
         CompressedTexSubImage2DARB = (delegate* unmanaged<uint, int, int, int, int, int, uint, int, void*, void>)resolver("glCompressedTexSubImage2DARB");
+        s_byName["glCompressedTexSubImage2DARB"] = (nint)CompressedTexSubImage2DARB;
         if (CompressedTexSubImage2DARB is null) { missingCount++; missing?.Add("glCompressedTexSubImage2DARB"); }
         CompressedTexSubImage3D = (delegate* unmanaged<uint, int, int, int, int, int, int, int, uint, int, void*, void>)resolver("glCompressedTexSubImage3D");
+        s_byName["glCompressedTexSubImage3D"] = (nint)CompressedTexSubImage3D;
         if (CompressedTexSubImage3D is null) { missingCount++; missing?.Add("glCompressedTexSubImage3D"); }
         CompressedTexSubImage3DARB = (delegate* unmanaged<uint, int, int, int, int, int, int, int, uint, int, void*, void>)resolver("glCompressedTexSubImage3DARB");
+        s_byName["glCompressedTexSubImage3DARB"] = (nint)CompressedTexSubImage3DARB;
         if (CompressedTexSubImage3DARB is null) { missingCount++; missing?.Add("glCompressedTexSubImage3DARB"); }
         CompressedTextureImage1DEXT = (delegate* unmanaged<uint, uint, int, uint, int, int, int, void*, void>)resolver("glCompressedTextureImage1DEXT");
+        s_byName["glCompressedTextureImage1DEXT"] = (nint)CompressedTextureImage1DEXT;
         if (CompressedTextureImage1DEXT is null) { missingCount++; missing?.Add("glCompressedTextureImage1DEXT"); }
         CompressedTextureImage2DEXT = (delegate* unmanaged<uint, uint, int, uint, int, int, int, int, void*, void>)resolver("glCompressedTextureImage2DEXT");
+        s_byName["glCompressedTextureImage2DEXT"] = (nint)CompressedTextureImage2DEXT;
         if (CompressedTextureImage2DEXT is null) { missingCount++; missing?.Add("glCompressedTextureImage2DEXT"); }
         CompressedTextureImage3DEXT = (delegate* unmanaged<uint, uint, int, uint, int, int, int, int, int, void*, void>)resolver("glCompressedTextureImage3DEXT");
+        s_byName["glCompressedTextureImage3DEXT"] = (nint)CompressedTextureImage3DEXT;
         if (CompressedTextureImage3DEXT is null) { missingCount++; missing?.Add("glCompressedTextureImage3DEXT"); }
         CompressedTextureSubImage1D = (delegate* unmanaged<uint, int, int, int, uint, int, void*, void>)resolver("glCompressedTextureSubImage1D");
+        s_byName["glCompressedTextureSubImage1D"] = (nint)CompressedTextureSubImage1D;
         if (CompressedTextureSubImage1D is null) { missingCount++; missing?.Add("glCompressedTextureSubImage1D"); }
         CompressedTextureSubImage1DEXT = (delegate* unmanaged<uint, uint, int, int, int, uint, int, void*, void>)resolver("glCompressedTextureSubImage1DEXT");
+        s_byName["glCompressedTextureSubImage1DEXT"] = (nint)CompressedTextureSubImage1DEXT;
         if (CompressedTextureSubImage1DEXT is null) { missingCount++; missing?.Add("glCompressedTextureSubImage1DEXT"); }
         CompressedTextureSubImage2D = (delegate* unmanaged<uint, int, int, int, int, int, uint, int, void*, void>)resolver("glCompressedTextureSubImage2D");
+        s_byName["glCompressedTextureSubImage2D"] = (nint)CompressedTextureSubImage2D;
         if (CompressedTextureSubImage2D is null) { missingCount++; missing?.Add("glCompressedTextureSubImage2D"); }
         CompressedTextureSubImage2DEXT = (delegate* unmanaged<uint, uint, int, int, int, int, int, uint, int, void*, void>)resolver("glCompressedTextureSubImage2DEXT");
+        s_byName["glCompressedTextureSubImage2DEXT"] = (nint)CompressedTextureSubImage2DEXT;
         if (CompressedTextureSubImage2DEXT is null) { missingCount++; missing?.Add("glCompressedTextureSubImage2DEXT"); }
         CompressedTextureSubImage3D = (delegate* unmanaged<uint, int, int, int, int, int, int, int, uint, int, void*, void>)resolver("glCompressedTextureSubImage3D");
+        s_byName["glCompressedTextureSubImage3D"] = (nint)CompressedTextureSubImage3D;
         if (CompressedTextureSubImage3D is null) { missingCount++; missing?.Add("glCompressedTextureSubImage3D"); }
         CompressedTextureSubImage3DEXT = (delegate* unmanaged<uint, uint, int, int, int, int, int, int, int, uint, int, void*, void>)resolver("glCompressedTextureSubImage3DEXT");
+        s_byName["glCompressedTextureSubImage3DEXT"] = (nint)CompressedTextureSubImage3DEXT;
         if (CompressedTextureSubImage3DEXT is null) { missingCount++; missing?.Add("glCompressedTextureSubImage3DEXT"); }
         ConservativeRasterParameterfNV = (delegate* unmanaged<uint, float, void>)resolver("glConservativeRasterParameterfNV");
+        s_byName["glConservativeRasterParameterfNV"] = (nint)ConservativeRasterParameterfNV;
         if (ConservativeRasterParameterfNV is null) { missingCount++; missing?.Add("glConservativeRasterParameterfNV"); }
         ConservativeRasterParameteriNV = (delegate* unmanaged<uint, int, void>)resolver("glConservativeRasterParameteriNV");
+        s_byName["glConservativeRasterParameteriNV"] = (nint)ConservativeRasterParameteriNV;
         if (ConservativeRasterParameteriNV is null) { missingCount++; missing?.Add("glConservativeRasterParameteriNV"); }
         ConvolutionFilter1D = (delegate* unmanaged<uint, uint, int, uint, uint, void*, void>)resolver("glConvolutionFilter1D");
+        s_byName["glConvolutionFilter1D"] = (nint)ConvolutionFilter1D;
         if (ConvolutionFilter1D is null) { missingCount++; missing?.Add("glConvolutionFilter1D"); }
         ConvolutionFilter1DEXT = (delegate* unmanaged<uint, uint, int, uint, uint, void*, void>)resolver("glConvolutionFilter1DEXT");
+        s_byName["glConvolutionFilter1DEXT"] = (nint)ConvolutionFilter1DEXT;
         if (ConvolutionFilter1DEXT is null) { missingCount++; missing?.Add("glConvolutionFilter1DEXT"); }
         ConvolutionFilter2D = (delegate* unmanaged<uint, uint, int, int, uint, uint, void*, void>)resolver("glConvolutionFilter2D");
+        s_byName["glConvolutionFilter2D"] = (nint)ConvolutionFilter2D;
         if (ConvolutionFilter2D is null) { missingCount++; missing?.Add("glConvolutionFilter2D"); }
         ConvolutionFilter2DEXT = (delegate* unmanaged<uint, uint, int, int, uint, uint, void*, void>)resolver("glConvolutionFilter2DEXT");
+        s_byName["glConvolutionFilter2DEXT"] = (nint)ConvolutionFilter2DEXT;
         if (ConvolutionFilter2DEXT is null) { missingCount++; missing?.Add("glConvolutionFilter2DEXT"); }
         ConvolutionParameterf = (delegate* unmanaged<uint, uint, float, void>)resolver("glConvolutionParameterf");
+        s_byName["glConvolutionParameterf"] = (nint)ConvolutionParameterf;
         if (ConvolutionParameterf is null) { missingCount++; missing?.Add("glConvolutionParameterf"); }
         ConvolutionParameterfEXT = (delegate* unmanaged<uint, uint, float, void>)resolver("glConvolutionParameterfEXT");
+        s_byName["glConvolutionParameterfEXT"] = (nint)ConvolutionParameterfEXT;
         if (ConvolutionParameterfEXT is null) { missingCount++; missing?.Add("glConvolutionParameterfEXT"); }
         ConvolutionParameterfv = (delegate* unmanaged<uint, uint, float*, void>)resolver("glConvolutionParameterfv");
+        s_byName["glConvolutionParameterfv"] = (nint)ConvolutionParameterfv;
         if (ConvolutionParameterfv is null) { missingCount++; missing?.Add("glConvolutionParameterfv"); }
         ConvolutionParameterfvEXT = (delegate* unmanaged<uint, uint, float*, void>)resolver("glConvolutionParameterfvEXT");
+        s_byName["glConvolutionParameterfvEXT"] = (nint)ConvolutionParameterfvEXT;
         if (ConvolutionParameterfvEXT is null) { missingCount++; missing?.Add("glConvolutionParameterfvEXT"); }
         ConvolutionParameteri = (delegate* unmanaged<uint, uint, int, void>)resolver("glConvolutionParameteri");
+        s_byName["glConvolutionParameteri"] = (nint)ConvolutionParameteri;
         if (ConvolutionParameteri is null) { missingCount++; missing?.Add("glConvolutionParameteri"); }
         ConvolutionParameteriEXT = (delegate* unmanaged<uint, uint, int, void>)resolver("glConvolutionParameteriEXT");
+        s_byName["glConvolutionParameteriEXT"] = (nint)ConvolutionParameteriEXT;
         if (ConvolutionParameteriEXT is null) { missingCount++; missing?.Add("glConvolutionParameteriEXT"); }
         ConvolutionParameteriv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glConvolutionParameteriv");
+        s_byName["glConvolutionParameteriv"] = (nint)ConvolutionParameteriv;
         if (ConvolutionParameteriv is null) { missingCount++; missing?.Add("glConvolutionParameteriv"); }
         ConvolutionParameterivEXT = (delegate* unmanaged<uint, uint, int*, void>)resolver("glConvolutionParameterivEXT");
+        s_byName["glConvolutionParameterivEXT"] = (nint)ConvolutionParameterivEXT;
         if (ConvolutionParameterivEXT is null) { missingCount++; missing?.Add("glConvolutionParameterivEXT"); }
         ConvolutionParameterxOES = (delegate* unmanaged<uint, uint, int, void>)resolver("glConvolutionParameterxOES");
+        s_byName["glConvolutionParameterxOES"] = (nint)ConvolutionParameterxOES;
         if (ConvolutionParameterxOES is null) { missingCount++; missing?.Add("glConvolutionParameterxOES"); }
         ConvolutionParameterxvOES = (delegate* unmanaged<uint, uint, int*, void>)resolver("glConvolutionParameterxvOES");
+        s_byName["glConvolutionParameterxvOES"] = (nint)ConvolutionParameterxvOES;
         if (ConvolutionParameterxvOES is null) { missingCount++; missing?.Add("glConvolutionParameterxvOES"); }
         CopyBufferSubData = (delegate* unmanaged<uint, uint, nint, nint, nint, void>)resolver("glCopyBufferSubData");
+        s_byName["glCopyBufferSubData"] = (nint)CopyBufferSubData;
         if (CopyBufferSubData is null) { missingCount++; missing?.Add("glCopyBufferSubData"); }
         CopyColorSubTable = (delegate* unmanaged<uint, int, int, int, int, void>)resolver("glCopyColorSubTable");
+        s_byName["glCopyColorSubTable"] = (nint)CopyColorSubTable;
         if (CopyColorSubTable is null) { missingCount++; missing?.Add("glCopyColorSubTable"); }
         CopyColorSubTableEXT = (delegate* unmanaged<uint, int, int, int, int, void>)resolver("glCopyColorSubTableEXT");
+        s_byName["glCopyColorSubTableEXT"] = (nint)CopyColorSubTableEXT;
         if (CopyColorSubTableEXT is null) { missingCount++; missing?.Add("glCopyColorSubTableEXT"); }
         CopyColorTable = (delegate* unmanaged<uint, uint, int, int, int, void>)resolver("glCopyColorTable");
+        s_byName["glCopyColorTable"] = (nint)CopyColorTable;
         if (CopyColorTable is null) { missingCount++; missing?.Add("glCopyColorTable"); }
         CopyColorTableSGI = (delegate* unmanaged<uint, uint, int, int, int, void>)resolver("glCopyColorTableSGI");
+        s_byName["glCopyColorTableSGI"] = (nint)CopyColorTableSGI;
         if (CopyColorTableSGI is null) { missingCount++; missing?.Add("glCopyColorTableSGI"); }
         CopyConvolutionFilter1D = (delegate* unmanaged<uint, uint, int, int, int, void>)resolver("glCopyConvolutionFilter1D");
+        s_byName["glCopyConvolutionFilter1D"] = (nint)CopyConvolutionFilter1D;
         if (CopyConvolutionFilter1D is null) { missingCount++; missing?.Add("glCopyConvolutionFilter1D"); }
         CopyConvolutionFilter1DEXT = (delegate* unmanaged<uint, uint, int, int, int, void>)resolver("glCopyConvolutionFilter1DEXT");
+        s_byName["glCopyConvolutionFilter1DEXT"] = (nint)CopyConvolutionFilter1DEXT;
         if (CopyConvolutionFilter1DEXT is null) { missingCount++; missing?.Add("glCopyConvolutionFilter1DEXT"); }
         CopyConvolutionFilter2D = (delegate* unmanaged<uint, uint, int, int, int, int, void>)resolver("glCopyConvolutionFilter2D");
+        s_byName["glCopyConvolutionFilter2D"] = (nint)CopyConvolutionFilter2D;
         if (CopyConvolutionFilter2D is null) { missingCount++; missing?.Add("glCopyConvolutionFilter2D"); }
         CopyConvolutionFilter2DEXT = (delegate* unmanaged<uint, uint, int, int, int, int, void>)resolver("glCopyConvolutionFilter2DEXT");
+        s_byName["glCopyConvolutionFilter2DEXT"] = (nint)CopyConvolutionFilter2DEXT;
         if (CopyConvolutionFilter2DEXT is null) { missingCount++; missing?.Add("glCopyConvolutionFilter2DEXT"); }
         CopyImageSubData = (delegate* unmanaged<uint, uint, int, int, int, int, uint, uint, int, int, int, int, int, int, int, void>)resolver("glCopyImageSubData");
+        s_byName["glCopyImageSubData"] = (nint)CopyImageSubData;
         if (CopyImageSubData is null) { missingCount++; missing?.Add("glCopyImageSubData"); }
         CopyImageSubDataNV = (delegate* unmanaged<uint, uint, int, int, int, int, uint, uint, int, int, int, int, int, int, int, void>)resolver("glCopyImageSubDataNV");
+        s_byName["glCopyImageSubDataNV"] = (nint)CopyImageSubDataNV;
         if (CopyImageSubDataNV is null) { missingCount++; missing?.Add("glCopyImageSubDataNV"); }
         CopyMultiTexImage1DEXT = (delegate* unmanaged<uint, uint, int, uint, int, int, int, int, void>)resolver("glCopyMultiTexImage1DEXT");
+        s_byName["glCopyMultiTexImage1DEXT"] = (nint)CopyMultiTexImage1DEXT;
         if (CopyMultiTexImage1DEXT is null) { missingCount++; missing?.Add("glCopyMultiTexImage1DEXT"); }
         CopyMultiTexImage2DEXT = (delegate* unmanaged<uint, uint, int, uint, int, int, int, int, int, void>)resolver("glCopyMultiTexImage2DEXT");
+        s_byName["glCopyMultiTexImage2DEXT"] = (nint)CopyMultiTexImage2DEXT;
         if (CopyMultiTexImage2DEXT is null) { missingCount++; missing?.Add("glCopyMultiTexImage2DEXT"); }
         CopyMultiTexSubImage1DEXT = (delegate* unmanaged<uint, uint, int, int, int, int, int, void>)resolver("glCopyMultiTexSubImage1DEXT");
+        s_byName["glCopyMultiTexSubImage1DEXT"] = (nint)CopyMultiTexSubImage1DEXT;
         if (CopyMultiTexSubImage1DEXT is null) { missingCount++; missing?.Add("glCopyMultiTexSubImage1DEXT"); }
         CopyMultiTexSubImage2DEXT = (delegate* unmanaged<uint, uint, int, int, int, int, int, int, int, void>)resolver("glCopyMultiTexSubImage2DEXT");
+        s_byName["glCopyMultiTexSubImage2DEXT"] = (nint)CopyMultiTexSubImage2DEXT;
         if (CopyMultiTexSubImage2DEXT is null) { missingCount++; missing?.Add("glCopyMultiTexSubImage2DEXT"); }
         CopyMultiTexSubImage3DEXT = (delegate* unmanaged<uint, uint, int, int, int, int, int, int, int, int, void>)resolver("glCopyMultiTexSubImage3DEXT");
+        s_byName["glCopyMultiTexSubImage3DEXT"] = (nint)CopyMultiTexSubImage3DEXT;
         if (CopyMultiTexSubImage3DEXT is null) { missingCount++; missing?.Add("glCopyMultiTexSubImage3DEXT"); }
         CopyNamedBufferSubData = (delegate* unmanaged<uint, uint, nint, nint, nint, void>)resolver("glCopyNamedBufferSubData");
+        s_byName["glCopyNamedBufferSubData"] = (nint)CopyNamedBufferSubData;
         if (CopyNamedBufferSubData is null) { missingCount++; missing?.Add("glCopyNamedBufferSubData"); }
         CopyPathNV = (delegate* unmanaged<uint, uint, void>)resolver("glCopyPathNV");
+        s_byName["glCopyPathNV"] = (nint)CopyPathNV;
         if (CopyPathNV is null) { missingCount++; missing?.Add("glCopyPathNV"); }
         CopyTexImage1D = (delegate* unmanaged<uint, int, uint, int, int, int, int, void>)resolver("glCopyTexImage1D");
+        s_byName["glCopyTexImage1D"] = (nint)CopyTexImage1D;
         if (CopyTexImage1D is null) { missingCount++; missing?.Add("glCopyTexImage1D"); }
         CopyTexImage1DEXT = (delegate* unmanaged<uint, int, uint, int, int, int, int, void>)resolver("glCopyTexImage1DEXT");
+        s_byName["glCopyTexImage1DEXT"] = (nint)CopyTexImage1DEXT;
         if (CopyTexImage1DEXT is null) { missingCount++; missing?.Add("glCopyTexImage1DEXT"); }
         CopyTexImage2D = (delegate* unmanaged<uint, int, uint, int, int, int, int, int, void>)resolver("glCopyTexImage2D");
+        s_byName["glCopyTexImage2D"] = (nint)CopyTexImage2D;
         if (CopyTexImage2D is null) { missingCount++; missing?.Add("glCopyTexImage2D"); }
         CopyTexImage2DEXT = (delegate* unmanaged<uint, int, uint, int, int, int, int, int, void>)resolver("glCopyTexImage2DEXT");
+        s_byName["glCopyTexImage2DEXT"] = (nint)CopyTexImage2DEXT;
         if (CopyTexImage2DEXT is null) { missingCount++; missing?.Add("glCopyTexImage2DEXT"); }
         CopyTexSubImage1D = (delegate* unmanaged<uint, int, int, int, int, int, void>)resolver("glCopyTexSubImage1D");
+        s_byName["glCopyTexSubImage1D"] = (nint)CopyTexSubImage1D;
         if (CopyTexSubImage1D is null) { missingCount++; missing?.Add("glCopyTexSubImage1D"); }
         CopyTexSubImage1DEXT = (delegate* unmanaged<uint, int, int, int, int, int, void>)resolver("glCopyTexSubImage1DEXT");
+        s_byName["glCopyTexSubImage1DEXT"] = (nint)CopyTexSubImage1DEXT;
         if (CopyTexSubImage1DEXT is null) { missingCount++; missing?.Add("glCopyTexSubImage1DEXT"); }
         CopyTexSubImage2D = (delegate* unmanaged<uint, int, int, int, int, int, int, int, void>)resolver("glCopyTexSubImage2D");
+        s_byName["glCopyTexSubImage2D"] = (nint)CopyTexSubImage2D;
         if (CopyTexSubImage2D is null) { missingCount++; missing?.Add("glCopyTexSubImage2D"); }
         CopyTexSubImage2DEXT = (delegate* unmanaged<uint, int, int, int, int, int, int, int, void>)resolver("glCopyTexSubImage2DEXT");
+        s_byName["glCopyTexSubImage2DEXT"] = (nint)CopyTexSubImage2DEXT;
         if (CopyTexSubImage2DEXT is null) { missingCount++; missing?.Add("glCopyTexSubImage2DEXT"); }
         CopyTexSubImage3D = (delegate* unmanaged<uint, int, int, int, int, int, int, int, int, void>)resolver("glCopyTexSubImage3D");
+        s_byName["glCopyTexSubImage3D"] = (nint)CopyTexSubImage3D;
         if (CopyTexSubImage3D is null) { missingCount++; missing?.Add("glCopyTexSubImage3D"); }
         CopyTexSubImage3DEXT = (delegate* unmanaged<uint, int, int, int, int, int, int, int, int, void>)resolver("glCopyTexSubImage3DEXT");
+        s_byName["glCopyTexSubImage3DEXT"] = (nint)CopyTexSubImage3DEXT;
         if (CopyTexSubImage3DEXT is null) { missingCount++; missing?.Add("glCopyTexSubImage3DEXT"); }
         CopyTextureImage1DEXT = (delegate* unmanaged<uint, uint, int, uint, int, int, int, int, void>)resolver("glCopyTextureImage1DEXT");
+        s_byName["glCopyTextureImage1DEXT"] = (nint)CopyTextureImage1DEXT;
         if (CopyTextureImage1DEXT is null) { missingCount++; missing?.Add("glCopyTextureImage1DEXT"); }
         CopyTextureImage2DEXT = (delegate* unmanaged<uint, uint, int, uint, int, int, int, int, int, void>)resolver("glCopyTextureImage2DEXT");
+        s_byName["glCopyTextureImage2DEXT"] = (nint)CopyTextureImage2DEXT;
         if (CopyTextureImage2DEXT is null) { missingCount++; missing?.Add("glCopyTextureImage2DEXT"); }
         CopyTextureSubImage1D = (delegate* unmanaged<uint, int, int, int, int, int, void>)resolver("glCopyTextureSubImage1D");
+        s_byName["glCopyTextureSubImage1D"] = (nint)CopyTextureSubImage1D;
         if (CopyTextureSubImage1D is null) { missingCount++; missing?.Add("glCopyTextureSubImage1D"); }
         CopyTextureSubImage1DEXT = (delegate* unmanaged<uint, uint, int, int, int, int, int, void>)resolver("glCopyTextureSubImage1DEXT");
+        s_byName["glCopyTextureSubImage1DEXT"] = (nint)CopyTextureSubImage1DEXT;
         if (CopyTextureSubImage1DEXT is null) { missingCount++; missing?.Add("glCopyTextureSubImage1DEXT"); }
         CopyTextureSubImage2D = (delegate* unmanaged<uint, int, int, int, int, int, int, int, void>)resolver("glCopyTextureSubImage2D");
+        s_byName["glCopyTextureSubImage2D"] = (nint)CopyTextureSubImage2D;
         if (CopyTextureSubImage2D is null) { missingCount++; missing?.Add("glCopyTextureSubImage2D"); }
         CopyTextureSubImage2DEXT = (delegate* unmanaged<uint, uint, int, int, int, int, int, int, int, void>)resolver("glCopyTextureSubImage2DEXT");
+        s_byName["glCopyTextureSubImage2DEXT"] = (nint)CopyTextureSubImage2DEXT;
         if (CopyTextureSubImage2DEXT is null) { missingCount++; missing?.Add("glCopyTextureSubImage2DEXT"); }
         CopyTextureSubImage3D = (delegate* unmanaged<uint, int, int, int, int, int, int, int, int, void>)resolver("glCopyTextureSubImage3D");
+        s_byName["glCopyTextureSubImage3D"] = (nint)CopyTextureSubImage3D;
         if (CopyTextureSubImage3D is null) { missingCount++; missing?.Add("glCopyTextureSubImage3D"); }
         CopyTextureSubImage3DEXT = (delegate* unmanaged<uint, uint, int, int, int, int, int, int, int, int, void>)resolver("glCopyTextureSubImage3DEXT");
+        s_byName["glCopyTextureSubImage3DEXT"] = (nint)CopyTextureSubImage3DEXT;
         if (CopyTextureSubImage3DEXT is null) { missingCount++; missing?.Add("glCopyTextureSubImage3DEXT"); }
         CoverFillPathInstancedNV = (delegate* unmanaged<int, uint, void*, uint, uint, uint, float*, void>)resolver("glCoverFillPathInstancedNV");
+        s_byName["glCoverFillPathInstancedNV"] = (nint)CoverFillPathInstancedNV;
         if (CoverFillPathInstancedNV is null) { missingCount++; missing?.Add("glCoverFillPathInstancedNV"); }
         CoverFillPathNV = (delegate* unmanaged<uint, uint, void>)resolver("glCoverFillPathNV");
+        s_byName["glCoverFillPathNV"] = (nint)CoverFillPathNV;
         if (CoverFillPathNV is null) { missingCount++; missing?.Add("glCoverFillPathNV"); }
         CoverStrokePathInstancedNV = (delegate* unmanaged<int, uint, void*, uint, uint, uint, float*, void>)resolver("glCoverStrokePathInstancedNV");
+        s_byName["glCoverStrokePathInstancedNV"] = (nint)CoverStrokePathInstancedNV;
         if (CoverStrokePathInstancedNV is null) { missingCount++; missing?.Add("glCoverStrokePathInstancedNV"); }
         CoverStrokePathNV = (delegate* unmanaged<uint, uint, void>)resolver("glCoverStrokePathNV");
+        s_byName["glCoverStrokePathNV"] = (nint)CoverStrokePathNV;
         if (CoverStrokePathNV is null) { missingCount++; missing?.Add("glCoverStrokePathNV"); }
         CoverageModulationNV = (delegate* unmanaged<uint, void>)resolver("glCoverageModulationNV");
+        s_byName["glCoverageModulationNV"] = (nint)CoverageModulationNV;
         if (CoverageModulationNV is null) { missingCount++; missing?.Add("glCoverageModulationNV"); }
         CoverageModulationTableNV = (delegate* unmanaged<int, float*, void>)resolver("glCoverageModulationTableNV");
+        s_byName["glCoverageModulationTableNV"] = (nint)CoverageModulationTableNV;
         if (CoverageModulationTableNV is null) { missingCount++; missing?.Add("glCoverageModulationTableNV"); }
         CreateBuffers = (delegate* unmanaged<int, uint*, void>)resolver("glCreateBuffers");
+        s_byName["glCreateBuffers"] = (nint)CreateBuffers;
         if (CreateBuffers is null) { missingCount++; missing?.Add("glCreateBuffers"); }
         CreateCommandListsNV = (delegate* unmanaged<int, uint*, void>)resolver("glCreateCommandListsNV");
+        s_byName["glCreateCommandListsNV"] = (nint)CreateCommandListsNV;
         if (CreateCommandListsNV is null) { missingCount++; missing?.Add("glCreateCommandListsNV"); }
         CreateFramebuffers = (delegate* unmanaged<int, uint*, void>)resolver("glCreateFramebuffers");
+        s_byName["glCreateFramebuffers"] = (nint)CreateFramebuffers;
         if (CreateFramebuffers is null) { missingCount++; missing?.Add("glCreateFramebuffers"); }
         CreateMemoryObjectsEXT = (delegate* unmanaged<int, uint*, void>)resolver("glCreateMemoryObjectsEXT");
+        s_byName["glCreateMemoryObjectsEXT"] = (nint)CreateMemoryObjectsEXT;
         if (CreateMemoryObjectsEXT is null) { missingCount++; missing?.Add("glCreateMemoryObjectsEXT"); }
         CreatePerfQueryINTEL = (delegate* unmanaged<uint, uint*, void>)resolver("glCreatePerfQueryINTEL");
+        s_byName["glCreatePerfQueryINTEL"] = (nint)CreatePerfQueryINTEL;
         if (CreatePerfQueryINTEL is null) { missingCount++; missing?.Add("glCreatePerfQueryINTEL"); }
         CreateProgram = (delegate* unmanaged<uint>)resolver("glCreateProgram");
+        s_byName["glCreateProgram"] = (nint)CreateProgram;
         if (CreateProgram is null) { missingCount++; missing?.Add("glCreateProgram"); }
         CreateProgramObjectARB = (delegate* unmanaged<uint>)resolver("glCreateProgramObjectARB");
+        s_byName["glCreateProgramObjectARB"] = (nint)CreateProgramObjectARB;
         if (CreateProgramObjectARB is null) { missingCount++; missing?.Add("glCreateProgramObjectARB"); }
         CreateProgramPipelines = (delegate* unmanaged<int, uint*, void>)resolver("glCreateProgramPipelines");
+        s_byName["glCreateProgramPipelines"] = (nint)CreateProgramPipelines;
         if (CreateProgramPipelines is null) { missingCount++; missing?.Add("glCreateProgramPipelines"); }
         CreateProgressFenceNVX = (delegate* unmanaged<uint>)resolver("glCreateProgressFenceNVX");
+        s_byName["glCreateProgressFenceNVX"] = (nint)CreateProgressFenceNVX;
         if (CreateProgressFenceNVX is null) { missingCount++; missing?.Add("glCreateProgressFenceNVX"); }
         CreateQueries = (delegate* unmanaged<uint, int, uint*, void>)resolver("glCreateQueries");
+        s_byName["glCreateQueries"] = (nint)CreateQueries;
         if (CreateQueries is null) { missingCount++; missing?.Add("glCreateQueries"); }
         CreateRenderbuffers = (delegate* unmanaged<int, uint*, void>)resolver("glCreateRenderbuffers");
+        s_byName["glCreateRenderbuffers"] = (nint)CreateRenderbuffers;
         if (CreateRenderbuffers is null) { missingCount++; missing?.Add("glCreateRenderbuffers"); }
         CreateSamplers = (delegate* unmanaged<int, uint*, void>)resolver("glCreateSamplers");
+        s_byName["glCreateSamplers"] = (nint)CreateSamplers;
         if (CreateSamplers is null) { missingCount++; missing?.Add("glCreateSamplers"); }
         CreateSemaphoresNV = (delegate* unmanaged<int, uint*, void>)resolver("glCreateSemaphoresNV");
+        s_byName["glCreateSemaphoresNV"] = (nint)CreateSemaphoresNV;
         if (CreateSemaphoresNV is null) { missingCount++; missing?.Add("glCreateSemaphoresNV"); }
         CreateShader = (delegate* unmanaged<uint, uint>)resolver("glCreateShader");
+        s_byName["glCreateShader"] = (nint)CreateShader;
         if (CreateShader is null) { missingCount++; missing?.Add("glCreateShader"); }
         CreateShaderObjectARB = (delegate* unmanaged<uint, uint>)resolver("glCreateShaderObjectARB");
+        s_byName["glCreateShaderObjectARB"] = (nint)CreateShaderObjectARB;
         if (CreateShaderObjectARB is null) { missingCount++; missing?.Add("glCreateShaderObjectARB"); }
         CreateShaderProgramEXT = (delegate* unmanaged<uint, byte*, uint>)resolver("glCreateShaderProgramEXT");
+        s_byName["glCreateShaderProgramEXT"] = (nint)CreateShaderProgramEXT;
         if (CreateShaderProgramEXT is null) { missingCount++; missing?.Add("glCreateShaderProgramEXT"); }
         CreateShaderProgramv = (delegate* unmanaged<uint, int, byte**, uint>)resolver("glCreateShaderProgramv");
+        s_byName["glCreateShaderProgramv"] = (nint)CreateShaderProgramv;
         if (CreateShaderProgramv is null) { missingCount++; missing?.Add("glCreateShaderProgramv"); }
         CreateShaderProgramvEXT = (delegate* unmanaged<uint, int, byte**, uint>)resolver("glCreateShaderProgramvEXT");
+        s_byName["glCreateShaderProgramvEXT"] = (nint)CreateShaderProgramvEXT;
         if (CreateShaderProgramvEXT is null) { missingCount++; missing?.Add("glCreateShaderProgramvEXT"); }
         CreateStatesNV = (delegate* unmanaged<int, uint*, void>)resolver("glCreateStatesNV");
+        s_byName["glCreateStatesNV"] = (nint)CreateStatesNV;
         if (CreateStatesNV is null) { missingCount++; missing?.Add("glCreateStatesNV"); }
         CreateTextures = (delegate* unmanaged<uint, int, uint*, void>)resolver("glCreateTextures");
+        s_byName["glCreateTextures"] = (nint)CreateTextures;
         if (CreateTextures is null) { missingCount++; missing?.Add("glCreateTextures"); }
         CreateTransformFeedbacks = (delegate* unmanaged<int, uint*, void>)resolver("glCreateTransformFeedbacks");
+        s_byName["glCreateTransformFeedbacks"] = (nint)CreateTransformFeedbacks;
         if (CreateTransformFeedbacks is null) { missingCount++; missing?.Add("glCreateTransformFeedbacks"); }
         CreateVertexArrays = (delegate* unmanaged<int, uint*, void>)resolver("glCreateVertexArrays");
+        s_byName["glCreateVertexArrays"] = (nint)CreateVertexArrays;
         if (CreateVertexArrays is null) { missingCount++; missing?.Add("glCreateVertexArrays"); }
         CullFace = (delegate* unmanaged<uint, void>)resolver("glCullFace");
+        s_byName["glCullFace"] = (nint)CullFace;
         if (CullFace is null) { missingCount++; missing?.Add("glCullFace"); }
         CullParameterdvEXT = (delegate* unmanaged<uint, double*, void>)resolver("glCullParameterdvEXT");
+        s_byName["glCullParameterdvEXT"] = (nint)CullParameterdvEXT;
         if (CullParameterdvEXT is null) { missingCount++; missing?.Add("glCullParameterdvEXT"); }
         CullParameterfvEXT = (delegate* unmanaged<uint, float*, void>)resolver("glCullParameterfvEXT");
+        s_byName["glCullParameterfvEXT"] = (nint)CullParameterfvEXT;
         if (CullParameterfvEXT is null) { missingCount++; missing?.Add("glCullParameterfvEXT"); }
         CurrentPaletteMatrixARB = (delegate* unmanaged<int, void>)resolver("glCurrentPaletteMatrixARB");
+        s_byName["glCurrentPaletteMatrixARB"] = (nint)CurrentPaletteMatrixARB;
         if (CurrentPaletteMatrixARB is null) { missingCount++; missing?.Add("glCurrentPaletteMatrixARB"); }
         DebugMessageCallback = (delegate* unmanaged<delegate* unmanaged<uint, uint, uint, int, byte*, void*, void>, void*, void>)resolver("glDebugMessageCallback");
+        s_byName["glDebugMessageCallback"] = (nint)DebugMessageCallback;
         if (DebugMessageCallback is null) { missingCount++; missing?.Add("glDebugMessageCallback"); }
         DebugMessageCallbackAMD = (delegate* unmanaged<delegate* unmanaged<uint, uint, uint, int, byte*, void*, void>, void*, void>)resolver("glDebugMessageCallbackAMD");
+        s_byName["glDebugMessageCallbackAMD"] = (nint)DebugMessageCallbackAMD;
         if (DebugMessageCallbackAMD is null) { missingCount++; missing?.Add("glDebugMessageCallbackAMD"); }
         DebugMessageCallbackARB = (delegate* unmanaged<delegate* unmanaged<uint, uint, uint, int, byte*, void*, void>, void*, void>)resolver("glDebugMessageCallbackARB");
+        s_byName["glDebugMessageCallbackARB"] = (nint)DebugMessageCallbackARB;
         if (DebugMessageCallbackARB is null) { missingCount++; missing?.Add("glDebugMessageCallbackARB"); }
         DebugMessageCallbackKHR = (delegate* unmanaged<delegate* unmanaged<uint, uint, uint, int, byte*, void*, void>, void*, void>)resolver("glDebugMessageCallbackKHR");
+        s_byName["glDebugMessageCallbackKHR"] = (nint)DebugMessageCallbackKHR;
         if (DebugMessageCallbackKHR is null) { missingCount++; missing?.Add("glDebugMessageCallbackKHR"); }
         DebugMessageControl = (delegate* unmanaged<uint, uint, uint, int, uint*, byte, void>)resolver("glDebugMessageControl");
+        s_byName["glDebugMessageControl"] = (nint)DebugMessageControl;
         if (DebugMessageControl is null) { missingCount++; missing?.Add("glDebugMessageControl"); }
         DebugMessageControlARB = (delegate* unmanaged<uint, uint, uint, int, uint*, byte, void>)resolver("glDebugMessageControlARB");
+        s_byName["glDebugMessageControlARB"] = (nint)DebugMessageControlARB;
         if (DebugMessageControlARB is null) { missingCount++; missing?.Add("glDebugMessageControlARB"); }
         DebugMessageControlKHR = (delegate* unmanaged<uint, uint, uint, int, uint*, byte, void>)resolver("glDebugMessageControlKHR");
+        s_byName["glDebugMessageControlKHR"] = (nint)DebugMessageControlKHR;
         if (DebugMessageControlKHR is null) { missingCount++; missing?.Add("glDebugMessageControlKHR"); }
         DebugMessageEnableAMD = (delegate* unmanaged<uint, uint, int, uint*, byte, void>)resolver("glDebugMessageEnableAMD");
+        s_byName["glDebugMessageEnableAMD"] = (nint)DebugMessageEnableAMD;
         if (DebugMessageEnableAMD is null) { missingCount++; missing?.Add("glDebugMessageEnableAMD"); }
         DebugMessageInsert = (delegate* unmanaged<uint, uint, uint, uint, int, byte*, void>)resolver("glDebugMessageInsert");
+        s_byName["glDebugMessageInsert"] = (nint)DebugMessageInsert;
         if (DebugMessageInsert is null) { missingCount++; missing?.Add("glDebugMessageInsert"); }
         DebugMessageInsertAMD = (delegate* unmanaged<uint, uint, uint, int, byte*, void>)resolver("glDebugMessageInsertAMD");
+        s_byName["glDebugMessageInsertAMD"] = (nint)DebugMessageInsertAMD;
         if (DebugMessageInsertAMD is null) { missingCount++; missing?.Add("glDebugMessageInsertAMD"); }
         DebugMessageInsertARB = (delegate* unmanaged<uint, uint, uint, uint, int, byte*, void>)resolver("glDebugMessageInsertARB");
+        s_byName["glDebugMessageInsertARB"] = (nint)DebugMessageInsertARB;
         if (DebugMessageInsertARB is null) { missingCount++; missing?.Add("glDebugMessageInsertARB"); }
         DebugMessageInsertKHR = (delegate* unmanaged<uint, uint, uint, uint, int, byte*, void>)resolver("glDebugMessageInsertKHR");
+        s_byName["glDebugMessageInsertKHR"] = (nint)DebugMessageInsertKHR;
         if (DebugMessageInsertKHR is null) { missingCount++; missing?.Add("glDebugMessageInsertKHR"); }
         DeformSGIX = (delegate* unmanaged<uint, void>)resolver("glDeformSGIX");
+        s_byName["glDeformSGIX"] = (nint)DeformSGIX;
         if (DeformSGIX is null) { missingCount++; missing?.Add("glDeformSGIX"); }
         DeformationMap3dSGIX = (delegate* unmanaged<uint, double, double, int, int, double, double, int, int, double, double, int, int, double*, void>)resolver("glDeformationMap3dSGIX");
+        s_byName["glDeformationMap3dSGIX"] = (nint)DeformationMap3dSGIX;
         if (DeformationMap3dSGIX is null) { missingCount++; missing?.Add("glDeformationMap3dSGIX"); }
         DeformationMap3fSGIX = (delegate* unmanaged<uint, float, float, int, int, float, float, int, int, float, float, int, int, float*, void>)resolver("glDeformationMap3fSGIX");
+        s_byName["glDeformationMap3fSGIX"] = (nint)DeformationMap3fSGIX;
         if (DeformationMap3fSGIX is null) { missingCount++; missing?.Add("glDeformationMap3fSGIX"); }
         DeleteAsyncMarkersSGIX = (delegate* unmanaged<uint, int, void>)resolver("glDeleteAsyncMarkersSGIX");
+        s_byName["glDeleteAsyncMarkersSGIX"] = (nint)DeleteAsyncMarkersSGIX;
         if (DeleteAsyncMarkersSGIX is null) { missingCount++; missing?.Add("glDeleteAsyncMarkersSGIX"); }
         DeleteBuffers = (delegate* unmanaged<int, uint*, void>)resolver("glDeleteBuffers");
+        s_byName["glDeleteBuffers"] = (nint)DeleteBuffers;
         if (DeleteBuffers is null) { missingCount++; missing?.Add("glDeleteBuffers"); }
         DeleteBuffersARB = (delegate* unmanaged<int, uint*, void>)resolver("glDeleteBuffersARB");
+        s_byName["glDeleteBuffersARB"] = (nint)DeleteBuffersARB;
         if (DeleteBuffersARB is null) { missingCount++; missing?.Add("glDeleteBuffersARB"); }
         DeleteCommandListsNV = (delegate* unmanaged<int, uint*, void>)resolver("glDeleteCommandListsNV");
+        s_byName["glDeleteCommandListsNV"] = (nint)DeleteCommandListsNV;
         if (DeleteCommandListsNV is null) { missingCount++; missing?.Add("glDeleteCommandListsNV"); }
         DeleteFencesAPPLE = (delegate* unmanaged<int, uint*, void>)resolver("glDeleteFencesAPPLE");
+        s_byName["glDeleteFencesAPPLE"] = (nint)DeleteFencesAPPLE;
         if (DeleteFencesAPPLE is null) { missingCount++; missing?.Add("glDeleteFencesAPPLE"); }
         DeleteFencesNV = (delegate* unmanaged<int, uint*, void>)resolver("glDeleteFencesNV");
+        s_byName["glDeleteFencesNV"] = (nint)DeleteFencesNV;
         if (DeleteFencesNV is null) { missingCount++; missing?.Add("glDeleteFencesNV"); }
         DeleteFragmentShaderATI = (delegate* unmanaged<uint, void>)resolver("glDeleteFragmentShaderATI");
+        s_byName["glDeleteFragmentShaderATI"] = (nint)DeleteFragmentShaderATI;
         if (DeleteFragmentShaderATI is null) { missingCount++; missing?.Add("glDeleteFragmentShaderATI"); }
         DeleteFramebuffers = (delegate* unmanaged<int, uint*, void>)resolver("glDeleteFramebuffers");
+        s_byName["glDeleteFramebuffers"] = (nint)DeleteFramebuffers;
         if (DeleteFramebuffers is null) { missingCount++; missing?.Add("glDeleteFramebuffers"); }
         DeleteFramebuffersEXT = (delegate* unmanaged<int, uint*, void>)resolver("glDeleteFramebuffersEXT");
+        s_byName["glDeleteFramebuffersEXT"] = (nint)DeleteFramebuffersEXT;
         if (DeleteFramebuffersEXT is null) { missingCount++; missing?.Add("glDeleteFramebuffersEXT"); }
         DeleteMemoryObjectsEXT = (delegate* unmanaged<int, uint*, void>)resolver("glDeleteMemoryObjectsEXT");
+        s_byName["glDeleteMemoryObjectsEXT"] = (nint)DeleteMemoryObjectsEXT;
         if (DeleteMemoryObjectsEXT is null) { missingCount++; missing?.Add("glDeleteMemoryObjectsEXT"); }
         DeleteNamedStringARB = (delegate* unmanaged<int, byte*, void>)resolver("glDeleteNamedStringARB");
+        s_byName["glDeleteNamedStringARB"] = (nint)DeleteNamedStringARB;
         if (DeleteNamedStringARB is null) { missingCount++; missing?.Add("glDeleteNamedStringARB"); }
         DeleteNamesAMD = (delegate* unmanaged<uint, uint, uint*, void>)resolver("glDeleteNamesAMD");
+        s_byName["glDeleteNamesAMD"] = (nint)DeleteNamesAMD;
         if (DeleteNamesAMD is null) { missingCount++; missing?.Add("glDeleteNamesAMD"); }
         DeleteObjectARB = (delegate* unmanaged<uint, void>)resolver("glDeleteObjectARB");
+        s_byName["glDeleteObjectARB"] = (nint)DeleteObjectARB;
         if (DeleteObjectARB is null) { missingCount++; missing?.Add("glDeleteObjectARB"); }
         DeleteOcclusionQueriesNV = (delegate* unmanaged<int, uint*, void>)resolver("glDeleteOcclusionQueriesNV");
+        s_byName["glDeleteOcclusionQueriesNV"] = (nint)DeleteOcclusionQueriesNV;
         if (DeleteOcclusionQueriesNV is null) { missingCount++; missing?.Add("glDeleteOcclusionQueriesNV"); }
         DeletePathsNV = (delegate* unmanaged<uint, int, void>)resolver("glDeletePathsNV");
+        s_byName["glDeletePathsNV"] = (nint)DeletePathsNV;
         if (DeletePathsNV is null) { missingCount++; missing?.Add("glDeletePathsNV"); }
         DeletePerfMonitorsAMD = (delegate* unmanaged<int, uint*, void>)resolver("glDeletePerfMonitorsAMD");
+        s_byName["glDeletePerfMonitorsAMD"] = (nint)DeletePerfMonitorsAMD;
         if (DeletePerfMonitorsAMD is null) { missingCount++; missing?.Add("glDeletePerfMonitorsAMD"); }
         DeletePerfQueryINTEL = (delegate* unmanaged<uint, void>)resolver("glDeletePerfQueryINTEL");
+        s_byName["glDeletePerfQueryINTEL"] = (nint)DeletePerfQueryINTEL;
         if (DeletePerfQueryINTEL is null) { missingCount++; missing?.Add("glDeletePerfQueryINTEL"); }
         DeleteProgram = (delegate* unmanaged<uint, void>)resolver("glDeleteProgram");
+        s_byName["glDeleteProgram"] = (nint)DeleteProgram;
         if (DeleteProgram is null) { missingCount++; missing?.Add("glDeleteProgram"); }
         DeleteProgramPipelines = (delegate* unmanaged<int, uint*, void>)resolver("glDeleteProgramPipelines");
+        s_byName["glDeleteProgramPipelines"] = (nint)DeleteProgramPipelines;
         if (DeleteProgramPipelines is null) { missingCount++; missing?.Add("glDeleteProgramPipelines"); }
         DeleteProgramPipelinesEXT = (delegate* unmanaged<int, uint*, void>)resolver("glDeleteProgramPipelinesEXT");
+        s_byName["glDeleteProgramPipelinesEXT"] = (nint)DeleteProgramPipelinesEXT;
         if (DeleteProgramPipelinesEXT is null) { missingCount++; missing?.Add("glDeleteProgramPipelinesEXT"); }
         DeleteProgramsARB = (delegate* unmanaged<int, uint*, void>)resolver("glDeleteProgramsARB");
+        s_byName["glDeleteProgramsARB"] = (nint)DeleteProgramsARB;
         if (DeleteProgramsARB is null) { missingCount++; missing?.Add("glDeleteProgramsARB"); }
         DeleteProgramsNV = (delegate* unmanaged<int, uint*, void>)resolver("glDeleteProgramsNV");
+        s_byName["glDeleteProgramsNV"] = (nint)DeleteProgramsNV;
         if (DeleteProgramsNV is null) { missingCount++; missing?.Add("glDeleteProgramsNV"); }
         DeleteQueries = (delegate* unmanaged<int, uint*, void>)resolver("glDeleteQueries");
+        s_byName["glDeleteQueries"] = (nint)DeleteQueries;
         if (DeleteQueries is null) { missingCount++; missing?.Add("glDeleteQueries"); }
         DeleteQueriesARB = (delegate* unmanaged<int, uint*, void>)resolver("glDeleteQueriesARB");
+        s_byName["glDeleteQueriesARB"] = (nint)DeleteQueriesARB;
         if (DeleteQueriesARB is null) { missingCount++; missing?.Add("glDeleteQueriesARB"); }
         DeleteQueryResourceTagNV = (delegate* unmanaged<int, int*, void>)resolver("glDeleteQueryResourceTagNV");
+        s_byName["glDeleteQueryResourceTagNV"] = (nint)DeleteQueryResourceTagNV;
         if (DeleteQueryResourceTagNV is null) { missingCount++; missing?.Add("glDeleteQueryResourceTagNV"); }
         DeleteRenderbuffers = (delegate* unmanaged<int, uint*, void>)resolver("glDeleteRenderbuffers");
+        s_byName["glDeleteRenderbuffers"] = (nint)DeleteRenderbuffers;
         if (DeleteRenderbuffers is null) { missingCount++; missing?.Add("glDeleteRenderbuffers"); }
         DeleteRenderbuffersEXT = (delegate* unmanaged<int, uint*, void>)resolver("glDeleteRenderbuffersEXT");
+        s_byName["glDeleteRenderbuffersEXT"] = (nint)DeleteRenderbuffersEXT;
         if (DeleteRenderbuffersEXT is null) { missingCount++; missing?.Add("glDeleteRenderbuffersEXT"); }
         DeleteSamplers = (delegate* unmanaged<int, uint*, void>)resolver("glDeleteSamplers");
+        s_byName["glDeleteSamplers"] = (nint)DeleteSamplers;
         if (DeleteSamplers is null) { missingCount++; missing?.Add("glDeleteSamplers"); }
         DeleteSemaphoresEXT = (delegate* unmanaged<int, uint*, void>)resolver("glDeleteSemaphoresEXT");
+        s_byName["glDeleteSemaphoresEXT"] = (nint)DeleteSemaphoresEXT;
         if (DeleteSemaphoresEXT is null) { missingCount++; missing?.Add("glDeleteSemaphoresEXT"); }
         DeleteShader = (delegate* unmanaged<uint, void>)resolver("glDeleteShader");
+        s_byName["glDeleteShader"] = (nint)DeleteShader;
         if (DeleteShader is null) { missingCount++; missing?.Add("glDeleteShader"); }
         DeleteStatesNV = (delegate* unmanaged<int, uint*, void>)resolver("glDeleteStatesNV");
+        s_byName["glDeleteStatesNV"] = (nint)DeleteStatesNV;
         if (DeleteStatesNV is null) { missingCount++; missing?.Add("glDeleteStatesNV"); }
         DeleteSync = (delegate* unmanaged<nint, void>)resolver("glDeleteSync");
+        s_byName["glDeleteSync"] = (nint)DeleteSync;
         if (DeleteSync is null) { missingCount++; missing?.Add("glDeleteSync"); }
         DeleteTextures = (delegate* unmanaged<int, uint*, void>)resolver("glDeleteTextures");
+        s_byName["glDeleteTextures"] = (nint)DeleteTextures;
         if (DeleteTextures is null) { missingCount++; missing?.Add("glDeleteTextures"); }
         DeleteTexturesEXT = (delegate* unmanaged<int, uint*, void>)resolver("glDeleteTexturesEXT");
+        s_byName["glDeleteTexturesEXT"] = (nint)DeleteTexturesEXT;
         if (DeleteTexturesEXT is null) { missingCount++; missing?.Add("glDeleteTexturesEXT"); }
         DeleteTransformFeedbacks = (delegate* unmanaged<int, uint*, void>)resolver("glDeleteTransformFeedbacks");
+        s_byName["glDeleteTransformFeedbacks"] = (nint)DeleteTransformFeedbacks;
         if (DeleteTransformFeedbacks is null) { missingCount++; missing?.Add("glDeleteTransformFeedbacks"); }
         DeleteTransformFeedbacksNV = (delegate* unmanaged<int, uint*, void>)resolver("glDeleteTransformFeedbacksNV");
+        s_byName["glDeleteTransformFeedbacksNV"] = (nint)DeleteTransformFeedbacksNV;
         if (DeleteTransformFeedbacksNV is null) { missingCount++; missing?.Add("glDeleteTransformFeedbacksNV"); }
         DeleteVertexArrays = (delegate* unmanaged<int, uint*, void>)resolver("glDeleteVertexArrays");
+        s_byName["glDeleteVertexArrays"] = (nint)DeleteVertexArrays;
         if (DeleteVertexArrays is null) { missingCount++; missing?.Add("glDeleteVertexArrays"); }
         DeleteVertexArraysAPPLE = (delegate* unmanaged<int, uint*, void>)resolver("glDeleteVertexArraysAPPLE");
+        s_byName["glDeleteVertexArraysAPPLE"] = (nint)DeleteVertexArraysAPPLE;
         if (DeleteVertexArraysAPPLE is null) { missingCount++; missing?.Add("glDeleteVertexArraysAPPLE"); }
         DeleteVertexShaderEXT = (delegate* unmanaged<uint, void>)resolver("glDeleteVertexShaderEXT");
+        s_byName["glDeleteVertexShaderEXT"] = (nint)DeleteVertexShaderEXT;
         if (DeleteVertexShaderEXT is null) { missingCount++; missing?.Add("glDeleteVertexShaderEXT"); }
         DepthBoundsEXT = (delegate* unmanaged<double, double, void>)resolver("glDepthBoundsEXT");
+        s_byName["glDepthBoundsEXT"] = (nint)DepthBoundsEXT;
         if (DepthBoundsEXT is null) { missingCount++; missing?.Add("glDepthBoundsEXT"); }
         DepthBoundsdNV = (delegate* unmanaged<double, double, void>)resolver("glDepthBoundsdNV");
+        s_byName["glDepthBoundsdNV"] = (nint)DepthBoundsdNV;
         if (DepthBoundsdNV is null) { missingCount++; missing?.Add("glDepthBoundsdNV"); }
         DepthFunc = (delegate* unmanaged<uint, void>)resolver("glDepthFunc");
+        s_byName["glDepthFunc"] = (nint)DepthFunc;
         if (DepthFunc is null) { missingCount++; missing?.Add("glDepthFunc"); }
         DepthMask = (delegate* unmanaged<byte, void>)resolver("glDepthMask");
+        s_byName["glDepthMask"] = (nint)DepthMask;
         if (DepthMask is null) { missingCount++; missing?.Add("glDepthMask"); }
         DepthRange = (delegate* unmanaged<double, double, void>)resolver("glDepthRange");
+        s_byName["glDepthRange"] = (nint)DepthRange;
         if (DepthRange is null) { missingCount++; missing?.Add("glDepthRange"); }
         DepthRangeArraydvNV = (delegate* unmanaged<uint, int, double*, void>)resolver("glDepthRangeArraydvNV");
+        s_byName["glDepthRangeArraydvNV"] = (nint)DepthRangeArraydvNV;
         if (DepthRangeArraydvNV is null) { missingCount++; missing?.Add("glDepthRangeArraydvNV"); }
         DepthRangeArrayv = (delegate* unmanaged<uint, int, double*, void>)resolver("glDepthRangeArrayv");
+        s_byName["glDepthRangeArrayv"] = (nint)DepthRangeArrayv;
         if (DepthRangeArrayv is null) { missingCount++; missing?.Add("glDepthRangeArrayv"); }
         DepthRangeIndexed = (delegate* unmanaged<uint, double, double, void>)resolver("glDepthRangeIndexed");
+        s_byName["glDepthRangeIndexed"] = (nint)DepthRangeIndexed;
         if (DepthRangeIndexed is null) { missingCount++; missing?.Add("glDepthRangeIndexed"); }
         DepthRangeIndexeddNV = (delegate* unmanaged<uint, double, double, void>)resolver("glDepthRangeIndexeddNV");
+        s_byName["glDepthRangeIndexeddNV"] = (nint)DepthRangeIndexeddNV;
         if (DepthRangeIndexeddNV is null) { missingCount++; missing?.Add("glDepthRangeIndexeddNV"); }
         DepthRangedNV = (delegate* unmanaged<double, double, void>)resolver("glDepthRangedNV");
+        s_byName["glDepthRangedNV"] = (nint)DepthRangedNV;
         if (DepthRangedNV is null) { missingCount++; missing?.Add("glDepthRangedNV"); }
         DepthRangef = (delegate* unmanaged<float, float, void>)resolver("glDepthRangef");
+        s_byName["glDepthRangef"] = (nint)DepthRangef;
         if (DepthRangef is null) { missingCount++; missing?.Add("glDepthRangef"); }
         DepthRangefOES = (delegate* unmanaged<float, float, void>)resolver("glDepthRangefOES");
+        s_byName["glDepthRangefOES"] = (nint)DepthRangefOES;
         if (DepthRangefOES is null) { missingCount++; missing?.Add("glDepthRangefOES"); }
         DepthRangexOES = (delegate* unmanaged<int, int, void>)resolver("glDepthRangexOES");
+        s_byName["glDepthRangexOES"] = (nint)DepthRangexOES;
         if (DepthRangexOES is null) { missingCount++; missing?.Add("glDepthRangexOES"); }
         DetachObjectARB = (delegate* unmanaged<uint, uint, void>)resolver("glDetachObjectARB");
+        s_byName["glDetachObjectARB"] = (nint)DetachObjectARB;
         if (DetachObjectARB is null) { missingCount++; missing?.Add("glDetachObjectARB"); }
         DetachShader = (delegate* unmanaged<uint, uint, void>)resolver("glDetachShader");
+        s_byName["glDetachShader"] = (nint)DetachShader;
         if (DetachShader is null) { missingCount++; missing?.Add("glDetachShader"); }
         DetailTexFuncSGIS = (delegate* unmanaged<uint, int, float*, void>)resolver("glDetailTexFuncSGIS");
+        s_byName["glDetailTexFuncSGIS"] = (nint)DetailTexFuncSGIS;
         if (DetailTexFuncSGIS is null) { missingCount++; missing?.Add("glDetailTexFuncSGIS"); }
         Disable = (delegate* unmanaged<uint, void>)resolver("glDisable");
+        s_byName["glDisable"] = (nint)Disable;
         if (Disable is null) { missingCount++; missing?.Add("glDisable"); }
         DisableClientStateIndexedEXT = (delegate* unmanaged<uint, uint, void>)resolver("glDisableClientStateIndexedEXT");
+        s_byName["glDisableClientStateIndexedEXT"] = (nint)DisableClientStateIndexedEXT;
         if (DisableClientStateIndexedEXT is null) { missingCount++; missing?.Add("glDisableClientStateIndexedEXT"); }
         DisableClientStateiEXT = (delegate* unmanaged<uint, uint, void>)resolver("glDisableClientStateiEXT");
+        s_byName["glDisableClientStateiEXT"] = (nint)DisableClientStateiEXT;
         if (DisableClientStateiEXT is null) { missingCount++; missing?.Add("glDisableClientStateiEXT"); }
         DisableIndexedEXT = (delegate* unmanaged<uint, uint, void>)resolver("glDisableIndexedEXT");
+        s_byName["glDisableIndexedEXT"] = (nint)DisableIndexedEXT;
         if (DisableIndexedEXT is null) { missingCount++; missing?.Add("glDisableIndexedEXT"); }
         DisableVariantClientStateEXT = (delegate* unmanaged<uint, void>)resolver("glDisableVariantClientStateEXT");
+        s_byName["glDisableVariantClientStateEXT"] = (nint)DisableVariantClientStateEXT;
         if (DisableVariantClientStateEXT is null) { missingCount++; missing?.Add("glDisableVariantClientStateEXT"); }
         DisableVertexArrayAttrib = (delegate* unmanaged<uint, uint, void>)resolver("glDisableVertexArrayAttrib");
+        s_byName["glDisableVertexArrayAttrib"] = (nint)DisableVertexArrayAttrib;
         if (DisableVertexArrayAttrib is null) { missingCount++; missing?.Add("glDisableVertexArrayAttrib"); }
         DisableVertexArrayAttribEXT = (delegate* unmanaged<uint, uint, void>)resolver("glDisableVertexArrayAttribEXT");
+        s_byName["glDisableVertexArrayAttribEXT"] = (nint)DisableVertexArrayAttribEXT;
         if (DisableVertexArrayAttribEXT is null) { missingCount++; missing?.Add("glDisableVertexArrayAttribEXT"); }
         DisableVertexArrayEXT = (delegate* unmanaged<uint, uint, void>)resolver("glDisableVertexArrayEXT");
+        s_byName["glDisableVertexArrayEXT"] = (nint)DisableVertexArrayEXT;
         if (DisableVertexArrayEXT is null) { missingCount++; missing?.Add("glDisableVertexArrayEXT"); }
         DisableVertexAttribAPPLE = (delegate* unmanaged<uint, uint, void>)resolver("glDisableVertexAttribAPPLE");
+        s_byName["glDisableVertexAttribAPPLE"] = (nint)DisableVertexAttribAPPLE;
         if (DisableVertexAttribAPPLE is null) { missingCount++; missing?.Add("glDisableVertexAttribAPPLE"); }
         DisableVertexAttribArray = (delegate* unmanaged<uint, void>)resolver("glDisableVertexAttribArray");
+        s_byName["glDisableVertexAttribArray"] = (nint)DisableVertexAttribArray;
         if (DisableVertexAttribArray is null) { missingCount++; missing?.Add("glDisableVertexAttribArray"); }
         DisableVertexAttribArrayARB = (delegate* unmanaged<uint, void>)resolver("glDisableVertexAttribArrayARB");
+        s_byName["glDisableVertexAttribArrayARB"] = (nint)DisableVertexAttribArrayARB;
         if (DisableVertexAttribArrayARB is null) { missingCount++; missing?.Add("glDisableVertexAttribArrayARB"); }
         Disablei = (delegate* unmanaged<uint, uint, void>)resolver("glDisablei");
+        s_byName["glDisablei"] = (nint)Disablei;
         if (Disablei is null) { missingCount++; missing?.Add("glDisablei"); }
         DispatchCompute = (delegate* unmanaged<uint, uint, uint, void>)resolver("glDispatchCompute");
+        s_byName["glDispatchCompute"] = (nint)DispatchCompute;
         if (DispatchCompute is null) { missingCount++; missing?.Add("glDispatchCompute"); }
         DispatchComputeGroupSizeARB = (delegate* unmanaged<uint, uint, uint, uint, uint, uint, void>)resolver("glDispatchComputeGroupSizeARB");
+        s_byName["glDispatchComputeGroupSizeARB"] = (nint)DispatchComputeGroupSizeARB;
         if (DispatchComputeGroupSizeARB is null) { missingCount++; missing?.Add("glDispatchComputeGroupSizeARB"); }
         DispatchComputeIndirect = (delegate* unmanaged<nint, void>)resolver("glDispatchComputeIndirect");
+        s_byName["glDispatchComputeIndirect"] = (nint)DispatchComputeIndirect;
         if (DispatchComputeIndirect is null) { missingCount++; missing?.Add("glDispatchComputeIndirect"); }
         DrawArrays = (delegate* unmanaged<uint, int, int, void>)resolver("glDrawArrays");
+        s_byName["glDrawArrays"] = (nint)DrawArrays;
         if (DrawArrays is null) { missingCount++; missing?.Add("glDrawArrays"); }
         DrawArraysEXT = (delegate* unmanaged<uint, int, int, void>)resolver("glDrawArraysEXT");
+        s_byName["glDrawArraysEXT"] = (nint)DrawArraysEXT;
         if (DrawArraysEXT is null) { missingCount++; missing?.Add("glDrawArraysEXT"); }
         DrawArraysIndirect = (delegate* unmanaged<uint, void*, void>)resolver("glDrawArraysIndirect");
+        s_byName["glDrawArraysIndirect"] = (nint)DrawArraysIndirect;
         if (DrawArraysIndirect is null) { missingCount++; missing?.Add("glDrawArraysIndirect"); }
         DrawArraysInstanced = (delegate* unmanaged<uint, int, int, int, void>)resolver("glDrawArraysInstanced");
+        s_byName["glDrawArraysInstanced"] = (nint)DrawArraysInstanced;
         if (DrawArraysInstanced is null) { missingCount++; missing?.Add("glDrawArraysInstanced"); }
         DrawArraysInstancedARB = (delegate* unmanaged<uint, int, int, int, void>)resolver("glDrawArraysInstancedARB");
+        s_byName["glDrawArraysInstancedARB"] = (nint)DrawArraysInstancedARB;
         if (DrawArraysInstancedARB is null) { missingCount++; missing?.Add("glDrawArraysInstancedARB"); }
         DrawArraysInstancedBaseInstance = (delegate* unmanaged<uint, int, int, int, uint, void>)resolver("glDrawArraysInstancedBaseInstance");
+        s_byName["glDrawArraysInstancedBaseInstance"] = (nint)DrawArraysInstancedBaseInstance;
         if (DrawArraysInstancedBaseInstance is null) { missingCount++; missing?.Add("glDrawArraysInstancedBaseInstance"); }
         DrawArraysInstancedEXT = (delegate* unmanaged<uint, int, int, int, void>)resolver("glDrawArraysInstancedEXT");
+        s_byName["glDrawArraysInstancedEXT"] = (nint)DrawArraysInstancedEXT;
         if (DrawArraysInstancedEXT is null) { missingCount++; missing?.Add("glDrawArraysInstancedEXT"); }
         DrawBuffer = (delegate* unmanaged<uint, void>)resolver("glDrawBuffer");
+        s_byName["glDrawBuffer"] = (nint)DrawBuffer;
         if (DrawBuffer is null) { missingCount++; missing?.Add("glDrawBuffer"); }
         DrawBuffers = (delegate* unmanaged<int, uint*, void>)resolver("glDrawBuffers");
+        s_byName["glDrawBuffers"] = (nint)DrawBuffers;
         if (DrawBuffers is null) { missingCount++; missing?.Add("glDrawBuffers"); }
         DrawBuffersARB = (delegate* unmanaged<int, uint*, void>)resolver("glDrawBuffersARB");
+        s_byName["glDrawBuffersARB"] = (nint)DrawBuffersARB;
         if (DrawBuffersARB is null) { missingCount++; missing?.Add("glDrawBuffersARB"); }
         DrawBuffersATI = (delegate* unmanaged<int, uint*, void>)resolver("glDrawBuffersATI");
+        s_byName["glDrawBuffersATI"] = (nint)DrawBuffersATI;
         if (DrawBuffersATI is null) { missingCount++; missing?.Add("glDrawBuffersATI"); }
         DrawCommandsAddressNV = (delegate* unmanaged<uint, ulong*, int*, uint, void>)resolver("glDrawCommandsAddressNV");
+        s_byName["glDrawCommandsAddressNV"] = (nint)DrawCommandsAddressNV;
         if (DrawCommandsAddressNV is null) { missingCount++; missing?.Add("glDrawCommandsAddressNV"); }
         DrawCommandsNV = (delegate* unmanaged<uint, uint, nint*, int*, uint, void>)resolver("glDrawCommandsNV");
+        s_byName["glDrawCommandsNV"] = (nint)DrawCommandsNV;
         if (DrawCommandsNV is null) { missingCount++; missing?.Add("glDrawCommandsNV"); }
         DrawCommandsStatesAddressNV = (delegate* unmanaged<ulong*, int*, uint*, uint*, uint, void>)resolver("glDrawCommandsStatesAddressNV");
+        s_byName["glDrawCommandsStatesAddressNV"] = (nint)DrawCommandsStatesAddressNV;
         if (DrawCommandsStatesAddressNV is null) { missingCount++; missing?.Add("glDrawCommandsStatesAddressNV"); }
         DrawCommandsStatesNV = (delegate* unmanaged<uint, nint*, int*, uint*, uint*, uint, void>)resolver("glDrawCommandsStatesNV");
+        s_byName["glDrawCommandsStatesNV"] = (nint)DrawCommandsStatesNV;
         if (DrawCommandsStatesNV is null) { missingCount++; missing?.Add("glDrawCommandsStatesNV"); }
         DrawElementArrayAPPLE = (delegate* unmanaged<uint, int, int, void>)resolver("glDrawElementArrayAPPLE");
+        s_byName["glDrawElementArrayAPPLE"] = (nint)DrawElementArrayAPPLE;
         if (DrawElementArrayAPPLE is null) { missingCount++; missing?.Add("glDrawElementArrayAPPLE"); }
         DrawElementArrayATI = (delegate* unmanaged<uint, int, void>)resolver("glDrawElementArrayATI");
+        s_byName["glDrawElementArrayATI"] = (nint)DrawElementArrayATI;
         if (DrawElementArrayATI is null) { missingCount++; missing?.Add("glDrawElementArrayATI"); }
         DrawElements = (delegate* unmanaged<uint, int, uint, void*, void>)resolver("glDrawElements");
+        s_byName["glDrawElements"] = (nint)DrawElements;
         if (DrawElements is null) { missingCount++; missing?.Add("glDrawElements"); }
         DrawElementsBaseVertex = (delegate* unmanaged<uint, int, uint, void*, int, void>)resolver("glDrawElementsBaseVertex");
+        s_byName["glDrawElementsBaseVertex"] = (nint)DrawElementsBaseVertex;
         if (DrawElementsBaseVertex is null) { missingCount++; missing?.Add("glDrawElementsBaseVertex"); }
         DrawElementsIndirect = (delegate* unmanaged<uint, uint, void*, void>)resolver("glDrawElementsIndirect");
+        s_byName["glDrawElementsIndirect"] = (nint)DrawElementsIndirect;
         if (DrawElementsIndirect is null) { missingCount++; missing?.Add("glDrawElementsIndirect"); }
         DrawElementsInstanced = (delegate* unmanaged<uint, int, uint, void*, int, void>)resolver("glDrawElementsInstanced");
+        s_byName["glDrawElementsInstanced"] = (nint)DrawElementsInstanced;
         if (DrawElementsInstanced is null) { missingCount++; missing?.Add("glDrawElementsInstanced"); }
         DrawElementsInstancedARB = (delegate* unmanaged<uint, int, uint, void*, int, void>)resolver("glDrawElementsInstancedARB");
+        s_byName["glDrawElementsInstancedARB"] = (nint)DrawElementsInstancedARB;
         if (DrawElementsInstancedARB is null) { missingCount++; missing?.Add("glDrawElementsInstancedARB"); }
         DrawElementsInstancedBaseInstance = (delegate* unmanaged<uint, int, uint, void*, int, uint, void>)resolver("glDrawElementsInstancedBaseInstance");
+        s_byName["glDrawElementsInstancedBaseInstance"] = (nint)DrawElementsInstancedBaseInstance;
         if (DrawElementsInstancedBaseInstance is null) { missingCount++; missing?.Add("glDrawElementsInstancedBaseInstance"); }
         DrawElementsInstancedBaseVertex = (delegate* unmanaged<uint, int, uint, void*, int, int, void>)resolver("glDrawElementsInstancedBaseVertex");
+        s_byName["glDrawElementsInstancedBaseVertex"] = (nint)DrawElementsInstancedBaseVertex;
         if (DrawElementsInstancedBaseVertex is null) { missingCount++; missing?.Add("glDrawElementsInstancedBaseVertex"); }
         DrawElementsInstancedBaseVertexBaseInstance = (delegate* unmanaged<uint, int, uint, void*, int, int, uint, void>)resolver("glDrawElementsInstancedBaseVertexBaseInstance");
+        s_byName["glDrawElementsInstancedBaseVertexBaseInstance"] = (nint)DrawElementsInstancedBaseVertexBaseInstance;
         if (DrawElementsInstancedBaseVertexBaseInstance is null) { missingCount++; missing?.Add("glDrawElementsInstancedBaseVertexBaseInstance"); }
         DrawElementsInstancedEXT = (delegate* unmanaged<uint, int, uint, void*, int, void>)resolver("glDrawElementsInstancedEXT");
+        s_byName["glDrawElementsInstancedEXT"] = (nint)DrawElementsInstancedEXT;
         if (DrawElementsInstancedEXT is null) { missingCount++; missing?.Add("glDrawElementsInstancedEXT"); }
         DrawMeshArraysSUN = (delegate* unmanaged<uint, int, int, int, void>)resolver("glDrawMeshArraysSUN");
+        s_byName["glDrawMeshArraysSUN"] = (nint)DrawMeshArraysSUN;
         if (DrawMeshArraysSUN is null) { missingCount++; missing?.Add("glDrawMeshArraysSUN"); }
         DrawMeshTasksEXT = (delegate* unmanaged<uint, uint, uint, void>)resolver("glDrawMeshTasksEXT");
+        s_byName["glDrawMeshTasksEXT"] = (nint)DrawMeshTasksEXT;
         if (DrawMeshTasksEXT is null) { missingCount++; missing?.Add("glDrawMeshTasksEXT"); }
         DrawMeshTasksIndirectEXT = (delegate* unmanaged<nint, void>)resolver("glDrawMeshTasksIndirectEXT");
+        s_byName["glDrawMeshTasksIndirectEXT"] = (nint)DrawMeshTasksIndirectEXT;
         if (DrawMeshTasksIndirectEXT is null) { missingCount++; missing?.Add("glDrawMeshTasksIndirectEXT"); }
         DrawMeshTasksIndirectNV = (delegate* unmanaged<nint, void>)resolver("glDrawMeshTasksIndirectNV");
+        s_byName["glDrawMeshTasksIndirectNV"] = (nint)DrawMeshTasksIndirectNV;
         if (DrawMeshTasksIndirectNV is null) { missingCount++; missing?.Add("glDrawMeshTasksIndirectNV"); }
         DrawMeshTasksNV = (delegate* unmanaged<uint, uint, void>)resolver("glDrawMeshTasksNV");
+        s_byName["glDrawMeshTasksNV"] = (nint)DrawMeshTasksNV;
         if (DrawMeshTasksNV is null) { missingCount++; missing?.Add("glDrawMeshTasksNV"); }
         DrawRangeElementArrayAPPLE = (delegate* unmanaged<uint, uint, uint, int, int, void>)resolver("glDrawRangeElementArrayAPPLE");
+        s_byName["glDrawRangeElementArrayAPPLE"] = (nint)DrawRangeElementArrayAPPLE;
         if (DrawRangeElementArrayAPPLE is null) { missingCount++; missing?.Add("glDrawRangeElementArrayAPPLE"); }
         DrawRangeElementArrayATI = (delegate* unmanaged<uint, uint, uint, int, void>)resolver("glDrawRangeElementArrayATI");
+        s_byName["glDrawRangeElementArrayATI"] = (nint)DrawRangeElementArrayATI;
         if (DrawRangeElementArrayATI is null) { missingCount++; missing?.Add("glDrawRangeElementArrayATI"); }
         DrawRangeElements = (delegate* unmanaged<uint, uint, uint, int, uint, void*, void>)resolver("glDrawRangeElements");
+        s_byName["glDrawRangeElements"] = (nint)DrawRangeElements;
         if (DrawRangeElements is null) { missingCount++; missing?.Add("glDrawRangeElements"); }
         DrawRangeElementsBaseVertex = (delegate* unmanaged<uint, uint, uint, int, uint, void*, int, void>)resolver("glDrawRangeElementsBaseVertex");
+        s_byName["glDrawRangeElementsBaseVertex"] = (nint)DrawRangeElementsBaseVertex;
         if (DrawRangeElementsBaseVertex is null) { missingCount++; missing?.Add("glDrawRangeElementsBaseVertex"); }
         DrawRangeElementsEXT = (delegate* unmanaged<uint, uint, uint, int, uint, void*, void>)resolver("glDrawRangeElementsEXT");
+        s_byName["glDrawRangeElementsEXT"] = (nint)DrawRangeElementsEXT;
         if (DrawRangeElementsEXT is null) { missingCount++; missing?.Add("glDrawRangeElementsEXT"); }
         DrawTextureNV = (delegate* unmanaged<uint, uint, float, float, float, float, float, float, float, float, float, void>)resolver("glDrawTextureNV");
+        s_byName["glDrawTextureNV"] = (nint)DrawTextureNV;
         if (DrawTextureNV is null) { missingCount++; missing?.Add("glDrawTextureNV"); }
         DrawTransformFeedback = (delegate* unmanaged<uint, uint, void>)resolver("glDrawTransformFeedback");
+        s_byName["glDrawTransformFeedback"] = (nint)DrawTransformFeedback;
         if (DrawTransformFeedback is null) { missingCount++; missing?.Add("glDrawTransformFeedback"); }
         DrawTransformFeedbackInstanced = (delegate* unmanaged<uint, uint, int, void>)resolver("glDrawTransformFeedbackInstanced");
+        s_byName["glDrawTransformFeedbackInstanced"] = (nint)DrawTransformFeedbackInstanced;
         if (DrawTransformFeedbackInstanced is null) { missingCount++; missing?.Add("glDrawTransformFeedbackInstanced"); }
         DrawTransformFeedbackNV = (delegate* unmanaged<uint, uint, void>)resolver("glDrawTransformFeedbackNV");
+        s_byName["glDrawTransformFeedbackNV"] = (nint)DrawTransformFeedbackNV;
         if (DrawTransformFeedbackNV is null) { missingCount++; missing?.Add("glDrawTransformFeedbackNV"); }
         DrawTransformFeedbackStream = (delegate* unmanaged<uint, uint, uint, void>)resolver("glDrawTransformFeedbackStream");
+        s_byName["glDrawTransformFeedbackStream"] = (nint)DrawTransformFeedbackStream;
         if (DrawTransformFeedbackStream is null) { missingCount++; missing?.Add("glDrawTransformFeedbackStream"); }
         DrawTransformFeedbackStreamInstanced = (delegate* unmanaged<uint, uint, uint, int, void>)resolver("glDrawTransformFeedbackStreamInstanced");
+        s_byName["glDrawTransformFeedbackStreamInstanced"] = (nint)DrawTransformFeedbackStreamInstanced;
         if (DrawTransformFeedbackStreamInstanced is null) { missingCount++; missing?.Add("glDrawTransformFeedbackStreamInstanced"); }
         DrawVkImageNV = (delegate* unmanaged<ulong, uint, float, float, float, float, float, float, float, float, float, void>)resolver("glDrawVkImageNV");
+        s_byName["glDrawVkImageNV"] = (nint)DrawVkImageNV;
         if (DrawVkImageNV is null) { missingCount++; missing?.Add("glDrawVkImageNV"); }
         EdgeFlagFormatNV = (delegate* unmanaged<int, void>)resolver("glEdgeFlagFormatNV");
+        s_byName["glEdgeFlagFormatNV"] = (nint)EdgeFlagFormatNV;
         if (EdgeFlagFormatNV is null) { missingCount++; missing?.Add("glEdgeFlagFormatNV"); }
         EdgeFlagPointerEXT = (delegate* unmanaged<int, int, byte*, void>)resolver("glEdgeFlagPointerEXT");
+        s_byName["glEdgeFlagPointerEXT"] = (nint)EdgeFlagPointerEXT;
         if (EdgeFlagPointerEXT is null) { missingCount++; missing?.Add("glEdgeFlagPointerEXT"); }
         EdgeFlagPointerListIBM = (delegate* unmanaged<int, byte**, int, void>)resolver("glEdgeFlagPointerListIBM");
+        s_byName["glEdgeFlagPointerListIBM"] = (nint)EdgeFlagPointerListIBM;
         if (EdgeFlagPointerListIBM is null) { missingCount++; missing?.Add("glEdgeFlagPointerListIBM"); }
         ElementPointerAPPLE = (delegate* unmanaged<uint, void*, void>)resolver("glElementPointerAPPLE");
+        s_byName["glElementPointerAPPLE"] = (nint)ElementPointerAPPLE;
         if (ElementPointerAPPLE is null) { missingCount++; missing?.Add("glElementPointerAPPLE"); }
         ElementPointerATI = (delegate* unmanaged<uint, void*, void>)resolver("glElementPointerATI");
+        s_byName["glElementPointerATI"] = (nint)ElementPointerATI;
         if (ElementPointerATI is null) { missingCount++; missing?.Add("glElementPointerATI"); }
         Enable = (delegate* unmanaged<uint, void>)resolver("glEnable");
+        s_byName["glEnable"] = (nint)Enable;
         if (Enable is null) { missingCount++; missing?.Add("glEnable"); }
         EnableClientStateIndexedEXT = (delegate* unmanaged<uint, uint, void>)resolver("glEnableClientStateIndexedEXT");
+        s_byName["glEnableClientStateIndexedEXT"] = (nint)EnableClientStateIndexedEXT;
         if (EnableClientStateIndexedEXT is null) { missingCount++; missing?.Add("glEnableClientStateIndexedEXT"); }
         EnableClientStateiEXT = (delegate* unmanaged<uint, uint, void>)resolver("glEnableClientStateiEXT");
+        s_byName["glEnableClientStateiEXT"] = (nint)EnableClientStateiEXT;
         if (EnableClientStateiEXT is null) { missingCount++; missing?.Add("glEnableClientStateiEXT"); }
         EnableIndexedEXT = (delegate* unmanaged<uint, uint, void>)resolver("glEnableIndexedEXT");
+        s_byName["glEnableIndexedEXT"] = (nint)EnableIndexedEXT;
         if (EnableIndexedEXT is null) { missingCount++; missing?.Add("glEnableIndexedEXT"); }
         EnableVariantClientStateEXT = (delegate* unmanaged<uint, void>)resolver("glEnableVariantClientStateEXT");
+        s_byName["glEnableVariantClientStateEXT"] = (nint)EnableVariantClientStateEXT;
         if (EnableVariantClientStateEXT is null) { missingCount++; missing?.Add("glEnableVariantClientStateEXT"); }
         EnableVertexArrayAttrib = (delegate* unmanaged<uint, uint, void>)resolver("glEnableVertexArrayAttrib");
+        s_byName["glEnableVertexArrayAttrib"] = (nint)EnableVertexArrayAttrib;
         if (EnableVertexArrayAttrib is null) { missingCount++; missing?.Add("glEnableVertexArrayAttrib"); }
         EnableVertexArrayAttribEXT = (delegate* unmanaged<uint, uint, void>)resolver("glEnableVertexArrayAttribEXT");
+        s_byName["glEnableVertexArrayAttribEXT"] = (nint)EnableVertexArrayAttribEXT;
         if (EnableVertexArrayAttribEXT is null) { missingCount++; missing?.Add("glEnableVertexArrayAttribEXT"); }
         EnableVertexArrayEXT = (delegate* unmanaged<uint, uint, void>)resolver("glEnableVertexArrayEXT");
+        s_byName["glEnableVertexArrayEXT"] = (nint)EnableVertexArrayEXT;
         if (EnableVertexArrayEXT is null) { missingCount++; missing?.Add("glEnableVertexArrayEXT"); }
         EnableVertexAttribAPPLE = (delegate* unmanaged<uint, uint, void>)resolver("glEnableVertexAttribAPPLE");
+        s_byName["glEnableVertexAttribAPPLE"] = (nint)EnableVertexAttribAPPLE;
         if (EnableVertexAttribAPPLE is null) { missingCount++; missing?.Add("glEnableVertexAttribAPPLE"); }
         EnableVertexAttribArray = (delegate* unmanaged<uint, void>)resolver("glEnableVertexAttribArray");
+        s_byName["glEnableVertexAttribArray"] = (nint)EnableVertexAttribArray;
         if (EnableVertexAttribArray is null) { missingCount++; missing?.Add("glEnableVertexAttribArray"); }
         EnableVertexAttribArrayARB = (delegate* unmanaged<uint, void>)resolver("glEnableVertexAttribArrayARB");
+        s_byName["glEnableVertexAttribArrayARB"] = (nint)EnableVertexAttribArrayARB;
         if (EnableVertexAttribArrayARB is null) { missingCount++; missing?.Add("glEnableVertexAttribArrayARB"); }
         Enablei = (delegate* unmanaged<uint, uint, void>)resolver("glEnablei");
+        s_byName["glEnablei"] = (nint)Enablei;
         if (Enablei is null) { missingCount++; missing?.Add("glEnablei"); }
         EndConditionalRender = (delegate* unmanaged<void>)resolver("glEndConditionalRender");
+        s_byName["glEndConditionalRender"] = (nint)EndConditionalRender;
         if (EndConditionalRender is null) { missingCount++; missing?.Add("glEndConditionalRender"); }
         EndConditionalRenderNV = (delegate* unmanaged<void>)resolver("glEndConditionalRenderNV");
+        s_byName["glEndConditionalRenderNV"] = (nint)EndConditionalRenderNV;
         if (EndConditionalRenderNV is null) { missingCount++; missing?.Add("glEndConditionalRenderNV"); }
         EndConditionalRenderNVX = (delegate* unmanaged<void>)resolver("glEndConditionalRenderNVX");
+        s_byName["glEndConditionalRenderNVX"] = (nint)EndConditionalRenderNVX;
         if (EndConditionalRenderNVX is null) { missingCount++; missing?.Add("glEndConditionalRenderNVX"); }
         EndFragmentShaderATI = (delegate* unmanaged<void>)resolver("glEndFragmentShaderATI");
+        s_byName["glEndFragmentShaderATI"] = (nint)EndFragmentShaderATI;
         if (EndFragmentShaderATI is null) { missingCount++; missing?.Add("glEndFragmentShaderATI"); }
         EndOcclusionQueryNV = (delegate* unmanaged<void>)resolver("glEndOcclusionQueryNV");
+        s_byName["glEndOcclusionQueryNV"] = (nint)EndOcclusionQueryNV;
         if (EndOcclusionQueryNV is null) { missingCount++; missing?.Add("glEndOcclusionQueryNV"); }
         EndPerfMonitorAMD = (delegate* unmanaged<uint, void>)resolver("glEndPerfMonitorAMD");
+        s_byName["glEndPerfMonitorAMD"] = (nint)EndPerfMonitorAMD;
         if (EndPerfMonitorAMD is null) { missingCount++; missing?.Add("glEndPerfMonitorAMD"); }
         EndPerfQueryINTEL = (delegate* unmanaged<uint, void>)resolver("glEndPerfQueryINTEL");
+        s_byName["glEndPerfQueryINTEL"] = (nint)EndPerfQueryINTEL;
         if (EndPerfQueryINTEL is null) { missingCount++; missing?.Add("glEndPerfQueryINTEL"); }
         EndQuery = (delegate* unmanaged<uint, void>)resolver("glEndQuery");
+        s_byName["glEndQuery"] = (nint)EndQuery;
         if (EndQuery is null) { missingCount++; missing?.Add("glEndQuery"); }
         EndQueryARB = (delegate* unmanaged<uint, void>)resolver("glEndQueryARB");
+        s_byName["glEndQueryARB"] = (nint)EndQueryARB;
         if (EndQueryARB is null) { missingCount++; missing?.Add("glEndQueryARB"); }
         EndQueryIndexed = (delegate* unmanaged<uint, uint, void>)resolver("glEndQueryIndexed");
+        s_byName["glEndQueryIndexed"] = (nint)EndQueryIndexed;
         if (EndQueryIndexed is null) { missingCount++; missing?.Add("glEndQueryIndexed"); }
         EndTransformFeedback = (delegate* unmanaged<void>)resolver("glEndTransformFeedback");
+        s_byName["glEndTransformFeedback"] = (nint)EndTransformFeedback;
         if (EndTransformFeedback is null) { missingCount++; missing?.Add("glEndTransformFeedback"); }
         EndTransformFeedbackEXT = (delegate* unmanaged<void>)resolver("glEndTransformFeedbackEXT");
+        s_byName["glEndTransformFeedbackEXT"] = (nint)EndTransformFeedbackEXT;
         if (EndTransformFeedbackEXT is null) { missingCount++; missing?.Add("glEndTransformFeedbackEXT"); }
         EndTransformFeedbackNV = (delegate* unmanaged<void>)resolver("glEndTransformFeedbackNV");
+        s_byName["glEndTransformFeedbackNV"] = (nint)EndTransformFeedbackNV;
         if (EndTransformFeedbackNV is null) { missingCount++; missing?.Add("glEndTransformFeedbackNV"); }
         EndVertexShaderEXT = (delegate* unmanaged<void>)resolver("glEndVertexShaderEXT");
+        s_byName["glEndVertexShaderEXT"] = (nint)EndVertexShaderEXT;
         if (EndVertexShaderEXT is null) { missingCount++; missing?.Add("glEndVertexShaderEXT"); }
         EndVideoCaptureNV = (delegate* unmanaged<uint, void>)resolver("glEndVideoCaptureNV");
+        s_byName["glEndVideoCaptureNV"] = (nint)EndVideoCaptureNV;
         if (EndVideoCaptureNV is null) { missingCount++; missing?.Add("glEndVideoCaptureNV"); }
         EvalCoord1xOES = (delegate* unmanaged<int, void>)resolver("glEvalCoord1xOES");
+        s_byName["glEvalCoord1xOES"] = (nint)EvalCoord1xOES;
         if (EvalCoord1xOES is null) { missingCount++; missing?.Add("glEvalCoord1xOES"); }
         EvalCoord1xvOES = (delegate* unmanaged<int*, void>)resolver("glEvalCoord1xvOES");
+        s_byName["glEvalCoord1xvOES"] = (nint)EvalCoord1xvOES;
         if (EvalCoord1xvOES is null) { missingCount++; missing?.Add("glEvalCoord1xvOES"); }
         EvalCoord2xOES = (delegate* unmanaged<int, int, void>)resolver("glEvalCoord2xOES");
+        s_byName["glEvalCoord2xOES"] = (nint)EvalCoord2xOES;
         if (EvalCoord2xOES is null) { missingCount++; missing?.Add("glEvalCoord2xOES"); }
         EvalCoord2xvOES = (delegate* unmanaged<int*, void>)resolver("glEvalCoord2xvOES");
+        s_byName["glEvalCoord2xvOES"] = (nint)EvalCoord2xvOES;
         if (EvalCoord2xvOES is null) { missingCount++; missing?.Add("glEvalCoord2xvOES"); }
         EvalMapsNV = (delegate* unmanaged<uint, uint, void>)resolver("glEvalMapsNV");
+        s_byName["glEvalMapsNV"] = (nint)EvalMapsNV;
         if (EvalMapsNV is null) { missingCount++; missing?.Add("glEvalMapsNV"); }
         EvaluateDepthValuesARB = (delegate* unmanaged<void>)resolver("glEvaluateDepthValuesARB");
+        s_byName["glEvaluateDepthValuesARB"] = (nint)EvaluateDepthValuesARB;
         if (EvaluateDepthValuesARB is null) { missingCount++; missing?.Add("glEvaluateDepthValuesARB"); }
         ExecuteProgramNV = (delegate* unmanaged<uint, uint, float*, void>)resolver("glExecuteProgramNV");
+        s_byName["glExecuteProgramNV"] = (nint)ExecuteProgramNV;
         if (ExecuteProgramNV is null) { missingCount++; missing?.Add("glExecuteProgramNV"); }
         ExtractComponentEXT = (delegate* unmanaged<uint, uint, uint, void>)resolver("glExtractComponentEXT");
+        s_byName["glExtractComponentEXT"] = (nint)ExtractComponentEXT;
         if (ExtractComponentEXT is null) { missingCount++; missing?.Add("glExtractComponentEXT"); }
         FeedbackBufferxOES = (delegate* unmanaged<int, uint, int*, void>)resolver("glFeedbackBufferxOES");
+        s_byName["glFeedbackBufferxOES"] = (nint)FeedbackBufferxOES;
         if (FeedbackBufferxOES is null) { missingCount++; missing?.Add("glFeedbackBufferxOES"); }
         FenceSync = (delegate* unmanaged<uint, uint, nint>)resolver("glFenceSync");
+        s_byName["glFenceSync"] = (nint)FenceSync;
         if (FenceSync is null) { missingCount++; missing?.Add("glFenceSync"); }
         FinalCombinerInputNV = (delegate* unmanaged<uint, uint, uint, uint, void>)resolver("glFinalCombinerInputNV");
+        s_byName["glFinalCombinerInputNV"] = (nint)FinalCombinerInputNV;
         if (FinalCombinerInputNV is null) { missingCount++; missing?.Add("glFinalCombinerInputNV"); }
         Finish = (delegate* unmanaged<void>)resolver("glFinish");
+        s_byName["glFinish"] = (nint)Finish;
         if (Finish is null) { missingCount++; missing?.Add("glFinish"); }
         FinishAsyncSGIX = (delegate* unmanaged<uint*, int>)resolver("glFinishAsyncSGIX");
+        s_byName["glFinishAsyncSGIX"] = (nint)FinishAsyncSGIX;
         if (FinishAsyncSGIX is null) { missingCount++; missing?.Add("glFinishAsyncSGIX"); }
         FinishFenceAPPLE = (delegate* unmanaged<uint, void>)resolver("glFinishFenceAPPLE");
+        s_byName["glFinishFenceAPPLE"] = (nint)FinishFenceAPPLE;
         if (FinishFenceAPPLE is null) { missingCount++; missing?.Add("glFinishFenceAPPLE"); }
         FinishFenceNV = (delegate* unmanaged<uint, void>)resolver("glFinishFenceNV");
+        s_byName["glFinishFenceNV"] = (nint)FinishFenceNV;
         if (FinishFenceNV is null) { missingCount++; missing?.Add("glFinishFenceNV"); }
         FinishObjectAPPLE = (delegate* unmanaged<uint, int, void>)resolver("glFinishObjectAPPLE");
+        s_byName["glFinishObjectAPPLE"] = (nint)FinishObjectAPPLE;
         if (FinishObjectAPPLE is null) { missingCount++; missing?.Add("glFinishObjectAPPLE"); }
         FinishTextureSUNX = (delegate* unmanaged<void>)resolver("glFinishTextureSUNX");
+        s_byName["glFinishTextureSUNX"] = (nint)FinishTextureSUNX;
         if (FinishTextureSUNX is null) { missingCount++; missing?.Add("glFinishTextureSUNX"); }
         Flush = (delegate* unmanaged<void>)resolver("glFlush");
+        s_byName["glFlush"] = (nint)Flush;
         if (Flush is null) { missingCount++; missing?.Add("glFlush"); }
         FlushMappedBufferRange = (delegate* unmanaged<uint, nint, nint, void>)resolver("glFlushMappedBufferRange");
+        s_byName["glFlushMappedBufferRange"] = (nint)FlushMappedBufferRange;
         if (FlushMappedBufferRange is null) { missingCount++; missing?.Add("glFlushMappedBufferRange"); }
         FlushMappedBufferRangeAPPLE = (delegate* unmanaged<uint, nint, nint, void>)resolver("glFlushMappedBufferRangeAPPLE");
+        s_byName["glFlushMappedBufferRangeAPPLE"] = (nint)FlushMappedBufferRangeAPPLE;
         if (FlushMappedBufferRangeAPPLE is null) { missingCount++; missing?.Add("glFlushMappedBufferRangeAPPLE"); }
         FlushMappedNamedBufferRange = (delegate* unmanaged<uint, nint, nint, void>)resolver("glFlushMappedNamedBufferRange");
+        s_byName["glFlushMappedNamedBufferRange"] = (nint)FlushMappedNamedBufferRange;
         if (FlushMappedNamedBufferRange is null) { missingCount++; missing?.Add("glFlushMappedNamedBufferRange"); }
         FlushMappedNamedBufferRangeEXT = (delegate* unmanaged<uint, nint, nint, void>)resolver("glFlushMappedNamedBufferRangeEXT");
+        s_byName["glFlushMappedNamedBufferRangeEXT"] = (nint)FlushMappedNamedBufferRangeEXT;
         if (FlushMappedNamedBufferRangeEXT is null) { missingCount++; missing?.Add("glFlushMappedNamedBufferRangeEXT"); }
         FlushPixelDataRangeNV = (delegate* unmanaged<uint, void>)resolver("glFlushPixelDataRangeNV");
+        s_byName["glFlushPixelDataRangeNV"] = (nint)FlushPixelDataRangeNV;
         if (FlushPixelDataRangeNV is null) { missingCount++; missing?.Add("glFlushPixelDataRangeNV"); }
         FlushRasterSGIX = (delegate* unmanaged<void>)resolver("glFlushRasterSGIX");
+        s_byName["glFlushRasterSGIX"] = (nint)FlushRasterSGIX;
         if (FlushRasterSGIX is null) { missingCount++; missing?.Add("glFlushRasterSGIX"); }
         FlushStaticDataIBM = (delegate* unmanaged<uint, void>)resolver("glFlushStaticDataIBM");
+        s_byName["glFlushStaticDataIBM"] = (nint)FlushStaticDataIBM;
         if (FlushStaticDataIBM is null) { missingCount++; missing?.Add("glFlushStaticDataIBM"); }
         FlushVertexArrayRangeAPPLE = (delegate* unmanaged<int, void*, void>)resolver("glFlushVertexArrayRangeAPPLE");
+        s_byName["glFlushVertexArrayRangeAPPLE"] = (nint)FlushVertexArrayRangeAPPLE;
         if (FlushVertexArrayRangeAPPLE is null) { missingCount++; missing?.Add("glFlushVertexArrayRangeAPPLE"); }
         FlushVertexArrayRangeNV = (delegate* unmanaged<void>)resolver("glFlushVertexArrayRangeNV");
+        s_byName["glFlushVertexArrayRangeNV"] = (nint)FlushVertexArrayRangeNV;
         if (FlushVertexArrayRangeNV is null) { missingCount++; missing?.Add("glFlushVertexArrayRangeNV"); }
         FogCoordFormatNV = (delegate* unmanaged<uint, int, void>)resolver("glFogCoordFormatNV");
+        s_byName["glFogCoordFormatNV"] = (nint)FogCoordFormatNV;
         if (FogCoordFormatNV is null) { missingCount++; missing?.Add("glFogCoordFormatNV"); }
         FogCoordPointerEXT = (delegate* unmanaged<uint, int, void*, void>)resolver("glFogCoordPointerEXT");
+        s_byName["glFogCoordPointerEXT"] = (nint)FogCoordPointerEXT;
         if (FogCoordPointerEXT is null) { missingCount++; missing?.Add("glFogCoordPointerEXT"); }
         FogCoordPointerListIBM = (delegate* unmanaged<uint, int, void**, int, void>)resolver("glFogCoordPointerListIBM");
+        s_byName["glFogCoordPointerListIBM"] = (nint)FogCoordPointerListIBM;
         if (FogCoordPointerListIBM is null) { missingCount++; missing?.Add("glFogCoordPointerListIBM"); }
         FogCoorddEXT = (delegate* unmanaged<double, void>)resolver("glFogCoorddEXT");
+        s_byName["glFogCoorddEXT"] = (nint)FogCoorddEXT;
         if (FogCoorddEXT is null) { missingCount++; missing?.Add("glFogCoorddEXT"); }
         FogCoorddvEXT = (delegate* unmanaged<double*, void>)resolver("glFogCoorddvEXT");
+        s_byName["glFogCoorddvEXT"] = (nint)FogCoorddvEXT;
         if (FogCoorddvEXT is null) { missingCount++; missing?.Add("glFogCoorddvEXT"); }
         FogCoordfEXT = (delegate* unmanaged<float, void>)resolver("glFogCoordfEXT");
+        s_byName["glFogCoordfEXT"] = (nint)FogCoordfEXT;
         if (FogCoordfEXT is null) { missingCount++; missing?.Add("glFogCoordfEXT"); }
         FogCoordfvEXT = (delegate* unmanaged<float*, void>)resolver("glFogCoordfvEXT");
+        s_byName["glFogCoordfvEXT"] = (nint)FogCoordfvEXT;
         if (FogCoordfvEXT is null) { missingCount++; missing?.Add("glFogCoordfvEXT"); }
         FogCoordhNV = (delegate* unmanaged<ushort, void>)resolver("glFogCoordhNV");
+        s_byName["glFogCoordhNV"] = (nint)FogCoordhNV;
         if (FogCoordhNV is null) { missingCount++; missing?.Add("glFogCoordhNV"); }
         FogCoordhvNV = (delegate* unmanaged<ushort*, void>)resolver("glFogCoordhvNV");
+        s_byName["glFogCoordhvNV"] = (nint)FogCoordhvNV;
         if (FogCoordhvNV is null) { missingCount++; missing?.Add("glFogCoordhvNV"); }
         FogFuncSGIS = (delegate* unmanaged<int, float*, void>)resolver("glFogFuncSGIS");
+        s_byName["glFogFuncSGIS"] = (nint)FogFuncSGIS;
         if (FogFuncSGIS is null) { missingCount++; missing?.Add("glFogFuncSGIS"); }
         FogxOES = (delegate* unmanaged<uint, int, void>)resolver("glFogxOES");
+        s_byName["glFogxOES"] = (nint)FogxOES;
         if (FogxOES is null) { missingCount++; missing?.Add("glFogxOES"); }
         FogxvOES = (delegate* unmanaged<uint, int*, void>)resolver("glFogxvOES");
+        s_byName["glFogxvOES"] = (nint)FogxvOES;
         if (FogxvOES is null) { missingCount++; missing?.Add("glFogxvOES"); }
         FragmentColorMaterialSGIX = (delegate* unmanaged<uint, uint, void>)resolver("glFragmentColorMaterialSGIX");
+        s_byName["glFragmentColorMaterialSGIX"] = (nint)FragmentColorMaterialSGIX;
         if (FragmentColorMaterialSGIX is null) { missingCount++; missing?.Add("glFragmentColorMaterialSGIX"); }
         FragmentCoverageColorNV = (delegate* unmanaged<uint, void>)resolver("glFragmentCoverageColorNV");
+        s_byName["glFragmentCoverageColorNV"] = (nint)FragmentCoverageColorNV;
         if (FragmentCoverageColorNV is null) { missingCount++; missing?.Add("glFragmentCoverageColorNV"); }
         FragmentLightModelfSGIX = (delegate* unmanaged<uint, float, void>)resolver("glFragmentLightModelfSGIX");
+        s_byName["glFragmentLightModelfSGIX"] = (nint)FragmentLightModelfSGIX;
         if (FragmentLightModelfSGIX is null) { missingCount++; missing?.Add("glFragmentLightModelfSGIX"); }
         FragmentLightModelfvSGIX = (delegate* unmanaged<uint, float*, void>)resolver("glFragmentLightModelfvSGIX");
+        s_byName["glFragmentLightModelfvSGIX"] = (nint)FragmentLightModelfvSGIX;
         if (FragmentLightModelfvSGIX is null) { missingCount++; missing?.Add("glFragmentLightModelfvSGIX"); }
         FragmentLightModeliSGIX = (delegate* unmanaged<uint, int, void>)resolver("glFragmentLightModeliSGIX");
+        s_byName["glFragmentLightModeliSGIX"] = (nint)FragmentLightModeliSGIX;
         if (FragmentLightModeliSGIX is null) { missingCount++; missing?.Add("glFragmentLightModeliSGIX"); }
         FragmentLightModelivSGIX = (delegate* unmanaged<uint, int*, void>)resolver("glFragmentLightModelivSGIX");
+        s_byName["glFragmentLightModelivSGIX"] = (nint)FragmentLightModelivSGIX;
         if (FragmentLightModelivSGIX is null) { missingCount++; missing?.Add("glFragmentLightModelivSGIX"); }
         FragmentLightfSGIX = (delegate* unmanaged<uint, uint, float, void>)resolver("glFragmentLightfSGIX");
+        s_byName["glFragmentLightfSGIX"] = (nint)FragmentLightfSGIX;
         if (FragmentLightfSGIX is null) { missingCount++; missing?.Add("glFragmentLightfSGIX"); }
         FragmentLightfvSGIX = (delegate* unmanaged<uint, uint, float*, void>)resolver("glFragmentLightfvSGIX");
+        s_byName["glFragmentLightfvSGIX"] = (nint)FragmentLightfvSGIX;
         if (FragmentLightfvSGIX is null) { missingCount++; missing?.Add("glFragmentLightfvSGIX"); }
         FragmentLightiSGIX = (delegate* unmanaged<uint, uint, int, void>)resolver("glFragmentLightiSGIX");
+        s_byName["glFragmentLightiSGIX"] = (nint)FragmentLightiSGIX;
         if (FragmentLightiSGIX is null) { missingCount++; missing?.Add("glFragmentLightiSGIX"); }
         FragmentLightivSGIX = (delegate* unmanaged<uint, uint, int*, void>)resolver("glFragmentLightivSGIX");
+        s_byName["glFragmentLightivSGIX"] = (nint)FragmentLightivSGIX;
         if (FragmentLightivSGIX is null) { missingCount++; missing?.Add("glFragmentLightivSGIX"); }
         FragmentMaterialfSGIX = (delegate* unmanaged<uint, uint, float, void>)resolver("glFragmentMaterialfSGIX");
+        s_byName["glFragmentMaterialfSGIX"] = (nint)FragmentMaterialfSGIX;
         if (FragmentMaterialfSGIX is null) { missingCount++; missing?.Add("glFragmentMaterialfSGIX"); }
         FragmentMaterialfvSGIX = (delegate* unmanaged<uint, uint, float*, void>)resolver("glFragmentMaterialfvSGIX");
+        s_byName["glFragmentMaterialfvSGIX"] = (nint)FragmentMaterialfvSGIX;
         if (FragmentMaterialfvSGIX is null) { missingCount++; missing?.Add("glFragmentMaterialfvSGIX"); }
         FragmentMaterialiSGIX = (delegate* unmanaged<uint, uint, int, void>)resolver("glFragmentMaterialiSGIX");
+        s_byName["glFragmentMaterialiSGIX"] = (nint)FragmentMaterialiSGIX;
         if (FragmentMaterialiSGIX is null) { missingCount++; missing?.Add("glFragmentMaterialiSGIX"); }
         FragmentMaterialivSGIX = (delegate* unmanaged<uint, uint, int*, void>)resolver("glFragmentMaterialivSGIX");
+        s_byName["glFragmentMaterialivSGIX"] = (nint)FragmentMaterialivSGIX;
         if (FragmentMaterialivSGIX is null) { missingCount++; missing?.Add("glFragmentMaterialivSGIX"); }
         FrameTerminatorGREMEDY = (delegate* unmanaged<void>)resolver("glFrameTerminatorGREMEDY");
+        s_byName["glFrameTerminatorGREMEDY"] = (nint)FrameTerminatorGREMEDY;
         if (FrameTerminatorGREMEDY is null) { missingCount++; missing?.Add("glFrameTerminatorGREMEDY"); }
         FrameZoomSGIX = (delegate* unmanaged<int, void>)resolver("glFrameZoomSGIX");
+        s_byName["glFrameZoomSGIX"] = (nint)FrameZoomSGIX;
         if (FrameZoomSGIX is null) { missingCount++; missing?.Add("glFrameZoomSGIX"); }
         FramebufferDrawBufferEXT = (delegate* unmanaged<uint, uint, void>)resolver("glFramebufferDrawBufferEXT");
+        s_byName["glFramebufferDrawBufferEXT"] = (nint)FramebufferDrawBufferEXT;
         if (FramebufferDrawBufferEXT is null) { missingCount++; missing?.Add("glFramebufferDrawBufferEXT"); }
         FramebufferDrawBuffersEXT = (delegate* unmanaged<uint, int, uint*, void>)resolver("glFramebufferDrawBuffersEXT");
+        s_byName["glFramebufferDrawBuffersEXT"] = (nint)FramebufferDrawBuffersEXT;
         if (FramebufferDrawBuffersEXT is null) { missingCount++; missing?.Add("glFramebufferDrawBuffersEXT"); }
         FramebufferFetchBarrierEXT = (delegate* unmanaged<void>)resolver("glFramebufferFetchBarrierEXT");
+        s_byName["glFramebufferFetchBarrierEXT"] = (nint)FramebufferFetchBarrierEXT;
         if (FramebufferFetchBarrierEXT is null) { missingCount++; missing?.Add("glFramebufferFetchBarrierEXT"); }
         FramebufferParameteri = (delegate* unmanaged<uint, uint, int, void>)resolver("glFramebufferParameteri");
+        s_byName["glFramebufferParameteri"] = (nint)FramebufferParameteri;
         if (FramebufferParameteri is null) { missingCount++; missing?.Add("glFramebufferParameteri"); }
         FramebufferParameteriMESA = (delegate* unmanaged<uint, uint, int, void>)resolver("glFramebufferParameteriMESA");
+        s_byName["glFramebufferParameteriMESA"] = (nint)FramebufferParameteriMESA;
         if (FramebufferParameteriMESA is null) { missingCount++; missing?.Add("glFramebufferParameteriMESA"); }
         FramebufferReadBufferEXT = (delegate* unmanaged<uint, uint, void>)resolver("glFramebufferReadBufferEXT");
+        s_byName["glFramebufferReadBufferEXT"] = (nint)FramebufferReadBufferEXT;
         if (FramebufferReadBufferEXT is null) { missingCount++; missing?.Add("glFramebufferReadBufferEXT"); }
         FramebufferRenderbuffer = (delegate* unmanaged<uint, uint, uint, uint, void>)resolver("glFramebufferRenderbuffer");
+        s_byName["glFramebufferRenderbuffer"] = (nint)FramebufferRenderbuffer;
         if (FramebufferRenderbuffer is null) { missingCount++; missing?.Add("glFramebufferRenderbuffer"); }
         FramebufferRenderbufferEXT = (delegate* unmanaged<uint, uint, uint, uint, void>)resolver("glFramebufferRenderbufferEXT");
+        s_byName["glFramebufferRenderbufferEXT"] = (nint)FramebufferRenderbufferEXT;
         if (FramebufferRenderbufferEXT is null) { missingCount++; missing?.Add("glFramebufferRenderbufferEXT"); }
         FramebufferSampleLocationsfvARB = (delegate* unmanaged<uint, uint, int, float*, void>)resolver("glFramebufferSampleLocationsfvARB");
+        s_byName["glFramebufferSampleLocationsfvARB"] = (nint)FramebufferSampleLocationsfvARB;
         if (FramebufferSampleLocationsfvARB is null) { missingCount++; missing?.Add("glFramebufferSampleLocationsfvARB"); }
         FramebufferSampleLocationsfvNV = (delegate* unmanaged<uint, uint, int, float*, void>)resolver("glFramebufferSampleLocationsfvNV");
+        s_byName["glFramebufferSampleLocationsfvNV"] = (nint)FramebufferSampleLocationsfvNV;
         if (FramebufferSampleLocationsfvNV is null) { missingCount++; missing?.Add("glFramebufferSampleLocationsfvNV"); }
         FramebufferSamplePositionsfvAMD = (delegate* unmanaged<uint, uint, uint, float*, void>)resolver("glFramebufferSamplePositionsfvAMD");
+        s_byName["glFramebufferSamplePositionsfvAMD"] = (nint)FramebufferSamplePositionsfvAMD;
         if (FramebufferSamplePositionsfvAMD is null) { missingCount++; missing?.Add("glFramebufferSamplePositionsfvAMD"); }
         FramebufferShadingRateEXT = (delegate* unmanaged<uint, uint, uint, int, int, int, int, void>)resolver("glFramebufferShadingRateEXT");
+        s_byName["glFramebufferShadingRateEXT"] = (nint)FramebufferShadingRateEXT;
         if (FramebufferShadingRateEXT is null) { missingCount++; missing?.Add("glFramebufferShadingRateEXT"); }
         FramebufferTexture = (delegate* unmanaged<uint, uint, uint, int, void>)resolver("glFramebufferTexture");
+        s_byName["glFramebufferTexture"] = (nint)FramebufferTexture;
         if (FramebufferTexture is null) { missingCount++; missing?.Add("glFramebufferTexture"); }
         FramebufferTexture1D = (delegate* unmanaged<uint, uint, uint, uint, int, void>)resolver("glFramebufferTexture1D");
+        s_byName["glFramebufferTexture1D"] = (nint)FramebufferTexture1D;
         if (FramebufferTexture1D is null) { missingCount++; missing?.Add("glFramebufferTexture1D"); }
         FramebufferTexture1DEXT = (delegate* unmanaged<uint, uint, uint, uint, int, void>)resolver("glFramebufferTexture1DEXT");
+        s_byName["glFramebufferTexture1DEXT"] = (nint)FramebufferTexture1DEXT;
         if (FramebufferTexture1DEXT is null) { missingCount++; missing?.Add("glFramebufferTexture1DEXT"); }
         FramebufferTexture2D = (delegate* unmanaged<uint, uint, uint, uint, int, void>)resolver("glFramebufferTexture2D");
+        s_byName["glFramebufferTexture2D"] = (nint)FramebufferTexture2D;
         if (FramebufferTexture2D is null) { missingCount++; missing?.Add("glFramebufferTexture2D"); }
         FramebufferTexture2DEXT = (delegate* unmanaged<uint, uint, uint, uint, int, void>)resolver("glFramebufferTexture2DEXT");
+        s_byName["glFramebufferTexture2DEXT"] = (nint)FramebufferTexture2DEXT;
         if (FramebufferTexture2DEXT is null) { missingCount++; missing?.Add("glFramebufferTexture2DEXT"); }
         FramebufferTexture3D = (delegate* unmanaged<uint, uint, uint, uint, int, int, void>)resolver("glFramebufferTexture3D");
+        s_byName["glFramebufferTexture3D"] = (nint)FramebufferTexture3D;
         if (FramebufferTexture3D is null) { missingCount++; missing?.Add("glFramebufferTexture3D"); }
         FramebufferTexture3DEXT = (delegate* unmanaged<uint, uint, uint, uint, int, int, void>)resolver("glFramebufferTexture3DEXT");
+        s_byName["glFramebufferTexture3DEXT"] = (nint)FramebufferTexture3DEXT;
         if (FramebufferTexture3DEXT is null) { missingCount++; missing?.Add("glFramebufferTexture3DEXT"); }
         FramebufferTextureARB = (delegate* unmanaged<uint, uint, uint, int, void>)resolver("glFramebufferTextureARB");
+        s_byName["glFramebufferTextureARB"] = (nint)FramebufferTextureARB;
         if (FramebufferTextureARB is null) { missingCount++; missing?.Add("glFramebufferTextureARB"); }
         FramebufferTextureEXT = (delegate* unmanaged<uint, uint, uint, int, void>)resolver("glFramebufferTextureEXT");
+        s_byName["glFramebufferTextureEXT"] = (nint)FramebufferTextureEXT;
         if (FramebufferTextureEXT is null) { missingCount++; missing?.Add("glFramebufferTextureEXT"); }
         FramebufferTextureFaceARB = (delegate* unmanaged<uint, uint, uint, int, uint, void>)resolver("glFramebufferTextureFaceARB");
+        s_byName["glFramebufferTextureFaceARB"] = (nint)FramebufferTextureFaceARB;
         if (FramebufferTextureFaceARB is null) { missingCount++; missing?.Add("glFramebufferTextureFaceARB"); }
         FramebufferTextureFaceEXT = (delegate* unmanaged<uint, uint, uint, int, uint, void>)resolver("glFramebufferTextureFaceEXT");
+        s_byName["glFramebufferTextureFaceEXT"] = (nint)FramebufferTextureFaceEXT;
         if (FramebufferTextureFaceEXT is null) { missingCount++; missing?.Add("glFramebufferTextureFaceEXT"); }
         FramebufferTextureLayer = (delegate* unmanaged<uint, uint, uint, int, int, void>)resolver("glFramebufferTextureLayer");
+        s_byName["glFramebufferTextureLayer"] = (nint)FramebufferTextureLayer;
         if (FramebufferTextureLayer is null) { missingCount++; missing?.Add("glFramebufferTextureLayer"); }
         FramebufferTextureLayerARB = (delegate* unmanaged<uint, uint, uint, int, int, void>)resolver("glFramebufferTextureLayerARB");
+        s_byName["glFramebufferTextureLayerARB"] = (nint)FramebufferTextureLayerARB;
         if (FramebufferTextureLayerARB is null) { missingCount++; missing?.Add("glFramebufferTextureLayerARB"); }
         FramebufferTextureLayerEXT = (delegate* unmanaged<uint, uint, uint, int, int, void>)resolver("glFramebufferTextureLayerEXT");
+        s_byName["glFramebufferTextureLayerEXT"] = (nint)FramebufferTextureLayerEXT;
         if (FramebufferTextureLayerEXT is null) { missingCount++; missing?.Add("glFramebufferTextureLayerEXT"); }
         FramebufferTextureMultiviewOVR = (delegate* unmanaged<uint, uint, uint, int, int, int, void>)resolver("glFramebufferTextureMultiviewOVR");
+        s_byName["glFramebufferTextureMultiviewOVR"] = (nint)FramebufferTextureMultiviewOVR;
         if (FramebufferTextureMultiviewOVR is null) { missingCount++; missing?.Add("glFramebufferTextureMultiviewOVR"); }
         FreeObjectBufferATI = (delegate* unmanaged<uint, void>)resolver("glFreeObjectBufferATI");
+        s_byName["glFreeObjectBufferATI"] = (nint)FreeObjectBufferATI;
         if (FreeObjectBufferATI is null) { missingCount++; missing?.Add("glFreeObjectBufferATI"); }
         FrontFace = (delegate* unmanaged<uint, void>)resolver("glFrontFace");
+        s_byName["glFrontFace"] = (nint)FrontFace;
         if (FrontFace is null) { missingCount++; missing?.Add("glFrontFace"); }
         FrustumfOES = (delegate* unmanaged<float, float, float, float, float, float, void>)resolver("glFrustumfOES");
+        s_byName["glFrustumfOES"] = (nint)FrustumfOES;
         if (FrustumfOES is null) { missingCount++; missing?.Add("glFrustumfOES"); }
         FrustumxOES = (delegate* unmanaged<int, int, int, int, int, int, void>)resolver("glFrustumxOES");
+        s_byName["glFrustumxOES"] = (nint)FrustumxOES;
         if (FrustumxOES is null) { missingCount++; missing?.Add("glFrustumxOES"); }
         GenAsyncMarkersSGIX = (delegate* unmanaged<int, uint>)resolver("glGenAsyncMarkersSGIX");
+        s_byName["glGenAsyncMarkersSGIX"] = (nint)GenAsyncMarkersSGIX;
         if (GenAsyncMarkersSGIX is null) { missingCount++; missing?.Add("glGenAsyncMarkersSGIX"); }
         GenBuffers = (delegate* unmanaged<int, uint*, void>)resolver("glGenBuffers");
+        s_byName["glGenBuffers"] = (nint)GenBuffers;
         if (GenBuffers is null) { missingCount++; missing?.Add("glGenBuffers"); }
         GenBuffersARB = (delegate* unmanaged<int, uint*, void>)resolver("glGenBuffersARB");
+        s_byName["glGenBuffersARB"] = (nint)GenBuffersARB;
         if (GenBuffersARB is null) { missingCount++; missing?.Add("glGenBuffersARB"); }
         GenFencesAPPLE = (delegate* unmanaged<int, uint*, void>)resolver("glGenFencesAPPLE");
+        s_byName["glGenFencesAPPLE"] = (nint)GenFencesAPPLE;
         if (GenFencesAPPLE is null) { missingCount++; missing?.Add("glGenFencesAPPLE"); }
         GenFencesNV = (delegate* unmanaged<int, uint*, void>)resolver("glGenFencesNV");
+        s_byName["glGenFencesNV"] = (nint)GenFencesNV;
         if (GenFencesNV is null) { missingCount++; missing?.Add("glGenFencesNV"); }
         GenFragmentShadersATI = (delegate* unmanaged<uint, uint>)resolver("glGenFragmentShadersATI");
+        s_byName["glGenFragmentShadersATI"] = (nint)GenFragmentShadersATI;
         if (GenFragmentShadersATI is null) { missingCount++; missing?.Add("glGenFragmentShadersATI"); }
         GenFramebuffers = (delegate* unmanaged<int, uint*, void>)resolver("glGenFramebuffers");
+        s_byName["glGenFramebuffers"] = (nint)GenFramebuffers;
         if (GenFramebuffers is null) { missingCount++; missing?.Add("glGenFramebuffers"); }
         GenFramebuffersEXT = (delegate* unmanaged<int, uint*, void>)resolver("glGenFramebuffersEXT");
+        s_byName["glGenFramebuffersEXT"] = (nint)GenFramebuffersEXT;
         if (GenFramebuffersEXT is null) { missingCount++; missing?.Add("glGenFramebuffersEXT"); }
         GenNamesAMD = (delegate* unmanaged<uint, uint, uint*, void>)resolver("glGenNamesAMD");
+        s_byName["glGenNamesAMD"] = (nint)GenNamesAMD;
         if (GenNamesAMD is null) { missingCount++; missing?.Add("glGenNamesAMD"); }
         GenOcclusionQueriesNV = (delegate* unmanaged<int, uint*, void>)resolver("glGenOcclusionQueriesNV");
+        s_byName["glGenOcclusionQueriesNV"] = (nint)GenOcclusionQueriesNV;
         if (GenOcclusionQueriesNV is null) { missingCount++; missing?.Add("glGenOcclusionQueriesNV"); }
         GenPathsNV = (delegate* unmanaged<int, uint>)resolver("glGenPathsNV");
+        s_byName["glGenPathsNV"] = (nint)GenPathsNV;
         if (GenPathsNV is null) { missingCount++; missing?.Add("glGenPathsNV"); }
         GenPerfMonitorsAMD = (delegate* unmanaged<int, uint*, void>)resolver("glGenPerfMonitorsAMD");
+        s_byName["glGenPerfMonitorsAMD"] = (nint)GenPerfMonitorsAMD;
         if (GenPerfMonitorsAMD is null) { missingCount++; missing?.Add("glGenPerfMonitorsAMD"); }
         GenProgramPipelines = (delegate* unmanaged<int, uint*, void>)resolver("glGenProgramPipelines");
+        s_byName["glGenProgramPipelines"] = (nint)GenProgramPipelines;
         if (GenProgramPipelines is null) { missingCount++; missing?.Add("glGenProgramPipelines"); }
         GenProgramPipelinesEXT = (delegate* unmanaged<int, uint*, void>)resolver("glGenProgramPipelinesEXT");
+        s_byName["glGenProgramPipelinesEXT"] = (nint)GenProgramPipelinesEXT;
         if (GenProgramPipelinesEXT is null) { missingCount++; missing?.Add("glGenProgramPipelinesEXT"); }
         GenProgramsARB = (delegate* unmanaged<int, uint*, void>)resolver("glGenProgramsARB");
+        s_byName["glGenProgramsARB"] = (nint)GenProgramsARB;
         if (GenProgramsARB is null) { missingCount++; missing?.Add("glGenProgramsARB"); }
         GenProgramsNV = (delegate* unmanaged<int, uint*, void>)resolver("glGenProgramsNV");
+        s_byName["glGenProgramsNV"] = (nint)GenProgramsNV;
         if (GenProgramsNV is null) { missingCount++; missing?.Add("glGenProgramsNV"); }
         GenQueries = (delegate* unmanaged<int, uint*, void>)resolver("glGenQueries");
+        s_byName["glGenQueries"] = (nint)GenQueries;
         if (GenQueries is null) { missingCount++; missing?.Add("glGenQueries"); }
         GenQueriesARB = (delegate* unmanaged<int, uint*, void>)resolver("glGenQueriesARB");
+        s_byName["glGenQueriesARB"] = (nint)GenQueriesARB;
         if (GenQueriesARB is null) { missingCount++; missing?.Add("glGenQueriesARB"); }
         GenQueryResourceTagNV = (delegate* unmanaged<int, int*, void>)resolver("glGenQueryResourceTagNV");
+        s_byName["glGenQueryResourceTagNV"] = (nint)GenQueryResourceTagNV;
         if (GenQueryResourceTagNV is null) { missingCount++; missing?.Add("glGenQueryResourceTagNV"); }
         GenRenderbuffers = (delegate* unmanaged<int, uint*, void>)resolver("glGenRenderbuffers");
+        s_byName["glGenRenderbuffers"] = (nint)GenRenderbuffers;
         if (GenRenderbuffers is null) { missingCount++; missing?.Add("glGenRenderbuffers"); }
         GenRenderbuffersEXT = (delegate* unmanaged<int, uint*, void>)resolver("glGenRenderbuffersEXT");
+        s_byName["glGenRenderbuffersEXT"] = (nint)GenRenderbuffersEXT;
         if (GenRenderbuffersEXT is null) { missingCount++; missing?.Add("glGenRenderbuffersEXT"); }
         GenSamplers = (delegate* unmanaged<int, uint*, void>)resolver("glGenSamplers");
+        s_byName["glGenSamplers"] = (nint)GenSamplers;
         if (GenSamplers is null) { missingCount++; missing?.Add("glGenSamplers"); }
         GenSemaphoresEXT = (delegate* unmanaged<int, uint*, void>)resolver("glGenSemaphoresEXT");
+        s_byName["glGenSemaphoresEXT"] = (nint)GenSemaphoresEXT;
         if (GenSemaphoresEXT is null) { missingCount++; missing?.Add("glGenSemaphoresEXT"); }
         GenSymbolsEXT = (delegate* unmanaged<uint, uint, uint, uint, uint>)resolver("glGenSymbolsEXT");
+        s_byName["glGenSymbolsEXT"] = (nint)GenSymbolsEXT;
         if (GenSymbolsEXT is null) { missingCount++; missing?.Add("glGenSymbolsEXT"); }
         GenTextures = (delegate* unmanaged<int, uint*, void>)resolver("glGenTextures");
+        s_byName["glGenTextures"] = (nint)GenTextures;
         if (GenTextures is null) { missingCount++; missing?.Add("glGenTextures"); }
         GenTexturesEXT = (delegate* unmanaged<int, uint*, void>)resolver("glGenTexturesEXT");
+        s_byName["glGenTexturesEXT"] = (nint)GenTexturesEXT;
         if (GenTexturesEXT is null) { missingCount++; missing?.Add("glGenTexturesEXT"); }
         GenTransformFeedbacks = (delegate* unmanaged<int, uint*, void>)resolver("glGenTransformFeedbacks");
+        s_byName["glGenTransformFeedbacks"] = (nint)GenTransformFeedbacks;
         if (GenTransformFeedbacks is null) { missingCount++; missing?.Add("glGenTransformFeedbacks"); }
         GenTransformFeedbacksNV = (delegate* unmanaged<int, uint*, void>)resolver("glGenTransformFeedbacksNV");
+        s_byName["glGenTransformFeedbacksNV"] = (nint)GenTransformFeedbacksNV;
         if (GenTransformFeedbacksNV is null) { missingCount++; missing?.Add("glGenTransformFeedbacksNV"); }
         GenVertexArrays = (delegate* unmanaged<int, uint*, void>)resolver("glGenVertexArrays");
+        s_byName["glGenVertexArrays"] = (nint)GenVertexArrays;
         if (GenVertexArrays is null) { missingCount++; missing?.Add("glGenVertexArrays"); }
         GenVertexArraysAPPLE = (delegate* unmanaged<int, uint*, void>)resolver("glGenVertexArraysAPPLE");
+        s_byName["glGenVertexArraysAPPLE"] = (nint)GenVertexArraysAPPLE;
         if (GenVertexArraysAPPLE is null) { missingCount++; missing?.Add("glGenVertexArraysAPPLE"); }
         GenVertexShadersEXT = (delegate* unmanaged<uint, uint>)resolver("glGenVertexShadersEXT");
+        s_byName["glGenVertexShadersEXT"] = (nint)GenVertexShadersEXT;
         if (GenVertexShadersEXT is null) { missingCount++; missing?.Add("glGenVertexShadersEXT"); }
         GenerateMipmap = (delegate* unmanaged<uint, void>)resolver("glGenerateMipmap");
+        s_byName["glGenerateMipmap"] = (nint)GenerateMipmap;
         if (GenerateMipmap is null) { missingCount++; missing?.Add("glGenerateMipmap"); }
         GenerateMipmapEXT = (delegate* unmanaged<uint, void>)resolver("glGenerateMipmapEXT");
+        s_byName["glGenerateMipmapEXT"] = (nint)GenerateMipmapEXT;
         if (GenerateMipmapEXT is null) { missingCount++; missing?.Add("glGenerateMipmapEXT"); }
         GenerateMultiTexMipmapEXT = (delegate* unmanaged<uint, uint, void>)resolver("glGenerateMultiTexMipmapEXT");
+        s_byName["glGenerateMultiTexMipmapEXT"] = (nint)GenerateMultiTexMipmapEXT;
         if (GenerateMultiTexMipmapEXT is null) { missingCount++; missing?.Add("glGenerateMultiTexMipmapEXT"); }
         GenerateTextureMipmap = (delegate* unmanaged<uint, void>)resolver("glGenerateTextureMipmap");
+        s_byName["glGenerateTextureMipmap"] = (nint)GenerateTextureMipmap;
         if (GenerateTextureMipmap is null) { missingCount++; missing?.Add("glGenerateTextureMipmap"); }
         GenerateTextureMipmapEXT = (delegate* unmanaged<uint, uint, void>)resolver("glGenerateTextureMipmapEXT");
+        s_byName["glGenerateTextureMipmapEXT"] = (nint)GenerateTextureMipmapEXT;
         if (GenerateTextureMipmapEXT is null) { missingCount++; missing?.Add("glGenerateTextureMipmapEXT"); }
         GetActiveAtomicCounterBufferiv = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glGetActiveAtomicCounterBufferiv");
+        s_byName["glGetActiveAtomicCounterBufferiv"] = (nint)GetActiveAtomicCounterBufferiv;
         if (GetActiveAtomicCounterBufferiv is null) { missingCount++; missing?.Add("glGetActiveAtomicCounterBufferiv"); }
         GetActiveAttrib = (delegate* unmanaged<uint, uint, int, int*, int*, uint*, byte*, void>)resolver("glGetActiveAttrib");
+        s_byName["glGetActiveAttrib"] = (nint)GetActiveAttrib;
         if (GetActiveAttrib is null) { missingCount++; missing?.Add("glGetActiveAttrib"); }
         GetActiveAttribARB = (delegate* unmanaged<uint, uint, int, int*, int*, uint*, byte*, void>)resolver("glGetActiveAttribARB");
+        s_byName["glGetActiveAttribARB"] = (nint)GetActiveAttribARB;
         if (GetActiveAttribARB is null) { missingCount++; missing?.Add("glGetActiveAttribARB"); }
         GetActiveSubroutineName = (delegate* unmanaged<uint, uint, uint, int, int*, byte*, void>)resolver("glGetActiveSubroutineName");
+        s_byName["glGetActiveSubroutineName"] = (nint)GetActiveSubroutineName;
         if (GetActiveSubroutineName is null) { missingCount++; missing?.Add("glGetActiveSubroutineName"); }
         GetActiveSubroutineUniformName = (delegate* unmanaged<uint, uint, uint, int, int*, byte*, void>)resolver("glGetActiveSubroutineUniformName");
+        s_byName["glGetActiveSubroutineUniformName"] = (nint)GetActiveSubroutineUniformName;
         if (GetActiveSubroutineUniformName is null) { missingCount++; missing?.Add("glGetActiveSubroutineUniformName"); }
         GetActiveSubroutineUniformiv = (delegate* unmanaged<uint, uint, uint, uint, int*, void>)resolver("glGetActiveSubroutineUniformiv");
+        s_byName["glGetActiveSubroutineUniformiv"] = (nint)GetActiveSubroutineUniformiv;
         if (GetActiveSubroutineUniformiv is null) { missingCount++; missing?.Add("glGetActiveSubroutineUniformiv"); }
         GetActiveUniform = (delegate* unmanaged<uint, uint, int, int*, int*, uint*, byte*, void>)resolver("glGetActiveUniform");
+        s_byName["glGetActiveUniform"] = (nint)GetActiveUniform;
         if (GetActiveUniform is null) { missingCount++; missing?.Add("glGetActiveUniform"); }
         GetActiveUniformARB = (delegate* unmanaged<uint, uint, int, int*, int*, uint*, byte*, void>)resolver("glGetActiveUniformARB");
+        s_byName["glGetActiveUniformARB"] = (nint)GetActiveUniformARB;
         if (GetActiveUniformARB is null) { missingCount++; missing?.Add("glGetActiveUniformARB"); }
         GetActiveUniformBlockName = (delegate* unmanaged<uint, uint, int, int*, byte*, void>)resolver("glGetActiveUniformBlockName");
+        s_byName["glGetActiveUniformBlockName"] = (nint)GetActiveUniformBlockName;
         if (GetActiveUniformBlockName is null) { missingCount++; missing?.Add("glGetActiveUniformBlockName"); }
         GetActiveUniformBlockiv = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glGetActiveUniformBlockiv");
+        s_byName["glGetActiveUniformBlockiv"] = (nint)GetActiveUniformBlockiv;
         if (GetActiveUniformBlockiv is null) { missingCount++; missing?.Add("glGetActiveUniformBlockiv"); }
         GetActiveUniformName = (delegate* unmanaged<uint, uint, int, int*, byte*, void>)resolver("glGetActiveUniformName");
+        s_byName["glGetActiveUniformName"] = (nint)GetActiveUniformName;
         if (GetActiveUniformName is null) { missingCount++; missing?.Add("glGetActiveUniformName"); }
         GetActiveUniformsiv = (delegate* unmanaged<uint, int, uint*, uint, int*, void>)resolver("glGetActiveUniformsiv");
+        s_byName["glGetActiveUniformsiv"] = (nint)GetActiveUniformsiv;
         if (GetActiveUniformsiv is null) { missingCount++; missing?.Add("glGetActiveUniformsiv"); }
         GetActiveVaryingNV = (delegate* unmanaged<uint, uint, int, int*, int*, uint*, byte*, void>)resolver("glGetActiveVaryingNV");
+        s_byName["glGetActiveVaryingNV"] = (nint)GetActiveVaryingNV;
         if (GetActiveVaryingNV is null) { missingCount++; missing?.Add("glGetActiveVaryingNV"); }
         GetArrayObjectfvATI = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetArrayObjectfvATI");
+        s_byName["glGetArrayObjectfvATI"] = (nint)GetArrayObjectfvATI;
         if (GetArrayObjectfvATI is null) { missingCount++; missing?.Add("glGetArrayObjectfvATI"); }
         GetArrayObjectivATI = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetArrayObjectivATI");
+        s_byName["glGetArrayObjectivATI"] = (nint)GetArrayObjectivATI;
         if (GetArrayObjectivATI is null) { missingCount++; missing?.Add("glGetArrayObjectivATI"); }
         GetAttachedObjectsARB = (delegate* unmanaged<uint, int, int*, uint*, void>)resolver("glGetAttachedObjectsARB");
+        s_byName["glGetAttachedObjectsARB"] = (nint)GetAttachedObjectsARB;
         if (GetAttachedObjectsARB is null) { missingCount++; missing?.Add("glGetAttachedObjectsARB"); }
         GetAttachedShaders = (delegate* unmanaged<uint, int, int*, uint*, void>)resolver("glGetAttachedShaders");
+        s_byName["glGetAttachedShaders"] = (nint)GetAttachedShaders;
         if (GetAttachedShaders is null) { missingCount++; missing?.Add("glGetAttachedShaders"); }
         GetAttribLocation = (delegate* unmanaged<uint, byte*, int>)resolver("glGetAttribLocation");
+        s_byName["glGetAttribLocation"] = (nint)GetAttribLocation;
         if (GetAttribLocation is null) { missingCount++; missing?.Add("glGetAttribLocation"); }
         GetAttribLocationARB = (delegate* unmanaged<uint, byte*, int>)resolver("glGetAttribLocationARB");
+        s_byName["glGetAttribLocationARB"] = (nint)GetAttribLocationARB;
         if (GetAttribLocationARB is null) { missingCount++; missing?.Add("glGetAttribLocationARB"); }
         GetBooleanIndexedvEXT = (delegate* unmanaged<uint, uint, byte*, void>)resolver("glGetBooleanIndexedvEXT");
+        s_byName["glGetBooleanIndexedvEXT"] = (nint)GetBooleanIndexedvEXT;
         if (GetBooleanIndexedvEXT is null) { missingCount++; missing?.Add("glGetBooleanIndexedvEXT"); }
         GetBooleani_v = (delegate* unmanaged<uint, uint, byte*, void>)resolver("glGetBooleani_v");
+        s_byName["glGetBooleani_v"] = (nint)GetBooleani_v;
         if (GetBooleani_v is null) { missingCount++; missing?.Add("glGetBooleani_v"); }
         GetBooleanv = (delegate* unmanaged<uint, byte*, void>)resolver("glGetBooleanv");
+        s_byName["glGetBooleanv"] = (nint)GetBooleanv;
         if (GetBooleanv is null) { missingCount++; missing?.Add("glGetBooleanv"); }
         GetBufferParameteri64v = (delegate* unmanaged<uint, uint, long*, void>)resolver("glGetBufferParameteri64v");
+        s_byName["glGetBufferParameteri64v"] = (nint)GetBufferParameteri64v;
         if (GetBufferParameteri64v is null) { missingCount++; missing?.Add("glGetBufferParameteri64v"); }
         GetBufferParameteriv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetBufferParameteriv");
+        s_byName["glGetBufferParameteriv"] = (nint)GetBufferParameteriv;
         if (GetBufferParameteriv is null) { missingCount++; missing?.Add("glGetBufferParameteriv"); }
         GetBufferParameterivARB = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetBufferParameterivARB");
+        s_byName["glGetBufferParameterivARB"] = (nint)GetBufferParameterivARB;
         if (GetBufferParameterivARB is null) { missingCount++; missing?.Add("glGetBufferParameterivARB"); }
         GetBufferParameterui64vNV = (delegate* unmanaged<uint, uint, ulong*, void>)resolver("glGetBufferParameterui64vNV");
+        s_byName["glGetBufferParameterui64vNV"] = (nint)GetBufferParameterui64vNV;
         if (GetBufferParameterui64vNV is null) { missingCount++; missing?.Add("glGetBufferParameterui64vNV"); }
         GetBufferPointerv = (delegate* unmanaged<uint, uint, void**, void>)resolver("glGetBufferPointerv");
+        s_byName["glGetBufferPointerv"] = (nint)GetBufferPointerv;
         if (GetBufferPointerv is null) { missingCount++; missing?.Add("glGetBufferPointerv"); }
         GetBufferPointervARB = (delegate* unmanaged<uint, uint, void**, void>)resolver("glGetBufferPointervARB");
+        s_byName["glGetBufferPointervARB"] = (nint)GetBufferPointervARB;
         if (GetBufferPointervARB is null) { missingCount++; missing?.Add("glGetBufferPointervARB"); }
         GetBufferSubData = (delegate* unmanaged<uint, nint, nint, void*, void>)resolver("glGetBufferSubData");
+        s_byName["glGetBufferSubData"] = (nint)GetBufferSubData;
         if (GetBufferSubData is null) { missingCount++; missing?.Add("glGetBufferSubData"); }
         GetBufferSubDataARB = (delegate* unmanaged<uint, nint, nint, void*, void>)resolver("glGetBufferSubDataARB");
+        s_byName["glGetBufferSubDataARB"] = (nint)GetBufferSubDataARB;
         if (GetBufferSubDataARB is null) { missingCount++; missing?.Add("glGetBufferSubDataARB"); }
         GetClipPlanefOES = (delegate* unmanaged<uint, float*, void>)resolver("glGetClipPlanefOES");
+        s_byName["glGetClipPlanefOES"] = (nint)GetClipPlanefOES;
         if (GetClipPlanefOES is null) { missingCount++; missing?.Add("glGetClipPlanefOES"); }
         GetClipPlanexOES = (delegate* unmanaged<uint, int*, void>)resolver("glGetClipPlanexOES");
+        s_byName["glGetClipPlanexOES"] = (nint)GetClipPlanexOES;
         if (GetClipPlanexOES is null) { missingCount++; missing?.Add("glGetClipPlanexOES"); }
         GetColorTable = (delegate* unmanaged<uint, uint, uint, void*, void>)resolver("glGetColorTable");
+        s_byName["glGetColorTable"] = (nint)GetColorTable;
         if (GetColorTable is null) { missingCount++; missing?.Add("glGetColorTable"); }
         GetColorTableEXT = (delegate* unmanaged<uint, uint, uint, void*, void>)resolver("glGetColorTableEXT");
+        s_byName["glGetColorTableEXT"] = (nint)GetColorTableEXT;
         if (GetColorTableEXT is null) { missingCount++; missing?.Add("glGetColorTableEXT"); }
         GetColorTableParameterfv = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetColorTableParameterfv");
+        s_byName["glGetColorTableParameterfv"] = (nint)GetColorTableParameterfv;
         if (GetColorTableParameterfv is null) { missingCount++; missing?.Add("glGetColorTableParameterfv"); }
         GetColorTableParameterfvEXT = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetColorTableParameterfvEXT");
+        s_byName["glGetColorTableParameterfvEXT"] = (nint)GetColorTableParameterfvEXT;
         if (GetColorTableParameterfvEXT is null) { missingCount++; missing?.Add("glGetColorTableParameterfvEXT"); }
         GetColorTableParameterfvSGI = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetColorTableParameterfvSGI");
+        s_byName["glGetColorTableParameterfvSGI"] = (nint)GetColorTableParameterfvSGI;
         if (GetColorTableParameterfvSGI is null) { missingCount++; missing?.Add("glGetColorTableParameterfvSGI"); }
         GetColorTableParameteriv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetColorTableParameteriv");
+        s_byName["glGetColorTableParameteriv"] = (nint)GetColorTableParameteriv;
         if (GetColorTableParameteriv is null) { missingCount++; missing?.Add("glGetColorTableParameteriv"); }
         GetColorTableParameterivEXT = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetColorTableParameterivEXT");
+        s_byName["glGetColorTableParameterivEXT"] = (nint)GetColorTableParameterivEXT;
         if (GetColorTableParameterivEXT is null) { missingCount++; missing?.Add("glGetColorTableParameterivEXT"); }
         GetColorTableParameterivSGI = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetColorTableParameterivSGI");
+        s_byName["glGetColorTableParameterivSGI"] = (nint)GetColorTableParameterivSGI;
         if (GetColorTableParameterivSGI is null) { missingCount++; missing?.Add("glGetColorTableParameterivSGI"); }
         GetColorTableSGI = (delegate* unmanaged<uint, uint, uint, void*, void>)resolver("glGetColorTableSGI");
+        s_byName["glGetColorTableSGI"] = (nint)GetColorTableSGI;
         if (GetColorTableSGI is null) { missingCount++; missing?.Add("glGetColorTableSGI"); }
         GetCombinerInputParameterfvNV = (delegate* unmanaged<uint, uint, uint, uint, float*, void>)resolver("glGetCombinerInputParameterfvNV");
+        s_byName["glGetCombinerInputParameterfvNV"] = (nint)GetCombinerInputParameterfvNV;
         if (GetCombinerInputParameterfvNV is null) { missingCount++; missing?.Add("glGetCombinerInputParameterfvNV"); }
         GetCombinerInputParameterivNV = (delegate* unmanaged<uint, uint, uint, uint, int*, void>)resolver("glGetCombinerInputParameterivNV");
+        s_byName["glGetCombinerInputParameterivNV"] = (nint)GetCombinerInputParameterivNV;
         if (GetCombinerInputParameterivNV is null) { missingCount++; missing?.Add("glGetCombinerInputParameterivNV"); }
         GetCombinerOutputParameterfvNV = (delegate* unmanaged<uint, uint, uint, float*, void>)resolver("glGetCombinerOutputParameterfvNV");
+        s_byName["glGetCombinerOutputParameterfvNV"] = (nint)GetCombinerOutputParameterfvNV;
         if (GetCombinerOutputParameterfvNV is null) { missingCount++; missing?.Add("glGetCombinerOutputParameterfvNV"); }
         GetCombinerOutputParameterivNV = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glGetCombinerOutputParameterivNV");
+        s_byName["glGetCombinerOutputParameterivNV"] = (nint)GetCombinerOutputParameterivNV;
         if (GetCombinerOutputParameterivNV is null) { missingCount++; missing?.Add("glGetCombinerOutputParameterivNV"); }
         GetCombinerStageParameterfvNV = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetCombinerStageParameterfvNV");
+        s_byName["glGetCombinerStageParameterfvNV"] = (nint)GetCombinerStageParameterfvNV;
         if (GetCombinerStageParameterfvNV is null) { missingCount++; missing?.Add("glGetCombinerStageParameterfvNV"); }
         GetCommandHeaderNV = (delegate* unmanaged<uint, uint, uint>)resolver("glGetCommandHeaderNV");
+        s_byName["glGetCommandHeaderNV"] = (nint)GetCommandHeaderNV;
         if (GetCommandHeaderNV is null) { missingCount++; missing?.Add("glGetCommandHeaderNV"); }
         GetCompressedMultiTexImageEXT = (delegate* unmanaged<uint, uint, int, void*, void>)resolver("glGetCompressedMultiTexImageEXT");
+        s_byName["glGetCompressedMultiTexImageEXT"] = (nint)GetCompressedMultiTexImageEXT;
         if (GetCompressedMultiTexImageEXT is null) { missingCount++; missing?.Add("glGetCompressedMultiTexImageEXT"); }
         GetCompressedTexImage = (delegate* unmanaged<uint, int, void*, void>)resolver("glGetCompressedTexImage");
+        s_byName["glGetCompressedTexImage"] = (nint)GetCompressedTexImage;
         if (GetCompressedTexImage is null) { missingCount++; missing?.Add("glGetCompressedTexImage"); }
         GetCompressedTexImageARB = (delegate* unmanaged<uint, int, void*, void>)resolver("glGetCompressedTexImageARB");
+        s_byName["glGetCompressedTexImageARB"] = (nint)GetCompressedTexImageARB;
         if (GetCompressedTexImageARB is null) { missingCount++; missing?.Add("glGetCompressedTexImageARB"); }
         GetCompressedTextureImage = (delegate* unmanaged<uint, int, int, void*, void>)resolver("glGetCompressedTextureImage");
+        s_byName["glGetCompressedTextureImage"] = (nint)GetCompressedTextureImage;
         if (GetCompressedTextureImage is null) { missingCount++; missing?.Add("glGetCompressedTextureImage"); }
         GetCompressedTextureImageEXT = (delegate* unmanaged<uint, uint, int, void*, void>)resolver("glGetCompressedTextureImageEXT");
+        s_byName["glGetCompressedTextureImageEXT"] = (nint)GetCompressedTextureImageEXT;
         if (GetCompressedTextureImageEXT is null) { missingCount++; missing?.Add("glGetCompressedTextureImageEXT"); }
         GetCompressedTextureSubImage = (delegate* unmanaged<uint, int, int, int, int, int, int, int, int, void*, void>)resolver("glGetCompressedTextureSubImage");
+        s_byName["glGetCompressedTextureSubImage"] = (nint)GetCompressedTextureSubImage;
         if (GetCompressedTextureSubImage is null) { missingCount++; missing?.Add("glGetCompressedTextureSubImage"); }
         GetConvolutionFilter = (delegate* unmanaged<uint, uint, uint, void*, void>)resolver("glGetConvolutionFilter");
+        s_byName["glGetConvolutionFilter"] = (nint)GetConvolutionFilter;
         if (GetConvolutionFilter is null) { missingCount++; missing?.Add("glGetConvolutionFilter"); }
         GetConvolutionFilterEXT = (delegate* unmanaged<uint, uint, uint, void*, void>)resolver("glGetConvolutionFilterEXT");
+        s_byName["glGetConvolutionFilterEXT"] = (nint)GetConvolutionFilterEXT;
         if (GetConvolutionFilterEXT is null) { missingCount++; missing?.Add("glGetConvolutionFilterEXT"); }
         GetConvolutionParameterfv = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetConvolutionParameterfv");
+        s_byName["glGetConvolutionParameterfv"] = (nint)GetConvolutionParameterfv;
         if (GetConvolutionParameterfv is null) { missingCount++; missing?.Add("glGetConvolutionParameterfv"); }
         GetConvolutionParameterfvEXT = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetConvolutionParameterfvEXT");
+        s_byName["glGetConvolutionParameterfvEXT"] = (nint)GetConvolutionParameterfvEXT;
         if (GetConvolutionParameterfvEXT is null) { missingCount++; missing?.Add("glGetConvolutionParameterfvEXT"); }
         GetConvolutionParameteriv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetConvolutionParameteriv");
+        s_byName["glGetConvolutionParameteriv"] = (nint)GetConvolutionParameteriv;
         if (GetConvolutionParameteriv is null) { missingCount++; missing?.Add("glGetConvolutionParameteriv"); }
         GetConvolutionParameterivEXT = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetConvolutionParameterivEXT");
+        s_byName["glGetConvolutionParameterivEXT"] = (nint)GetConvolutionParameterivEXT;
         if (GetConvolutionParameterivEXT is null) { missingCount++; missing?.Add("glGetConvolutionParameterivEXT"); }
         GetConvolutionParameterxvOES = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetConvolutionParameterxvOES");
+        s_byName["glGetConvolutionParameterxvOES"] = (nint)GetConvolutionParameterxvOES;
         if (GetConvolutionParameterxvOES is null) { missingCount++; missing?.Add("glGetConvolutionParameterxvOES"); }
         GetCoverageModulationTableNV = (delegate* unmanaged<int, float*, void>)resolver("glGetCoverageModulationTableNV");
+        s_byName["glGetCoverageModulationTableNV"] = (nint)GetCoverageModulationTableNV;
         if (GetCoverageModulationTableNV is null) { missingCount++; missing?.Add("glGetCoverageModulationTableNV"); }
         GetDebugMessageLog = (delegate* unmanaged<uint, int, uint*, uint*, uint*, uint*, int*, byte*, uint>)resolver("glGetDebugMessageLog");
+        s_byName["glGetDebugMessageLog"] = (nint)GetDebugMessageLog;
         if (GetDebugMessageLog is null) { missingCount++; missing?.Add("glGetDebugMessageLog"); }
         GetDebugMessageLogAMD = (delegate* unmanaged<uint, int, uint*, uint*, uint*, int*, byte*, uint>)resolver("glGetDebugMessageLogAMD");
+        s_byName["glGetDebugMessageLogAMD"] = (nint)GetDebugMessageLogAMD;
         if (GetDebugMessageLogAMD is null) { missingCount++; missing?.Add("glGetDebugMessageLogAMD"); }
         GetDebugMessageLogARB = (delegate* unmanaged<uint, int, uint*, uint*, uint*, uint*, int*, byte*, uint>)resolver("glGetDebugMessageLogARB");
+        s_byName["glGetDebugMessageLogARB"] = (nint)GetDebugMessageLogARB;
         if (GetDebugMessageLogARB is null) { missingCount++; missing?.Add("glGetDebugMessageLogARB"); }
         GetDebugMessageLogKHR = (delegate* unmanaged<uint, int, uint*, uint*, uint*, uint*, int*, byte*, uint>)resolver("glGetDebugMessageLogKHR");
+        s_byName["glGetDebugMessageLogKHR"] = (nint)GetDebugMessageLogKHR;
         if (GetDebugMessageLogKHR is null) { missingCount++; missing?.Add("glGetDebugMessageLogKHR"); }
         GetDetailTexFuncSGIS = (delegate* unmanaged<uint, float*, void>)resolver("glGetDetailTexFuncSGIS");
+        s_byName["glGetDetailTexFuncSGIS"] = (nint)GetDetailTexFuncSGIS;
         if (GetDetailTexFuncSGIS is null) { missingCount++; missing?.Add("glGetDetailTexFuncSGIS"); }
         GetDoubleIndexedvEXT = (delegate* unmanaged<uint, uint, double*, void>)resolver("glGetDoubleIndexedvEXT");
+        s_byName["glGetDoubleIndexedvEXT"] = (nint)GetDoubleIndexedvEXT;
         if (GetDoubleIndexedvEXT is null) { missingCount++; missing?.Add("glGetDoubleIndexedvEXT"); }
         GetDoublei_v = (delegate* unmanaged<uint, uint, double*, void>)resolver("glGetDoublei_v");
+        s_byName["glGetDoublei_v"] = (nint)GetDoublei_v;
         if (GetDoublei_v is null) { missingCount++; missing?.Add("glGetDoublei_v"); }
         GetDoublei_vEXT = (delegate* unmanaged<uint, uint, double*, void>)resolver("glGetDoublei_vEXT");
+        s_byName["glGetDoublei_vEXT"] = (nint)GetDoublei_vEXT;
         if (GetDoublei_vEXT is null) { missingCount++; missing?.Add("glGetDoublei_vEXT"); }
         GetDoublev = (delegate* unmanaged<uint, double*, void>)resolver("glGetDoublev");
+        s_byName["glGetDoublev"] = (nint)GetDoublev;
         if (GetDoublev is null) { missingCount++; missing?.Add("glGetDoublev"); }
         GetError = (delegate* unmanaged<uint>)resolver("glGetError");
+        s_byName["glGetError"] = (nint)GetError;
         if (GetError is null) { missingCount++; missing?.Add("glGetError"); }
         GetFenceivNV = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetFenceivNV");
+        s_byName["glGetFenceivNV"] = (nint)GetFenceivNV;
         if (GetFenceivNV is null) { missingCount++; missing?.Add("glGetFenceivNV"); }
         GetFinalCombinerInputParameterfvNV = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetFinalCombinerInputParameterfvNV");
+        s_byName["glGetFinalCombinerInputParameterfvNV"] = (nint)GetFinalCombinerInputParameterfvNV;
         if (GetFinalCombinerInputParameterfvNV is null) { missingCount++; missing?.Add("glGetFinalCombinerInputParameterfvNV"); }
         GetFinalCombinerInputParameterivNV = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetFinalCombinerInputParameterivNV");
+        s_byName["glGetFinalCombinerInputParameterivNV"] = (nint)GetFinalCombinerInputParameterivNV;
         if (GetFinalCombinerInputParameterivNV is null) { missingCount++; missing?.Add("glGetFinalCombinerInputParameterivNV"); }
         GetFirstPerfQueryIdINTEL = (delegate* unmanaged<uint*, void>)resolver("glGetFirstPerfQueryIdINTEL");
+        s_byName["glGetFirstPerfQueryIdINTEL"] = (nint)GetFirstPerfQueryIdINTEL;
         if (GetFirstPerfQueryIdINTEL is null) { missingCount++; missing?.Add("glGetFirstPerfQueryIdINTEL"); }
         GetFixedvOES = (delegate* unmanaged<uint, int*, void>)resolver("glGetFixedvOES");
+        s_byName["glGetFixedvOES"] = (nint)GetFixedvOES;
         if (GetFixedvOES is null) { missingCount++; missing?.Add("glGetFixedvOES"); }
         GetFloatIndexedvEXT = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetFloatIndexedvEXT");
+        s_byName["glGetFloatIndexedvEXT"] = (nint)GetFloatIndexedvEXT;
         if (GetFloatIndexedvEXT is null) { missingCount++; missing?.Add("glGetFloatIndexedvEXT"); }
         GetFloati_v = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetFloati_v");
+        s_byName["glGetFloati_v"] = (nint)GetFloati_v;
         if (GetFloati_v is null) { missingCount++; missing?.Add("glGetFloati_v"); }
         GetFloati_vEXT = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetFloati_vEXT");
+        s_byName["glGetFloati_vEXT"] = (nint)GetFloati_vEXT;
         if (GetFloati_vEXT is null) { missingCount++; missing?.Add("glGetFloati_vEXT"); }
         GetFloatv = (delegate* unmanaged<uint, float*, void>)resolver("glGetFloatv");
+        s_byName["glGetFloatv"] = (nint)GetFloatv;
         if (GetFloatv is null) { missingCount++; missing?.Add("glGetFloatv"); }
         GetFogFuncSGIS = (delegate* unmanaged<float*, void>)resolver("glGetFogFuncSGIS");
+        s_byName["glGetFogFuncSGIS"] = (nint)GetFogFuncSGIS;
         if (GetFogFuncSGIS is null) { missingCount++; missing?.Add("glGetFogFuncSGIS"); }
         GetFragDataIndex = (delegate* unmanaged<uint, byte*, int>)resolver("glGetFragDataIndex");
+        s_byName["glGetFragDataIndex"] = (nint)GetFragDataIndex;
         if (GetFragDataIndex is null) { missingCount++; missing?.Add("glGetFragDataIndex"); }
         GetFragDataLocation = (delegate* unmanaged<uint, byte*, int>)resolver("glGetFragDataLocation");
+        s_byName["glGetFragDataLocation"] = (nint)GetFragDataLocation;
         if (GetFragDataLocation is null) { missingCount++; missing?.Add("glGetFragDataLocation"); }
         GetFragDataLocationEXT = (delegate* unmanaged<uint, byte*, int>)resolver("glGetFragDataLocationEXT");
+        s_byName["glGetFragDataLocationEXT"] = (nint)GetFragDataLocationEXT;
         if (GetFragDataLocationEXT is null) { missingCount++; missing?.Add("glGetFragDataLocationEXT"); }
         GetFragmentLightfvSGIX = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetFragmentLightfvSGIX");
+        s_byName["glGetFragmentLightfvSGIX"] = (nint)GetFragmentLightfvSGIX;
         if (GetFragmentLightfvSGIX is null) { missingCount++; missing?.Add("glGetFragmentLightfvSGIX"); }
         GetFragmentLightivSGIX = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetFragmentLightivSGIX");
+        s_byName["glGetFragmentLightivSGIX"] = (nint)GetFragmentLightivSGIX;
         if (GetFragmentLightivSGIX is null) { missingCount++; missing?.Add("glGetFragmentLightivSGIX"); }
         GetFragmentMaterialfvSGIX = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetFragmentMaterialfvSGIX");
+        s_byName["glGetFragmentMaterialfvSGIX"] = (nint)GetFragmentMaterialfvSGIX;
         if (GetFragmentMaterialfvSGIX is null) { missingCount++; missing?.Add("glGetFragmentMaterialfvSGIX"); }
         GetFragmentMaterialivSGIX = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetFragmentMaterialivSGIX");
+        s_byName["glGetFragmentMaterialivSGIX"] = (nint)GetFragmentMaterialivSGIX;
         if (GetFragmentMaterialivSGIX is null) { missingCount++; missing?.Add("glGetFragmentMaterialivSGIX"); }
         GetFragmentShadingRatesEXT = (delegate* unmanaged<int, int, int*, uint*, void>)resolver("glGetFragmentShadingRatesEXT");
+        s_byName["glGetFragmentShadingRatesEXT"] = (nint)GetFragmentShadingRatesEXT;
         if (GetFragmentShadingRatesEXT is null) { missingCount++; missing?.Add("glGetFragmentShadingRatesEXT"); }
         GetFramebufferAttachmentParameteriv = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glGetFramebufferAttachmentParameteriv");
+        s_byName["glGetFramebufferAttachmentParameteriv"] = (nint)GetFramebufferAttachmentParameteriv;
         if (GetFramebufferAttachmentParameteriv is null) { missingCount++; missing?.Add("glGetFramebufferAttachmentParameteriv"); }
         GetFramebufferAttachmentParameterivEXT = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glGetFramebufferAttachmentParameterivEXT");
+        s_byName["glGetFramebufferAttachmentParameterivEXT"] = (nint)GetFramebufferAttachmentParameterivEXT;
         if (GetFramebufferAttachmentParameterivEXT is null) { missingCount++; missing?.Add("glGetFramebufferAttachmentParameterivEXT"); }
         GetFramebufferParameterfvAMD = (delegate* unmanaged<uint, uint, uint, uint, int, float*, void>)resolver("glGetFramebufferParameterfvAMD");
+        s_byName["glGetFramebufferParameterfvAMD"] = (nint)GetFramebufferParameterfvAMD;
         if (GetFramebufferParameterfvAMD is null) { missingCount++; missing?.Add("glGetFramebufferParameterfvAMD"); }
         GetFramebufferParameteriv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetFramebufferParameteriv");
+        s_byName["glGetFramebufferParameteriv"] = (nint)GetFramebufferParameteriv;
         if (GetFramebufferParameteriv is null) { missingCount++; missing?.Add("glGetFramebufferParameteriv"); }
         GetFramebufferParameterivEXT = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetFramebufferParameterivEXT");
+        s_byName["glGetFramebufferParameterivEXT"] = (nint)GetFramebufferParameterivEXT;
         if (GetFramebufferParameterivEXT is null) { missingCount++; missing?.Add("glGetFramebufferParameterivEXT"); }
         GetFramebufferParameterivMESA = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetFramebufferParameterivMESA");
+        s_byName["glGetFramebufferParameterivMESA"] = (nint)GetFramebufferParameterivMESA;
         if (GetFramebufferParameterivMESA is null) { missingCount++; missing?.Add("glGetFramebufferParameterivMESA"); }
         GetGraphicsResetStatus = (delegate* unmanaged<uint>)resolver("glGetGraphicsResetStatus");
+        s_byName["glGetGraphicsResetStatus"] = (nint)GetGraphicsResetStatus;
         if (GetGraphicsResetStatus is null) { missingCount++; missing?.Add("glGetGraphicsResetStatus"); }
         GetGraphicsResetStatusARB = (delegate* unmanaged<uint>)resolver("glGetGraphicsResetStatusARB");
+        s_byName["glGetGraphicsResetStatusARB"] = (nint)GetGraphicsResetStatusARB;
         if (GetGraphicsResetStatusARB is null) { missingCount++; missing?.Add("glGetGraphicsResetStatusARB"); }
         GetGraphicsResetStatusKHR = (delegate* unmanaged<uint>)resolver("glGetGraphicsResetStatusKHR");
+        s_byName["glGetGraphicsResetStatusKHR"] = (nint)GetGraphicsResetStatusKHR;
         if (GetGraphicsResetStatusKHR is null) { missingCount++; missing?.Add("glGetGraphicsResetStatusKHR"); }
         GetHandleARB = (delegate* unmanaged<uint, uint>)resolver("glGetHandleARB");
+        s_byName["glGetHandleARB"] = (nint)GetHandleARB;
         if (GetHandleARB is null) { missingCount++; missing?.Add("glGetHandleARB"); }
         GetHistogram = (delegate* unmanaged<uint, byte, uint, uint, void*, void>)resolver("glGetHistogram");
+        s_byName["glGetHistogram"] = (nint)GetHistogram;
         if (GetHistogram is null) { missingCount++; missing?.Add("glGetHistogram"); }
         GetHistogramEXT = (delegate* unmanaged<uint, byte, uint, uint, void*, void>)resolver("glGetHistogramEXT");
+        s_byName["glGetHistogramEXT"] = (nint)GetHistogramEXT;
         if (GetHistogramEXT is null) { missingCount++; missing?.Add("glGetHistogramEXT"); }
         GetHistogramParameterfv = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetHistogramParameterfv");
+        s_byName["glGetHistogramParameterfv"] = (nint)GetHistogramParameterfv;
         if (GetHistogramParameterfv is null) { missingCount++; missing?.Add("glGetHistogramParameterfv"); }
         GetHistogramParameterfvEXT = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetHistogramParameterfvEXT");
+        s_byName["glGetHistogramParameterfvEXT"] = (nint)GetHistogramParameterfvEXT;
         if (GetHistogramParameterfvEXT is null) { missingCount++; missing?.Add("glGetHistogramParameterfvEXT"); }
         GetHistogramParameteriv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetHistogramParameteriv");
+        s_byName["glGetHistogramParameteriv"] = (nint)GetHistogramParameteriv;
         if (GetHistogramParameteriv is null) { missingCount++; missing?.Add("glGetHistogramParameteriv"); }
         GetHistogramParameterivEXT = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetHistogramParameterivEXT");
+        s_byName["glGetHistogramParameterivEXT"] = (nint)GetHistogramParameterivEXT;
         if (GetHistogramParameterivEXT is null) { missingCount++; missing?.Add("glGetHistogramParameterivEXT"); }
         GetHistogramParameterxvOES = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetHistogramParameterxvOES");
+        s_byName["glGetHistogramParameterxvOES"] = (nint)GetHistogramParameterxvOES;
         if (GetHistogramParameterxvOES is null) { missingCount++; missing?.Add("glGetHistogramParameterxvOES"); }
         GetImageHandleARB = (delegate* unmanaged<uint, int, byte, int, uint, ulong>)resolver("glGetImageHandleARB");
+        s_byName["glGetImageHandleARB"] = (nint)GetImageHandleARB;
         if (GetImageHandleARB is null) { missingCount++; missing?.Add("glGetImageHandleARB"); }
         GetImageHandleNV = (delegate* unmanaged<uint, int, byte, int, uint, ulong>)resolver("glGetImageHandleNV");
+        s_byName["glGetImageHandleNV"] = (nint)GetImageHandleNV;
         if (GetImageHandleNV is null) { missingCount++; missing?.Add("glGetImageHandleNV"); }
         GetImageTransformParameterfvHP = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetImageTransformParameterfvHP");
+        s_byName["glGetImageTransformParameterfvHP"] = (nint)GetImageTransformParameterfvHP;
         if (GetImageTransformParameterfvHP is null) { missingCount++; missing?.Add("glGetImageTransformParameterfvHP"); }
         GetImageTransformParameterivHP = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetImageTransformParameterivHP");
+        s_byName["glGetImageTransformParameterivHP"] = (nint)GetImageTransformParameterivHP;
         if (GetImageTransformParameterivHP is null) { missingCount++; missing?.Add("glGetImageTransformParameterivHP"); }
         GetInfoLogARB = (delegate* unmanaged<uint, int, int*, byte*, void>)resolver("glGetInfoLogARB");
+        s_byName["glGetInfoLogARB"] = (nint)GetInfoLogARB;
         if (GetInfoLogARB is null) { missingCount++; missing?.Add("glGetInfoLogARB"); }
         GetInstrumentsSGIX = (delegate* unmanaged<int>)resolver("glGetInstrumentsSGIX");
+        s_byName["glGetInstrumentsSGIX"] = (nint)GetInstrumentsSGIX;
         if (GetInstrumentsSGIX is null) { missingCount++; missing?.Add("glGetInstrumentsSGIX"); }
         GetInteger64i_v = (delegate* unmanaged<uint, uint, long*, void>)resolver("glGetInteger64i_v");
+        s_byName["glGetInteger64i_v"] = (nint)GetInteger64i_v;
         if (GetInteger64i_v is null) { missingCount++; missing?.Add("glGetInteger64i_v"); }
         GetInteger64v = (delegate* unmanaged<uint, long*, void>)resolver("glGetInteger64v");
+        s_byName["glGetInteger64v"] = (nint)GetInteger64v;
         if (GetInteger64v is null) { missingCount++; missing?.Add("glGetInteger64v"); }
         GetIntegerIndexedvEXT = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetIntegerIndexedvEXT");
+        s_byName["glGetIntegerIndexedvEXT"] = (nint)GetIntegerIndexedvEXT;
         if (GetIntegerIndexedvEXT is null) { missingCount++; missing?.Add("glGetIntegerIndexedvEXT"); }
         GetIntegeri_v = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetIntegeri_v");
+        s_byName["glGetIntegeri_v"] = (nint)GetIntegeri_v;
         if (GetIntegeri_v is null) { missingCount++; missing?.Add("glGetIntegeri_v"); }
         GetIntegerui64i_vNV = (delegate* unmanaged<uint, uint, ulong*, void>)resolver("glGetIntegerui64i_vNV");
+        s_byName["glGetIntegerui64i_vNV"] = (nint)GetIntegerui64i_vNV;
         if (GetIntegerui64i_vNV is null) { missingCount++; missing?.Add("glGetIntegerui64i_vNV"); }
         GetIntegerui64vNV = (delegate* unmanaged<uint, ulong*, void>)resolver("glGetIntegerui64vNV");
+        s_byName["glGetIntegerui64vNV"] = (nint)GetIntegerui64vNV;
         if (GetIntegerui64vNV is null) { missingCount++; missing?.Add("glGetIntegerui64vNV"); }
         GetIntegerv = (delegate* unmanaged<uint, int*, void>)resolver("glGetIntegerv");
+        s_byName["glGetIntegerv"] = (nint)GetIntegerv;
         if (GetIntegerv is null) { missingCount++; missing?.Add("glGetIntegerv"); }
         GetInternalformatSampleivNV = (delegate* unmanaged<uint, uint, int, uint, int, int*, void>)resolver("glGetInternalformatSampleivNV");
+        s_byName["glGetInternalformatSampleivNV"] = (nint)GetInternalformatSampleivNV;
         if (GetInternalformatSampleivNV is null) { missingCount++; missing?.Add("glGetInternalformatSampleivNV"); }
         GetInternalformati64v = (delegate* unmanaged<uint, uint, uint, int, long*, void>)resolver("glGetInternalformati64v");
+        s_byName["glGetInternalformati64v"] = (nint)GetInternalformati64v;
         if (GetInternalformati64v is null) { missingCount++; missing?.Add("glGetInternalformati64v"); }
         GetInternalformativ = (delegate* unmanaged<uint, uint, uint, int, int*, void>)resolver("glGetInternalformativ");
+        s_byName["glGetInternalformativ"] = (nint)GetInternalformativ;
         if (GetInternalformativ is null) { missingCount++; missing?.Add("glGetInternalformativ"); }
         GetInvariantBooleanvEXT = (delegate* unmanaged<uint, uint, byte*, void>)resolver("glGetInvariantBooleanvEXT");
+        s_byName["glGetInvariantBooleanvEXT"] = (nint)GetInvariantBooleanvEXT;
         if (GetInvariantBooleanvEXT is null) { missingCount++; missing?.Add("glGetInvariantBooleanvEXT"); }
         GetInvariantFloatvEXT = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetInvariantFloatvEXT");
+        s_byName["glGetInvariantFloatvEXT"] = (nint)GetInvariantFloatvEXT;
         if (GetInvariantFloatvEXT is null) { missingCount++; missing?.Add("glGetInvariantFloatvEXT"); }
         GetInvariantIntegervEXT = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetInvariantIntegervEXT");
+        s_byName["glGetInvariantIntegervEXT"] = (nint)GetInvariantIntegervEXT;
         if (GetInvariantIntegervEXT is null) { missingCount++; missing?.Add("glGetInvariantIntegervEXT"); }
         GetLightxOES = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetLightxOES");
+        s_byName["glGetLightxOES"] = (nint)GetLightxOES;
         if (GetLightxOES is null) { missingCount++; missing?.Add("glGetLightxOES"); }
         GetLightxvOES = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetLightxvOES");
+        s_byName["glGetLightxvOES"] = (nint)GetLightxvOES;
         if (GetLightxvOES is null) { missingCount++; missing?.Add("glGetLightxvOES"); }
         GetListParameterfvSGIX = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetListParameterfvSGIX");
+        s_byName["glGetListParameterfvSGIX"] = (nint)GetListParameterfvSGIX;
         if (GetListParameterfvSGIX is null) { missingCount++; missing?.Add("glGetListParameterfvSGIX"); }
         GetListParameterivSGIX = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetListParameterivSGIX");
+        s_byName["glGetListParameterivSGIX"] = (nint)GetListParameterivSGIX;
         if (GetListParameterivSGIX is null) { missingCount++; missing?.Add("glGetListParameterivSGIX"); }
         GetLocalConstantBooleanvEXT = (delegate* unmanaged<uint, uint, byte*, void>)resolver("glGetLocalConstantBooleanvEXT");
+        s_byName["glGetLocalConstantBooleanvEXT"] = (nint)GetLocalConstantBooleanvEXT;
         if (GetLocalConstantBooleanvEXT is null) { missingCount++; missing?.Add("glGetLocalConstantBooleanvEXT"); }
         GetLocalConstantFloatvEXT = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetLocalConstantFloatvEXT");
+        s_byName["glGetLocalConstantFloatvEXT"] = (nint)GetLocalConstantFloatvEXT;
         if (GetLocalConstantFloatvEXT is null) { missingCount++; missing?.Add("glGetLocalConstantFloatvEXT"); }
         GetLocalConstantIntegervEXT = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetLocalConstantIntegervEXT");
+        s_byName["glGetLocalConstantIntegervEXT"] = (nint)GetLocalConstantIntegervEXT;
         if (GetLocalConstantIntegervEXT is null) { missingCount++; missing?.Add("glGetLocalConstantIntegervEXT"); }
         GetMapAttribParameterfvNV = (delegate* unmanaged<uint, uint, uint, float*, void>)resolver("glGetMapAttribParameterfvNV");
+        s_byName["glGetMapAttribParameterfvNV"] = (nint)GetMapAttribParameterfvNV;
         if (GetMapAttribParameterfvNV is null) { missingCount++; missing?.Add("glGetMapAttribParameterfvNV"); }
         GetMapAttribParameterivNV = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glGetMapAttribParameterivNV");
+        s_byName["glGetMapAttribParameterivNV"] = (nint)GetMapAttribParameterivNV;
         if (GetMapAttribParameterivNV is null) { missingCount++; missing?.Add("glGetMapAttribParameterivNV"); }
         GetMapControlPointsNV = (delegate* unmanaged<uint, uint, uint, int, int, byte, void*, void>)resolver("glGetMapControlPointsNV");
+        s_byName["glGetMapControlPointsNV"] = (nint)GetMapControlPointsNV;
         if (GetMapControlPointsNV is null) { missingCount++; missing?.Add("glGetMapControlPointsNV"); }
         GetMapParameterfvNV = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetMapParameterfvNV");
+        s_byName["glGetMapParameterfvNV"] = (nint)GetMapParameterfvNV;
         if (GetMapParameterfvNV is null) { missingCount++; missing?.Add("glGetMapParameterfvNV"); }
         GetMapParameterivNV = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetMapParameterivNV");
+        s_byName["glGetMapParameterivNV"] = (nint)GetMapParameterivNV;
         if (GetMapParameterivNV is null) { missingCount++; missing?.Add("glGetMapParameterivNV"); }
         GetMapxvOES = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetMapxvOES");
+        s_byName["glGetMapxvOES"] = (nint)GetMapxvOES;
         if (GetMapxvOES is null) { missingCount++; missing?.Add("glGetMapxvOES"); }
         GetMaterialxOES = (delegate* unmanaged<uint, uint, int, void>)resolver("glGetMaterialxOES");
+        s_byName["glGetMaterialxOES"] = (nint)GetMaterialxOES;
         if (GetMaterialxOES is null) { missingCount++; missing?.Add("glGetMaterialxOES"); }
         GetMaterialxvOES = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetMaterialxvOES");
+        s_byName["glGetMaterialxvOES"] = (nint)GetMaterialxvOES;
         if (GetMaterialxvOES is null) { missingCount++; missing?.Add("glGetMaterialxvOES"); }
         GetMemoryObjectDetachedResourcesuivNV = (delegate* unmanaged<uint, uint, int, int, uint*, void>)resolver("glGetMemoryObjectDetachedResourcesuivNV");
+        s_byName["glGetMemoryObjectDetachedResourcesuivNV"] = (nint)GetMemoryObjectDetachedResourcesuivNV;
         if (GetMemoryObjectDetachedResourcesuivNV is null) { missingCount++; missing?.Add("glGetMemoryObjectDetachedResourcesuivNV"); }
         GetMemoryObjectParameterivEXT = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetMemoryObjectParameterivEXT");
+        s_byName["glGetMemoryObjectParameterivEXT"] = (nint)GetMemoryObjectParameterivEXT;
         if (GetMemoryObjectParameterivEXT is null) { missingCount++; missing?.Add("glGetMemoryObjectParameterivEXT"); }
         GetMinmax = (delegate* unmanaged<uint, byte, uint, uint, void*, void>)resolver("glGetMinmax");
+        s_byName["glGetMinmax"] = (nint)GetMinmax;
         if (GetMinmax is null) { missingCount++; missing?.Add("glGetMinmax"); }
         GetMinmaxEXT = (delegate* unmanaged<uint, byte, uint, uint, void*, void>)resolver("glGetMinmaxEXT");
+        s_byName["glGetMinmaxEXT"] = (nint)GetMinmaxEXT;
         if (GetMinmaxEXT is null) { missingCount++; missing?.Add("glGetMinmaxEXT"); }
         GetMinmaxParameterfv = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetMinmaxParameterfv");
+        s_byName["glGetMinmaxParameterfv"] = (nint)GetMinmaxParameterfv;
         if (GetMinmaxParameterfv is null) { missingCount++; missing?.Add("glGetMinmaxParameterfv"); }
         GetMinmaxParameterfvEXT = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetMinmaxParameterfvEXT");
+        s_byName["glGetMinmaxParameterfvEXT"] = (nint)GetMinmaxParameterfvEXT;
         if (GetMinmaxParameterfvEXT is null) { missingCount++; missing?.Add("glGetMinmaxParameterfvEXT"); }
         GetMinmaxParameteriv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetMinmaxParameteriv");
+        s_byName["glGetMinmaxParameteriv"] = (nint)GetMinmaxParameteriv;
         if (GetMinmaxParameteriv is null) { missingCount++; missing?.Add("glGetMinmaxParameteriv"); }
         GetMinmaxParameterivEXT = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetMinmaxParameterivEXT");
+        s_byName["glGetMinmaxParameterivEXT"] = (nint)GetMinmaxParameterivEXT;
         if (GetMinmaxParameterivEXT is null) { missingCount++; missing?.Add("glGetMinmaxParameterivEXT"); }
         GetMultiTexEnvfvEXT = (delegate* unmanaged<uint, uint, uint, float*, void>)resolver("glGetMultiTexEnvfvEXT");
+        s_byName["glGetMultiTexEnvfvEXT"] = (nint)GetMultiTexEnvfvEXT;
         if (GetMultiTexEnvfvEXT is null) { missingCount++; missing?.Add("glGetMultiTexEnvfvEXT"); }
         GetMultiTexEnvivEXT = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glGetMultiTexEnvivEXT");
+        s_byName["glGetMultiTexEnvivEXT"] = (nint)GetMultiTexEnvivEXT;
         if (GetMultiTexEnvivEXT is null) { missingCount++; missing?.Add("glGetMultiTexEnvivEXT"); }
         GetMultiTexGendvEXT = (delegate* unmanaged<uint, uint, uint, double*, void>)resolver("glGetMultiTexGendvEXT");
+        s_byName["glGetMultiTexGendvEXT"] = (nint)GetMultiTexGendvEXT;
         if (GetMultiTexGendvEXT is null) { missingCount++; missing?.Add("glGetMultiTexGendvEXT"); }
         GetMultiTexGenfvEXT = (delegate* unmanaged<uint, uint, uint, float*, void>)resolver("glGetMultiTexGenfvEXT");
+        s_byName["glGetMultiTexGenfvEXT"] = (nint)GetMultiTexGenfvEXT;
         if (GetMultiTexGenfvEXT is null) { missingCount++; missing?.Add("glGetMultiTexGenfvEXT"); }
         GetMultiTexGenivEXT = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glGetMultiTexGenivEXT");
+        s_byName["glGetMultiTexGenivEXT"] = (nint)GetMultiTexGenivEXT;
         if (GetMultiTexGenivEXT is null) { missingCount++; missing?.Add("glGetMultiTexGenivEXT"); }
         GetMultiTexImageEXT = (delegate* unmanaged<uint, uint, int, uint, uint, void*, void>)resolver("glGetMultiTexImageEXT");
+        s_byName["glGetMultiTexImageEXT"] = (nint)GetMultiTexImageEXT;
         if (GetMultiTexImageEXT is null) { missingCount++; missing?.Add("glGetMultiTexImageEXT"); }
         GetMultiTexLevelParameterfvEXT = (delegate* unmanaged<uint, uint, int, uint, float*, void>)resolver("glGetMultiTexLevelParameterfvEXT");
+        s_byName["glGetMultiTexLevelParameterfvEXT"] = (nint)GetMultiTexLevelParameterfvEXT;
         if (GetMultiTexLevelParameterfvEXT is null) { missingCount++; missing?.Add("glGetMultiTexLevelParameterfvEXT"); }
         GetMultiTexLevelParameterivEXT = (delegate* unmanaged<uint, uint, int, uint, int*, void>)resolver("glGetMultiTexLevelParameterivEXT");
+        s_byName["glGetMultiTexLevelParameterivEXT"] = (nint)GetMultiTexLevelParameterivEXT;
         if (GetMultiTexLevelParameterivEXT is null) { missingCount++; missing?.Add("glGetMultiTexLevelParameterivEXT"); }
         GetMultiTexParameterIivEXT = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glGetMultiTexParameterIivEXT");
+        s_byName["glGetMultiTexParameterIivEXT"] = (nint)GetMultiTexParameterIivEXT;
         if (GetMultiTexParameterIivEXT is null) { missingCount++; missing?.Add("glGetMultiTexParameterIivEXT"); }
         GetMultiTexParameterIuivEXT = (delegate* unmanaged<uint, uint, uint, uint*, void>)resolver("glGetMultiTexParameterIuivEXT");
+        s_byName["glGetMultiTexParameterIuivEXT"] = (nint)GetMultiTexParameterIuivEXT;
         if (GetMultiTexParameterIuivEXT is null) { missingCount++; missing?.Add("glGetMultiTexParameterIuivEXT"); }
         GetMultiTexParameterfvEXT = (delegate* unmanaged<uint, uint, uint, float*, void>)resolver("glGetMultiTexParameterfvEXT");
+        s_byName["glGetMultiTexParameterfvEXT"] = (nint)GetMultiTexParameterfvEXT;
         if (GetMultiTexParameterfvEXT is null) { missingCount++; missing?.Add("glGetMultiTexParameterfvEXT"); }
         GetMultiTexParameterivEXT = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glGetMultiTexParameterivEXT");
+        s_byName["glGetMultiTexParameterivEXT"] = (nint)GetMultiTexParameterivEXT;
         if (GetMultiTexParameterivEXT is null) { missingCount++; missing?.Add("glGetMultiTexParameterivEXT"); }
         GetMultisamplefv = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetMultisamplefv");
+        s_byName["glGetMultisamplefv"] = (nint)GetMultisamplefv;
         if (GetMultisamplefv is null) { missingCount++; missing?.Add("glGetMultisamplefv"); }
         GetMultisamplefvNV = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetMultisamplefvNV");
+        s_byName["glGetMultisamplefvNV"] = (nint)GetMultisamplefvNV;
         if (GetMultisamplefvNV is null) { missingCount++; missing?.Add("glGetMultisamplefvNV"); }
         GetNamedBufferParameteri64v = (delegate* unmanaged<uint, uint, long*, void>)resolver("glGetNamedBufferParameteri64v");
+        s_byName["glGetNamedBufferParameteri64v"] = (nint)GetNamedBufferParameteri64v;
         if (GetNamedBufferParameteri64v is null) { missingCount++; missing?.Add("glGetNamedBufferParameteri64v"); }
         GetNamedBufferParameteriv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetNamedBufferParameteriv");
+        s_byName["glGetNamedBufferParameteriv"] = (nint)GetNamedBufferParameteriv;
         if (GetNamedBufferParameteriv is null) { missingCount++; missing?.Add("glGetNamedBufferParameteriv"); }
         GetNamedBufferParameterivEXT = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetNamedBufferParameterivEXT");
+        s_byName["glGetNamedBufferParameterivEXT"] = (nint)GetNamedBufferParameterivEXT;
         if (GetNamedBufferParameterivEXT is null) { missingCount++; missing?.Add("glGetNamedBufferParameterivEXT"); }
         GetNamedBufferParameterui64vNV = (delegate* unmanaged<uint, uint, ulong*, void>)resolver("glGetNamedBufferParameterui64vNV");
+        s_byName["glGetNamedBufferParameterui64vNV"] = (nint)GetNamedBufferParameterui64vNV;
         if (GetNamedBufferParameterui64vNV is null) { missingCount++; missing?.Add("glGetNamedBufferParameterui64vNV"); }
         GetNamedBufferPointerv = (delegate* unmanaged<uint, uint, void**, void>)resolver("glGetNamedBufferPointerv");
+        s_byName["glGetNamedBufferPointerv"] = (nint)GetNamedBufferPointerv;
         if (GetNamedBufferPointerv is null) { missingCount++; missing?.Add("glGetNamedBufferPointerv"); }
         GetNamedBufferPointervEXT = (delegate* unmanaged<uint, uint, void**, void>)resolver("glGetNamedBufferPointervEXT");
+        s_byName["glGetNamedBufferPointervEXT"] = (nint)GetNamedBufferPointervEXT;
         if (GetNamedBufferPointervEXT is null) { missingCount++; missing?.Add("glGetNamedBufferPointervEXT"); }
         GetNamedBufferSubData = (delegate* unmanaged<uint, nint, nint, void*, void>)resolver("glGetNamedBufferSubData");
+        s_byName["glGetNamedBufferSubData"] = (nint)GetNamedBufferSubData;
         if (GetNamedBufferSubData is null) { missingCount++; missing?.Add("glGetNamedBufferSubData"); }
         GetNamedBufferSubDataEXT = (delegate* unmanaged<uint, nint, nint, void*, void>)resolver("glGetNamedBufferSubDataEXT");
+        s_byName["glGetNamedBufferSubDataEXT"] = (nint)GetNamedBufferSubDataEXT;
         if (GetNamedBufferSubDataEXT is null) { missingCount++; missing?.Add("glGetNamedBufferSubDataEXT"); }
         GetNamedFramebufferAttachmentParameteriv = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glGetNamedFramebufferAttachmentParameteriv");
+        s_byName["glGetNamedFramebufferAttachmentParameteriv"] = (nint)GetNamedFramebufferAttachmentParameteriv;
         if (GetNamedFramebufferAttachmentParameteriv is null) { missingCount++; missing?.Add("glGetNamedFramebufferAttachmentParameteriv"); }
         GetNamedFramebufferAttachmentParameterivEXT = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glGetNamedFramebufferAttachmentParameterivEXT");
+        s_byName["glGetNamedFramebufferAttachmentParameterivEXT"] = (nint)GetNamedFramebufferAttachmentParameterivEXT;
         if (GetNamedFramebufferAttachmentParameterivEXT is null) { missingCount++; missing?.Add("glGetNamedFramebufferAttachmentParameterivEXT"); }
         GetNamedFramebufferParameterfvAMD = (delegate* unmanaged<uint, uint, uint, uint, int, float*, void>)resolver("glGetNamedFramebufferParameterfvAMD");
+        s_byName["glGetNamedFramebufferParameterfvAMD"] = (nint)GetNamedFramebufferParameterfvAMD;
         if (GetNamedFramebufferParameterfvAMD is null) { missingCount++; missing?.Add("glGetNamedFramebufferParameterfvAMD"); }
         GetNamedFramebufferParameteriv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetNamedFramebufferParameteriv");
+        s_byName["glGetNamedFramebufferParameteriv"] = (nint)GetNamedFramebufferParameteriv;
         if (GetNamedFramebufferParameteriv is null) { missingCount++; missing?.Add("glGetNamedFramebufferParameteriv"); }
         GetNamedFramebufferParameterivEXT = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetNamedFramebufferParameterivEXT");
+        s_byName["glGetNamedFramebufferParameterivEXT"] = (nint)GetNamedFramebufferParameterivEXT;
         if (GetNamedFramebufferParameterivEXT is null) { missingCount++; missing?.Add("glGetNamedFramebufferParameterivEXT"); }
         GetNamedProgramLocalParameterIivEXT = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glGetNamedProgramLocalParameterIivEXT");
+        s_byName["glGetNamedProgramLocalParameterIivEXT"] = (nint)GetNamedProgramLocalParameterIivEXT;
         if (GetNamedProgramLocalParameterIivEXT is null) { missingCount++; missing?.Add("glGetNamedProgramLocalParameterIivEXT"); }
         GetNamedProgramLocalParameterIuivEXT = (delegate* unmanaged<uint, uint, uint, uint*, void>)resolver("glGetNamedProgramLocalParameterIuivEXT");
+        s_byName["glGetNamedProgramLocalParameterIuivEXT"] = (nint)GetNamedProgramLocalParameterIuivEXT;
         if (GetNamedProgramLocalParameterIuivEXT is null) { missingCount++; missing?.Add("glGetNamedProgramLocalParameterIuivEXT"); }
         GetNamedProgramLocalParameterdvEXT = (delegate* unmanaged<uint, uint, uint, double*, void>)resolver("glGetNamedProgramLocalParameterdvEXT");
+        s_byName["glGetNamedProgramLocalParameterdvEXT"] = (nint)GetNamedProgramLocalParameterdvEXT;
         if (GetNamedProgramLocalParameterdvEXT is null) { missingCount++; missing?.Add("glGetNamedProgramLocalParameterdvEXT"); }
         GetNamedProgramLocalParameterfvEXT = (delegate* unmanaged<uint, uint, uint, float*, void>)resolver("glGetNamedProgramLocalParameterfvEXT");
+        s_byName["glGetNamedProgramLocalParameterfvEXT"] = (nint)GetNamedProgramLocalParameterfvEXT;
         if (GetNamedProgramLocalParameterfvEXT is null) { missingCount++; missing?.Add("glGetNamedProgramLocalParameterfvEXT"); }
         GetNamedProgramStringEXT = (delegate* unmanaged<uint, uint, uint, void*, void>)resolver("glGetNamedProgramStringEXT");
+        s_byName["glGetNamedProgramStringEXT"] = (nint)GetNamedProgramStringEXT;
         if (GetNamedProgramStringEXT is null) { missingCount++; missing?.Add("glGetNamedProgramStringEXT"); }
         GetNamedProgramivEXT = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glGetNamedProgramivEXT");
+        s_byName["glGetNamedProgramivEXT"] = (nint)GetNamedProgramivEXT;
         if (GetNamedProgramivEXT is null) { missingCount++; missing?.Add("glGetNamedProgramivEXT"); }
         GetNamedRenderbufferParameteriv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetNamedRenderbufferParameteriv");
+        s_byName["glGetNamedRenderbufferParameteriv"] = (nint)GetNamedRenderbufferParameteriv;
         if (GetNamedRenderbufferParameteriv is null) { missingCount++; missing?.Add("glGetNamedRenderbufferParameteriv"); }
         GetNamedRenderbufferParameterivEXT = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetNamedRenderbufferParameterivEXT");
+        s_byName["glGetNamedRenderbufferParameterivEXT"] = (nint)GetNamedRenderbufferParameterivEXT;
         if (GetNamedRenderbufferParameterivEXT is null) { missingCount++; missing?.Add("glGetNamedRenderbufferParameterivEXT"); }
         GetNamedStringARB = (delegate* unmanaged<int, byte*, int, int*, byte*, void>)resolver("glGetNamedStringARB");
+        s_byName["glGetNamedStringARB"] = (nint)GetNamedStringARB;
         if (GetNamedStringARB is null) { missingCount++; missing?.Add("glGetNamedStringARB"); }
         GetNamedStringivARB = (delegate* unmanaged<int, byte*, uint, int*, void>)resolver("glGetNamedStringivARB");
+        s_byName["glGetNamedStringivARB"] = (nint)GetNamedStringivARB;
         if (GetNamedStringivARB is null) { missingCount++; missing?.Add("glGetNamedStringivARB"); }
         GetNextPerfQueryIdINTEL = (delegate* unmanaged<uint, uint*, void>)resolver("glGetNextPerfQueryIdINTEL");
+        s_byName["glGetNextPerfQueryIdINTEL"] = (nint)GetNextPerfQueryIdINTEL;
         if (GetNextPerfQueryIdINTEL is null) { missingCount++; missing?.Add("glGetNextPerfQueryIdINTEL"); }
         GetObjectBufferfvATI = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetObjectBufferfvATI");
+        s_byName["glGetObjectBufferfvATI"] = (nint)GetObjectBufferfvATI;
         if (GetObjectBufferfvATI is null) { missingCount++; missing?.Add("glGetObjectBufferfvATI"); }
         GetObjectBufferivATI = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetObjectBufferivATI");
+        s_byName["glGetObjectBufferivATI"] = (nint)GetObjectBufferivATI;
         if (GetObjectBufferivATI is null) { missingCount++; missing?.Add("glGetObjectBufferivATI"); }
         GetObjectLabel = (delegate* unmanaged<uint, uint, int, int*, byte*, void>)resolver("glGetObjectLabel");
+        s_byName["glGetObjectLabel"] = (nint)GetObjectLabel;
         if (GetObjectLabel is null) { missingCount++; missing?.Add("glGetObjectLabel"); }
         GetObjectLabelEXT = (delegate* unmanaged<uint, uint, int, int*, byte*, void>)resolver("glGetObjectLabelEXT");
+        s_byName["glGetObjectLabelEXT"] = (nint)GetObjectLabelEXT;
         if (GetObjectLabelEXT is null) { missingCount++; missing?.Add("glGetObjectLabelEXT"); }
         GetObjectLabelKHR = (delegate* unmanaged<uint, uint, int, int*, byte*, void>)resolver("glGetObjectLabelKHR");
+        s_byName["glGetObjectLabelKHR"] = (nint)GetObjectLabelKHR;
         if (GetObjectLabelKHR is null) { missingCount++; missing?.Add("glGetObjectLabelKHR"); }
         GetObjectParameterfvARB = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetObjectParameterfvARB");
+        s_byName["glGetObjectParameterfvARB"] = (nint)GetObjectParameterfvARB;
         if (GetObjectParameterfvARB is null) { missingCount++; missing?.Add("glGetObjectParameterfvARB"); }
         GetObjectParameterivAPPLE = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glGetObjectParameterivAPPLE");
+        s_byName["glGetObjectParameterivAPPLE"] = (nint)GetObjectParameterivAPPLE;
         if (GetObjectParameterivAPPLE is null) { missingCount++; missing?.Add("glGetObjectParameterivAPPLE"); }
         GetObjectParameterivARB = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetObjectParameterivARB");
+        s_byName["glGetObjectParameterivARB"] = (nint)GetObjectParameterivARB;
         if (GetObjectParameterivARB is null) { missingCount++; missing?.Add("glGetObjectParameterivARB"); }
         GetObjectPtrLabel = (delegate* unmanaged<void*, int, int*, byte*, void>)resolver("glGetObjectPtrLabel");
+        s_byName["glGetObjectPtrLabel"] = (nint)GetObjectPtrLabel;
         if (GetObjectPtrLabel is null) { missingCount++; missing?.Add("glGetObjectPtrLabel"); }
         GetObjectPtrLabelKHR = (delegate* unmanaged<void*, int, int*, byte*, void>)resolver("glGetObjectPtrLabelKHR");
+        s_byName["glGetObjectPtrLabelKHR"] = (nint)GetObjectPtrLabelKHR;
         if (GetObjectPtrLabelKHR is null) { missingCount++; missing?.Add("glGetObjectPtrLabelKHR"); }
         GetOcclusionQueryivNV = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetOcclusionQueryivNV");
+        s_byName["glGetOcclusionQueryivNV"] = (nint)GetOcclusionQueryivNV;
         if (GetOcclusionQueryivNV is null) { missingCount++; missing?.Add("glGetOcclusionQueryivNV"); }
         GetOcclusionQueryuivNV = (delegate* unmanaged<uint, uint, uint*, void>)resolver("glGetOcclusionQueryuivNV");
+        s_byName["glGetOcclusionQueryuivNV"] = (nint)GetOcclusionQueryuivNV;
         if (GetOcclusionQueryuivNV is null) { missingCount++; missing?.Add("glGetOcclusionQueryuivNV"); }
         GetPathColorGenfvNV = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetPathColorGenfvNV");
+        s_byName["glGetPathColorGenfvNV"] = (nint)GetPathColorGenfvNV;
         if (GetPathColorGenfvNV is null) { missingCount++; missing?.Add("glGetPathColorGenfvNV"); }
         GetPathColorGenivNV = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetPathColorGenivNV");
+        s_byName["glGetPathColorGenivNV"] = (nint)GetPathColorGenivNV;
         if (GetPathColorGenivNV is null) { missingCount++; missing?.Add("glGetPathColorGenivNV"); }
         GetPathCommandsNV = (delegate* unmanaged<uint, byte*, void>)resolver("glGetPathCommandsNV");
+        s_byName["glGetPathCommandsNV"] = (nint)GetPathCommandsNV;
         if (GetPathCommandsNV is null) { missingCount++; missing?.Add("glGetPathCommandsNV"); }
         GetPathCoordsNV = (delegate* unmanaged<uint, float*, void>)resolver("glGetPathCoordsNV");
+        s_byName["glGetPathCoordsNV"] = (nint)GetPathCoordsNV;
         if (GetPathCoordsNV is null) { missingCount++; missing?.Add("glGetPathCoordsNV"); }
         GetPathDashArrayNV = (delegate* unmanaged<uint, float*, void>)resolver("glGetPathDashArrayNV");
+        s_byName["glGetPathDashArrayNV"] = (nint)GetPathDashArrayNV;
         if (GetPathDashArrayNV is null) { missingCount++; missing?.Add("glGetPathDashArrayNV"); }
         GetPathLengthNV = (delegate* unmanaged<uint, int, int, float>)resolver("glGetPathLengthNV");
+        s_byName["glGetPathLengthNV"] = (nint)GetPathLengthNV;
         if (GetPathLengthNV is null) { missingCount++; missing?.Add("glGetPathLengthNV"); }
         GetPathMetricRangeNV = (delegate* unmanaged<uint, uint, int, int, float*, void>)resolver("glGetPathMetricRangeNV");
+        s_byName["glGetPathMetricRangeNV"] = (nint)GetPathMetricRangeNV;
         if (GetPathMetricRangeNV is null) { missingCount++; missing?.Add("glGetPathMetricRangeNV"); }
         GetPathMetricsNV = (delegate* unmanaged<uint, int, uint, void*, uint, int, float*, void>)resolver("glGetPathMetricsNV");
+        s_byName["glGetPathMetricsNV"] = (nint)GetPathMetricsNV;
         if (GetPathMetricsNV is null) { missingCount++; missing?.Add("glGetPathMetricsNV"); }
         GetPathParameterfvNV = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetPathParameterfvNV");
+        s_byName["glGetPathParameterfvNV"] = (nint)GetPathParameterfvNV;
         if (GetPathParameterfvNV is null) { missingCount++; missing?.Add("glGetPathParameterfvNV"); }
         GetPathParameterivNV = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetPathParameterivNV");
+        s_byName["glGetPathParameterivNV"] = (nint)GetPathParameterivNV;
         if (GetPathParameterivNV is null) { missingCount++; missing?.Add("glGetPathParameterivNV"); }
         GetPathSpacingNV = (delegate* unmanaged<uint, int, uint, void*, uint, float, float, uint, float*, void>)resolver("glGetPathSpacingNV");
+        s_byName["glGetPathSpacingNV"] = (nint)GetPathSpacingNV;
         if (GetPathSpacingNV is null) { missingCount++; missing?.Add("glGetPathSpacingNV"); }
         GetPathTexGenfvNV = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetPathTexGenfvNV");
+        s_byName["glGetPathTexGenfvNV"] = (nint)GetPathTexGenfvNV;
         if (GetPathTexGenfvNV is null) { missingCount++; missing?.Add("glGetPathTexGenfvNV"); }
         GetPathTexGenivNV = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetPathTexGenivNV");
+        s_byName["glGetPathTexGenivNV"] = (nint)GetPathTexGenivNV;
         if (GetPathTexGenivNV is null) { missingCount++; missing?.Add("glGetPathTexGenivNV"); }
         GetPerfCounterInfoINTEL = (delegate* unmanaged<uint, uint, uint, byte*, uint, byte*, uint*, uint*, uint*, uint*, ulong*, void>)resolver("glGetPerfCounterInfoINTEL");
+        s_byName["glGetPerfCounterInfoINTEL"] = (nint)GetPerfCounterInfoINTEL;
         if (GetPerfCounterInfoINTEL is null) { missingCount++; missing?.Add("glGetPerfCounterInfoINTEL"); }
         GetPerfMonitorCounterDataAMD = (delegate* unmanaged<uint, uint, int, uint*, int*, void>)resolver("glGetPerfMonitorCounterDataAMD");
+        s_byName["glGetPerfMonitorCounterDataAMD"] = (nint)GetPerfMonitorCounterDataAMD;
         if (GetPerfMonitorCounterDataAMD is null) { missingCount++; missing?.Add("glGetPerfMonitorCounterDataAMD"); }
         GetPerfMonitorCounterInfoAMD = (delegate* unmanaged<uint, uint, uint, void*, void>)resolver("glGetPerfMonitorCounterInfoAMD");
+        s_byName["glGetPerfMonitorCounterInfoAMD"] = (nint)GetPerfMonitorCounterInfoAMD;
         if (GetPerfMonitorCounterInfoAMD is null) { missingCount++; missing?.Add("glGetPerfMonitorCounterInfoAMD"); }
         GetPerfMonitorCounterStringAMD = (delegate* unmanaged<uint, uint, int, int*, byte*, void>)resolver("glGetPerfMonitorCounterStringAMD");
+        s_byName["glGetPerfMonitorCounterStringAMD"] = (nint)GetPerfMonitorCounterStringAMD;
         if (GetPerfMonitorCounterStringAMD is null) { missingCount++; missing?.Add("glGetPerfMonitorCounterStringAMD"); }
         GetPerfMonitorCountersAMD = (delegate* unmanaged<uint, int*, int*, int, uint*, void>)resolver("glGetPerfMonitorCountersAMD");
+        s_byName["glGetPerfMonitorCountersAMD"] = (nint)GetPerfMonitorCountersAMD;
         if (GetPerfMonitorCountersAMD is null) { missingCount++; missing?.Add("glGetPerfMonitorCountersAMD"); }
         GetPerfMonitorGroupStringAMD = (delegate* unmanaged<uint, int, int*, byte*, void>)resolver("glGetPerfMonitorGroupStringAMD");
+        s_byName["glGetPerfMonitorGroupStringAMD"] = (nint)GetPerfMonitorGroupStringAMD;
         if (GetPerfMonitorGroupStringAMD is null) { missingCount++; missing?.Add("glGetPerfMonitorGroupStringAMD"); }
         GetPerfMonitorGroupsAMD = (delegate* unmanaged<int*, int, uint*, void>)resolver("glGetPerfMonitorGroupsAMD");
+        s_byName["glGetPerfMonitorGroupsAMD"] = (nint)GetPerfMonitorGroupsAMD;
         if (GetPerfMonitorGroupsAMD is null) { missingCount++; missing?.Add("glGetPerfMonitorGroupsAMD"); }
         GetPerfQueryDataINTEL = (delegate* unmanaged<uint, uint, int, void*, uint*, void>)resolver("glGetPerfQueryDataINTEL");
+        s_byName["glGetPerfQueryDataINTEL"] = (nint)GetPerfQueryDataINTEL;
         if (GetPerfQueryDataINTEL is null) { missingCount++; missing?.Add("glGetPerfQueryDataINTEL"); }
         GetPerfQueryIdByNameINTEL = (delegate* unmanaged<byte*, uint*, void>)resolver("glGetPerfQueryIdByNameINTEL");
+        s_byName["glGetPerfQueryIdByNameINTEL"] = (nint)GetPerfQueryIdByNameINTEL;
         if (GetPerfQueryIdByNameINTEL is null) { missingCount++; missing?.Add("glGetPerfQueryIdByNameINTEL"); }
         GetPerfQueryInfoINTEL = (delegate* unmanaged<uint, uint, byte*, uint*, uint*, uint*, uint*, void>)resolver("glGetPerfQueryInfoINTEL");
+        s_byName["glGetPerfQueryInfoINTEL"] = (nint)GetPerfQueryInfoINTEL;
         if (GetPerfQueryInfoINTEL is null) { missingCount++; missing?.Add("glGetPerfQueryInfoINTEL"); }
         GetPixelMapxv = (delegate* unmanaged<uint, int, int*, void>)resolver("glGetPixelMapxv");
+        s_byName["glGetPixelMapxv"] = (nint)GetPixelMapxv;
         if (GetPixelMapxv is null) { missingCount++; missing?.Add("glGetPixelMapxv"); }
         GetPixelTexGenParameterfvSGIS = (delegate* unmanaged<uint, float*, void>)resolver("glGetPixelTexGenParameterfvSGIS");
+        s_byName["glGetPixelTexGenParameterfvSGIS"] = (nint)GetPixelTexGenParameterfvSGIS;
         if (GetPixelTexGenParameterfvSGIS is null) { missingCount++; missing?.Add("glGetPixelTexGenParameterfvSGIS"); }
         GetPixelTexGenParameterivSGIS = (delegate* unmanaged<uint, int*, void>)resolver("glGetPixelTexGenParameterivSGIS");
+        s_byName["glGetPixelTexGenParameterivSGIS"] = (nint)GetPixelTexGenParameterivSGIS;
         if (GetPixelTexGenParameterivSGIS is null) { missingCount++; missing?.Add("glGetPixelTexGenParameterivSGIS"); }
         GetPixelTransformParameterfvEXT = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetPixelTransformParameterfvEXT");
+        s_byName["glGetPixelTransformParameterfvEXT"] = (nint)GetPixelTransformParameterfvEXT;
         if (GetPixelTransformParameterfvEXT is null) { missingCount++; missing?.Add("glGetPixelTransformParameterfvEXT"); }
         GetPixelTransformParameterivEXT = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetPixelTransformParameterivEXT");
+        s_byName["glGetPixelTransformParameterivEXT"] = (nint)GetPixelTransformParameterivEXT;
         if (GetPixelTransformParameterivEXT is null) { missingCount++; missing?.Add("glGetPixelTransformParameterivEXT"); }
         GetPointerIndexedvEXT = (delegate* unmanaged<uint, uint, void**, void>)resolver("glGetPointerIndexedvEXT");
+        s_byName["glGetPointerIndexedvEXT"] = (nint)GetPointerIndexedvEXT;
         if (GetPointerIndexedvEXT is null) { missingCount++; missing?.Add("glGetPointerIndexedvEXT"); }
         GetPointeri_vEXT = (delegate* unmanaged<uint, uint, void**, void>)resolver("glGetPointeri_vEXT");
+        s_byName["glGetPointeri_vEXT"] = (nint)GetPointeri_vEXT;
         if (GetPointeri_vEXT is null) { missingCount++; missing?.Add("glGetPointeri_vEXT"); }
         GetPointerv = (delegate* unmanaged<uint, void**, void>)resolver("glGetPointerv");
+        s_byName["glGetPointerv"] = (nint)GetPointerv;
         if (GetPointerv is null) { missingCount++; missing?.Add("glGetPointerv"); }
         GetPointervEXT = (delegate* unmanaged<uint, void**, void>)resolver("glGetPointervEXT");
+        s_byName["glGetPointervEXT"] = (nint)GetPointervEXT;
         if (GetPointervEXT is null) { missingCount++; missing?.Add("glGetPointervEXT"); }
         GetPointervKHR = (delegate* unmanaged<uint, void**, void>)resolver("glGetPointervKHR");
+        s_byName["glGetPointervKHR"] = (nint)GetPointervKHR;
         if (GetPointervKHR is null) { missingCount++; missing?.Add("glGetPointervKHR"); }
         GetProgramBinary = (delegate* unmanaged<uint, int, int*, uint*, void*, void>)resolver("glGetProgramBinary");
+        s_byName["glGetProgramBinary"] = (nint)GetProgramBinary;
         if (GetProgramBinary is null) { missingCount++; missing?.Add("glGetProgramBinary"); }
         GetProgramEnvParameterIivNV = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetProgramEnvParameterIivNV");
+        s_byName["glGetProgramEnvParameterIivNV"] = (nint)GetProgramEnvParameterIivNV;
         if (GetProgramEnvParameterIivNV is null) { missingCount++; missing?.Add("glGetProgramEnvParameterIivNV"); }
         GetProgramEnvParameterIuivNV = (delegate* unmanaged<uint, uint, uint*, void>)resolver("glGetProgramEnvParameterIuivNV");
+        s_byName["glGetProgramEnvParameterIuivNV"] = (nint)GetProgramEnvParameterIuivNV;
         if (GetProgramEnvParameterIuivNV is null) { missingCount++; missing?.Add("glGetProgramEnvParameterIuivNV"); }
         GetProgramEnvParameterdvARB = (delegate* unmanaged<uint, uint, double*, void>)resolver("glGetProgramEnvParameterdvARB");
+        s_byName["glGetProgramEnvParameterdvARB"] = (nint)GetProgramEnvParameterdvARB;
         if (GetProgramEnvParameterdvARB is null) { missingCount++; missing?.Add("glGetProgramEnvParameterdvARB"); }
         GetProgramEnvParameterfvARB = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetProgramEnvParameterfvARB");
+        s_byName["glGetProgramEnvParameterfvARB"] = (nint)GetProgramEnvParameterfvARB;
         if (GetProgramEnvParameterfvARB is null) { missingCount++; missing?.Add("glGetProgramEnvParameterfvARB"); }
         GetProgramInfoLog = (delegate* unmanaged<uint, int, int*, byte*, void>)resolver("glGetProgramInfoLog");
+        s_byName["glGetProgramInfoLog"] = (nint)GetProgramInfoLog;
         if (GetProgramInfoLog is null) { missingCount++; missing?.Add("glGetProgramInfoLog"); }
         GetProgramInterfaceiv = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glGetProgramInterfaceiv");
+        s_byName["glGetProgramInterfaceiv"] = (nint)GetProgramInterfaceiv;
         if (GetProgramInterfaceiv is null) { missingCount++; missing?.Add("glGetProgramInterfaceiv"); }
         GetProgramLocalParameterIivNV = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetProgramLocalParameterIivNV");
+        s_byName["glGetProgramLocalParameterIivNV"] = (nint)GetProgramLocalParameterIivNV;
         if (GetProgramLocalParameterIivNV is null) { missingCount++; missing?.Add("glGetProgramLocalParameterIivNV"); }
         GetProgramLocalParameterIuivNV = (delegate* unmanaged<uint, uint, uint*, void>)resolver("glGetProgramLocalParameterIuivNV");
+        s_byName["glGetProgramLocalParameterIuivNV"] = (nint)GetProgramLocalParameterIuivNV;
         if (GetProgramLocalParameterIuivNV is null) { missingCount++; missing?.Add("glGetProgramLocalParameterIuivNV"); }
         GetProgramLocalParameterdvARB = (delegate* unmanaged<uint, uint, double*, void>)resolver("glGetProgramLocalParameterdvARB");
+        s_byName["glGetProgramLocalParameterdvARB"] = (nint)GetProgramLocalParameterdvARB;
         if (GetProgramLocalParameterdvARB is null) { missingCount++; missing?.Add("glGetProgramLocalParameterdvARB"); }
         GetProgramLocalParameterfvARB = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetProgramLocalParameterfvARB");
+        s_byName["glGetProgramLocalParameterfvARB"] = (nint)GetProgramLocalParameterfvARB;
         if (GetProgramLocalParameterfvARB is null) { missingCount++; missing?.Add("glGetProgramLocalParameterfvARB"); }
         GetProgramNamedParameterdvNV = (delegate* unmanaged<uint, int, byte*, double*, void>)resolver("glGetProgramNamedParameterdvNV");
+        s_byName["glGetProgramNamedParameterdvNV"] = (nint)GetProgramNamedParameterdvNV;
         if (GetProgramNamedParameterdvNV is null) { missingCount++; missing?.Add("glGetProgramNamedParameterdvNV"); }
         GetProgramNamedParameterfvNV = (delegate* unmanaged<uint, int, byte*, float*, void>)resolver("glGetProgramNamedParameterfvNV");
+        s_byName["glGetProgramNamedParameterfvNV"] = (nint)GetProgramNamedParameterfvNV;
         if (GetProgramNamedParameterfvNV is null) { missingCount++; missing?.Add("glGetProgramNamedParameterfvNV"); }
         GetProgramParameterdvNV = (delegate* unmanaged<uint, uint, uint, double*, void>)resolver("glGetProgramParameterdvNV");
+        s_byName["glGetProgramParameterdvNV"] = (nint)GetProgramParameterdvNV;
         if (GetProgramParameterdvNV is null) { missingCount++; missing?.Add("glGetProgramParameterdvNV"); }
         GetProgramParameterfvNV = (delegate* unmanaged<uint, uint, uint, float*, void>)resolver("glGetProgramParameterfvNV");
+        s_byName["glGetProgramParameterfvNV"] = (nint)GetProgramParameterfvNV;
         if (GetProgramParameterfvNV is null) { missingCount++; missing?.Add("glGetProgramParameterfvNV"); }
         GetProgramPipelineInfoLog = (delegate* unmanaged<uint, int, int*, byte*, void>)resolver("glGetProgramPipelineInfoLog");
+        s_byName["glGetProgramPipelineInfoLog"] = (nint)GetProgramPipelineInfoLog;
         if (GetProgramPipelineInfoLog is null) { missingCount++; missing?.Add("glGetProgramPipelineInfoLog"); }
         GetProgramPipelineInfoLogEXT = (delegate* unmanaged<uint, int, int*, byte*, void>)resolver("glGetProgramPipelineInfoLogEXT");
+        s_byName["glGetProgramPipelineInfoLogEXT"] = (nint)GetProgramPipelineInfoLogEXT;
         if (GetProgramPipelineInfoLogEXT is null) { missingCount++; missing?.Add("glGetProgramPipelineInfoLogEXT"); }
         GetProgramPipelineiv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetProgramPipelineiv");
+        s_byName["glGetProgramPipelineiv"] = (nint)GetProgramPipelineiv;
         if (GetProgramPipelineiv is null) { missingCount++; missing?.Add("glGetProgramPipelineiv"); }
         GetProgramPipelineivEXT = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetProgramPipelineivEXT");
+        s_byName["glGetProgramPipelineivEXT"] = (nint)GetProgramPipelineivEXT;
         if (GetProgramPipelineivEXT is null) { missingCount++; missing?.Add("glGetProgramPipelineivEXT"); }
         GetProgramResourceIndex = (delegate* unmanaged<uint, uint, byte*, uint>)resolver("glGetProgramResourceIndex");
+        s_byName["glGetProgramResourceIndex"] = (nint)GetProgramResourceIndex;
         if (GetProgramResourceIndex is null) { missingCount++; missing?.Add("glGetProgramResourceIndex"); }
         GetProgramResourceLocation = (delegate* unmanaged<uint, uint, byte*, int>)resolver("glGetProgramResourceLocation");
+        s_byName["glGetProgramResourceLocation"] = (nint)GetProgramResourceLocation;
         if (GetProgramResourceLocation is null) { missingCount++; missing?.Add("glGetProgramResourceLocation"); }
         GetProgramResourceLocationIndex = (delegate* unmanaged<uint, uint, byte*, int>)resolver("glGetProgramResourceLocationIndex");
+        s_byName["glGetProgramResourceLocationIndex"] = (nint)GetProgramResourceLocationIndex;
         if (GetProgramResourceLocationIndex is null) { missingCount++; missing?.Add("glGetProgramResourceLocationIndex"); }
         GetProgramResourceName = (delegate* unmanaged<uint, uint, uint, int, int*, byte*, void>)resolver("glGetProgramResourceName");
+        s_byName["glGetProgramResourceName"] = (nint)GetProgramResourceName;
         if (GetProgramResourceName is null) { missingCount++; missing?.Add("glGetProgramResourceName"); }
         GetProgramResourcefvNV = (delegate* unmanaged<uint, uint, uint, int, uint*, int, int*, float*, void>)resolver("glGetProgramResourcefvNV");
+        s_byName["glGetProgramResourcefvNV"] = (nint)GetProgramResourcefvNV;
         if (GetProgramResourcefvNV is null) { missingCount++; missing?.Add("glGetProgramResourcefvNV"); }
         GetProgramResourceiv = (delegate* unmanaged<uint, uint, uint, int, uint*, int, int*, int*, void>)resolver("glGetProgramResourceiv");
+        s_byName["glGetProgramResourceiv"] = (nint)GetProgramResourceiv;
         if (GetProgramResourceiv is null) { missingCount++; missing?.Add("glGetProgramResourceiv"); }
         GetProgramStageiv = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glGetProgramStageiv");
+        s_byName["glGetProgramStageiv"] = (nint)GetProgramStageiv;
         if (GetProgramStageiv is null) { missingCount++; missing?.Add("glGetProgramStageiv"); }
         GetProgramStringARB = (delegate* unmanaged<uint, uint, void*, void>)resolver("glGetProgramStringARB");
+        s_byName["glGetProgramStringARB"] = (nint)GetProgramStringARB;
         if (GetProgramStringARB is null) { missingCount++; missing?.Add("glGetProgramStringARB"); }
         GetProgramStringNV = (delegate* unmanaged<uint, uint, byte*, void>)resolver("glGetProgramStringNV");
+        s_byName["glGetProgramStringNV"] = (nint)GetProgramStringNV;
         if (GetProgramStringNV is null) { missingCount++; missing?.Add("glGetProgramStringNV"); }
         GetProgramSubroutineParameteruivNV = (delegate* unmanaged<uint, uint, uint*, void>)resolver("glGetProgramSubroutineParameteruivNV");
+        s_byName["glGetProgramSubroutineParameteruivNV"] = (nint)GetProgramSubroutineParameteruivNV;
         if (GetProgramSubroutineParameteruivNV is null) { missingCount++; missing?.Add("glGetProgramSubroutineParameteruivNV"); }
         GetProgramiv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetProgramiv");
+        s_byName["glGetProgramiv"] = (nint)GetProgramiv;
         if (GetProgramiv is null) { missingCount++; missing?.Add("glGetProgramiv"); }
         GetProgramivARB = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetProgramivARB");
+        s_byName["glGetProgramivARB"] = (nint)GetProgramivARB;
         if (GetProgramivARB is null) { missingCount++; missing?.Add("glGetProgramivARB"); }
         GetProgramivNV = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetProgramivNV");
+        s_byName["glGetProgramivNV"] = (nint)GetProgramivNV;
         if (GetProgramivNV is null) { missingCount++; missing?.Add("glGetProgramivNV"); }
         GetQueryBufferObjecti64v = (delegate* unmanaged<uint, uint, uint, nint, void>)resolver("glGetQueryBufferObjecti64v");
+        s_byName["glGetQueryBufferObjecti64v"] = (nint)GetQueryBufferObjecti64v;
         if (GetQueryBufferObjecti64v is null) { missingCount++; missing?.Add("glGetQueryBufferObjecti64v"); }
         GetQueryBufferObjectiv = (delegate* unmanaged<uint, uint, uint, nint, void>)resolver("glGetQueryBufferObjectiv");
+        s_byName["glGetQueryBufferObjectiv"] = (nint)GetQueryBufferObjectiv;
         if (GetQueryBufferObjectiv is null) { missingCount++; missing?.Add("glGetQueryBufferObjectiv"); }
         GetQueryBufferObjectui64v = (delegate* unmanaged<uint, uint, uint, nint, void>)resolver("glGetQueryBufferObjectui64v");
+        s_byName["glGetQueryBufferObjectui64v"] = (nint)GetQueryBufferObjectui64v;
         if (GetQueryBufferObjectui64v is null) { missingCount++; missing?.Add("glGetQueryBufferObjectui64v"); }
         GetQueryBufferObjectuiv = (delegate* unmanaged<uint, uint, uint, nint, void>)resolver("glGetQueryBufferObjectuiv");
+        s_byName["glGetQueryBufferObjectuiv"] = (nint)GetQueryBufferObjectuiv;
         if (GetQueryBufferObjectuiv is null) { missingCount++; missing?.Add("glGetQueryBufferObjectuiv"); }
         GetQueryIndexediv = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glGetQueryIndexediv");
+        s_byName["glGetQueryIndexediv"] = (nint)GetQueryIndexediv;
         if (GetQueryIndexediv is null) { missingCount++; missing?.Add("glGetQueryIndexediv"); }
         GetQueryObjecti64v = (delegate* unmanaged<uint, uint, long*, void>)resolver("glGetQueryObjecti64v");
+        s_byName["glGetQueryObjecti64v"] = (nint)GetQueryObjecti64v;
         if (GetQueryObjecti64v is null) { missingCount++; missing?.Add("glGetQueryObjecti64v"); }
         GetQueryObjecti64vEXT = (delegate* unmanaged<uint, uint, long*, void>)resolver("glGetQueryObjecti64vEXT");
+        s_byName["glGetQueryObjecti64vEXT"] = (nint)GetQueryObjecti64vEXT;
         if (GetQueryObjecti64vEXT is null) { missingCount++; missing?.Add("glGetQueryObjecti64vEXT"); }
         GetQueryObjectiv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetQueryObjectiv");
+        s_byName["glGetQueryObjectiv"] = (nint)GetQueryObjectiv;
         if (GetQueryObjectiv is null) { missingCount++; missing?.Add("glGetQueryObjectiv"); }
         GetQueryObjectivARB = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetQueryObjectivARB");
+        s_byName["glGetQueryObjectivARB"] = (nint)GetQueryObjectivARB;
         if (GetQueryObjectivARB is null) { missingCount++; missing?.Add("glGetQueryObjectivARB"); }
         GetQueryObjectui64v = (delegate* unmanaged<uint, uint, ulong*, void>)resolver("glGetQueryObjectui64v");
+        s_byName["glGetQueryObjectui64v"] = (nint)GetQueryObjectui64v;
         if (GetQueryObjectui64v is null) { missingCount++; missing?.Add("glGetQueryObjectui64v"); }
         GetQueryObjectui64vEXT = (delegate* unmanaged<uint, uint, ulong*, void>)resolver("glGetQueryObjectui64vEXT");
+        s_byName["glGetQueryObjectui64vEXT"] = (nint)GetQueryObjectui64vEXT;
         if (GetQueryObjectui64vEXT is null) { missingCount++; missing?.Add("glGetQueryObjectui64vEXT"); }
         GetQueryObjectuiv = (delegate* unmanaged<uint, uint, uint*, void>)resolver("glGetQueryObjectuiv");
+        s_byName["glGetQueryObjectuiv"] = (nint)GetQueryObjectuiv;
         if (GetQueryObjectuiv is null) { missingCount++; missing?.Add("glGetQueryObjectuiv"); }
         GetQueryObjectuivARB = (delegate* unmanaged<uint, uint, uint*, void>)resolver("glGetQueryObjectuivARB");
+        s_byName["glGetQueryObjectuivARB"] = (nint)GetQueryObjectuivARB;
         if (GetQueryObjectuivARB is null) { missingCount++; missing?.Add("glGetQueryObjectuivARB"); }
         GetQueryiv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetQueryiv");
+        s_byName["glGetQueryiv"] = (nint)GetQueryiv;
         if (GetQueryiv is null) { missingCount++; missing?.Add("glGetQueryiv"); }
         GetQueryivARB = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetQueryivARB");
+        s_byName["glGetQueryivARB"] = (nint)GetQueryivARB;
         if (GetQueryivARB is null) { missingCount++; missing?.Add("glGetQueryivARB"); }
         GetRenderbufferParameteriv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetRenderbufferParameteriv");
+        s_byName["glGetRenderbufferParameteriv"] = (nint)GetRenderbufferParameteriv;
         if (GetRenderbufferParameteriv is null) { missingCount++; missing?.Add("glGetRenderbufferParameteriv"); }
         GetRenderbufferParameterivEXT = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetRenderbufferParameterivEXT");
+        s_byName["glGetRenderbufferParameterivEXT"] = (nint)GetRenderbufferParameterivEXT;
         if (GetRenderbufferParameterivEXT is null) { missingCount++; missing?.Add("glGetRenderbufferParameterivEXT"); }
         GetSamplerParameterIiv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetSamplerParameterIiv");
+        s_byName["glGetSamplerParameterIiv"] = (nint)GetSamplerParameterIiv;
         if (GetSamplerParameterIiv is null) { missingCount++; missing?.Add("glGetSamplerParameterIiv"); }
         GetSamplerParameterIuiv = (delegate* unmanaged<uint, uint, uint*, void>)resolver("glGetSamplerParameterIuiv");
+        s_byName["glGetSamplerParameterIuiv"] = (nint)GetSamplerParameterIuiv;
         if (GetSamplerParameterIuiv is null) { missingCount++; missing?.Add("glGetSamplerParameterIuiv"); }
         GetSamplerParameterfv = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetSamplerParameterfv");
+        s_byName["glGetSamplerParameterfv"] = (nint)GetSamplerParameterfv;
         if (GetSamplerParameterfv is null) { missingCount++; missing?.Add("glGetSamplerParameterfv"); }
         GetSamplerParameteriv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetSamplerParameteriv");
+        s_byName["glGetSamplerParameteriv"] = (nint)GetSamplerParameteriv;
         if (GetSamplerParameteriv is null) { missingCount++; missing?.Add("glGetSamplerParameteriv"); }
         GetSemaphoreParameterivNV = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetSemaphoreParameterivNV");
+        s_byName["glGetSemaphoreParameterivNV"] = (nint)GetSemaphoreParameterivNV;
         if (GetSemaphoreParameterivNV is null) { missingCount++; missing?.Add("glGetSemaphoreParameterivNV"); }
         GetSemaphoreParameterui64vEXT = (delegate* unmanaged<uint, uint, ulong*, void>)resolver("glGetSemaphoreParameterui64vEXT");
+        s_byName["glGetSemaphoreParameterui64vEXT"] = (nint)GetSemaphoreParameterui64vEXT;
         if (GetSemaphoreParameterui64vEXT is null) { missingCount++; missing?.Add("glGetSemaphoreParameterui64vEXT"); }
         GetSeparableFilter = (delegate* unmanaged<uint, uint, uint, void*, void*, void*, void>)resolver("glGetSeparableFilter");
+        s_byName["glGetSeparableFilter"] = (nint)GetSeparableFilter;
         if (GetSeparableFilter is null) { missingCount++; missing?.Add("glGetSeparableFilter"); }
         GetSeparableFilterEXT = (delegate* unmanaged<uint, uint, uint, void*, void*, void*, void>)resolver("glGetSeparableFilterEXT");
+        s_byName["glGetSeparableFilterEXT"] = (nint)GetSeparableFilterEXT;
         if (GetSeparableFilterEXT is null) { missingCount++; missing?.Add("glGetSeparableFilterEXT"); }
         GetShaderInfoLog = (delegate* unmanaged<uint, int, int*, byte*, void>)resolver("glGetShaderInfoLog");
+        s_byName["glGetShaderInfoLog"] = (nint)GetShaderInfoLog;
         if (GetShaderInfoLog is null) { missingCount++; missing?.Add("glGetShaderInfoLog"); }
         GetShaderPrecisionFormat = (delegate* unmanaged<uint, uint, int*, int*, void>)resolver("glGetShaderPrecisionFormat");
+        s_byName["glGetShaderPrecisionFormat"] = (nint)GetShaderPrecisionFormat;
         if (GetShaderPrecisionFormat is null) { missingCount++; missing?.Add("glGetShaderPrecisionFormat"); }
         GetShaderSource = (delegate* unmanaged<uint, int, int*, byte*, void>)resolver("glGetShaderSource");
+        s_byName["glGetShaderSource"] = (nint)GetShaderSource;
         if (GetShaderSource is null) { missingCount++; missing?.Add("glGetShaderSource"); }
         GetShaderSourceARB = (delegate* unmanaged<uint, int, int*, byte*, void>)resolver("glGetShaderSourceARB");
+        s_byName["glGetShaderSourceARB"] = (nint)GetShaderSourceARB;
         if (GetShaderSourceARB is null) { missingCount++; missing?.Add("glGetShaderSourceARB"); }
         GetShaderiv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetShaderiv");
+        s_byName["glGetShaderiv"] = (nint)GetShaderiv;
         if (GetShaderiv is null) { missingCount++; missing?.Add("glGetShaderiv"); }
         GetShadingRateImagePaletteNV = (delegate* unmanaged<uint, uint, uint*, void>)resolver("glGetShadingRateImagePaletteNV");
+        s_byName["glGetShadingRateImagePaletteNV"] = (nint)GetShadingRateImagePaletteNV;
         if (GetShadingRateImagePaletteNV is null) { missingCount++; missing?.Add("glGetShadingRateImagePaletteNV"); }
         GetShadingRateSampleLocationivNV = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glGetShadingRateSampleLocationivNV");
+        s_byName["glGetShadingRateSampleLocationivNV"] = (nint)GetShadingRateSampleLocationivNV;
         if (GetShadingRateSampleLocationivNV is null) { missingCount++; missing?.Add("glGetShadingRateSampleLocationivNV"); }
         GetSharpenTexFuncSGIS = (delegate* unmanaged<uint, float*, void>)resolver("glGetSharpenTexFuncSGIS");
+        s_byName["glGetSharpenTexFuncSGIS"] = (nint)GetSharpenTexFuncSGIS;
         if (GetSharpenTexFuncSGIS is null) { missingCount++; missing?.Add("glGetSharpenTexFuncSGIS"); }
         GetStageIndexNV = (delegate* unmanaged<uint, ushort>)resolver("glGetStageIndexNV");
+        s_byName["glGetStageIndexNV"] = (nint)GetStageIndexNV;
         if (GetStageIndexNV is null) { missingCount++; missing?.Add("glGetStageIndexNV"); }
         GetString = (delegate* unmanaged<uint, byte*>)resolver("glGetString");
+        s_byName["glGetString"] = (nint)GetString;
         if (GetString is null) { missingCount++; missing?.Add("glGetString"); }
         GetStringi = (delegate* unmanaged<uint, uint, byte*>)resolver("glGetStringi");
+        s_byName["glGetStringi"] = (nint)GetStringi;
         if (GetStringi is null) { missingCount++; missing?.Add("glGetStringi"); }
         GetSubroutineIndex = (delegate* unmanaged<uint, uint, byte*, uint>)resolver("glGetSubroutineIndex");
+        s_byName["glGetSubroutineIndex"] = (nint)GetSubroutineIndex;
         if (GetSubroutineIndex is null) { missingCount++; missing?.Add("glGetSubroutineIndex"); }
         GetSubroutineUniformLocation = (delegate* unmanaged<uint, uint, byte*, int>)resolver("glGetSubroutineUniformLocation");
+        s_byName["glGetSubroutineUniformLocation"] = (nint)GetSubroutineUniformLocation;
         if (GetSubroutineUniformLocation is null) { missingCount++; missing?.Add("glGetSubroutineUniformLocation"); }
         GetSynciv = (delegate* unmanaged<nint, uint, int, int*, int*, void>)resolver("glGetSynciv");
+        s_byName["glGetSynciv"] = (nint)GetSynciv;
         if (GetSynciv is null) { missingCount++; missing?.Add("glGetSynciv"); }
         GetTexBumpParameterfvATI = (delegate* unmanaged<uint, float*, void>)resolver("glGetTexBumpParameterfvATI");
+        s_byName["glGetTexBumpParameterfvATI"] = (nint)GetTexBumpParameterfvATI;
         if (GetTexBumpParameterfvATI is null) { missingCount++; missing?.Add("glGetTexBumpParameterfvATI"); }
         GetTexBumpParameterivATI = (delegate* unmanaged<uint, int*, void>)resolver("glGetTexBumpParameterivATI");
+        s_byName["glGetTexBumpParameterivATI"] = (nint)GetTexBumpParameterivATI;
         if (GetTexBumpParameterivATI is null) { missingCount++; missing?.Add("glGetTexBumpParameterivATI"); }
         GetTexEnvxvOES = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetTexEnvxvOES");
+        s_byName["glGetTexEnvxvOES"] = (nint)GetTexEnvxvOES;
         if (GetTexEnvxvOES is null) { missingCount++; missing?.Add("glGetTexEnvxvOES"); }
         GetTexFilterFuncSGIS = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetTexFilterFuncSGIS");
+        s_byName["glGetTexFilterFuncSGIS"] = (nint)GetTexFilterFuncSGIS;
         if (GetTexFilterFuncSGIS is null) { missingCount++; missing?.Add("glGetTexFilterFuncSGIS"); }
         GetTexGenxvOES = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetTexGenxvOES");
+        s_byName["glGetTexGenxvOES"] = (nint)GetTexGenxvOES;
         if (GetTexGenxvOES is null) { missingCount++; missing?.Add("glGetTexGenxvOES"); }
         GetTexImage = (delegate* unmanaged<uint, int, uint, uint, void*, void>)resolver("glGetTexImage");
+        s_byName["glGetTexImage"] = (nint)GetTexImage;
         if (GetTexImage is null) { missingCount++; missing?.Add("glGetTexImage"); }
         GetTexLevelParameterfv = (delegate* unmanaged<uint, int, uint, float*, void>)resolver("glGetTexLevelParameterfv");
+        s_byName["glGetTexLevelParameterfv"] = (nint)GetTexLevelParameterfv;
         if (GetTexLevelParameterfv is null) { missingCount++; missing?.Add("glGetTexLevelParameterfv"); }
         GetTexLevelParameteriv = (delegate* unmanaged<uint, int, uint, int*, void>)resolver("glGetTexLevelParameteriv");
+        s_byName["glGetTexLevelParameteriv"] = (nint)GetTexLevelParameteriv;
         if (GetTexLevelParameteriv is null) { missingCount++; missing?.Add("glGetTexLevelParameteriv"); }
         GetTexLevelParameterxvOES = (delegate* unmanaged<uint, int, uint, int*, void>)resolver("glGetTexLevelParameterxvOES");
+        s_byName["glGetTexLevelParameterxvOES"] = (nint)GetTexLevelParameterxvOES;
         if (GetTexLevelParameterxvOES is null) { missingCount++; missing?.Add("glGetTexLevelParameterxvOES"); }
         GetTexParameterIiv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetTexParameterIiv");
+        s_byName["glGetTexParameterIiv"] = (nint)GetTexParameterIiv;
         if (GetTexParameterIiv is null) { missingCount++; missing?.Add("glGetTexParameterIiv"); }
         GetTexParameterIivEXT = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetTexParameterIivEXT");
+        s_byName["glGetTexParameterIivEXT"] = (nint)GetTexParameterIivEXT;
         if (GetTexParameterIivEXT is null) { missingCount++; missing?.Add("glGetTexParameterIivEXT"); }
         GetTexParameterIuiv = (delegate* unmanaged<uint, uint, uint*, void>)resolver("glGetTexParameterIuiv");
+        s_byName["glGetTexParameterIuiv"] = (nint)GetTexParameterIuiv;
         if (GetTexParameterIuiv is null) { missingCount++; missing?.Add("glGetTexParameterIuiv"); }
         GetTexParameterIuivEXT = (delegate* unmanaged<uint, uint, uint*, void>)resolver("glGetTexParameterIuivEXT");
+        s_byName["glGetTexParameterIuivEXT"] = (nint)GetTexParameterIuivEXT;
         if (GetTexParameterIuivEXT is null) { missingCount++; missing?.Add("glGetTexParameterIuivEXT"); }
         GetTexParameterPointervAPPLE = (delegate* unmanaged<uint, uint, void**, void>)resolver("glGetTexParameterPointervAPPLE");
+        s_byName["glGetTexParameterPointervAPPLE"] = (nint)GetTexParameterPointervAPPLE;
         if (GetTexParameterPointervAPPLE is null) { missingCount++; missing?.Add("glGetTexParameterPointervAPPLE"); }
         GetTexParameterfv = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetTexParameterfv");
+        s_byName["glGetTexParameterfv"] = (nint)GetTexParameterfv;
         if (GetTexParameterfv is null) { missingCount++; missing?.Add("glGetTexParameterfv"); }
         GetTexParameteriv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetTexParameteriv");
+        s_byName["glGetTexParameteriv"] = (nint)GetTexParameteriv;
         if (GetTexParameteriv is null) { missingCount++; missing?.Add("glGetTexParameteriv"); }
         GetTexParameterxvOES = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetTexParameterxvOES");
+        s_byName["glGetTexParameterxvOES"] = (nint)GetTexParameterxvOES;
         if (GetTexParameterxvOES is null) { missingCount++; missing?.Add("glGetTexParameterxvOES"); }
         GetTextureHandleARB = (delegate* unmanaged<uint, ulong>)resolver("glGetTextureHandleARB");
+        s_byName["glGetTextureHandleARB"] = (nint)GetTextureHandleARB;
         if (GetTextureHandleARB is null) { missingCount++; missing?.Add("glGetTextureHandleARB"); }
         GetTextureHandleNV = (delegate* unmanaged<uint, ulong>)resolver("glGetTextureHandleNV");
+        s_byName["glGetTextureHandleNV"] = (nint)GetTextureHandleNV;
         if (GetTextureHandleNV is null) { missingCount++; missing?.Add("glGetTextureHandleNV"); }
         GetTextureImage = (delegate* unmanaged<uint, int, uint, uint, int, void*, void>)resolver("glGetTextureImage");
+        s_byName["glGetTextureImage"] = (nint)GetTextureImage;
         if (GetTextureImage is null) { missingCount++; missing?.Add("glGetTextureImage"); }
         GetTextureImageEXT = (delegate* unmanaged<uint, uint, int, uint, uint, void*, void>)resolver("glGetTextureImageEXT");
+        s_byName["glGetTextureImageEXT"] = (nint)GetTextureImageEXT;
         if (GetTextureImageEXT is null) { missingCount++; missing?.Add("glGetTextureImageEXT"); }
         GetTextureLevelParameterfv = (delegate* unmanaged<uint, int, uint, float*, void>)resolver("glGetTextureLevelParameterfv");
+        s_byName["glGetTextureLevelParameterfv"] = (nint)GetTextureLevelParameterfv;
         if (GetTextureLevelParameterfv is null) { missingCount++; missing?.Add("glGetTextureLevelParameterfv"); }
         GetTextureLevelParameterfvEXT = (delegate* unmanaged<uint, uint, int, uint, float*, void>)resolver("glGetTextureLevelParameterfvEXT");
+        s_byName["glGetTextureLevelParameterfvEXT"] = (nint)GetTextureLevelParameterfvEXT;
         if (GetTextureLevelParameterfvEXT is null) { missingCount++; missing?.Add("glGetTextureLevelParameterfvEXT"); }
         GetTextureLevelParameteriv = (delegate* unmanaged<uint, int, uint, int*, void>)resolver("glGetTextureLevelParameteriv");
+        s_byName["glGetTextureLevelParameteriv"] = (nint)GetTextureLevelParameteriv;
         if (GetTextureLevelParameteriv is null) { missingCount++; missing?.Add("glGetTextureLevelParameteriv"); }
         GetTextureLevelParameterivEXT = (delegate* unmanaged<uint, uint, int, uint, int*, void>)resolver("glGetTextureLevelParameterivEXT");
+        s_byName["glGetTextureLevelParameterivEXT"] = (nint)GetTextureLevelParameterivEXT;
         if (GetTextureLevelParameterivEXT is null) { missingCount++; missing?.Add("glGetTextureLevelParameterivEXT"); }
         GetTextureParameterIiv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetTextureParameterIiv");
+        s_byName["glGetTextureParameterIiv"] = (nint)GetTextureParameterIiv;
         if (GetTextureParameterIiv is null) { missingCount++; missing?.Add("glGetTextureParameterIiv"); }
         GetTextureParameterIivEXT = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glGetTextureParameterIivEXT");
+        s_byName["glGetTextureParameterIivEXT"] = (nint)GetTextureParameterIivEXT;
         if (GetTextureParameterIivEXT is null) { missingCount++; missing?.Add("glGetTextureParameterIivEXT"); }
         GetTextureParameterIuiv = (delegate* unmanaged<uint, uint, uint*, void>)resolver("glGetTextureParameterIuiv");
+        s_byName["glGetTextureParameterIuiv"] = (nint)GetTextureParameterIuiv;
         if (GetTextureParameterIuiv is null) { missingCount++; missing?.Add("glGetTextureParameterIuiv"); }
         GetTextureParameterIuivEXT = (delegate* unmanaged<uint, uint, uint, uint*, void>)resolver("glGetTextureParameterIuivEXT");
+        s_byName["glGetTextureParameterIuivEXT"] = (nint)GetTextureParameterIuivEXT;
         if (GetTextureParameterIuivEXT is null) { missingCount++; missing?.Add("glGetTextureParameterIuivEXT"); }
         GetTextureParameterfv = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetTextureParameterfv");
+        s_byName["glGetTextureParameterfv"] = (nint)GetTextureParameterfv;
         if (GetTextureParameterfv is null) { missingCount++; missing?.Add("glGetTextureParameterfv"); }
         GetTextureParameterfvEXT = (delegate* unmanaged<uint, uint, uint, float*, void>)resolver("glGetTextureParameterfvEXT");
+        s_byName["glGetTextureParameterfvEXT"] = (nint)GetTextureParameterfvEXT;
         if (GetTextureParameterfvEXT is null) { missingCount++; missing?.Add("glGetTextureParameterfvEXT"); }
         GetTextureParameteriv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetTextureParameteriv");
+        s_byName["glGetTextureParameteriv"] = (nint)GetTextureParameteriv;
         if (GetTextureParameteriv is null) { missingCount++; missing?.Add("glGetTextureParameteriv"); }
         GetTextureParameterivEXT = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glGetTextureParameterivEXT");
+        s_byName["glGetTextureParameterivEXT"] = (nint)GetTextureParameterivEXT;
         if (GetTextureParameterivEXT is null) { missingCount++; missing?.Add("glGetTextureParameterivEXT"); }
         GetTextureSamplerHandleARB = (delegate* unmanaged<uint, uint, ulong>)resolver("glGetTextureSamplerHandleARB");
+        s_byName["glGetTextureSamplerHandleARB"] = (nint)GetTextureSamplerHandleARB;
         if (GetTextureSamplerHandleARB is null) { missingCount++; missing?.Add("glGetTextureSamplerHandleARB"); }
         GetTextureSamplerHandleNV = (delegate* unmanaged<uint, uint, ulong>)resolver("glGetTextureSamplerHandleNV");
+        s_byName["glGetTextureSamplerHandleNV"] = (nint)GetTextureSamplerHandleNV;
         if (GetTextureSamplerHandleNV is null) { missingCount++; missing?.Add("glGetTextureSamplerHandleNV"); }
         GetTextureSubImage = (delegate* unmanaged<uint, int, int, int, int, int, int, int, uint, uint, int, void*, void>)resolver("glGetTextureSubImage");
+        s_byName["glGetTextureSubImage"] = (nint)GetTextureSubImage;
         if (GetTextureSubImage is null) { missingCount++; missing?.Add("glGetTextureSubImage"); }
         GetTrackMatrixivNV = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glGetTrackMatrixivNV");
+        s_byName["glGetTrackMatrixivNV"] = (nint)GetTrackMatrixivNV;
         if (GetTrackMatrixivNV is null) { missingCount++; missing?.Add("glGetTrackMatrixivNV"); }
         GetTransformFeedbackVarying = (delegate* unmanaged<uint, uint, int, int*, int*, uint*, byte*, void>)resolver("glGetTransformFeedbackVarying");
+        s_byName["glGetTransformFeedbackVarying"] = (nint)GetTransformFeedbackVarying;
         if (GetTransformFeedbackVarying is null) { missingCount++; missing?.Add("glGetTransformFeedbackVarying"); }
         GetTransformFeedbackVaryingEXT = (delegate* unmanaged<uint, uint, int, int*, int*, uint*, byte*, void>)resolver("glGetTransformFeedbackVaryingEXT");
+        s_byName["glGetTransformFeedbackVaryingEXT"] = (nint)GetTransformFeedbackVaryingEXT;
         if (GetTransformFeedbackVaryingEXT is null) { missingCount++; missing?.Add("glGetTransformFeedbackVaryingEXT"); }
         GetTransformFeedbackVaryingNV = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetTransformFeedbackVaryingNV");
+        s_byName["glGetTransformFeedbackVaryingNV"] = (nint)GetTransformFeedbackVaryingNV;
         if (GetTransformFeedbackVaryingNV is null) { missingCount++; missing?.Add("glGetTransformFeedbackVaryingNV"); }
         GetTransformFeedbacki64_v = (delegate* unmanaged<uint, uint, uint, long*, void>)resolver("glGetTransformFeedbacki64_v");
+        s_byName["glGetTransformFeedbacki64_v"] = (nint)GetTransformFeedbacki64_v;
         if (GetTransformFeedbacki64_v is null) { missingCount++; missing?.Add("glGetTransformFeedbacki64_v"); }
         GetTransformFeedbacki_v = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glGetTransformFeedbacki_v");
+        s_byName["glGetTransformFeedbacki_v"] = (nint)GetTransformFeedbacki_v;
         if (GetTransformFeedbacki_v is null) { missingCount++; missing?.Add("glGetTransformFeedbacki_v"); }
         GetTransformFeedbackiv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetTransformFeedbackiv");
+        s_byName["glGetTransformFeedbackiv"] = (nint)GetTransformFeedbackiv;
         if (GetTransformFeedbackiv is null) { missingCount++; missing?.Add("glGetTransformFeedbackiv"); }
         GetUniformBlockIndex = (delegate* unmanaged<uint, byte*, uint>)resolver("glGetUniformBlockIndex");
+        s_byName["glGetUniformBlockIndex"] = (nint)GetUniformBlockIndex;
         if (GetUniformBlockIndex is null) { missingCount++; missing?.Add("glGetUniformBlockIndex"); }
         GetUniformBufferSizeEXT = (delegate* unmanaged<uint, int, int>)resolver("glGetUniformBufferSizeEXT");
+        s_byName["glGetUniformBufferSizeEXT"] = (nint)GetUniformBufferSizeEXT;
         if (GetUniformBufferSizeEXT is null) { missingCount++; missing?.Add("glGetUniformBufferSizeEXT"); }
         GetUniformIndices = (delegate* unmanaged<uint, int, byte**, uint*, void>)resolver("glGetUniformIndices");
+        s_byName["glGetUniformIndices"] = (nint)GetUniformIndices;
         if (GetUniformIndices is null) { missingCount++; missing?.Add("glGetUniformIndices"); }
         GetUniformLocation = (delegate* unmanaged<uint, byte*, int>)resolver("glGetUniformLocation");
+        s_byName["glGetUniformLocation"] = (nint)GetUniformLocation;
         if (GetUniformLocation is null) { missingCount++; missing?.Add("glGetUniformLocation"); }
         GetUniformLocationARB = (delegate* unmanaged<uint, byte*, int>)resolver("glGetUniformLocationARB");
+        s_byName["glGetUniformLocationARB"] = (nint)GetUniformLocationARB;
         if (GetUniformLocationARB is null) { missingCount++; missing?.Add("glGetUniformLocationARB"); }
         GetUniformOffsetEXT = (delegate* unmanaged<uint, int, nint>)resolver("glGetUniformOffsetEXT");
+        s_byName["glGetUniformOffsetEXT"] = (nint)GetUniformOffsetEXT;
         if (GetUniformOffsetEXT is null) { missingCount++; missing?.Add("glGetUniformOffsetEXT"); }
         GetUniformSubroutineuiv = (delegate* unmanaged<uint, int, uint*, void>)resolver("glGetUniformSubroutineuiv");
+        s_byName["glGetUniformSubroutineuiv"] = (nint)GetUniformSubroutineuiv;
         if (GetUniformSubroutineuiv is null) { missingCount++; missing?.Add("glGetUniformSubroutineuiv"); }
         GetUniformdv = (delegate* unmanaged<uint, int, double*, void>)resolver("glGetUniformdv");
+        s_byName["glGetUniformdv"] = (nint)GetUniformdv;
         if (GetUniformdv is null) { missingCount++; missing?.Add("glGetUniformdv"); }
         GetUniformfv = (delegate* unmanaged<uint, int, float*, void>)resolver("glGetUniformfv");
+        s_byName["glGetUniformfv"] = (nint)GetUniformfv;
         if (GetUniformfv is null) { missingCount++; missing?.Add("glGetUniformfv"); }
         GetUniformfvARB = (delegate* unmanaged<uint, int, float*, void>)resolver("glGetUniformfvARB");
+        s_byName["glGetUniformfvARB"] = (nint)GetUniformfvARB;
         if (GetUniformfvARB is null) { missingCount++; missing?.Add("glGetUniformfvARB"); }
         GetUniformi64vARB = (delegate* unmanaged<uint, int, long*, void>)resolver("glGetUniformi64vARB");
+        s_byName["glGetUniformi64vARB"] = (nint)GetUniformi64vARB;
         if (GetUniformi64vARB is null) { missingCount++; missing?.Add("glGetUniformi64vARB"); }
         GetUniformi64vNV = (delegate* unmanaged<uint, int, long*, void>)resolver("glGetUniformi64vNV");
+        s_byName["glGetUniformi64vNV"] = (nint)GetUniformi64vNV;
         if (GetUniformi64vNV is null) { missingCount++; missing?.Add("glGetUniformi64vNV"); }
         GetUniformiv = (delegate* unmanaged<uint, int, int*, void>)resolver("glGetUniformiv");
+        s_byName["glGetUniformiv"] = (nint)GetUniformiv;
         if (GetUniformiv is null) { missingCount++; missing?.Add("glGetUniformiv"); }
         GetUniformivARB = (delegate* unmanaged<uint, int, int*, void>)resolver("glGetUniformivARB");
+        s_byName["glGetUniformivARB"] = (nint)GetUniformivARB;
         if (GetUniformivARB is null) { missingCount++; missing?.Add("glGetUniformivARB"); }
         GetUniformui64vARB = (delegate* unmanaged<uint, int, ulong*, void>)resolver("glGetUniformui64vARB");
+        s_byName["glGetUniformui64vARB"] = (nint)GetUniformui64vARB;
         if (GetUniformui64vARB is null) { missingCount++; missing?.Add("glGetUniformui64vARB"); }
         GetUniformui64vNV = (delegate* unmanaged<uint, int, ulong*, void>)resolver("glGetUniformui64vNV");
+        s_byName["glGetUniformui64vNV"] = (nint)GetUniformui64vNV;
         if (GetUniformui64vNV is null) { missingCount++; missing?.Add("glGetUniformui64vNV"); }
         GetUniformuiv = (delegate* unmanaged<uint, int, uint*, void>)resolver("glGetUniformuiv");
+        s_byName["glGetUniformuiv"] = (nint)GetUniformuiv;
         if (GetUniformuiv is null) { missingCount++; missing?.Add("glGetUniformuiv"); }
         GetUniformuivEXT = (delegate* unmanaged<uint, int, uint*, void>)resolver("glGetUniformuivEXT");
+        s_byName["glGetUniformuivEXT"] = (nint)GetUniformuivEXT;
         if (GetUniformuivEXT is null) { missingCount++; missing?.Add("glGetUniformuivEXT"); }
         GetUnsignedBytei_vEXT = (delegate* unmanaged<uint, uint, byte*, void>)resolver("glGetUnsignedBytei_vEXT");
+        s_byName["glGetUnsignedBytei_vEXT"] = (nint)GetUnsignedBytei_vEXT;
         if (GetUnsignedBytei_vEXT is null) { missingCount++; missing?.Add("glGetUnsignedBytei_vEXT"); }
         GetUnsignedBytevEXT = (delegate* unmanaged<uint, byte*, void>)resolver("glGetUnsignedBytevEXT");
+        s_byName["glGetUnsignedBytevEXT"] = (nint)GetUnsignedBytevEXT;
         if (GetUnsignedBytevEXT is null) { missingCount++; missing?.Add("glGetUnsignedBytevEXT"); }
         GetVariantArrayObjectfvATI = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetVariantArrayObjectfvATI");
+        s_byName["glGetVariantArrayObjectfvATI"] = (nint)GetVariantArrayObjectfvATI;
         if (GetVariantArrayObjectfvATI is null) { missingCount++; missing?.Add("glGetVariantArrayObjectfvATI"); }
         GetVariantArrayObjectivATI = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetVariantArrayObjectivATI");
+        s_byName["glGetVariantArrayObjectivATI"] = (nint)GetVariantArrayObjectivATI;
         if (GetVariantArrayObjectivATI is null) { missingCount++; missing?.Add("glGetVariantArrayObjectivATI"); }
         GetVariantBooleanvEXT = (delegate* unmanaged<uint, uint, byte*, void>)resolver("glGetVariantBooleanvEXT");
+        s_byName["glGetVariantBooleanvEXT"] = (nint)GetVariantBooleanvEXT;
         if (GetVariantBooleanvEXT is null) { missingCount++; missing?.Add("glGetVariantBooleanvEXT"); }
         GetVariantFloatvEXT = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetVariantFloatvEXT");
+        s_byName["glGetVariantFloatvEXT"] = (nint)GetVariantFloatvEXT;
         if (GetVariantFloatvEXT is null) { missingCount++; missing?.Add("glGetVariantFloatvEXT"); }
         GetVariantIntegervEXT = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetVariantIntegervEXT");
+        s_byName["glGetVariantIntegervEXT"] = (nint)GetVariantIntegervEXT;
         if (GetVariantIntegervEXT is null) { missingCount++; missing?.Add("glGetVariantIntegervEXT"); }
         GetVariantPointervEXT = (delegate* unmanaged<uint, uint, void**, void>)resolver("glGetVariantPointervEXT");
+        s_byName["glGetVariantPointervEXT"] = (nint)GetVariantPointervEXT;
         if (GetVariantPointervEXT is null) { missingCount++; missing?.Add("glGetVariantPointervEXT"); }
         GetVaryingLocationNV = (delegate* unmanaged<uint, byte*, int>)resolver("glGetVaryingLocationNV");
+        s_byName["glGetVaryingLocationNV"] = (nint)GetVaryingLocationNV;
         if (GetVaryingLocationNV is null) { missingCount++; missing?.Add("glGetVaryingLocationNV"); }
         GetVertexArrayIndexed64iv = (delegate* unmanaged<uint, uint, uint, long*, void>)resolver("glGetVertexArrayIndexed64iv");
+        s_byName["glGetVertexArrayIndexed64iv"] = (nint)GetVertexArrayIndexed64iv;
         if (GetVertexArrayIndexed64iv is null) { missingCount++; missing?.Add("glGetVertexArrayIndexed64iv"); }
         GetVertexArrayIndexediv = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glGetVertexArrayIndexediv");
+        s_byName["glGetVertexArrayIndexediv"] = (nint)GetVertexArrayIndexediv;
         if (GetVertexArrayIndexediv is null) { missingCount++; missing?.Add("glGetVertexArrayIndexediv"); }
         GetVertexArrayIntegeri_vEXT = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glGetVertexArrayIntegeri_vEXT");
+        s_byName["glGetVertexArrayIntegeri_vEXT"] = (nint)GetVertexArrayIntegeri_vEXT;
         if (GetVertexArrayIntegeri_vEXT is null) { missingCount++; missing?.Add("glGetVertexArrayIntegeri_vEXT"); }
         GetVertexArrayIntegervEXT = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetVertexArrayIntegervEXT");
+        s_byName["glGetVertexArrayIntegervEXT"] = (nint)GetVertexArrayIntegervEXT;
         if (GetVertexArrayIntegervEXT is null) { missingCount++; missing?.Add("glGetVertexArrayIntegervEXT"); }
         GetVertexArrayPointeri_vEXT = (delegate* unmanaged<uint, uint, uint, void**, void>)resolver("glGetVertexArrayPointeri_vEXT");
+        s_byName["glGetVertexArrayPointeri_vEXT"] = (nint)GetVertexArrayPointeri_vEXT;
         if (GetVertexArrayPointeri_vEXT is null) { missingCount++; missing?.Add("glGetVertexArrayPointeri_vEXT"); }
         GetVertexArrayPointervEXT = (delegate* unmanaged<uint, uint, void**, void>)resolver("glGetVertexArrayPointervEXT");
+        s_byName["glGetVertexArrayPointervEXT"] = (nint)GetVertexArrayPointervEXT;
         if (GetVertexArrayPointervEXT is null) { missingCount++; missing?.Add("glGetVertexArrayPointervEXT"); }
         GetVertexArrayiv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetVertexArrayiv");
+        s_byName["glGetVertexArrayiv"] = (nint)GetVertexArrayiv;
         if (GetVertexArrayiv is null) { missingCount++; missing?.Add("glGetVertexArrayiv"); }
         GetVertexAttribArrayObjectfvATI = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetVertexAttribArrayObjectfvATI");
+        s_byName["glGetVertexAttribArrayObjectfvATI"] = (nint)GetVertexAttribArrayObjectfvATI;
         if (GetVertexAttribArrayObjectfvATI is null) { missingCount++; missing?.Add("glGetVertexAttribArrayObjectfvATI"); }
         GetVertexAttribArrayObjectivATI = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetVertexAttribArrayObjectivATI");
+        s_byName["glGetVertexAttribArrayObjectivATI"] = (nint)GetVertexAttribArrayObjectivATI;
         if (GetVertexAttribArrayObjectivATI is null) { missingCount++; missing?.Add("glGetVertexAttribArrayObjectivATI"); }
         GetVertexAttribIiv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetVertexAttribIiv");
+        s_byName["glGetVertexAttribIiv"] = (nint)GetVertexAttribIiv;
         if (GetVertexAttribIiv is null) { missingCount++; missing?.Add("glGetVertexAttribIiv"); }
         GetVertexAttribIivEXT = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetVertexAttribIivEXT");
+        s_byName["glGetVertexAttribIivEXT"] = (nint)GetVertexAttribIivEXT;
         if (GetVertexAttribIivEXT is null) { missingCount++; missing?.Add("glGetVertexAttribIivEXT"); }
         GetVertexAttribIuiv = (delegate* unmanaged<uint, uint, uint*, void>)resolver("glGetVertexAttribIuiv");
+        s_byName["glGetVertexAttribIuiv"] = (nint)GetVertexAttribIuiv;
         if (GetVertexAttribIuiv is null) { missingCount++; missing?.Add("glGetVertexAttribIuiv"); }
         GetVertexAttribIuivEXT = (delegate* unmanaged<uint, uint, uint*, void>)resolver("glGetVertexAttribIuivEXT");
+        s_byName["glGetVertexAttribIuivEXT"] = (nint)GetVertexAttribIuivEXT;
         if (GetVertexAttribIuivEXT is null) { missingCount++; missing?.Add("glGetVertexAttribIuivEXT"); }
         GetVertexAttribLdv = (delegate* unmanaged<uint, uint, double*, void>)resolver("glGetVertexAttribLdv");
+        s_byName["glGetVertexAttribLdv"] = (nint)GetVertexAttribLdv;
         if (GetVertexAttribLdv is null) { missingCount++; missing?.Add("glGetVertexAttribLdv"); }
         GetVertexAttribLdvEXT = (delegate* unmanaged<uint, uint, double*, void>)resolver("glGetVertexAttribLdvEXT");
+        s_byName["glGetVertexAttribLdvEXT"] = (nint)GetVertexAttribLdvEXT;
         if (GetVertexAttribLdvEXT is null) { missingCount++; missing?.Add("glGetVertexAttribLdvEXT"); }
         GetVertexAttribLi64vNV = (delegate* unmanaged<uint, uint, long*, void>)resolver("glGetVertexAttribLi64vNV");
+        s_byName["glGetVertexAttribLi64vNV"] = (nint)GetVertexAttribLi64vNV;
         if (GetVertexAttribLi64vNV is null) { missingCount++; missing?.Add("glGetVertexAttribLi64vNV"); }
         GetVertexAttribLui64vARB = (delegate* unmanaged<uint, uint, ulong*, void>)resolver("glGetVertexAttribLui64vARB");
+        s_byName["glGetVertexAttribLui64vARB"] = (nint)GetVertexAttribLui64vARB;
         if (GetVertexAttribLui64vARB is null) { missingCount++; missing?.Add("glGetVertexAttribLui64vARB"); }
         GetVertexAttribLui64vNV = (delegate* unmanaged<uint, uint, ulong*, void>)resolver("glGetVertexAttribLui64vNV");
+        s_byName["glGetVertexAttribLui64vNV"] = (nint)GetVertexAttribLui64vNV;
         if (GetVertexAttribLui64vNV is null) { missingCount++; missing?.Add("glGetVertexAttribLui64vNV"); }
         GetVertexAttribPointerv = (delegate* unmanaged<uint, uint, void**, void>)resolver("glGetVertexAttribPointerv");
+        s_byName["glGetVertexAttribPointerv"] = (nint)GetVertexAttribPointerv;
         if (GetVertexAttribPointerv is null) { missingCount++; missing?.Add("glGetVertexAttribPointerv"); }
         GetVertexAttribPointervARB = (delegate* unmanaged<uint, uint, void**, void>)resolver("glGetVertexAttribPointervARB");
+        s_byName["glGetVertexAttribPointervARB"] = (nint)GetVertexAttribPointervARB;
         if (GetVertexAttribPointervARB is null) { missingCount++; missing?.Add("glGetVertexAttribPointervARB"); }
         GetVertexAttribPointervNV = (delegate* unmanaged<uint, uint, void**, void>)resolver("glGetVertexAttribPointervNV");
+        s_byName["glGetVertexAttribPointervNV"] = (nint)GetVertexAttribPointervNV;
         if (GetVertexAttribPointervNV is null) { missingCount++; missing?.Add("glGetVertexAttribPointervNV"); }
         GetVertexAttribdv = (delegate* unmanaged<uint, uint, double*, void>)resolver("glGetVertexAttribdv");
+        s_byName["glGetVertexAttribdv"] = (nint)GetVertexAttribdv;
         if (GetVertexAttribdv is null) { missingCount++; missing?.Add("glGetVertexAttribdv"); }
         GetVertexAttribdvARB = (delegate* unmanaged<uint, uint, double*, void>)resolver("glGetVertexAttribdvARB");
+        s_byName["glGetVertexAttribdvARB"] = (nint)GetVertexAttribdvARB;
         if (GetVertexAttribdvARB is null) { missingCount++; missing?.Add("glGetVertexAttribdvARB"); }
         GetVertexAttribdvNV = (delegate* unmanaged<uint, uint, double*, void>)resolver("glGetVertexAttribdvNV");
+        s_byName["glGetVertexAttribdvNV"] = (nint)GetVertexAttribdvNV;
         if (GetVertexAttribdvNV is null) { missingCount++; missing?.Add("glGetVertexAttribdvNV"); }
         GetVertexAttribfv = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetVertexAttribfv");
+        s_byName["glGetVertexAttribfv"] = (nint)GetVertexAttribfv;
         if (GetVertexAttribfv is null) { missingCount++; missing?.Add("glGetVertexAttribfv"); }
         GetVertexAttribfvARB = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetVertexAttribfvARB");
+        s_byName["glGetVertexAttribfvARB"] = (nint)GetVertexAttribfvARB;
         if (GetVertexAttribfvARB is null) { missingCount++; missing?.Add("glGetVertexAttribfvARB"); }
         GetVertexAttribfvNV = (delegate* unmanaged<uint, uint, float*, void>)resolver("glGetVertexAttribfvNV");
+        s_byName["glGetVertexAttribfvNV"] = (nint)GetVertexAttribfvNV;
         if (GetVertexAttribfvNV is null) { missingCount++; missing?.Add("glGetVertexAttribfvNV"); }
         GetVertexAttribiv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetVertexAttribiv");
+        s_byName["glGetVertexAttribiv"] = (nint)GetVertexAttribiv;
         if (GetVertexAttribiv is null) { missingCount++; missing?.Add("glGetVertexAttribiv"); }
         GetVertexAttribivARB = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetVertexAttribivARB");
+        s_byName["glGetVertexAttribivARB"] = (nint)GetVertexAttribivARB;
         if (GetVertexAttribivARB is null) { missingCount++; missing?.Add("glGetVertexAttribivARB"); }
         GetVertexAttribivNV = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetVertexAttribivNV");
+        s_byName["glGetVertexAttribivNV"] = (nint)GetVertexAttribivNV;
         if (GetVertexAttribivNV is null) { missingCount++; missing?.Add("glGetVertexAttribivNV"); }
         GetVideoCaptureStreamdvNV = (delegate* unmanaged<uint, uint, uint, double*, void>)resolver("glGetVideoCaptureStreamdvNV");
+        s_byName["glGetVideoCaptureStreamdvNV"] = (nint)GetVideoCaptureStreamdvNV;
         if (GetVideoCaptureStreamdvNV is null) { missingCount++; missing?.Add("glGetVideoCaptureStreamdvNV"); }
         GetVideoCaptureStreamfvNV = (delegate* unmanaged<uint, uint, uint, float*, void>)resolver("glGetVideoCaptureStreamfvNV");
+        s_byName["glGetVideoCaptureStreamfvNV"] = (nint)GetVideoCaptureStreamfvNV;
         if (GetVideoCaptureStreamfvNV is null) { missingCount++; missing?.Add("glGetVideoCaptureStreamfvNV"); }
         GetVideoCaptureStreamivNV = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glGetVideoCaptureStreamivNV");
+        s_byName["glGetVideoCaptureStreamivNV"] = (nint)GetVideoCaptureStreamivNV;
         if (GetVideoCaptureStreamivNV is null) { missingCount++; missing?.Add("glGetVideoCaptureStreamivNV"); }
         GetVideoCaptureivNV = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetVideoCaptureivNV");
+        s_byName["glGetVideoCaptureivNV"] = (nint)GetVideoCaptureivNV;
         if (GetVideoCaptureivNV is null) { missingCount++; missing?.Add("glGetVideoCaptureivNV"); }
         GetVideoi64vNV = (delegate* unmanaged<uint, uint, long*, void>)resolver("glGetVideoi64vNV");
+        s_byName["glGetVideoi64vNV"] = (nint)GetVideoi64vNV;
         if (GetVideoi64vNV is null) { missingCount++; missing?.Add("glGetVideoi64vNV"); }
         GetVideoivNV = (delegate* unmanaged<uint, uint, int*, void>)resolver("glGetVideoivNV");
+        s_byName["glGetVideoivNV"] = (nint)GetVideoivNV;
         if (GetVideoivNV is null) { missingCount++; missing?.Add("glGetVideoivNV"); }
         GetVideoui64vNV = (delegate* unmanaged<uint, uint, ulong*, void>)resolver("glGetVideoui64vNV");
+        s_byName["glGetVideoui64vNV"] = (nint)GetVideoui64vNV;
         if (GetVideoui64vNV is null) { missingCount++; missing?.Add("glGetVideoui64vNV"); }
         GetVideouivNV = (delegate* unmanaged<uint, uint, uint*, void>)resolver("glGetVideouivNV");
+        s_byName["glGetVideouivNV"] = (nint)GetVideouivNV;
         if (GetVideouivNV is null) { missingCount++; missing?.Add("glGetVideouivNV"); }
         GetnColorTable = (delegate* unmanaged<uint, uint, uint, int, void*, void>)resolver("glGetnColorTable");
+        s_byName["glGetnColorTable"] = (nint)GetnColorTable;
         if (GetnColorTable is null) { missingCount++; missing?.Add("glGetnColorTable"); }
         GetnColorTableARB = (delegate* unmanaged<uint, uint, uint, int, void*, void>)resolver("glGetnColorTableARB");
+        s_byName["glGetnColorTableARB"] = (nint)GetnColorTableARB;
         if (GetnColorTableARB is null) { missingCount++; missing?.Add("glGetnColorTableARB"); }
         GetnCompressedTexImage = (delegate* unmanaged<uint, int, int, void*, void>)resolver("glGetnCompressedTexImage");
+        s_byName["glGetnCompressedTexImage"] = (nint)GetnCompressedTexImage;
         if (GetnCompressedTexImage is null) { missingCount++; missing?.Add("glGetnCompressedTexImage"); }
         GetnCompressedTexImageARB = (delegate* unmanaged<uint, int, int, void*, void>)resolver("glGetnCompressedTexImageARB");
+        s_byName["glGetnCompressedTexImageARB"] = (nint)GetnCompressedTexImageARB;
         if (GetnCompressedTexImageARB is null) { missingCount++; missing?.Add("glGetnCompressedTexImageARB"); }
         GetnConvolutionFilter = (delegate* unmanaged<uint, uint, uint, int, void*, void>)resolver("glGetnConvolutionFilter");
+        s_byName["glGetnConvolutionFilter"] = (nint)GetnConvolutionFilter;
         if (GetnConvolutionFilter is null) { missingCount++; missing?.Add("glGetnConvolutionFilter"); }
         GetnConvolutionFilterARB = (delegate* unmanaged<uint, uint, uint, int, void*, void>)resolver("glGetnConvolutionFilterARB");
+        s_byName["glGetnConvolutionFilterARB"] = (nint)GetnConvolutionFilterARB;
         if (GetnConvolutionFilterARB is null) { missingCount++; missing?.Add("glGetnConvolutionFilterARB"); }
         GetnHistogram = (delegate* unmanaged<uint, byte, uint, uint, int, void*, void>)resolver("glGetnHistogram");
+        s_byName["glGetnHistogram"] = (nint)GetnHistogram;
         if (GetnHistogram is null) { missingCount++; missing?.Add("glGetnHistogram"); }
         GetnHistogramARB = (delegate* unmanaged<uint, byte, uint, uint, int, void*, void>)resolver("glGetnHistogramARB");
+        s_byName["glGetnHistogramARB"] = (nint)GetnHistogramARB;
         if (GetnHistogramARB is null) { missingCount++; missing?.Add("glGetnHistogramARB"); }
         GetnMapdv = (delegate* unmanaged<uint, uint, int, double*, void>)resolver("glGetnMapdv");
+        s_byName["glGetnMapdv"] = (nint)GetnMapdv;
         if (GetnMapdv is null) { missingCount++; missing?.Add("glGetnMapdv"); }
         GetnMapdvARB = (delegate* unmanaged<uint, uint, int, double*, void>)resolver("glGetnMapdvARB");
+        s_byName["glGetnMapdvARB"] = (nint)GetnMapdvARB;
         if (GetnMapdvARB is null) { missingCount++; missing?.Add("glGetnMapdvARB"); }
         GetnMapfv = (delegate* unmanaged<uint, uint, int, float*, void>)resolver("glGetnMapfv");
+        s_byName["glGetnMapfv"] = (nint)GetnMapfv;
         if (GetnMapfv is null) { missingCount++; missing?.Add("glGetnMapfv"); }
         GetnMapfvARB = (delegate* unmanaged<uint, uint, int, float*, void>)resolver("glGetnMapfvARB");
+        s_byName["glGetnMapfvARB"] = (nint)GetnMapfvARB;
         if (GetnMapfvARB is null) { missingCount++; missing?.Add("glGetnMapfvARB"); }
         GetnMapiv = (delegate* unmanaged<uint, uint, int, int*, void>)resolver("glGetnMapiv");
+        s_byName["glGetnMapiv"] = (nint)GetnMapiv;
         if (GetnMapiv is null) { missingCount++; missing?.Add("glGetnMapiv"); }
         GetnMapivARB = (delegate* unmanaged<uint, uint, int, int*, void>)resolver("glGetnMapivARB");
+        s_byName["glGetnMapivARB"] = (nint)GetnMapivARB;
         if (GetnMapivARB is null) { missingCount++; missing?.Add("glGetnMapivARB"); }
         GetnMinmax = (delegate* unmanaged<uint, byte, uint, uint, int, void*, void>)resolver("glGetnMinmax");
+        s_byName["glGetnMinmax"] = (nint)GetnMinmax;
         if (GetnMinmax is null) { missingCount++; missing?.Add("glGetnMinmax"); }
         GetnMinmaxARB = (delegate* unmanaged<uint, byte, uint, uint, int, void*, void>)resolver("glGetnMinmaxARB");
+        s_byName["glGetnMinmaxARB"] = (nint)GetnMinmaxARB;
         if (GetnMinmaxARB is null) { missingCount++; missing?.Add("glGetnMinmaxARB"); }
         GetnPixelMapfv = (delegate* unmanaged<uint, int, float*, void>)resolver("glGetnPixelMapfv");
+        s_byName["glGetnPixelMapfv"] = (nint)GetnPixelMapfv;
         if (GetnPixelMapfv is null) { missingCount++; missing?.Add("glGetnPixelMapfv"); }
         GetnPixelMapfvARB = (delegate* unmanaged<uint, int, float*, void>)resolver("glGetnPixelMapfvARB");
+        s_byName["glGetnPixelMapfvARB"] = (nint)GetnPixelMapfvARB;
         if (GetnPixelMapfvARB is null) { missingCount++; missing?.Add("glGetnPixelMapfvARB"); }
         GetnPixelMapuiv = (delegate* unmanaged<uint, int, uint*, void>)resolver("glGetnPixelMapuiv");
+        s_byName["glGetnPixelMapuiv"] = (nint)GetnPixelMapuiv;
         if (GetnPixelMapuiv is null) { missingCount++; missing?.Add("glGetnPixelMapuiv"); }
         GetnPixelMapuivARB = (delegate* unmanaged<uint, int, uint*, void>)resolver("glGetnPixelMapuivARB");
+        s_byName["glGetnPixelMapuivARB"] = (nint)GetnPixelMapuivARB;
         if (GetnPixelMapuivARB is null) { missingCount++; missing?.Add("glGetnPixelMapuivARB"); }
         GetnPixelMapusv = (delegate* unmanaged<uint, int, ushort*, void>)resolver("glGetnPixelMapusv");
+        s_byName["glGetnPixelMapusv"] = (nint)GetnPixelMapusv;
         if (GetnPixelMapusv is null) { missingCount++; missing?.Add("glGetnPixelMapusv"); }
         GetnPixelMapusvARB = (delegate* unmanaged<uint, int, ushort*, void>)resolver("glGetnPixelMapusvARB");
+        s_byName["glGetnPixelMapusvARB"] = (nint)GetnPixelMapusvARB;
         if (GetnPixelMapusvARB is null) { missingCount++; missing?.Add("glGetnPixelMapusvARB"); }
         GetnPolygonStipple = (delegate* unmanaged<int, byte*, void>)resolver("glGetnPolygonStipple");
+        s_byName["glGetnPolygonStipple"] = (nint)GetnPolygonStipple;
         if (GetnPolygonStipple is null) { missingCount++; missing?.Add("glGetnPolygonStipple"); }
         GetnPolygonStippleARB = (delegate* unmanaged<int, byte*, void>)resolver("glGetnPolygonStippleARB");
+        s_byName["glGetnPolygonStippleARB"] = (nint)GetnPolygonStippleARB;
         if (GetnPolygonStippleARB is null) { missingCount++; missing?.Add("glGetnPolygonStippleARB"); }
         GetnSeparableFilter = (delegate* unmanaged<uint, uint, uint, int, void*, int, void*, void*, void>)resolver("glGetnSeparableFilter");
+        s_byName["glGetnSeparableFilter"] = (nint)GetnSeparableFilter;
         if (GetnSeparableFilter is null) { missingCount++; missing?.Add("glGetnSeparableFilter"); }
         GetnSeparableFilterARB = (delegate* unmanaged<uint, uint, uint, int, void*, int, void*, void*, void>)resolver("glGetnSeparableFilterARB");
+        s_byName["glGetnSeparableFilterARB"] = (nint)GetnSeparableFilterARB;
         if (GetnSeparableFilterARB is null) { missingCount++; missing?.Add("glGetnSeparableFilterARB"); }
         GetnTexImage = (delegate* unmanaged<uint, int, uint, uint, int, void*, void>)resolver("glGetnTexImage");
+        s_byName["glGetnTexImage"] = (nint)GetnTexImage;
         if (GetnTexImage is null) { missingCount++; missing?.Add("glGetnTexImage"); }
         GetnTexImageARB = (delegate* unmanaged<uint, int, uint, uint, int, void*, void>)resolver("glGetnTexImageARB");
+        s_byName["glGetnTexImageARB"] = (nint)GetnTexImageARB;
         if (GetnTexImageARB is null) { missingCount++; missing?.Add("glGetnTexImageARB"); }
         GetnUniformdv = (delegate* unmanaged<uint, int, int, double*, void>)resolver("glGetnUniformdv");
+        s_byName["glGetnUniformdv"] = (nint)GetnUniformdv;
         if (GetnUniformdv is null) { missingCount++; missing?.Add("glGetnUniformdv"); }
         GetnUniformdvARB = (delegate* unmanaged<uint, int, int, double*, void>)resolver("glGetnUniformdvARB");
+        s_byName["glGetnUniformdvARB"] = (nint)GetnUniformdvARB;
         if (GetnUniformdvARB is null) { missingCount++; missing?.Add("glGetnUniformdvARB"); }
         GetnUniformfv = (delegate* unmanaged<uint, int, int, float*, void>)resolver("glGetnUniformfv");
+        s_byName["glGetnUniformfv"] = (nint)GetnUniformfv;
         if (GetnUniformfv is null) { missingCount++; missing?.Add("glGetnUniformfv"); }
         GetnUniformfvARB = (delegate* unmanaged<uint, int, int, float*, void>)resolver("glGetnUniformfvARB");
+        s_byName["glGetnUniformfvARB"] = (nint)GetnUniformfvARB;
         if (GetnUniformfvARB is null) { missingCount++; missing?.Add("glGetnUniformfvARB"); }
         GetnUniformfvKHR = (delegate* unmanaged<uint, int, int, float*, void>)resolver("glGetnUniformfvKHR");
+        s_byName["glGetnUniformfvKHR"] = (nint)GetnUniformfvKHR;
         if (GetnUniformfvKHR is null) { missingCount++; missing?.Add("glGetnUniformfvKHR"); }
         GetnUniformi64vARB = (delegate* unmanaged<uint, int, int, long*, void>)resolver("glGetnUniformi64vARB");
+        s_byName["glGetnUniformi64vARB"] = (nint)GetnUniformi64vARB;
         if (GetnUniformi64vARB is null) { missingCount++; missing?.Add("glGetnUniformi64vARB"); }
         GetnUniformiv = (delegate* unmanaged<uint, int, int, int*, void>)resolver("glGetnUniformiv");
+        s_byName["glGetnUniformiv"] = (nint)GetnUniformiv;
         if (GetnUniformiv is null) { missingCount++; missing?.Add("glGetnUniformiv"); }
         GetnUniformivARB = (delegate* unmanaged<uint, int, int, int*, void>)resolver("glGetnUniformivARB");
+        s_byName["glGetnUniformivARB"] = (nint)GetnUniformivARB;
         if (GetnUniformivARB is null) { missingCount++; missing?.Add("glGetnUniformivARB"); }
         GetnUniformivKHR = (delegate* unmanaged<uint, int, int, int*, void>)resolver("glGetnUniformivKHR");
+        s_byName["glGetnUniformivKHR"] = (nint)GetnUniformivKHR;
         if (GetnUniformivKHR is null) { missingCount++; missing?.Add("glGetnUniformivKHR"); }
         GetnUniformui64vARB = (delegate* unmanaged<uint, int, int, ulong*, void>)resolver("glGetnUniformui64vARB");
+        s_byName["glGetnUniformui64vARB"] = (nint)GetnUniformui64vARB;
         if (GetnUniformui64vARB is null) { missingCount++; missing?.Add("glGetnUniformui64vARB"); }
         GetnUniformuiv = (delegate* unmanaged<uint, int, int, uint*, void>)resolver("glGetnUniformuiv");
+        s_byName["glGetnUniformuiv"] = (nint)GetnUniformuiv;
         if (GetnUniformuiv is null) { missingCount++; missing?.Add("glGetnUniformuiv"); }
         GetnUniformuivARB = (delegate* unmanaged<uint, int, int, uint*, void>)resolver("glGetnUniformuivARB");
+        s_byName["glGetnUniformuivARB"] = (nint)GetnUniformuivARB;
         if (GetnUniformuivARB is null) { missingCount++; missing?.Add("glGetnUniformuivARB"); }
         GetnUniformuivKHR = (delegate* unmanaged<uint, int, int, uint*, void>)resolver("glGetnUniformuivKHR");
+        s_byName["glGetnUniformuivKHR"] = (nint)GetnUniformuivKHR;
         if (GetnUniformuivKHR is null) { missingCount++; missing?.Add("glGetnUniformuivKHR"); }
         GlobalAlphaFactorbSUN = (delegate* unmanaged<sbyte, void>)resolver("glGlobalAlphaFactorbSUN");
+        s_byName["glGlobalAlphaFactorbSUN"] = (nint)GlobalAlphaFactorbSUN;
         if (GlobalAlphaFactorbSUN is null) { missingCount++; missing?.Add("glGlobalAlphaFactorbSUN"); }
         GlobalAlphaFactordSUN = (delegate* unmanaged<double, void>)resolver("glGlobalAlphaFactordSUN");
+        s_byName["glGlobalAlphaFactordSUN"] = (nint)GlobalAlphaFactordSUN;
         if (GlobalAlphaFactordSUN is null) { missingCount++; missing?.Add("glGlobalAlphaFactordSUN"); }
         GlobalAlphaFactorfSUN = (delegate* unmanaged<float, void>)resolver("glGlobalAlphaFactorfSUN");
+        s_byName["glGlobalAlphaFactorfSUN"] = (nint)GlobalAlphaFactorfSUN;
         if (GlobalAlphaFactorfSUN is null) { missingCount++; missing?.Add("glGlobalAlphaFactorfSUN"); }
         GlobalAlphaFactoriSUN = (delegate* unmanaged<int, void>)resolver("glGlobalAlphaFactoriSUN");
+        s_byName["glGlobalAlphaFactoriSUN"] = (nint)GlobalAlphaFactoriSUN;
         if (GlobalAlphaFactoriSUN is null) { missingCount++; missing?.Add("glGlobalAlphaFactoriSUN"); }
         GlobalAlphaFactorsSUN = (delegate* unmanaged<short, void>)resolver("glGlobalAlphaFactorsSUN");
+        s_byName["glGlobalAlphaFactorsSUN"] = (nint)GlobalAlphaFactorsSUN;
         if (GlobalAlphaFactorsSUN is null) { missingCount++; missing?.Add("glGlobalAlphaFactorsSUN"); }
         GlobalAlphaFactorubSUN = (delegate* unmanaged<byte, void>)resolver("glGlobalAlphaFactorubSUN");
+        s_byName["glGlobalAlphaFactorubSUN"] = (nint)GlobalAlphaFactorubSUN;
         if (GlobalAlphaFactorubSUN is null) { missingCount++; missing?.Add("glGlobalAlphaFactorubSUN"); }
         GlobalAlphaFactoruiSUN = (delegate* unmanaged<uint, void>)resolver("glGlobalAlphaFactoruiSUN");
+        s_byName["glGlobalAlphaFactoruiSUN"] = (nint)GlobalAlphaFactoruiSUN;
         if (GlobalAlphaFactoruiSUN is null) { missingCount++; missing?.Add("glGlobalAlphaFactoruiSUN"); }
         GlobalAlphaFactorusSUN = (delegate* unmanaged<ushort, void>)resolver("glGlobalAlphaFactorusSUN");
+        s_byName["glGlobalAlphaFactorusSUN"] = (nint)GlobalAlphaFactorusSUN;
         if (GlobalAlphaFactorusSUN is null) { missingCount++; missing?.Add("glGlobalAlphaFactorusSUN"); }
         Hint = (delegate* unmanaged<uint, uint, void>)resolver("glHint");
+        s_byName["glHint"] = (nint)Hint;
         if (Hint is null) { missingCount++; missing?.Add("glHint"); }
         HintPGI = (delegate* unmanaged<uint, int, void>)resolver("glHintPGI");
+        s_byName["glHintPGI"] = (nint)HintPGI;
         if (HintPGI is null) { missingCount++; missing?.Add("glHintPGI"); }
         Histogram = (delegate* unmanaged<uint, int, uint, byte, void>)resolver("glHistogram");
+        s_byName["glHistogram"] = (nint)Histogram;
         if (Histogram is null) { missingCount++; missing?.Add("glHistogram"); }
         HistogramEXT = (delegate* unmanaged<uint, int, uint, byte, void>)resolver("glHistogramEXT");
+        s_byName["glHistogramEXT"] = (nint)HistogramEXT;
         if (HistogramEXT is null) { missingCount++; missing?.Add("glHistogramEXT"); }
         IglooInterfaceSGIX = (delegate* unmanaged<uint, void*, void>)resolver("glIglooInterfaceSGIX");
+        s_byName["glIglooInterfaceSGIX"] = (nint)IglooInterfaceSGIX;
         if (IglooInterfaceSGIX is null) { missingCount++; missing?.Add("glIglooInterfaceSGIX"); }
         ImageTransformParameterfHP = (delegate* unmanaged<uint, uint, float, void>)resolver("glImageTransformParameterfHP");
+        s_byName["glImageTransformParameterfHP"] = (nint)ImageTransformParameterfHP;
         if (ImageTransformParameterfHP is null) { missingCount++; missing?.Add("glImageTransformParameterfHP"); }
         ImageTransformParameterfvHP = (delegate* unmanaged<uint, uint, float*, void>)resolver("glImageTransformParameterfvHP");
+        s_byName["glImageTransformParameterfvHP"] = (nint)ImageTransformParameterfvHP;
         if (ImageTransformParameterfvHP is null) { missingCount++; missing?.Add("glImageTransformParameterfvHP"); }
         ImageTransformParameteriHP = (delegate* unmanaged<uint, uint, int, void>)resolver("glImageTransformParameteriHP");
+        s_byName["glImageTransformParameteriHP"] = (nint)ImageTransformParameteriHP;
         if (ImageTransformParameteriHP is null) { missingCount++; missing?.Add("glImageTransformParameteriHP"); }
         ImageTransformParameterivHP = (delegate* unmanaged<uint, uint, int*, void>)resolver("glImageTransformParameterivHP");
+        s_byName["glImageTransformParameterivHP"] = (nint)ImageTransformParameterivHP;
         if (ImageTransformParameterivHP is null) { missingCount++; missing?.Add("glImageTransformParameterivHP"); }
         ImportMemoryFdEXT = (delegate* unmanaged<uint, ulong, uint, int, void>)resolver("glImportMemoryFdEXT");
+        s_byName["glImportMemoryFdEXT"] = (nint)ImportMemoryFdEXT;
         if (ImportMemoryFdEXT is null) { missingCount++; missing?.Add("glImportMemoryFdEXT"); }
         ImportMemoryWin32HandleEXT = (delegate* unmanaged<uint, ulong, uint, void*, void>)resolver("glImportMemoryWin32HandleEXT");
+        s_byName["glImportMemoryWin32HandleEXT"] = (nint)ImportMemoryWin32HandleEXT;
         if (ImportMemoryWin32HandleEXT is null) { missingCount++; missing?.Add("glImportMemoryWin32HandleEXT"); }
         ImportMemoryWin32NameEXT = (delegate* unmanaged<uint, ulong, uint, void*, void>)resolver("glImportMemoryWin32NameEXT");
+        s_byName["glImportMemoryWin32NameEXT"] = (nint)ImportMemoryWin32NameEXT;
         if (ImportMemoryWin32NameEXT is null) { missingCount++; missing?.Add("glImportMemoryWin32NameEXT"); }
         ImportSemaphoreFdEXT = (delegate* unmanaged<uint, uint, int, void>)resolver("glImportSemaphoreFdEXT");
+        s_byName["glImportSemaphoreFdEXT"] = (nint)ImportSemaphoreFdEXT;
         if (ImportSemaphoreFdEXT is null) { missingCount++; missing?.Add("glImportSemaphoreFdEXT"); }
         ImportSemaphoreWin32HandleEXT = (delegate* unmanaged<uint, uint, void*, void>)resolver("glImportSemaphoreWin32HandleEXT");
+        s_byName["glImportSemaphoreWin32HandleEXT"] = (nint)ImportSemaphoreWin32HandleEXT;
         if (ImportSemaphoreWin32HandleEXT is null) { missingCount++; missing?.Add("glImportSemaphoreWin32HandleEXT"); }
         ImportSemaphoreWin32NameEXT = (delegate* unmanaged<uint, uint, void*, void>)resolver("glImportSemaphoreWin32NameEXT");
+        s_byName["glImportSemaphoreWin32NameEXT"] = (nint)ImportSemaphoreWin32NameEXT;
         if (ImportSemaphoreWin32NameEXT is null) { missingCount++; missing?.Add("glImportSemaphoreWin32NameEXT"); }
         ImportSyncEXT = (delegate* unmanaged<uint, nint, uint, nint>)resolver("glImportSyncEXT");
+        s_byName["glImportSyncEXT"] = (nint)ImportSyncEXT;
         if (ImportSyncEXT is null) { missingCount++; missing?.Add("glImportSyncEXT"); }
         IndexFormatNV = (delegate* unmanaged<uint, int, void>)resolver("glIndexFormatNV");
+        s_byName["glIndexFormatNV"] = (nint)IndexFormatNV;
         if (IndexFormatNV is null) { missingCount++; missing?.Add("glIndexFormatNV"); }
         IndexFuncEXT = (delegate* unmanaged<uint, float, void>)resolver("glIndexFuncEXT");
+        s_byName["glIndexFuncEXT"] = (nint)IndexFuncEXT;
         if (IndexFuncEXT is null) { missingCount++; missing?.Add("glIndexFuncEXT"); }
         IndexMaterialEXT = (delegate* unmanaged<uint, uint, void>)resolver("glIndexMaterialEXT");
+        s_byName["glIndexMaterialEXT"] = (nint)IndexMaterialEXT;
         if (IndexMaterialEXT is null) { missingCount++; missing?.Add("glIndexMaterialEXT"); }
         IndexPointerEXT = (delegate* unmanaged<uint, int, int, void*, void>)resolver("glIndexPointerEXT");
+        s_byName["glIndexPointerEXT"] = (nint)IndexPointerEXT;
         if (IndexPointerEXT is null) { missingCount++; missing?.Add("glIndexPointerEXT"); }
         IndexPointerListIBM = (delegate* unmanaged<uint, int, void**, int, void>)resolver("glIndexPointerListIBM");
+        s_byName["glIndexPointerListIBM"] = (nint)IndexPointerListIBM;
         if (IndexPointerListIBM is null) { missingCount++; missing?.Add("glIndexPointerListIBM"); }
         IndexxOES = (delegate* unmanaged<int, void>)resolver("glIndexxOES");
+        s_byName["glIndexxOES"] = (nint)IndexxOES;
         if (IndexxOES is null) { missingCount++; missing?.Add("glIndexxOES"); }
         IndexxvOES = (delegate* unmanaged<int*, void>)resolver("glIndexxvOES");
+        s_byName["glIndexxvOES"] = (nint)IndexxvOES;
         if (IndexxvOES is null) { missingCount++; missing?.Add("glIndexxvOES"); }
         InsertComponentEXT = (delegate* unmanaged<uint, uint, uint, void>)resolver("glInsertComponentEXT");
+        s_byName["glInsertComponentEXT"] = (nint)InsertComponentEXT;
         if (InsertComponentEXT is null) { missingCount++; missing?.Add("glInsertComponentEXT"); }
         InsertEventMarkerEXT = (delegate* unmanaged<int, byte*, void>)resolver("glInsertEventMarkerEXT");
+        s_byName["glInsertEventMarkerEXT"] = (nint)InsertEventMarkerEXT;
         if (InsertEventMarkerEXT is null) { missingCount++; missing?.Add("glInsertEventMarkerEXT"); }
         InstrumentsBufferSGIX = (delegate* unmanaged<int, int*, void>)resolver("glInstrumentsBufferSGIX");
+        s_byName["glInstrumentsBufferSGIX"] = (nint)InstrumentsBufferSGIX;
         if (InstrumentsBufferSGIX is null) { missingCount++; missing?.Add("glInstrumentsBufferSGIX"); }
         InterpolatePathsNV = (delegate* unmanaged<uint, uint, uint, float, void>)resolver("glInterpolatePathsNV");
+        s_byName["glInterpolatePathsNV"] = (nint)InterpolatePathsNV;
         if (InterpolatePathsNV is null) { missingCount++; missing?.Add("glInterpolatePathsNV"); }
         InvalidateBufferData = (delegate* unmanaged<uint, void>)resolver("glInvalidateBufferData");
+        s_byName["glInvalidateBufferData"] = (nint)InvalidateBufferData;
         if (InvalidateBufferData is null) { missingCount++; missing?.Add("glInvalidateBufferData"); }
         InvalidateBufferSubData = (delegate* unmanaged<uint, nint, nint, void>)resolver("glInvalidateBufferSubData");
+        s_byName["glInvalidateBufferSubData"] = (nint)InvalidateBufferSubData;
         if (InvalidateBufferSubData is null) { missingCount++; missing?.Add("glInvalidateBufferSubData"); }
         InvalidateFramebuffer = (delegate* unmanaged<uint, int, uint*, void>)resolver("glInvalidateFramebuffer");
+        s_byName["glInvalidateFramebuffer"] = (nint)InvalidateFramebuffer;
         if (InvalidateFramebuffer is null) { missingCount++; missing?.Add("glInvalidateFramebuffer"); }
         InvalidateNamedFramebufferData = (delegate* unmanaged<uint, int, uint*, void>)resolver("glInvalidateNamedFramebufferData");
+        s_byName["glInvalidateNamedFramebufferData"] = (nint)InvalidateNamedFramebufferData;
         if (InvalidateNamedFramebufferData is null) { missingCount++; missing?.Add("glInvalidateNamedFramebufferData"); }
         InvalidateNamedFramebufferSubData = (delegate* unmanaged<uint, int, uint*, int, int, int, int, void>)resolver("glInvalidateNamedFramebufferSubData");
+        s_byName["glInvalidateNamedFramebufferSubData"] = (nint)InvalidateNamedFramebufferSubData;
         if (InvalidateNamedFramebufferSubData is null) { missingCount++; missing?.Add("glInvalidateNamedFramebufferSubData"); }
         InvalidateSubFramebuffer = (delegate* unmanaged<uint, int, uint*, int, int, int, int, void>)resolver("glInvalidateSubFramebuffer");
+        s_byName["glInvalidateSubFramebuffer"] = (nint)InvalidateSubFramebuffer;
         if (InvalidateSubFramebuffer is null) { missingCount++; missing?.Add("glInvalidateSubFramebuffer"); }
         InvalidateTexImage = (delegate* unmanaged<uint, int, void>)resolver("glInvalidateTexImage");
+        s_byName["glInvalidateTexImage"] = (nint)InvalidateTexImage;
         if (InvalidateTexImage is null) { missingCount++; missing?.Add("glInvalidateTexImage"); }
         InvalidateTexSubImage = (delegate* unmanaged<uint, int, int, int, int, int, int, int, void>)resolver("glInvalidateTexSubImage");
+        s_byName["glInvalidateTexSubImage"] = (nint)InvalidateTexSubImage;
         if (InvalidateTexSubImage is null) { missingCount++; missing?.Add("glInvalidateTexSubImage"); }
         IsAsyncMarkerSGIX = (delegate* unmanaged<uint, byte>)resolver("glIsAsyncMarkerSGIX");
+        s_byName["glIsAsyncMarkerSGIX"] = (nint)IsAsyncMarkerSGIX;
         if (IsAsyncMarkerSGIX is null) { missingCount++; missing?.Add("glIsAsyncMarkerSGIX"); }
         IsBuffer = (delegate* unmanaged<uint, byte>)resolver("glIsBuffer");
+        s_byName["glIsBuffer"] = (nint)IsBuffer;
         if (IsBuffer is null) { missingCount++; missing?.Add("glIsBuffer"); }
         IsBufferARB = (delegate* unmanaged<uint, byte>)resolver("glIsBufferARB");
+        s_byName["glIsBufferARB"] = (nint)IsBufferARB;
         if (IsBufferARB is null) { missingCount++; missing?.Add("glIsBufferARB"); }
         IsBufferResidentNV = (delegate* unmanaged<uint, byte>)resolver("glIsBufferResidentNV");
+        s_byName["glIsBufferResidentNV"] = (nint)IsBufferResidentNV;
         if (IsBufferResidentNV is null) { missingCount++; missing?.Add("glIsBufferResidentNV"); }
         IsCommandListNV = (delegate* unmanaged<uint, byte>)resolver("glIsCommandListNV");
+        s_byName["glIsCommandListNV"] = (nint)IsCommandListNV;
         if (IsCommandListNV is null) { missingCount++; missing?.Add("glIsCommandListNV"); }
         IsEnabled = (delegate* unmanaged<uint, byte>)resolver("glIsEnabled");
+        s_byName["glIsEnabled"] = (nint)IsEnabled;
         if (IsEnabled is null) { missingCount++; missing?.Add("glIsEnabled"); }
         IsEnabledIndexedEXT = (delegate* unmanaged<uint, uint, byte>)resolver("glIsEnabledIndexedEXT");
+        s_byName["glIsEnabledIndexedEXT"] = (nint)IsEnabledIndexedEXT;
         if (IsEnabledIndexedEXT is null) { missingCount++; missing?.Add("glIsEnabledIndexedEXT"); }
         IsEnabledi = (delegate* unmanaged<uint, uint, byte>)resolver("glIsEnabledi");
+        s_byName["glIsEnabledi"] = (nint)IsEnabledi;
         if (IsEnabledi is null) { missingCount++; missing?.Add("glIsEnabledi"); }
         IsFenceAPPLE = (delegate* unmanaged<uint, byte>)resolver("glIsFenceAPPLE");
+        s_byName["glIsFenceAPPLE"] = (nint)IsFenceAPPLE;
         if (IsFenceAPPLE is null) { missingCount++; missing?.Add("glIsFenceAPPLE"); }
         IsFenceNV = (delegate* unmanaged<uint, byte>)resolver("glIsFenceNV");
+        s_byName["glIsFenceNV"] = (nint)IsFenceNV;
         if (IsFenceNV is null) { missingCount++; missing?.Add("glIsFenceNV"); }
         IsFramebuffer = (delegate* unmanaged<uint, byte>)resolver("glIsFramebuffer");
+        s_byName["glIsFramebuffer"] = (nint)IsFramebuffer;
         if (IsFramebuffer is null) { missingCount++; missing?.Add("glIsFramebuffer"); }
         IsFramebufferEXT = (delegate* unmanaged<uint, byte>)resolver("glIsFramebufferEXT");
+        s_byName["glIsFramebufferEXT"] = (nint)IsFramebufferEXT;
         if (IsFramebufferEXT is null) { missingCount++; missing?.Add("glIsFramebufferEXT"); }
         IsImageHandleResidentARB = (delegate* unmanaged<ulong, byte>)resolver("glIsImageHandleResidentARB");
+        s_byName["glIsImageHandleResidentARB"] = (nint)IsImageHandleResidentARB;
         if (IsImageHandleResidentARB is null) { missingCount++; missing?.Add("glIsImageHandleResidentARB"); }
         IsImageHandleResidentNV = (delegate* unmanaged<ulong, byte>)resolver("glIsImageHandleResidentNV");
+        s_byName["glIsImageHandleResidentNV"] = (nint)IsImageHandleResidentNV;
         if (IsImageHandleResidentNV is null) { missingCount++; missing?.Add("glIsImageHandleResidentNV"); }
         IsMemoryObjectEXT = (delegate* unmanaged<uint, byte>)resolver("glIsMemoryObjectEXT");
+        s_byName["glIsMemoryObjectEXT"] = (nint)IsMemoryObjectEXT;
         if (IsMemoryObjectEXT is null) { missingCount++; missing?.Add("glIsMemoryObjectEXT"); }
         IsNameAMD = (delegate* unmanaged<uint, uint, byte>)resolver("glIsNameAMD");
+        s_byName["glIsNameAMD"] = (nint)IsNameAMD;
         if (IsNameAMD is null) { missingCount++; missing?.Add("glIsNameAMD"); }
         IsNamedBufferResidentNV = (delegate* unmanaged<uint, byte>)resolver("glIsNamedBufferResidentNV");
+        s_byName["glIsNamedBufferResidentNV"] = (nint)IsNamedBufferResidentNV;
         if (IsNamedBufferResidentNV is null) { missingCount++; missing?.Add("glIsNamedBufferResidentNV"); }
         IsNamedStringARB = (delegate* unmanaged<int, byte*, byte>)resolver("glIsNamedStringARB");
+        s_byName["glIsNamedStringARB"] = (nint)IsNamedStringARB;
         if (IsNamedStringARB is null) { missingCount++; missing?.Add("glIsNamedStringARB"); }
         IsObjectBufferATI = (delegate* unmanaged<uint, byte>)resolver("glIsObjectBufferATI");
+        s_byName["glIsObjectBufferATI"] = (nint)IsObjectBufferATI;
         if (IsObjectBufferATI is null) { missingCount++; missing?.Add("glIsObjectBufferATI"); }
         IsOcclusionQueryNV = (delegate* unmanaged<uint, byte>)resolver("glIsOcclusionQueryNV");
+        s_byName["glIsOcclusionQueryNV"] = (nint)IsOcclusionQueryNV;
         if (IsOcclusionQueryNV is null) { missingCount++; missing?.Add("glIsOcclusionQueryNV"); }
         IsPathNV = (delegate* unmanaged<uint, byte>)resolver("glIsPathNV");
+        s_byName["glIsPathNV"] = (nint)IsPathNV;
         if (IsPathNV is null) { missingCount++; missing?.Add("glIsPathNV"); }
         IsPointInFillPathNV = (delegate* unmanaged<uint, uint, float, float, byte>)resolver("glIsPointInFillPathNV");
+        s_byName["glIsPointInFillPathNV"] = (nint)IsPointInFillPathNV;
         if (IsPointInFillPathNV is null) { missingCount++; missing?.Add("glIsPointInFillPathNV"); }
         IsPointInStrokePathNV = (delegate* unmanaged<uint, float, float, byte>)resolver("glIsPointInStrokePathNV");
+        s_byName["glIsPointInStrokePathNV"] = (nint)IsPointInStrokePathNV;
         if (IsPointInStrokePathNV is null) { missingCount++; missing?.Add("glIsPointInStrokePathNV"); }
         IsProgram = (delegate* unmanaged<uint, byte>)resolver("glIsProgram");
+        s_byName["glIsProgram"] = (nint)IsProgram;
         if (IsProgram is null) { missingCount++; missing?.Add("glIsProgram"); }
         IsProgramARB = (delegate* unmanaged<uint, byte>)resolver("glIsProgramARB");
+        s_byName["glIsProgramARB"] = (nint)IsProgramARB;
         if (IsProgramARB is null) { missingCount++; missing?.Add("glIsProgramARB"); }
         IsProgramNV = (delegate* unmanaged<uint, byte>)resolver("glIsProgramNV");
+        s_byName["glIsProgramNV"] = (nint)IsProgramNV;
         if (IsProgramNV is null) { missingCount++; missing?.Add("glIsProgramNV"); }
         IsProgramPipeline = (delegate* unmanaged<uint, byte>)resolver("glIsProgramPipeline");
+        s_byName["glIsProgramPipeline"] = (nint)IsProgramPipeline;
         if (IsProgramPipeline is null) { missingCount++; missing?.Add("glIsProgramPipeline"); }
         IsProgramPipelineEXT = (delegate* unmanaged<uint, byte>)resolver("glIsProgramPipelineEXT");
+        s_byName["glIsProgramPipelineEXT"] = (nint)IsProgramPipelineEXT;
         if (IsProgramPipelineEXT is null) { missingCount++; missing?.Add("glIsProgramPipelineEXT"); }
         IsQuery = (delegate* unmanaged<uint, byte>)resolver("glIsQuery");
+        s_byName["glIsQuery"] = (nint)IsQuery;
         if (IsQuery is null) { missingCount++; missing?.Add("glIsQuery"); }
         IsQueryARB = (delegate* unmanaged<uint, byte>)resolver("glIsQueryARB");
+        s_byName["glIsQueryARB"] = (nint)IsQueryARB;
         if (IsQueryARB is null) { missingCount++; missing?.Add("glIsQueryARB"); }
         IsRenderbuffer = (delegate* unmanaged<uint, byte>)resolver("glIsRenderbuffer");
+        s_byName["glIsRenderbuffer"] = (nint)IsRenderbuffer;
         if (IsRenderbuffer is null) { missingCount++; missing?.Add("glIsRenderbuffer"); }
         IsRenderbufferEXT = (delegate* unmanaged<uint, byte>)resolver("glIsRenderbufferEXT");
+        s_byName["glIsRenderbufferEXT"] = (nint)IsRenderbufferEXT;
         if (IsRenderbufferEXT is null) { missingCount++; missing?.Add("glIsRenderbufferEXT"); }
         IsSampler = (delegate* unmanaged<uint, byte>)resolver("glIsSampler");
+        s_byName["glIsSampler"] = (nint)IsSampler;
         if (IsSampler is null) { missingCount++; missing?.Add("glIsSampler"); }
         IsSemaphoreEXT = (delegate* unmanaged<uint, byte>)resolver("glIsSemaphoreEXT");
+        s_byName["glIsSemaphoreEXT"] = (nint)IsSemaphoreEXT;
         if (IsSemaphoreEXT is null) { missingCount++; missing?.Add("glIsSemaphoreEXT"); }
         IsShader = (delegate* unmanaged<uint, byte>)resolver("glIsShader");
+        s_byName["glIsShader"] = (nint)IsShader;
         if (IsShader is null) { missingCount++; missing?.Add("glIsShader"); }
         IsStateNV = (delegate* unmanaged<uint, byte>)resolver("glIsStateNV");
+        s_byName["glIsStateNV"] = (nint)IsStateNV;
         if (IsStateNV is null) { missingCount++; missing?.Add("glIsStateNV"); }
         IsSync = (delegate* unmanaged<nint, byte>)resolver("glIsSync");
+        s_byName["glIsSync"] = (nint)IsSync;
         if (IsSync is null) { missingCount++; missing?.Add("glIsSync"); }
         IsTexture = (delegate* unmanaged<uint, byte>)resolver("glIsTexture");
+        s_byName["glIsTexture"] = (nint)IsTexture;
         if (IsTexture is null) { missingCount++; missing?.Add("glIsTexture"); }
         IsTextureEXT = (delegate* unmanaged<uint, byte>)resolver("glIsTextureEXT");
+        s_byName["glIsTextureEXT"] = (nint)IsTextureEXT;
         if (IsTextureEXT is null) { missingCount++; missing?.Add("glIsTextureEXT"); }
         IsTextureHandleResidentARB = (delegate* unmanaged<ulong, byte>)resolver("glIsTextureHandleResidentARB");
+        s_byName["glIsTextureHandleResidentARB"] = (nint)IsTextureHandleResidentARB;
         if (IsTextureHandleResidentARB is null) { missingCount++; missing?.Add("glIsTextureHandleResidentARB"); }
         IsTextureHandleResidentNV = (delegate* unmanaged<ulong, byte>)resolver("glIsTextureHandleResidentNV");
+        s_byName["glIsTextureHandleResidentNV"] = (nint)IsTextureHandleResidentNV;
         if (IsTextureHandleResidentNV is null) { missingCount++; missing?.Add("glIsTextureHandleResidentNV"); }
         IsTransformFeedback = (delegate* unmanaged<uint, byte>)resolver("glIsTransformFeedback");
+        s_byName["glIsTransformFeedback"] = (nint)IsTransformFeedback;
         if (IsTransformFeedback is null) { missingCount++; missing?.Add("glIsTransformFeedback"); }
         IsTransformFeedbackNV = (delegate* unmanaged<uint, byte>)resolver("glIsTransformFeedbackNV");
+        s_byName["glIsTransformFeedbackNV"] = (nint)IsTransformFeedbackNV;
         if (IsTransformFeedbackNV is null) { missingCount++; missing?.Add("glIsTransformFeedbackNV"); }
         IsVariantEnabledEXT = (delegate* unmanaged<uint, uint, byte>)resolver("glIsVariantEnabledEXT");
+        s_byName["glIsVariantEnabledEXT"] = (nint)IsVariantEnabledEXT;
         if (IsVariantEnabledEXT is null) { missingCount++; missing?.Add("glIsVariantEnabledEXT"); }
         IsVertexArray = (delegate* unmanaged<uint, byte>)resolver("glIsVertexArray");
+        s_byName["glIsVertexArray"] = (nint)IsVertexArray;
         if (IsVertexArray is null) { missingCount++; missing?.Add("glIsVertexArray"); }
         IsVertexArrayAPPLE = (delegate* unmanaged<uint, byte>)resolver("glIsVertexArrayAPPLE");
+        s_byName["glIsVertexArrayAPPLE"] = (nint)IsVertexArrayAPPLE;
         if (IsVertexArrayAPPLE is null) { missingCount++; missing?.Add("glIsVertexArrayAPPLE"); }
         IsVertexAttribEnabledAPPLE = (delegate* unmanaged<uint, uint, byte>)resolver("glIsVertexAttribEnabledAPPLE");
+        s_byName["glIsVertexAttribEnabledAPPLE"] = (nint)IsVertexAttribEnabledAPPLE;
         if (IsVertexAttribEnabledAPPLE is null) { missingCount++; missing?.Add("glIsVertexAttribEnabledAPPLE"); }
         LGPUCopyImageSubDataNVX = (delegate* unmanaged<uint, uint, uint, uint, int, int, int, int, uint, uint, int, int, int, int, int, int, int, void>)resolver("glLGPUCopyImageSubDataNVX");
+        s_byName["glLGPUCopyImageSubDataNVX"] = (nint)LGPUCopyImageSubDataNVX;
         if (LGPUCopyImageSubDataNVX is null) { missingCount++; missing?.Add("glLGPUCopyImageSubDataNVX"); }
         LGPUInterlockNVX = (delegate* unmanaged<void>)resolver("glLGPUInterlockNVX");
+        s_byName["glLGPUInterlockNVX"] = (nint)LGPUInterlockNVX;
         if (LGPUInterlockNVX is null) { missingCount++; missing?.Add("glLGPUInterlockNVX"); }
         LGPUNamedBufferSubDataNVX = (delegate* unmanaged<uint, uint, nint, nint, void*, void>)resolver("glLGPUNamedBufferSubDataNVX");
+        s_byName["glLGPUNamedBufferSubDataNVX"] = (nint)LGPUNamedBufferSubDataNVX;
         if (LGPUNamedBufferSubDataNVX is null) { missingCount++; missing?.Add("glLGPUNamedBufferSubDataNVX"); }
         LabelObjectEXT = (delegate* unmanaged<uint, uint, int, byte*, void>)resolver("glLabelObjectEXT");
+        s_byName["glLabelObjectEXT"] = (nint)LabelObjectEXT;
         if (LabelObjectEXT is null) { missingCount++; missing?.Add("glLabelObjectEXT"); }
         LightEnviSGIX = (delegate* unmanaged<uint, int, void>)resolver("glLightEnviSGIX");
+        s_byName["glLightEnviSGIX"] = (nint)LightEnviSGIX;
         if (LightEnviSGIX is null) { missingCount++; missing?.Add("glLightEnviSGIX"); }
         LightModelxOES = (delegate* unmanaged<uint, int, void>)resolver("glLightModelxOES");
+        s_byName["glLightModelxOES"] = (nint)LightModelxOES;
         if (LightModelxOES is null) { missingCount++; missing?.Add("glLightModelxOES"); }
         LightModelxvOES = (delegate* unmanaged<uint, int*, void>)resolver("glLightModelxvOES");
+        s_byName["glLightModelxvOES"] = (nint)LightModelxvOES;
         if (LightModelxvOES is null) { missingCount++; missing?.Add("glLightModelxvOES"); }
         LightxOES = (delegate* unmanaged<uint, uint, int, void>)resolver("glLightxOES");
+        s_byName["glLightxOES"] = (nint)LightxOES;
         if (LightxOES is null) { missingCount++; missing?.Add("glLightxOES"); }
         LightxvOES = (delegate* unmanaged<uint, uint, int*, void>)resolver("glLightxvOES");
+        s_byName["glLightxvOES"] = (nint)LightxvOES;
         if (LightxvOES is null) { missingCount++; missing?.Add("glLightxvOES"); }
         LineWidth = (delegate* unmanaged<float, void>)resolver("glLineWidth");
+        s_byName["glLineWidth"] = (nint)LineWidth;
         if (LineWidth is null) { missingCount++; missing?.Add("glLineWidth"); }
         LineWidthxOES = (delegate* unmanaged<int, void>)resolver("glLineWidthxOES");
+        s_byName["glLineWidthxOES"] = (nint)LineWidthxOES;
         if (LineWidthxOES is null) { missingCount++; missing?.Add("glLineWidthxOES"); }
         LinkProgram = (delegate* unmanaged<uint, void>)resolver("glLinkProgram");
+        s_byName["glLinkProgram"] = (nint)LinkProgram;
         if (LinkProgram is null) { missingCount++; missing?.Add("glLinkProgram"); }
         LinkProgramARB = (delegate* unmanaged<uint, void>)resolver("glLinkProgramARB");
+        s_byName["glLinkProgramARB"] = (nint)LinkProgramARB;
         if (LinkProgramARB is null) { missingCount++; missing?.Add("glLinkProgramARB"); }
         ListDrawCommandsStatesClientNV = (delegate* unmanaged<uint, uint, void**, int*, uint*, uint*, uint, void>)resolver("glListDrawCommandsStatesClientNV");
+        s_byName["glListDrawCommandsStatesClientNV"] = (nint)ListDrawCommandsStatesClientNV;
         if (ListDrawCommandsStatesClientNV is null) { missingCount++; missing?.Add("glListDrawCommandsStatesClientNV"); }
         ListParameterfSGIX = (delegate* unmanaged<uint, uint, float, void>)resolver("glListParameterfSGIX");
+        s_byName["glListParameterfSGIX"] = (nint)ListParameterfSGIX;
         if (ListParameterfSGIX is null) { missingCount++; missing?.Add("glListParameterfSGIX"); }
         ListParameterfvSGIX = (delegate* unmanaged<uint, uint, float*, void>)resolver("glListParameterfvSGIX");
+        s_byName["glListParameterfvSGIX"] = (nint)ListParameterfvSGIX;
         if (ListParameterfvSGIX is null) { missingCount++; missing?.Add("glListParameterfvSGIX"); }
         ListParameteriSGIX = (delegate* unmanaged<uint, uint, int, void>)resolver("glListParameteriSGIX");
+        s_byName["glListParameteriSGIX"] = (nint)ListParameteriSGIX;
         if (ListParameteriSGIX is null) { missingCount++; missing?.Add("glListParameteriSGIX"); }
         ListParameterivSGIX = (delegate* unmanaged<uint, uint, int*, void>)resolver("glListParameterivSGIX");
+        s_byName["glListParameterivSGIX"] = (nint)ListParameterivSGIX;
         if (ListParameterivSGIX is null) { missingCount++; missing?.Add("glListParameterivSGIX"); }
         LoadIdentityDeformationMapSGIX = (delegate* unmanaged<uint, void>)resolver("glLoadIdentityDeformationMapSGIX");
+        s_byName["glLoadIdentityDeformationMapSGIX"] = (nint)LoadIdentityDeformationMapSGIX;
         if (LoadIdentityDeformationMapSGIX is null) { missingCount++; missing?.Add("glLoadIdentityDeformationMapSGIX"); }
         LoadMatrixxOES = (delegate* unmanaged<int*, void>)resolver("glLoadMatrixxOES");
+        s_byName["glLoadMatrixxOES"] = (nint)LoadMatrixxOES;
         if (LoadMatrixxOES is null) { missingCount++; missing?.Add("glLoadMatrixxOES"); }
         LoadProgramNV = (delegate* unmanaged<uint, uint, int, byte*, void>)resolver("glLoadProgramNV");
+        s_byName["glLoadProgramNV"] = (nint)LoadProgramNV;
         if (LoadProgramNV is null) { missingCount++; missing?.Add("glLoadProgramNV"); }
         LoadTransposeMatrixdARB = (delegate* unmanaged<double*, void>)resolver("glLoadTransposeMatrixdARB");
+        s_byName["glLoadTransposeMatrixdARB"] = (nint)LoadTransposeMatrixdARB;
         if (LoadTransposeMatrixdARB is null) { missingCount++; missing?.Add("glLoadTransposeMatrixdARB"); }
         LoadTransposeMatrixfARB = (delegate* unmanaged<float*, void>)resolver("glLoadTransposeMatrixfARB");
+        s_byName["glLoadTransposeMatrixfARB"] = (nint)LoadTransposeMatrixfARB;
         if (LoadTransposeMatrixfARB is null) { missingCount++; missing?.Add("glLoadTransposeMatrixfARB"); }
         LoadTransposeMatrixxOES = (delegate* unmanaged<int*, void>)resolver("glLoadTransposeMatrixxOES");
+        s_byName["glLoadTransposeMatrixxOES"] = (nint)LoadTransposeMatrixxOES;
         if (LoadTransposeMatrixxOES is null) { missingCount++; missing?.Add("glLoadTransposeMatrixxOES"); }
         LockArraysEXT = (delegate* unmanaged<int, int, void>)resolver("glLockArraysEXT");
+        s_byName["glLockArraysEXT"] = (nint)LockArraysEXT;
         if (LockArraysEXT is null) { missingCount++; missing?.Add("glLockArraysEXT"); }
         LogicOp = (delegate* unmanaged<uint, void>)resolver("glLogicOp");
+        s_byName["glLogicOp"] = (nint)LogicOp;
         if (LogicOp is null) { missingCount++; missing?.Add("glLogicOp"); }
         MakeBufferNonResidentNV = (delegate* unmanaged<uint, void>)resolver("glMakeBufferNonResidentNV");
+        s_byName["glMakeBufferNonResidentNV"] = (nint)MakeBufferNonResidentNV;
         if (MakeBufferNonResidentNV is null) { missingCount++; missing?.Add("glMakeBufferNonResidentNV"); }
         MakeBufferResidentNV = (delegate* unmanaged<uint, uint, void>)resolver("glMakeBufferResidentNV");
+        s_byName["glMakeBufferResidentNV"] = (nint)MakeBufferResidentNV;
         if (MakeBufferResidentNV is null) { missingCount++; missing?.Add("glMakeBufferResidentNV"); }
         MakeImageHandleNonResidentARB = (delegate* unmanaged<ulong, void>)resolver("glMakeImageHandleNonResidentARB");
+        s_byName["glMakeImageHandleNonResidentARB"] = (nint)MakeImageHandleNonResidentARB;
         if (MakeImageHandleNonResidentARB is null) { missingCount++; missing?.Add("glMakeImageHandleNonResidentARB"); }
         MakeImageHandleNonResidentNV = (delegate* unmanaged<ulong, void>)resolver("glMakeImageHandleNonResidentNV");
+        s_byName["glMakeImageHandleNonResidentNV"] = (nint)MakeImageHandleNonResidentNV;
         if (MakeImageHandleNonResidentNV is null) { missingCount++; missing?.Add("glMakeImageHandleNonResidentNV"); }
         MakeImageHandleResidentARB = (delegate* unmanaged<ulong, uint, void>)resolver("glMakeImageHandleResidentARB");
+        s_byName["glMakeImageHandleResidentARB"] = (nint)MakeImageHandleResidentARB;
         if (MakeImageHandleResidentARB is null) { missingCount++; missing?.Add("glMakeImageHandleResidentARB"); }
         MakeImageHandleResidentNV = (delegate* unmanaged<ulong, uint, void>)resolver("glMakeImageHandleResidentNV");
+        s_byName["glMakeImageHandleResidentNV"] = (nint)MakeImageHandleResidentNV;
         if (MakeImageHandleResidentNV is null) { missingCount++; missing?.Add("glMakeImageHandleResidentNV"); }
         MakeNamedBufferNonResidentNV = (delegate* unmanaged<uint, void>)resolver("glMakeNamedBufferNonResidentNV");
+        s_byName["glMakeNamedBufferNonResidentNV"] = (nint)MakeNamedBufferNonResidentNV;
         if (MakeNamedBufferNonResidentNV is null) { missingCount++; missing?.Add("glMakeNamedBufferNonResidentNV"); }
         MakeNamedBufferResidentNV = (delegate* unmanaged<uint, uint, void>)resolver("glMakeNamedBufferResidentNV");
+        s_byName["glMakeNamedBufferResidentNV"] = (nint)MakeNamedBufferResidentNV;
         if (MakeNamedBufferResidentNV is null) { missingCount++; missing?.Add("glMakeNamedBufferResidentNV"); }
         MakeTextureHandleNonResidentARB = (delegate* unmanaged<ulong, void>)resolver("glMakeTextureHandleNonResidentARB");
+        s_byName["glMakeTextureHandleNonResidentARB"] = (nint)MakeTextureHandleNonResidentARB;
         if (MakeTextureHandleNonResidentARB is null) { missingCount++; missing?.Add("glMakeTextureHandleNonResidentARB"); }
         MakeTextureHandleNonResidentNV = (delegate* unmanaged<ulong, void>)resolver("glMakeTextureHandleNonResidentNV");
+        s_byName["glMakeTextureHandleNonResidentNV"] = (nint)MakeTextureHandleNonResidentNV;
         if (MakeTextureHandleNonResidentNV is null) { missingCount++; missing?.Add("glMakeTextureHandleNonResidentNV"); }
         MakeTextureHandleResidentARB = (delegate* unmanaged<ulong, void>)resolver("glMakeTextureHandleResidentARB");
+        s_byName["glMakeTextureHandleResidentARB"] = (nint)MakeTextureHandleResidentARB;
         if (MakeTextureHandleResidentARB is null) { missingCount++; missing?.Add("glMakeTextureHandleResidentARB"); }
         MakeTextureHandleResidentNV = (delegate* unmanaged<ulong, void>)resolver("glMakeTextureHandleResidentNV");
+        s_byName["glMakeTextureHandleResidentNV"] = (nint)MakeTextureHandleResidentNV;
         if (MakeTextureHandleResidentNV is null) { missingCount++; missing?.Add("glMakeTextureHandleResidentNV"); }
         Map1xOES = (delegate* unmanaged<uint, int, int, int, int, int, void>)resolver("glMap1xOES");
+        s_byName["glMap1xOES"] = (nint)Map1xOES;
         if (Map1xOES is null) { missingCount++; missing?.Add("glMap1xOES"); }
         Map2xOES = (delegate* unmanaged<uint, int, int, int, int, int, int, int, int, int, void>)resolver("glMap2xOES");
+        s_byName["glMap2xOES"] = (nint)Map2xOES;
         if (Map2xOES is null) { missingCount++; missing?.Add("glMap2xOES"); }
         MapBuffer = (delegate* unmanaged<uint, uint, void*>)resolver("glMapBuffer");
+        s_byName["glMapBuffer"] = (nint)MapBuffer;
         if (MapBuffer is null) { missingCount++; missing?.Add("glMapBuffer"); }
         MapBufferARB = (delegate* unmanaged<uint, uint, void*>)resolver("glMapBufferARB");
+        s_byName["glMapBufferARB"] = (nint)MapBufferARB;
         if (MapBufferARB is null) { missingCount++; missing?.Add("glMapBufferARB"); }
         MapBufferRange = (delegate* unmanaged<uint, nint, nint, uint, void*>)resolver("glMapBufferRange");
+        s_byName["glMapBufferRange"] = (nint)MapBufferRange;
         if (MapBufferRange is null) { missingCount++; missing?.Add("glMapBufferRange"); }
         MapControlPointsNV = (delegate* unmanaged<uint, uint, uint, int, int, int, int, byte, void*, void>)resolver("glMapControlPointsNV");
+        s_byName["glMapControlPointsNV"] = (nint)MapControlPointsNV;
         if (MapControlPointsNV is null) { missingCount++; missing?.Add("glMapControlPointsNV"); }
         MapGrid1xOES = (delegate* unmanaged<int, int, int, void>)resolver("glMapGrid1xOES");
+        s_byName["glMapGrid1xOES"] = (nint)MapGrid1xOES;
         if (MapGrid1xOES is null) { missingCount++; missing?.Add("glMapGrid1xOES"); }
         MapGrid2xOES = (delegate* unmanaged<int, int, int, int, int, void>)resolver("glMapGrid2xOES");
+        s_byName["glMapGrid2xOES"] = (nint)MapGrid2xOES;
         if (MapGrid2xOES is null) { missingCount++; missing?.Add("glMapGrid2xOES"); }
         MapNamedBuffer = (delegate* unmanaged<uint, uint, void*>)resolver("glMapNamedBuffer");
+        s_byName["glMapNamedBuffer"] = (nint)MapNamedBuffer;
         if (MapNamedBuffer is null) { missingCount++; missing?.Add("glMapNamedBuffer"); }
         MapNamedBufferEXT = (delegate* unmanaged<uint, uint, void*>)resolver("glMapNamedBufferEXT");
+        s_byName["glMapNamedBufferEXT"] = (nint)MapNamedBufferEXT;
         if (MapNamedBufferEXT is null) { missingCount++; missing?.Add("glMapNamedBufferEXT"); }
         MapNamedBufferRange = (delegate* unmanaged<uint, nint, nint, uint, void*>)resolver("glMapNamedBufferRange");
+        s_byName["glMapNamedBufferRange"] = (nint)MapNamedBufferRange;
         if (MapNamedBufferRange is null) { missingCount++; missing?.Add("glMapNamedBufferRange"); }
         MapNamedBufferRangeEXT = (delegate* unmanaged<uint, nint, nint, uint, void*>)resolver("glMapNamedBufferRangeEXT");
+        s_byName["glMapNamedBufferRangeEXT"] = (nint)MapNamedBufferRangeEXT;
         if (MapNamedBufferRangeEXT is null) { missingCount++; missing?.Add("glMapNamedBufferRangeEXT"); }
         MapObjectBufferATI = (delegate* unmanaged<uint, void*>)resolver("glMapObjectBufferATI");
+        s_byName["glMapObjectBufferATI"] = (nint)MapObjectBufferATI;
         if (MapObjectBufferATI is null) { missingCount++; missing?.Add("glMapObjectBufferATI"); }
         MapParameterfvNV = (delegate* unmanaged<uint, uint, float*, void>)resolver("glMapParameterfvNV");
+        s_byName["glMapParameterfvNV"] = (nint)MapParameterfvNV;
         if (MapParameterfvNV is null) { missingCount++; missing?.Add("glMapParameterfvNV"); }
         MapParameterivNV = (delegate* unmanaged<uint, uint, int*, void>)resolver("glMapParameterivNV");
+        s_byName["glMapParameterivNV"] = (nint)MapParameterivNV;
         if (MapParameterivNV is null) { missingCount++; missing?.Add("glMapParameterivNV"); }
         MapTexture2DINTEL = (delegate* unmanaged<uint, int, uint, int*, uint*, void*>)resolver("glMapTexture2DINTEL");
+        s_byName["glMapTexture2DINTEL"] = (nint)MapTexture2DINTEL;
         if (MapTexture2DINTEL is null) { missingCount++; missing?.Add("glMapTexture2DINTEL"); }
         MapVertexAttrib1dAPPLE = (delegate* unmanaged<uint, uint, double, double, int, int, double*, void>)resolver("glMapVertexAttrib1dAPPLE");
+        s_byName["glMapVertexAttrib1dAPPLE"] = (nint)MapVertexAttrib1dAPPLE;
         if (MapVertexAttrib1dAPPLE is null) { missingCount++; missing?.Add("glMapVertexAttrib1dAPPLE"); }
         MapVertexAttrib1fAPPLE = (delegate* unmanaged<uint, uint, float, float, int, int, float*, void>)resolver("glMapVertexAttrib1fAPPLE");
+        s_byName["glMapVertexAttrib1fAPPLE"] = (nint)MapVertexAttrib1fAPPLE;
         if (MapVertexAttrib1fAPPLE is null) { missingCount++; missing?.Add("glMapVertexAttrib1fAPPLE"); }
         MapVertexAttrib2dAPPLE = (delegate* unmanaged<uint, uint, double, double, int, int, double, double, int, int, double*, void>)resolver("glMapVertexAttrib2dAPPLE");
+        s_byName["glMapVertexAttrib2dAPPLE"] = (nint)MapVertexAttrib2dAPPLE;
         if (MapVertexAttrib2dAPPLE is null) { missingCount++; missing?.Add("glMapVertexAttrib2dAPPLE"); }
         MapVertexAttrib2fAPPLE = (delegate* unmanaged<uint, uint, float, float, int, int, float, float, int, int, float*, void>)resolver("glMapVertexAttrib2fAPPLE");
+        s_byName["glMapVertexAttrib2fAPPLE"] = (nint)MapVertexAttrib2fAPPLE;
         if (MapVertexAttrib2fAPPLE is null) { missingCount++; missing?.Add("glMapVertexAttrib2fAPPLE"); }
         MaterialxOES = (delegate* unmanaged<uint, uint, int, void>)resolver("glMaterialxOES");
+        s_byName["glMaterialxOES"] = (nint)MaterialxOES;
         if (MaterialxOES is null) { missingCount++; missing?.Add("glMaterialxOES"); }
         MaterialxvOES = (delegate* unmanaged<uint, uint, int*, void>)resolver("glMaterialxvOES");
+        s_byName["glMaterialxvOES"] = (nint)MaterialxvOES;
         if (MaterialxvOES is null) { missingCount++; missing?.Add("glMaterialxvOES"); }
         MatrixFrustumEXT = (delegate* unmanaged<uint, double, double, double, double, double, double, void>)resolver("glMatrixFrustumEXT");
+        s_byName["glMatrixFrustumEXT"] = (nint)MatrixFrustumEXT;
         if (MatrixFrustumEXT is null) { missingCount++; missing?.Add("glMatrixFrustumEXT"); }
         MatrixIndexPointerARB = (delegate* unmanaged<int, uint, int, void*, void>)resolver("glMatrixIndexPointerARB");
+        s_byName["glMatrixIndexPointerARB"] = (nint)MatrixIndexPointerARB;
         if (MatrixIndexPointerARB is null) { missingCount++; missing?.Add("glMatrixIndexPointerARB"); }
         MatrixIndexubvARB = (delegate* unmanaged<int, byte*, void>)resolver("glMatrixIndexubvARB");
+        s_byName["glMatrixIndexubvARB"] = (nint)MatrixIndexubvARB;
         if (MatrixIndexubvARB is null) { missingCount++; missing?.Add("glMatrixIndexubvARB"); }
         MatrixIndexuivARB = (delegate* unmanaged<int, uint*, void>)resolver("glMatrixIndexuivARB");
+        s_byName["glMatrixIndexuivARB"] = (nint)MatrixIndexuivARB;
         if (MatrixIndexuivARB is null) { missingCount++; missing?.Add("glMatrixIndexuivARB"); }
         MatrixIndexusvARB = (delegate* unmanaged<int, ushort*, void>)resolver("glMatrixIndexusvARB");
+        s_byName["glMatrixIndexusvARB"] = (nint)MatrixIndexusvARB;
         if (MatrixIndexusvARB is null) { missingCount++; missing?.Add("glMatrixIndexusvARB"); }
         MatrixLoad3x2fNV = (delegate* unmanaged<uint, float*, void>)resolver("glMatrixLoad3x2fNV");
+        s_byName["glMatrixLoad3x2fNV"] = (nint)MatrixLoad3x2fNV;
         if (MatrixLoad3x2fNV is null) { missingCount++; missing?.Add("glMatrixLoad3x2fNV"); }
         MatrixLoad3x3fNV = (delegate* unmanaged<uint, float*, void>)resolver("glMatrixLoad3x3fNV");
+        s_byName["glMatrixLoad3x3fNV"] = (nint)MatrixLoad3x3fNV;
         if (MatrixLoad3x3fNV is null) { missingCount++; missing?.Add("glMatrixLoad3x3fNV"); }
         MatrixLoadIdentityEXT = (delegate* unmanaged<uint, void>)resolver("glMatrixLoadIdentityEXT");
+        s_byName["glMatrixLoadIdentityEXT"] = (nint)MatrixLoadIdentityEXT;
         if (MatrixLoadIdentityEXT is null) { missingCount++; missing?.Add("glMatrixLoadIdentityEXT"); }
         MatrixLoadTranspose3x3fNV = (delegate* unmanaged<uint, float*, void>)resolver("glMatrixLoadTranspose3x3fNV");
+        s_byName["glMatrixLoadTranspose3x3fNV"] = (nint)MatrixLoadTranspose3x3fNV;
         if (MatrixLoadTranspose3x3fNV is null) { missingCount++; missing?.Add("glMatrixLoadTranspose3x3fNV"); }
         MatrixLoadTransposedEXT = (delegate* unmanaged<uint, double*, void>)resolver("glMatrixLoadTransposedEXT");
+        s_byName["glMatrixLoadTransposedEXT"] = (nint)MatrixLoadTransposedEXT;
         if (MatrixLoadTransposedEXT is null) { missingCount++; missing?.Add("glMatrixLoadTransposedEXT"); }
         MatrixLoadTransposefEXT = (delegate* unmanaged<uint, float*, void>)resolver("glMatrixLoadTransposefEXT");
+        s_byName["glMatrixLoadTransposefEXT"] = (nint)MatrixLoadTransposefEXT;
         if (MatrixLoadTransposefEXT is null) { missingCount++; missing?.Add("glMatrixLoadTransposefEXT"); }
         MatrixLoaddEXT = (delegate* unmanaged<uint, double*, void>)resolver("glMatrixLoaddEXT");
+        s_byName["glMatrixLoaddEXT"] = (nint)MatrixLoaddEXT;
         if (MatrixLoaddEXT is null) { missingCount++; missing?.Add("glMatrixLoaddEXT"); }
         MatrixLoadfEXT = (delegate* unmanaged<uint, float*, void>)resolver("glMatrixLoadfEXT");
+        s_byName["glMatrixLoadfEXT"] = (nint)MatrixLoadfEXT;
         if (MatrixLoadfEXT is null) { missingCount++; missing?.Add("glMatrixLoadfEXT"); }
         MatrixMult3x2fNV = (delegate* unmanaged<uint, float*, void>)resolver("glMatrixMult3x2fNV");
+        s_byName["glMatrixMult3x2fNV"] = (nint)MatrixMult3x2fNV;
         if (MatrixMult3x2fNV is null) { missingCount++; missing?.Add("glMatrixMult3x2fNV"); }
         MatrixMult3x3fNV = (delegate* unmanaged<uint, float*, void>)resolver("glMatrixMult3x3fNV");
+        s_byName["glMatrixMult3x3fNV"] = (nint)MatrixMult3x3fNV;
         if (MatrixMult3x3fNV is null) { missingCount++; missing?.Add("glMatrixMult3x3fNV"); }
         MatrixMultTranspose3x3fNV = (delegate* unmanaged<uint, float*, void>)resolver("glMatrixMultTranspose3x3fNV");
+        s_byName["glMatrixMultTranspose3x3fNV"] = (nint)MatrixMultTranspose3x3fNV;
         if (MatrixMultTranspose3x3fNV is null) { missingCount++; missing?.Add("glMatrixMultTranspose3x3fNV"); }
         MatrixMultTransposedEXT = (delegate* unmanaged<uint, double*, void>)resolver("glMatrixMultTransposedEXT");
+        s_byName["glMatrixMultTransposedEXT"] = (nint)MatrixMultTransposedEXT;
         if (MatrixMultTransposedEXT is null) { missingCount++; missing?.Add("glMatrixMultTransposedEXT"); }
         MatrixMultTransposefEXT = (delegate* unmanaged<uint, float*, void>)resolver("glMatrixMultTransposefEXT");
+        s_byName["glMatrixMultTransposefEXT"] = (nint)MatrixMultTransposefEXT;
         if (MatrixMultTransposefEXT is null) { missingCount++; missing?.Add("glMatrixMultTransposefEXT"); }
         MatrixMultdEXT = (delegate* unmanaged<uint, double*, void>)resolver("glMatrixMultdEXT");
+        s_byName["glMatrixMultdEXT"] = (nint)MatrixMultdEXT;
         if (MatrixMultdEXT is null) { missingCount++; missing?.Add("glMatrixMultdEXT"); }
         MatrixMultfEXT = (delegate* unmanaged<uint, float*, void>)resolver("glMatrixMultfEXT");
+        s_byName["glMatrixMultfEXT"] = (nint)MatrixMultfEXT;
         if (MatrixMultfEXT is null) { missingCount++; missing?.Add("glMatrixMultfEXT"); }
         MatrixOrthoEXT = (delegate* unmanaged<uint, double, double, double, double, double, double, void>)resolver("glMatrixOrthoEXT");
+        s_byName["glMatrixOrthoEXT"] = (nint)MatrixOrthoEXT;
         if (MatrixOrthoEXT is null) { missingCount++; missing?.Add("glMatrixOrthoEXT"); }
         MatrixPopEXT = (delegate* unmanaged<uint, void>)resolver("glMatrixPopEXT");
+        s_byName["glMatrixPopEXT"] = (nint)MatrixPopEXT;
         if (MatrixPopEXT is null) { missingCount++; missing?.Add("glMatrixPopEXT"); }
         MatrixPushEXT = (delegate* unmanaged<uint, void>)resolver("glMatrixPushEXT");
+        s_byName["glMatrixPushEXT"] = (nint)MatrixPushEXT;
         if (MatrixPushEXT is null) { missingCount++; missing?.Add("glMatrixPushEXT"); }
         MatrixRotatedEXT = (delegate* unmanaged<uint, double, double, double, double, void>)resolver("glMatrixRotatedEXT");
+        s_byName["glMatrixRotatedEXT"] = (nint)MatrixRotatedEXT;
         if (MatrixRotatedEXT is null) { missingCount++; missing?.Add("glMatrixRotatedEXT"); }
         MatrixRotatefEXT = (delegate* unmanaged<uint, float, float, float, float, void>)resolver("glMatrixRotatefEXT");
+        s_byName["glMatrixRotatefEXT"] = (nint)MatrixRotatefEXT;
         if (MatrixRotatefEXT is null) { missingCount++; missing?.Add("glMatrixRotatefEXT"); }
         MatrixScaledEXT = (delegate* unmanaged<uint, double, double, double, void>)resolver("glMatrixScaledEXT");
+        s_byName["glMatrixScaledEXT"] = (nint)MatrixScaledEXT;
         if (MatrixScaledEXT is null) { missingCount++; missing?.Add("glMatrixScaledEXT"); }
         MatrixScalefEXT = (delegate* unmanaged<uint, float, float, float, void>)resolver("glMatrixScalefEXT");
+        s_byName["glMatrixScalefEXT"] = (nint)MatrixScalefEXT;
         if (MatrixScalefEXT is null) { missingCount++; missing?.Add("glMatrixScalefEXT"); }
         MatrixTranslatedEXT = (delegate* unmanaged<uint, double, double, double, void>)resolver("glMatrixTranslatedEXT");
+        s_byName["glMatrixTranslatedEXT"] = (nint)MatrixTranslatedEXT;
         if (MatrixTranslatedEXT is null) { missingCount++; missing?.Add("glMatrixTranslatedEXT"); }
         MatrixTranslatefEXT = (delegate* unmanaged<uint, float, float, float, void>)resolver("glMatrixTranslatefEXT");
+        s_byName["glMatrixTranslatefEXT"] = (nint)MatrixTranslatefEXT;
         if (MatrixTranslatefEXT is null) { missingCount++; missing?.Add("glMatrixTranslatefEXT"); }
         MaxShaderCompilerThreadsARB = (delegate* unmanaged<uint, void>)resolver("glMaxShaderCompilerThreadsARB");
+        s_byName["glMaxShaderCompilerThreadsARB"] = (nint)MaxShaderCompilerThreadsARB;
         if (MaxShaderCompilerThreadsARB is null) { missingCount++; missing?.Add("glMaxShaderCompilerThreadsARB"); }
         MaxShaderCompilerThreadsKHR = (delegate* unmanaged<uint, void>)resolver("glMaxShaderCompilerThreadsKHR");
+        s_byName["glMaxShaderCompilerThreadsKHR"] = (nint)MaxShaderCompilerThreadsKHR;
         if (MaxShaderCompilerThreadsKHR is null) { missingCount++; missing?.Add("glMaxShaderCompilerThreadsKHR"); }
         MemoryBarrier = (delegate* unmanaged<uint, void>)resolver("glMemoryBarrier");
+        s_byName["glMemoryBarrier"] = (nint)MemoryBarrier;
         if (MemoryBarrier is null) { missingCount++; missing?.Add("glMemoryBarrier"); }
         MemoryBarrierByRegion = (delegate* unmanaged<uint, void>)resolver("glMemoryBarrierByRegion");
+        s_byName["glMemoryBarrierByRegion"] = (nint)MemoryBarrierByRegion;
         if (MemoryBarrierByRegion is null) { missingCount++; missing?.Add("glMemoryBarrierByRegion"); }
         MemoryBarrierEXT = (delegate* unmanaged<uint, void>)resolver("glMemoryBarrierEXT");
+        s_byName["glMemoryBarrierEXT"] = (nint)MemoryBarrierEXT;
         if (MemoryBarrierEXT is null) { missingCount++; missing?.Add("glMemoryBarrierEXT"); }
         MemoryObjectParameterivEXT = (delegate* unmanaged<uint, uint, int*, void>)resolver("glMemoryObjectParameterivEXT");
+        s_byName["glMemoryObjectParameterivEXT"] = (nint)MemoryObjectParameterivEXT;
         if (MemoryObjectParameterivEXT is null) { missingCount++; missing?.Add("glMemoryObjectParameterivEXT"); }
         MinSampleShading = (delegate* unmanaged<float, void>)resolver("glMinSampleShading");
+        s_byName["glMinSampleShading"] = (nint)MinSampleShading;
         if (MinSampleShading is null) { missingCount++; missing?.Add("glMinSampleShading"); }
         MinSampleShadingARB = (delegate* unmanaged<float, void>)resolver("glMinSampleShadingARB");
+        s_byName["glMinSampleShadingARB"] = (nint)MinSampleShadingARB;
         if (MinSampleShadingARB is null) { missingCount++; missing?.Add("glMinSampleShadingARB"); }
         Minmax = (delegate* unmanaged<uint, uint, byte, void>)resolver("glMinmax");
+        s_byName["glMinmax"] = (nint)Minmax;
         if (Minmax is null) { missingCount++; missing?.Add("glMinmax"); }
         MinmaxEXT = (delegate* unmanaged<uint, uint, byte, void>)resolver("glMinmaxEXT");
+        s_byName["glMinmaxEXT"] = (nint)MinmaxEXT;
         if (MinmaxEXT is null) { missingCount++; missing?.Add("glMinmaxEXT"); }
         MultMatrixxOES = (delegate* unmanaged<int*, void>)resolver("glMultMatrixxOES");
+        s_byName["glMultMatrixxOES"] = (nint)MultMatrixxOES;
         if (MultMatrixxOES is null) { missingCount++; missing?.Add("glMultMatrixxOES"); }
         MultTransposeMatrixdARB = (delegate* unmanaged<double*, void>)resolver("glMultTransposeMatrixdARB");
+        s_byName["glMultTransposeMatrixdARB"] = (nint)MultTransposeMatrixdARB;
         if (MultTransposeMatrixdARB is null) { missingCount++; missing?.Add("glMultTransposeMatrixdARB"); }
         MultTransposeMatrixfARB = (delegate* unmanaged<float*, void>)resolver("glMultTransposeMatrixfARB");
+        s_byName["glMultTransposeMatrixfARB"] = (nint)MultTransposeMatrixfARB;
         if (MultTransposeMatrixfARB is null) { missingCount++; missing?.Add("glMultTransposeMatrixfARB"); }
         MultTransposeMatrixxOES = (delegate* unmanaged<int*, void>)resolver("glMultTransposeMatrixxOES");
+        s_byName["glMultTransposeMatrixxOES"] = (nint)MultTransposeMatrixxOES;
         if (MultTransposeMatrixxOES is null) { missingCount++; missing?.Add("glMultTransposeMatrixxOES"); }
         MultiDrawArrays = (delegate* unmanaged<uint, int*, int*, int, void>)resolver("glMultiDrawArrays");
+        s_byName["glMultiDrawArrays"] = (nint)MultiDrawArrays;
         if (MultiDrawArrays is null) { missingCount++; missing?.Add("glMultiDrawArrays"); }
         MultiDrawArraysEXT = (delegate* unmanaged<uint, int*, int*, int, void>)resolver("glMultiDrawArraysEXT");
+        s_byName["glMultiDrawArraysEXT"] = (nint)MultiDrawArraysEXT;
         if (MultiDrawArraysEXT is null) { missingCount++; missing?.Add("glMultiDrawArraysEXT"); }
         MultiDrawArraysIndirect = (delegate* unmanaged<uint, void*, int, int, void>)resolver("glMultiDrawArraysIndirect");
+        s_byName["glMultiDrawArraysIndirect"] = (nint)MultiDrawArraysIndirect;
         if (MultiDrawArraysIndirect is null) { missingCount++; missing?.Add("glMultiDrawArraysIndirect"); }
         MultiDrawArraysIndirectAMD = (delegate* unmanaged<uint, void*, int, int, void>)resolver("glMultiDrawArraysIndirectAMD");
+        s_byName["glMultiDrawArraysIndirectAMD"] = (nint)MultiDrawArraysIndirectAMD;
         if (MultiDrawArraysIndirectAMD is null) { missingCount++; missing?.Add("glMultiDrawArraysIndirectAMD"); }
         MultiDrawArraysIndirectBindlessCountNV = (delegate* unmanaged<uint, void*, int, int, int, int, void>)resolver("glMultiDrawArraysIndirectBindlessCountNV");
+        s_byName["glMultiDrawArraysIndirectBindlessCountNV"] = (nint)MultiDrawArraysIndirectBindlessCountNV;
         if (MultiDrawArraysIndirectBindlessCountNV is null) { missingCount++; missing?.Add("glMultiDrawArraysIndirectBindlessCountNV"); }
         MultiDrawArraysIndirectBindlessNV = (delegate* unmanaged<uint, void*, int, int, int, void>)resolver("glMultiDrawArraysIndirectBindlessNV");
+        s_byName["glMultiDrawArraysIndirectBindlessNV"] = (nint)MultiDrawArraysIndirectBindlessNV;
         if (MultiDrawArraysIndirectBindlessNV is null) { missingCount++; missing?.Add("glMultiDrawArraysIndirectBindlessNV"); }
         MultiDrawArraysIndirectCount = (delegate* unmanaged<uint, void*, nint, int, int, void>)resolver("glMultiDrawArraysIndirectCount");
+        s_byName["glMultiDrawArraysIndirectCount"] = (nint)MultiDrawArraysIndirectCount;
         if (MultiDrawArraysIndirectCount is null) { missingCount++; missing?.Add("glMultiDrawArraysIndirectCount"); }
         MultiDrawArraysIndirectCountARB = (delegate* unmanaged<uint, void*, nint, int, int, void>)resolver("glMultiDrawArraysIndirectCountARB");
+        s_byName["glMultiDrawArraysIndirectCountARB"] = (nint)MultiDrawArraysIndirectCountARB;
         if (MultiDrawArraysIndirectCountARB is null) { missingCount++; missing?.Add("glMultiDrawArraysIndirectCountARB"); }
         MultiDrawElementArrayAPPLE = (delegate* unmanaged<uint, int*, int*, int, void>)resolver("glMultiDrawElementArrayAPPLE");
+        s_byName["glMultiDrawElementArrayAPPLE"] = (nint)MultiDrawElementArrayAPPLE;
         if (MultiDrawElementArrayAPPLE is null) { missingCount++; missing?.Add("glMultiDrawElementArrayAPPLE"); }
         MultiDrawElements = (delegate* unmanaged<uint, int*, uint, void**, int, void>)resolver("glMultiDrawElements");
+        s_byName["glMultiDrawElements"] = (nint)MultiDrawElements;
         if (MultiDrawElements is null) { missingCount++; missing?.Add("glMultiDrawElements"); }
         MultiDrawElementsBaseVertex = (delegate* unmanaged<uint, int*, uint, void**, int, int*, void>)resolver("glMultiDrawElementsBaseVertex");
+        s_byName["glMultiDrawElementsBaseVertex"] = (nint)MultiDrawElementsBaseVertex;
         if (MultiDrawElementsBaseVertex is null) { missingCount++; missing?.Add("glMultiDrawElementsBaseVertex"); }
         MultiDrawElementsEXT = (delegate* unmanaged<uint, int*, uint, void**, int, void>)resolver("glMultiDrawElementsEXT");
+        s_byName["glMultiDrawElementsEXT"] = (nint)MultiDrawElementsEXT;
         if (MultiDrawElementsEXT is null) { missingCount++; missing?.Add("glMultiDrawElementsEXT"); }
         MultiDrawElementsIndirect = (delegate* unmanaged<uint, uint, void*, int, int, void>)resolver("glMultiDrawElementsIndirect");
+        s_byName["glMultiDrawElementsIndirect"] = (nint)MultiDrawElementsIndirect;
         if (MultiDrawElementsIndirect is null) { missingCount++; missing?.Add("glMultiDrawElementsIndirect"); }
         MultiDrawElementsIndirectAMD = (delegate* unmanaged<uint, uint, void*, int, int, void>)resolver("glMultiDrawElementsIndirectAMD");
+        s_byName["glMultiDrawElementsIndirectAMD"] = (nint)MultiDrawElementsIndirectAMD;
         if (MultiDrawElementsIndirectAMD is null) { missingCount++; missing?.Add("glMultiDrawElementsIndirectAMD"); }
         MultiDrawElementsIndirectBindlessCountNV = (delegate* unmanaged<uint, uint, void*, int, int, int, int, void>)resolver("glMultiDrawElementsIndirectBindlessCountNV");
+        s_byName["glMultiDrawElementsIndirectBindlessCountNV"] = (nint)MultiDrawElementsIndirectBindlessCountNV;
         if (MultiDrawElementsIndirectBindlessCountNV is null) { missingCount++; missing?.Add("glMultiDrawElementsIndirectBindlessCountNV"); }
         MultiDrawElementsIndirectBindlessNV = (delegate* unmanaged<uint, uint, void*, int, int, int, void>)resolver("glMultiDrawElementsIndirectBindlessNV");
+        s_byName["glMultiDrawElementsIndirectBindlessNV"] = (nint)MultiDrawElementsIndirectBindlessNV;
         if (MultiDrawElementsIndirectBindlessNV is null) { missingCount++; missing?.Add("glMultiDrawElementsIndirectBindlessNV"); }
         MultiDrawElementsIndirectCount = (delegate* unmanaged<uint, uint, void*, nint, int, int, void>)resolver("glMultiDrawElementsIndirectCount");
+        s_byName["glMultiDrawElementsIndirectCount"] = (nint)MultiDrawElementsIndirectCount;
         if (MultiDrawElementsIndirectCount is null) { missingCount++; missing?.Add("glMultiDrawElementsIndirectCount"); }
         MultiDrawElementsIndirectCountARB = (delegate* unmanaged<uint, uint, void*, nint, int, int, void>)resolver("glMultiDrawElementsIndirectCountARB");
+        s_byName["glMultiDrawElementsIndirectCountARB"] = (nint)MultiDrawElementsIndirectCountARB;
         if (MultiDrawElementsIndirectCountARB is null) { missingCount++; missing?.Add("glMultiDrawElementsIndirectCountARB"); }
         MultiDrawMeshTasksIndirectCountEXT = (delegate* unmanaged<nint, nint, int, int, void>)resolver("glMultiDrawMeshTasksIndirectCountEXT");
+        s_byName["glMultiDrawMeshTasksIndirectCountEXT"] = (nint)MultiDrawMeshTasksIndirectCountEXT;
         if (MultiDrawMeshTasksIndirectCountEXT is null) { missingCount++; missing?.Add("glMultiDrawMeshTasksIndirectCountEXT"); }
         MultiDrawMeshTasksIndirectCountNV = (delegate* unmanaged<nint, nint, int, int, void>)resolver("glMultiDrawMeshTasksIndirectCountNV");
+        s_byName["glMultiDrawMeshTasksIndirectCountNV"] = (nint)MultiDrawMeshTasksIndirectCountNV;
         if (MultiDrawMeshTasksIndirectCountNV is null) { missingCount++; missing?.Add("glMultiDrawMeshTasksIndirectCountNV"); }
         MultiDrawMeshTasksIndirectEXT = (delegate* unmanaged<nint, int, int, void>)resolver("glMultiDrawMeshTasksIndirectEXT");
+        s_byName["glMultiDrawMeshTasksIndirectEXT"] = (nint)MultiDrawMeshTasksIndirectEXT;
         if (MultiDrawMeshTasksIndirectEXT is null) { missingCount++; missing?.Add("glMultiDrawMeshTasksIndirectEXT"); }
         MultiDrawMeshTasksIndirectNV = (delegate* unmanaged<nint, int, int, void>)resolver("glMultiDrawMeshTasksIndirectNV");
+        s_byName["glMultiDrawMeshTasksIndirectNV"] = (nint)MultiDrawMeshTasksIndirectNV;
         if (MultiDrawMeshTasksIndirectNV is null) { missingCount++; missing?.Add("glMultiDrawMeshTasksIndirectNV"); }
         MultiDrawRangeElementArrayAPPLE = (delegate* unmanaged<uint, uint, uint, int*, int*, int, void>)resolver("glMultiDrawRangeElementArrayAPPLE");
+        s_byName["glMultiDrawRangeElementArrayAPPLE"] = (nint)MultiDrawRangeElementArrayAPPLE;
         if (MultiDrawRangeElementArrayAPPLE is null) { missingCount++; missing?.Add("glMultiDrawRangeElementArrayAPPLE"); }
         MultiModeDrawArraysIBM = (delegate* unmanaged<uint*, int*, int*, int, int, void>)resolver("glMultiModeDrawArraysIBM");
+        s_byName["glMultiModeDrawArraysIBM"] = (nint)MultiModeDrawArraysIBM;
         if (MultiModeDrawArraysIBM is null) { missingCount++; missing?.Add("glMultiModeDrawArraysIBM"); }
         MultiModeDrawElementsIBM = (delegate* unmanaged<uint*, int*, uint, void**, int, int, void>)resolver("glMultiModeDrawElementsIBM");
+        s_byName["glMultiModeDrawElementsIBM"] = (nint)MultiModeDrawElementsIBM;
         if (MultiModeDrawElementsIBM is null) { missingCount++; missing?.Add("glMultiModeDrawElementsIBM"); }
         MultiTexBufferEXT = (delegate* unmanaged<uint, uint, uint, uint, void>)resolver("glMultiTexBufferEXT");
+        s_byName["glMultiTexBufferEXT"] = (nint)MultiTexBufferEXT;
         if (MultiTexBufferEXT is null) { missingCount++; missing?.Add("glMultiTexBufferEXT"); }
         MultiTexCoord1bOES = (delegate* unmanaged<uint, sbyte, void>)resolver("glMultiTexCoord1bOES");
+        s_byName["glMultiTexCoord1bOES"] = (nint)MultiTexCoord1bOES;
         if (MultiTexCoord1bOES is null) { missingCount++; missing?.Add("glMultiTexCoord1bOES"); }
         MultiTexCoord1bvOES = (delegate* unmanaged<uint, sbyte*, void>)resolver("glMultiTexCoord1bvOES");
+        s_byName["glMultiTexCoord1bvOES"] = (nint)MultiTexCoord1bvOES;
         if (MultiTexCoord1bvOES is null) { missingCount++; missing?.Add("glMultiTexCoord1bvOES"); }
         MultiTexCoord1dARB = (delegate* unmanaged<uint, double, void>)resolver("glMultiTexCoord1dARB");
+        s_byName["glMultiTexCoord1dARB"] = (nint)MultiTexCoord1dARB;
         if (MultiTexCoord1dARB is null) { missingCount++; missing?.Add("glMultiTexCoord1dARB"); }
         MultiTexCoord1dvARB = (delegate* unmanaged<uint, double*, void>)resolver("glMultiTexCoord1dvARB");
+        s_byName["glMultiTexCoord1dvARB"] = (nint)MultiTexCoord1dvARB;
         if (MultiTexCoord1dvARB is null) { missingCount++; missing?.Add("glMultiTexCoord1dvARB"); }
         MultiTexCoord1fARB = (delegate* unmanaged<uint, float, void>)resolver("glMultiTexCoord1fARB");
+        s_byName["glMultiTexCoord1fARB"] = (nint)MultiTexCoord1fARB;
         if (MultiTexCoord1fARB is null) { missingCount++; missing?.Add("glMultiTexCoord1fARB"); }
         MultiTexCoord1fvARB = (delegate* unmanaged<uint, float*, void>)resolver("glMultiTexCoord1fvARB");
+        s_byName["glMultiTexCoord1fvARB"] = (nint)MultiTexCoord1fvARB;
         if (MultiTexCoord1fvARB is null) { missingCount++; missing?.Add("glMultiTexCoord1fvARB"); }
         MultiTexCoord1hNV = (delegate* unmanaged<uint, ushort, void>)resolver("glMultiTexCoord1hNV");
+        s_byName["glMultiTexCoord1hNV"] = (nint)MultiTexCoord1hNV;
         if (MultiTexCoord1hNV is null) { missingCount++; missing?.Add("glMultiTexCoord1hNV"); }
         MultiTexCoord1hvNV = (delegate* unmanaged<uint, ushort*, void>)resolver("glMultiTexCoord1hvNV");
+        s_byName["glMultiTexCoord1hvNV"] = (nint)MultiTexCoord1hvNV;
         if (MultiTexCoord1hvNV is null) { missingCount++; missing?.Add("glMultiTexCoord1hvNV"); }
         MultiTexCoord1iARB = (delegate* unmanaged<uint, int, void>)resolver("glMultiTexCoord1iARB");
+        s_byName["glMultiTexCoord1iARB"] = (nint)MultiTexCoord1iARB;
         if (MultiTexCoord1iARB is null) { missingCount++; missing?.Add("glMultiTexCoord1iARB"); }
         MultiTexCoord1ivARB = (delegate* unmanaged<uint, int*, void>)resolver("glMultiTexCoord1ivARB");
+        s_byName["glMultiTexCoord1ivARB"] = (nint)MultiTexCoord1ivARB;
         if (MultiTexCoord1ivARB is null) { missingCount++; missing?.Add("glMultiTexCoord1ivARB"); }
         MultiTexCoord1sARB = (delegate* unmanaged<uint, short, void>)resolver("glMultiTexCoord1sARB");
+        s_byName["glMultiTexCoord1sARB"] = (nint)MultiTexCoord1sARB;
         if (MultiTexCoord1sARB is null) { missingCount++; missing?.Add("glMultiTexCoord1sARB"); }
         MultiTexCoord1svARB = (delegate* unmanaged<uint, short*, void>)resolver("glMultiTexCoord1svARB");
+        s_byName["glMultiTexCoord1svARB"] = (nint)MultiTexCoord1svARB;
         if (MultiTexCoord1svARB is null) { missingCount++; missing?.Add("glMultiTexCoord1svARB"); }
         MultiTexCoord1xOES = (delegate* unmanaged<uint, int, void>)resolver("glMultiTexCoord1xOES");
+        s_byName["glMultiTexCoord1xOES"] = (nint)MultiTexCoord1xOES;
         if (MultiTexCoord1xOES is null) { missingCount++; missing?.Add("glMultiTexCoord1xOES"); }
         MultiTexCoord1xvOES = (delegate* unmanaged<uint, int*, void>)resolver("glMultiTexCoord1xvOES");
+        s_byName["glMultiTexCoord1xvOES"] = (nint)MultiTexCoord1xvOES;
         if (MultiTexCoord1xvOES is null) { missingCount++; missing?.Add("glMultiTexCoord1xvOES"); }
         MultiTexCoord2bOES = (delegate* unmanaged<uint, sbyte, sbyte, void>)resolver("glMultiTexCoord2bOES");
+        s_byName["glMultiTexCoord2bOES"] = (nint)MultiTexCoord2bOES;
         if (MultiTexCoord2bOES is null) { missingCount++; missing?.Add("glMultiTexCoord2bOES"); }
         MultiTexCoord2bvOES = (delegate* unmanaged<uint, sbyte*, void>)resolver("glMultiTexCoord2bvOES");
+        s_byName["glMultiTexCoord2bvOES"] = (nint)MultiTexCoord2bvOES;
         if (MultiTexCoord2bvOES is null) { missingCount++; missing?.Add("glMultiTexCoord2bvOES"); }
         MultiTexCoord2dARB = (delegate* unmanaged<uint, double, double, void>)resolver("glMultiTexCoord2dARB");
+        s_byName["glMultiTexCoord2dARB"] = (nint)MultiTexCoord2dARB;
         if (MultiTexCoord2dARB is null) { missingCount++; missing?.Add("glMultiTexCoord2dARB"); }
         MultiTexCoord2dvARB = (delegate* unmanaged<uint, double*, void>)resolver("glMultiTexCoord2dvARB");
+        s_byName["glMultiTexCoord2dvARB"] = (nint)MultiTexCoord2dvARB;
         if (MultiTexCoord2dvARB is null) { missingCount++; missing?.Add("glMultiTexCoord2dvARB"); }
         MultiTexCoord2fARB = (delegate* unmanaged<uint, float, float, void>)resolver("glMultiTexCoord2fARB");
+        s_byName["glMultiTexCoord2fARB"] = (nint)MultiTexCoord2fARB;
         if (MultiTexCoord2fARB is null) { missingCount++; missing?.Add("glMultiTexCoord2fARB"); }
         MultiTexCoord2fvARB = (delegate* unmanaged<uint, float*, void>)resolver("glMultiTexCoord2fvARB");
+        s_byName["glMultiTexCoord2fvARB"] = (nint)MultiTexCoord2fvARB;
         if (MultiTexCoord2fvARB is null) { missingCount++; missing?.Add("glMultiTexCoord2fvARB"); }
         MultiTexCoord2hNV = (delegate* unmanaged<uint, ushort, ushort, void>)resolver("glMultiTexCoord2hNV");
+        s_byName["glMultiTexCoord2hNV"] = (nint)MultiTexCoord2hNV;
         if (MultiTexCoord2hNV is null) { missingCount++; missing?.Add("glMultiTexCoord2hNV"); }
         MultiTexCoord2hvNV = (delegate* unmanaged<uint, ushort*, void>)resolver("glMultiTexCoord2hvNV");
+        s_byName["glMultiTexCoord2hvNV"] = (nint)MultiTexCoord2hvNV;
         if (MultiTexCoord2hvNV is null) { missingCount++; missing?.Add("glMultiTexCoord2hvNV"); }
         MultiTexCoord2iARB = (delegate* unmanaged<uint, int, int, void>)resolver("glMultiTexCoord2iARB");
+        s_byName["glMultiTexCoord2iARB"] = (nint)MultiTexCoord2iARB;
         if (MultiTexCoord2iARB is null) { missingCount++; missing?.Add("glMultiTexCoord2iARB"); }
         MultiTexCoord2ivARB = (delegate* unmanaged<uint, int*, void>)resolver("glMultiTexCoord2ivARB");
+        s_byName["glMultiTexCoord2ivARB"] = (nint)MultiTexCoord2ivARB;
         if (MultiTexCoord2ivARB is null) { missingCount++; missing?.Add("glMultiTexCoord2ivARB"); }
         MultiTexCoord2sARB = (delegate* unmanaged<uint, short, short, void>)resolver("glMultiTexCoord2sARB");
+        s_byName["glMultiTexCoord2sARB"] = (nint)MultiTexCoord2sARB;
         if (MultiTexCoord2sARB is null) { missingCount++; missing?.Add("glMultiTexCoord2sARB"); }
         MultiTexCoord2svARB = (delegate* unmanaged<uint, short*, void>)resolver("glMultiTexCoord2svARB");
+        s_byName["glMultiTexCoord2svARB"] = (nint)MultiTexCoord2svARB;
         if (MultiTexCoord2svARB is null) { missingCount++; missing?.Add("glMultiTexCoord2svARB"); }
         MultiTexCoord2xOES = (delegate* unmanaged<uint, int, int, void>)resolver("glMultiTexCoord2xOES");
+        s_byName["glMultiTexCoord2xOES"] = (nint)MultiTexCoord2xOES;
         if (MultiTexCoord2xOES is null) { missingCount++; missing?.Add("glMultiTexCoord2xOES"); }
         MultiTexCoord2xvOES = (delegate* unmanaged<uint, int*, void>)resolver("glMultiTexCoord2xvOES");
+        s_byName["glMultiTexCoord2xvOES"] = (nint)MultiTexCoord2xvOES;
         if (MultiTexCoord2xvOES is null) { missingCount++; missing?.Add("glMultiTexCoord2xvOES"); }
         MultiTexCoord3bOES = (delegate* unmanaged<uint, sbyte, sbyte, sbyte, void>)resolver("glMultiTexCoord3bOES");
+        s_byName["glMultiTexCoord3bOES"] = (nint)MultiTexCoord3bOES;
         if (MultiTexCoord3bOES is null) { missingCount++; missing?.Add("glMultiTexCoord3bOES"); }
         MultiTexCoord3bvOES = (delegate* unmanaged<uint, sbyte*, void>)resolver("glMultiTexCoord3bvOES");
+        s_byName["glMultiTexCoord3bvOES"] = (nint)MultiTexCoord3bvOES;
         if (MultiTexCoord3bvOES is null) { missingCount++; missing?.Add("glMultiTexCoord3bvOES"); }
         MultiTexCoord3dARB = (delegate* unmanaged<uint, double, double, double, void>)resolver("glMultiTexCoord3dARB");
+        s_byName["glMultiTexCoord3dARB"] = (nint)MultiTexCoord3dARB;
         if (MultiTexCoord3dARB is null) { missingCount++; missing?.Add("glMultiTexCoord3dARB"); }
         MultiTexCoord3dvARB = (delegate* unmanaged<uint, double*, void>)resolver("glMultiTexCoord3dvARB");
+        s_byName["glMultiTexCoord3dvARB"] = (nint)MultiTexCoord3dvARB;
         if (MultiTexCoord3dvARB is null) { missingCount++; missing?.Add("glMultiTexCoord3dvARB"); }
         MultiTexCoord3fARB = (delegate* unmanaged<uint, float, float, float, void>)resolver("glMultiTexCoord3fARB");
+        s_byName["glMultiTexCoord3fARB"] = (nint)MultiTexCoord3fARB;
         if (MultiTexCoord3fARB is null) { missingCount++; missing?.Add("glMultiTexCoord3fARB"); }
         MultiTexCoord3fvARB = (delegate* unmanaged<uint, float*, void>)resolver("glMultiTexCoord3fvARB");
+        s_byName["glMultiTexCoord3fvARB"] = (nint)MultiTexCoord3fvARB;
         if (MultiTexCoord3fvARB is null) { missingCount++; missing?.Add("glMultiTexCoord3fvARB"); }
         MultiTexCoord3hNV = (delegate* unmanaged<uint, ushort, ushort, ushort, void>)resolver("glMultiTexCoord3hNV");
+        s_byName["glMultiTexCoord3hNV"] = (nint)MultiTexCoord3hNV;
         if (MultiTexCoord3hNV is null) { missingCount++; missing?.Add("glMultiTexCoord3hNV"); }
         MultiTexCoord3hvNV = (delegate* unmanaged<uint, ushort*, void>)resolver("glMultiTexCoord3hvNV");
+        s_byName["glMultiTexCoord3hvNV"] = (nint)MultiTexCoord3hvNV;
         if (MultiTexCoord3hvNV is null) { missingCount++; missing?.Add("glMultiTexCoord3hvNV"); }
         MultiTexCoord3iARB = (delegate* unmanaged<uint, int, int, int, void>)resolver("glMultiTexCoord3iARB");
+        s_byName["glMultiTexCoord3iARB"] = (nint)MultiTexCoord3iARB;
         if (MultiTexCoord3iARB is null) { missingCount++; missing?.Add("glMultiTexCoord3iARB"); }
         MultiTexCoord3ivARB = (delegate* unmanaged<uint, int*, void>)resolver("glMultiTexCoord3ivARB");
+        s_byName["glMultiTexCoord3ivARB"] = (nint)MultiTexCoord3ivARB;
         if (MultiTexCoord3ivARB is null) { missingCount++; missing?.Add("glMultiTexCoord3ivARB"); }
         MultiTexCoord3sARB = (delegate* unmanaged<uint, short, short, short, void>)resolver("glMultiTexCoord3sARB");
+        s_byName["glMultiTexCoord3sARB"] = (nint)MultiTexCoord3sARB;
         if (MultiTexCoord3sARB is null) { missingCount++; missing?.Add("glMultiTexCoord3sARB"); }
         MultiTexCoord3svARB = (delegate* unmanaged<uint, short*, void>)resolver("glMultiTexCoord3svARB");
+        s_byName["glMultiTexCoord3svARB"] = (nint)MultiTexCoord3svARB;
         if (MultiTexCoord3svARB is null) { missingCount++; missing?.Add("glMultiTexCoord3svARB"); }
         MultiTexCoord3xOES = (delegate* unmanaged<uint, int, int, int, void>)resolver("glMultiTexCoord3xOES");
+        s_byName["glMultiTexCoord3xOES"] = (nint)MultiTexCoord3xOES;
         if (MultiTexCoord3xOES is null) { missingCount++; missing?.Add("glMultiTexCoord3xOES"); }
         MultiTexCoord3xvOES = (delegate* unmanaged<uint, int*, void>)resolver("glMultiTexCoord3xvOES");
+        s_byName["glMultiTexCoord3xvOES"] = (nint)MultiTexCoord3xvOES;
         if (MultiTexCoord3xvOES is null) { missingCount++; missing?.Add("glMultiTexCoord3xvOES"); }
         MultiTexCoord4bOES = (delegate* unmanaged<uint, sbyte, sbyte, sbyte, sbyte, void>)resolver("glMultiTexCoord4bOES");
+        s_byName["glMultiTexCoord4bOES"] = (nint)MultiTexCoord4bOES;
         if (MultiTexCoord4bOES is null) { missingCount++; missing?.Add("glMultiTexCoord4bOES"); }
         MultiTexCoord4bvOES = (delegate* unmanaged<uint, sbyte*, void>)resolver("glMultiTexCoord4bvOES");
+        s_byName["glMultiTexCoord4bvOES"] = (nint)MultiTexCoord4bvOES;
         if (MultiTexCoord4bvOES is null) { missingCount++; missing?.Add("glMultiTexCoord4bvOES"); }
         MultiTexCoord4dARB = (delegate* unmanaged<uint, double, double, double, double, void>)resolver("glMultiTexCoord4dARB");
+        s_byName["glMultiTexCoord4dARB"] = (nint)MultiTexCoord4dARB;
         if (MultiTexCoord4dARB is null) { missingCount++; missing?.Add("glMultiTexCoord4dARB"); }
         MultiTexCoord4dvARB = (delegate* unmanaged<uint, double*, void>)resolver("glMultiTexCoord4dvARB");
+        s_byName["glMultiTexCoord4dvARB"] = (nint)MultiTexCoord4dvARB;
         if (MultiTexCoord4dvARB is null) { missingCount++; missing?.Add("glMultiTexCoord4dvARB"); }
         MultiTexCoord4fARB = (delegate* unmanaged<uint, float, float, float, float, void>)resolver("glMultiTexCoord4fARB");
+        s_byName["glMultiTexCoord4fARB"] = (nint)MultiTexCoord4fARB;
         if (MultiTexCoord4fARB is null) { missingCount++; missing?.Add("glMultiTexCoord4fARB"); }
         MultiTexCoord4fvARB = (delegate* unmanaged<uint, float*, void>)resolver("glMultiTexCoord4fvARB");
+        s_byName["glMultiTexCoord4fvARB"] = (nint)MultiTexCoord4fvARB;
         if (MultiTexCoord4fvARB is null) { missingCount++; missing?.Add("glMultiTexCoord4fvARB"); }
         MultiTexCoord4hNV = (delegate* unmanaged<uint, ushort, ushort, ushort, ushort, void>)resolver("glMultiTexCoord4hNV");
+        s_byName["glMultiTexCoord4hNV"] = (nint)MultiTexCoord4hNV;
         if (MultiTexCoord4hNV is null) { missingCount++; missing?.Add("glMultiTexCoord4hNV"); }
         MultiTexCoord4hvNV = (delegate* unmanaged<uint, ushort*, void>)resolver("glMultiTexCoord4hvNV");
+        s_byName["glMultiTexCoord4hvNV"] = (nint)MultiTexCoord4hvNV;
         if (MultiTexCoord4hvNV is null) { missingCount++; missing?.Add("glMultiTexCoord4hvNV"); }
         MultiTexCoord4iARB = (delegate* unmanaged<uint, int, int, int, int, void>)resolver("glMultiTexCoord4iARB");
+        s_byName["glMultiTexCoord4iARB"] = (nint)MultiTexCoord4iARB;
         if (MultiTexCoord4iARB is null) { missingCount++; missing?.Add("glMultiTexCoord4iARB"); }
         MultiTexCoord4ivARB = (delegate* unmanaged<uint, int*, void>)resolver("glMultiTexCoord4ivARB");
+        s_byName["glMultiTexCoord4ivARB"] = (nint)MultiTexCoord4ivARB;
         if (MultiTexCoord4ivARB is null) { missingCount++; missing?.Add("glMultiTexCoord4ivARB"); }
         MultiTexCoord4sARB = (delegate* unmanaged<uint, short, short, short, short, void>)resolver("glMultiTexCoord4sARB");
+        s_byName["glMultiTexCoord4sARB"] = (nint)MultiTexCoord4sARB;
         if (MultiTexCoord4sARB is null) { missingCount++; missing?.Add("glMultiTexCoord4sARB"); }
         MultiTexCoord4svARB = (delegate* unmanaged<uint, short*, void>)resolver("glMultiTexCoord4svARB");
+        s_byName["glMultiTexCoord4svARB"] = (nint)MultiTexCoord4svARB;
         if (MultiTexCoord4svARB is null) { missingCount++; missing?.Add("glMultiTexCoord4svARB"); }
         MultiTexCoord4xOES = (delegate* unmanaged<uint, int, int, int, int, void>)resolver("glMultiTexCoord4xOES");
+        s_byName["glMultiTexCoord4xOES"] = (nint)MultiTexCoord4xOES;
         if (MultiTexCoord4xOES is null) { missingCount++; missing?.Add("glMultiTexCoord4xOES"); }
         MultiTexCoord4xvOES = (delegate* unmanaged<uint, int*, void>)resolver("glMultiTexCoord4xvOES");
+        s_byName["glMultiTexCoord4xvOES"] = (nint)MultiTexCoord4xvOES;
         if (MultiTexCoord4xvOES is null) { missingCount++; missing?.Add("glMultiTexCoord4xvOES"); }
         MultiTexCoordP1ui = (delegate* unmanaged<uint, uint, uint, void>)resolver("glMultiTexCoordP1ui");
+        s_byName["glMultiTexCoordP1ui"] = (nint)MultiTexCoordP1ui;
         if (MultiTexCoordP1ui is null) { missingCount++; missing?.Add("glMultiTexCoordP1ui"); }
         MultiTexCoordP1uiv = (delegate* unmanaged<uint, uint, uint*, void>)resolver("glMultiTexCoordP1uiv");
+        s_byName["glMultiTexCoordP1uiv"] = (nint)MultiTexCoordP1uiv;
         if (MultiTexCoordP1uiv is null) { missingCount++; missing?.Add("glMultiTexCoordP1uiv"); }
         MultiTexCoordP2ui = (delegate* unmanaged<uint, uint, uint, void>)resolver("glMultiTexCoordP2ui");
+        s_byName["glMultiTexCoordP2ui"] = (nint)MultiTexCoordP2ui;
         if (MultiTexCoordP2ui is null) { missingCount++; missing?.Add("glMultiTexCoordP2ui"); }
         MultiTexCoordP2uiv = (delegate* unmanaged<uint, uint, uint*, void>)resolver("glMultiTexCoordP2uiv");
+        s_byName["glMultiTexCoordP2uiv"] = (nint)MultiTexCoordP2uiv;
         if (MultiTexCoordP2uiv is null) { missingCount++; missing?.Add("glMultiTexCoordP2uiv"); }
         MultiTexCoordP3ui = (delegate* unmanaged<uint, uint, uint, void>)resolver("glMultiTexCoordP3ui");
+        s_byName["glMultiTexCoordP3ui"] = (nint)MultiTexCoordP3ui;
         if (MultiTexCoordP3ui is null) { missingCount++; missing?.Add("glMultiTexCoordP3ui"); }
         MultiTexCoordP3uiv = (delegate* unmanaged<uint, uint, uint*, void>)resolver("glMultiTexCoordP3uiv");
+        s_byName["glMultiTexCoordP3uiv"] = (nint)MultiTexCoordP3uiv;
         if (MultiTexCoordP3uiv is null) { missingCount++; missing?.Add("glMultiTexCoordP3uiv"); }
         MultiTexCoordP4ui = (delegate* unmanaged<uint, uint, uint, void>)resolver("glMultiTexCoordP4ui");
+        s_byName["glMultiTexCoordP4ui"] = (nint)MultiTexCoordP4ui;
         if (MultiTexCoordP4ui is null) { missingCount++; missing?.Add("glMultiTexCoordP4ui"); }
         MultiTexCoordP4uiv = (delegate* unmanaged<uint, uint, uint*, void>)resolver("glMultiTexCoordP4uiv");
+        s_byName["glMultiTexCoordP4uiv"] = (nint)MultiTexCoordP4uiv;
         if (MultiTexCoordP4uiv is null) { missingCount++; missing?.Add("glMultiTexCoordP4uiv"); }
         MultiTexCoordPointerEXT = (delegate* unmanaged<uint, int, uint, int, void*, void>)resolver("glMultiTexCoordPointerEXT");
+        s_byName["glMultiTexCoordPointerEXT"] = (nint)MultiTexCoordPointerEXT;
         if (MultiTexCoordPointerEXT is null) { missingCount++; missing?.Add("glMultiTexCoordPointerEXT"); }
         MultiTexEnvfEXT = (delegate* unmanaged<uint, uint, uint, float, void>)resolver("glMultiTexEnvfEXT");
+        s_byName["glMultiTexEnvfEXT"] = (nint)MultiTexEnvfEXT;
         if (MultiTexEnvfEXT is null) { missingCount++; missing?.Add("glMultiTexEnvfEXT"); }
         MultiTexEnvfvEXT = (delegate* unmanaged<uint, uint, uint, float*, void>)resolver("glMultiTexEnvfvEXT");
+        s_byName["glMultiTexEnvfvEXT"] = (nint)MultiTexEnvfvEXT;
         if (MultiTexEnvfvEXT is null) { missingCount++; missing?.Add("glMultiTexEnvfvEXT"); }
         MultiTexEnviEXT = (delegate* unmanaged<uint, uint, uint, int, void>)resolver("glMultiTexEnviEXT");
+        s_byName["glMultiTexEnviEXT"] = (nint)MultiTexEnviEXT;
         if (MultiTexEnviEXT is null) { missingCount++; missing?.Add("glMultiTexEnviEXT"); }
         MultiTexEnvivEXT = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glMultiTexEnvivEXT");
+        s_byName["glMultiTexEnvivEXT"] = (nint)MultiTexEnvivEXT;
         if (MultiTexEnvivEXT is null) { missingCount++; missing?.Add("glMultiTexEnvivEXT"); }
         MultiTexGendEXT = (delegate* unmanaged<uint, uint, uint, double, void>)resolver("glMultiTexGendEXT");
+        s_byName["glMultiTexGendEXT"] = (nint)MultiTexGendEXT;
         if (MultiTexGendEXT is null) { missingCount++; missing?.Add("glMultiTexGendEXT"); }
         MultiTexGendvEXT = (delegate* unmanaged<uint, uint, uint, double*, void>)resolver("glMultiTexGendvEXT");
+        s_byName["glMultiTexGendvEXT"] = (nint)MultiTexGendvEXT;
         if (MultiTexGendvEXT is null) { missingCount++; missing?.Add("glMultiTexGendvEXT"); }
         MultiTexGenfEXT = (delegate* unmanaged<uint, uint, uint, float, void>)resolver("glMultiTexGenfEXT");
+        s_byName["glMultiTexGenfEXT"] = (nint)MultiTexGenfEXT;
         if (MultiTexGenfEXT is null) { missingCount++; missing?.Add("glMultiTexGenfEXT"); }
         MultiTexGenfvEXT = (delegate* unmanaged<uint, uint, uint, float*, void>)resolver("glMultiTexGenfvEXT");
+        s_byName["glMultiTexGenfvEXT"] = (nint)MultiTexGenfvEXT;
         if (MultiTexGenfvEXT is null) { missingCount++; missing?.Add("glMultiTexGenfvEXT"); }
         MultiTexGeniEXT = (delegate* unmanaged<uint, uint, uint, int, void>)resolver("glMultiTexGeniEXT");
+        s_byName["glMultiTexGeniEXT"] = (nint)MultiTexGeniEXT;
         if (MultiTexGeniEXT is null) { missingCount++; missing?.Add("glMultiTexGeniEXT"); }
         MultiTexGenivEXT = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glMultiTexGenivEXT");
+        s_byName["glMultiTexGenivEXT"] = (nint)MultiTexGenivEXT;
         if (MultiTexGenivEXT is null) { missingCount++; missing?.Add("glMultiTexGenivEXT"); }
         MultiTexImage1DEXT = (delegate* unmanaged<uint, uint, int, int, int, int, uint, uint, void*, void>)resolver("glMultiTexImage1DEXT");
+        s_byName["glMultiTexImage1DEXT"] = (nint)MultiTexImage1DEXT;
         if (MultiTexImage1DEXT is null) { missingCount++; missing?.Add("glMultiTexImage1DEXT"); }
         MultiTexImage2DEXT = (delegate* unmanaged<uint, uint, int, int, int, int, int, uint, uint, void*, void>)resolver("glMultiTexImage2DEXT");
+        s_byName["glMultiTexImage2DEXT"] = (nint)MultiTexImage2DEXT;
         if (MultiTexImage2DEXT is null) { missingCount++; missing?.Add("glMultiTexImage2DEXT"); }
         MultiTexImage3DEXT = (delegate* unmanaged<uint, uint, int, int, int, int, int, int, uint, uint, void*, void>)resolver("glMultiTexImage3DEXT");
+        s_byName["glMultiTexImage3DEXT"] = (nint)MultiTexImage3DEXT;
         if (MultiTexImage3DEXT is null) { missingCount++; missing?.Add("glMultiTexImage3DEXT"); }
         MultiTexParameterIivEXT = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glMultiTexParameterIivEXT");
+        s_byName["glMultiTexParameterIivEXT"] = (nint)MultiTexParameterIivEXT;
         if (MultiTexParameterIivEXT is null) { missingCount++; missing?.Add("glMultiTexParameterIivEXT"); }
         MultiTexParameterIuivEXT = (delegate* unmanaged<uint, uint, uint, uint*, void>)resolver("glMultiTexParameterIuivEXT");
+        s_byName["glMultiTexParameterIuivEXT"] = (nint)MultiTexParameterIuivEXT;
         if (MultiTexParameterIuivEXT is null) { missingCount++; missing?.Add("glMultiTexParameterIuivEXT"); }
         MultiTexParameterfEXT = (delegate* unmanaged<uint, uint, uint, float, void>)resolver("glMultiTexParameterfEXT");
+        s_byName["glMultiTexParameterfEXT"] = (nint)MultiTexParameterfEXT;
         if (MultiTexParameterfEXT is null) { missingCount++; missing?.Add("glMultiTexParameterfEXT"); }
         MultiTexParameterfvEXT = (delegate* unmanaged<uint, uint, uint, float*, void>)resolver("glMultiTexParameterfvEXT");
+        s_byName["glMultiTexParameterfvEXT"] = (nint)MultiTexParameterfvEXT;
         if (MultiTexParameterfvEXT is null) { missingCount++; missing?.Add("glMultiTexParameterfvEXT"); }
         MultiTexParameteriEXT = (delegate* unmanaged<uint, uint, uint, int, void>)resolver("glMultiTexParameteriEXT");
+        s_byName["glMultiTexParameteriEXT"] = (nint)MultiTexParameteriEXT;
         if (MultiTexParameteriEXT is null) { missingCount++; missing?.Add("glMultiTexParameteriEXT"); }
         MultiTexParameterivEXT = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glMultiTexParameterivEXT");
+        s_byName["glMultiTexParameterivEXT"] = (nint)MultiTexParameterivEXT;
         if (MultiTexParameterivEXT is null) { missingCount++; missing?.Add("glMultiTexParameterivEXT"); }
         MultiTexRenderbufferEXT = (delegate* unmanaged<uint, uint, uint, void>)resolver("glMultiTexRenderbufferEXT");
+        s_byName["glMultiTexRenderbufferEXT"] = (nint)MultiTexRenderbufferEXT;
         if (MultiTexRenderbufferEXT is null) { missingCount++; missing?.Add("glMultiTexRenderbufferEXT"); }
         MultiTexSubImage1DEXT = (delegate* unmanaged<uint, uint, int, int, int, uint, uint, void*, void>)resolver("glMultiTexSubImage1DEXT");
+        s_byName["glMultiTexSubImage1DEXT"] = (nint)MultiTexSubImage1DEXT;
         if (MultiTexSubImage1DEXT is null) { missingCount++; missing?.Add("glMultiTexSubImage1DEXT"); }
         MultiTexSubImage2DEXT = (delegate* unmanaged<uint, uint, int, int, int, int, int, uint, uint, void*, void>)resolver("glMultiTexSubImage2DEXT");
+        s_byName["glMultiTexSubImage2DEXT"] = (nint)MultiTexSubImage2DEXT;
         if (MultiTexSubImage2DEXT is null) { missingCount++; missing?.Add("glMultiTexSubImage2DEXT"); }
         MultiTexSubImage3DEXT = (delegate* unmanaged<uint, uint, int, int, int, int, int, int, int, uint, uint, void*, void>)resolver("glMultiTexSubImage3DEXT");
+        s_byName["glMultiTexSubImage3DEXT"] = (nint)MultiTexSubImage3DEXT;
         if (MultiTexSubImage3DEXT is null) { missingCount++; missing?.Add("glMultiTexSubImage3DEXT"); }
         MulticastBarrierNV = (delegate* unmanaged<void>)resolver("glMulticastBarrierNV");
+        s_byName["glMulticastBarrierNV"] = (nint)MulticastBarrierNV;
         if (MulticastBarrierNV is null) { missingCount++; missing?.Add("glMulticastBarrierNV"); }
         MulticastBlitFramebufferNV = (delegate* unmanaged<uint, uint, int, int, int, int, int, int, int, int, uint, uint, void>)resolver("glMulticastBlitFramebufferNV");
+        s_byName["glMulticastBlitFramebufferNV"] = (nint)MulticastBlitFramebufferNV;
         if (MulticastBlitFramebufferNV is null) { missingCount++; missing?.Add("glMulticastBlitFramebufferNV"); }
         MulticastBufferSubDataNV = (delegate* unmanaged<uint, uint, nint, nint, void*, void>)resolver("glMulticastBufferSubDataNV");
+        s_byName["glMulticastBufferSubDataNV"] = (nint)MulticastBufferSubDataNV;
         if (MulticastBufferSubDataNV is null) { missingCount++; missing?.Add("glMulticastBufferSubDataNV"); }
         MulticastCopyBufferSubDataNV = (delegate* unmanaged<uint, uint, uint, uint, nint, nint, nint, void>)resolver("glMulticastCopyBufferSubDataNV");
+        s_byName["glMulticastCopyBufferSubDataNV"] = (nint)MulticastCopyBufferSubDataNV;
         if (MulticastCopyBufferSubDataNV is null) { missingCount++; missing?.Add("glMulticastCopyBufferSubDataNV"); }
         MulticastCopyImageSubDataNV = (delegate* unmanaged<uint, uint, uint, uint, int, int, int, int, uint, uint, int, int, int, int, int, int, int, void>)resolver("glMulticastCopyImageSubDataNV");
+        s_byName["glMulticastCopyImageSubDataNV"] = (nint)MulticastCopyImageSubDataNV;
         if (MulticastCopyImageSubDataNV is null) { missingCount++; missing?.Add("glMulticastCopyImageSubDataNV"); }
         MulticastFramebufferSampleLocationsfvNV = (delegate* unmanaged<uint, uint, uint, int, float*, void>)resolver("glMulticastFramebufferSampleLocationsfvNV");
+        s_byName["glMulticastFramebufferSampleLocationsfvNV"] = (nint)MulticastFramebufferSampleLocationsfvNV;
         if (MulticastFramebufferSampleLocationsfvNV is null) { missingCount++; missing?.Add("glMulticastFramebufferSampleLocationsfvNV"); }
         MulticastGetQueryObjecti64vNV = (delegate* unmanaged<uint, uint, uint, long*, void>)resolver("glMulticastGetQueryObjecti64vNV");
+        s_byName["glMulticastGetQueryObjecti64vNV"] = (nint)MulticastGetQueryObjecti64vNV;
         if (MulticastGetQueryObjecti64vNV is null) { missingCount++; missing?.Add("glMulticastGetQueryObjecti64vNV"); }
         MulticastGetQueryObjectivNV = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glMulticastGetQueryObjectivNV");
+        s_byName["glMulticastGetQueryObjectivNV"] = (nint)MulticastGetQueryObjectivNV;
         if (MulticastGetQueryObjectivNV is null) { missingCount++; missing?.Add("glMulticastGetQueryObjectivNV"); }
         MulticastGetQueryObjectui64vNV = (delegate* unmanaged<uint, uint, uint, ulong*, void>)resolver("glMulticastGetQueryObjectui64vNV");
+        s_byName["glMulticastGetQueryObjectui64vNV"] = (nint)MulticastGetQueryObjectui64vNV;
         if (MulticastGetQueryObjectui64vNV is null) { missingCount++; missing?.Add("glMulticastGetQueryObjectui64vNV"); }
         MulticastGetQueryObjectuivNV = (delegate* unmanaged<uint, uint, uint, uint*, void>)resolver("glMulticastGetQueryObjectuivNV");
+        s_byName["glMulticastGetQueryObjectuivNV"] = (nint)MulticastGetQueryObjectuivNV;
         if (MulticastGetQueryObjectuivNV is null) { missingCount++; missing?.Add("glMulticastGetQueryObjectuivNV"); }
         MulticastScissorArrayvNVX = (delegate* unmanaged<uint, uint, int, int*, void>)resolver("glMulticastScissorArrayvNVX");
+        s_byName["glMulticastScissorArrayvNVX"] = (nint)MulticastScissorArrayvNVX;
         if (MulticastScissorArrayvNVX is null) { missingCount++; missing?.Add("glMulticastScissorArrayvNVX"); }
         MulticastViewportArrayvNVX = (delegate* unmanaged<uint, uint, int, float*, void>)resolver("glMulticastViewportArrayvNVX");
+        s_byName["glMulticastViewportArrayvNVX"] = (nint)MulticastViewportArrayvNVX;
         if (MulticastViewportArrayvNVX is null) { missingCount++; missing?.Add("glMulticastViewportArrayvNVX"); }
         MulticastViewportPositionWScaleNVX = (delegate* unmanaged<uint, uint, float, float, void>)resolver("glMulticastViewportPositionWScaleNVX");
+        s_byName["glMulticastViewportPositionWScaleNVX"] = (nint)MulticastViewportPositionWScaleNVX;
         if (MulticastViewportPositionWScaleNVX is null) { missingCount++; missing?.Add("glMulticastViewportPositionWScaleNVX"); }
         MulticastWaitSyncNV = (delegate* unmanaged<uint, uint, void>)resolver("glMulticastWaitSyncNV");
+        s_byName["glMulticastWaitSyncNV"] = (nint)MulticastWaitSyncNV;
         if (MulticastWaitSyncNV is null) { missingCount++; missing?.Add("glMulticastWaitSyncNV"); }
         NamedBufferAttachMemoryNV = (delegate* unmanaged<uint, uint, ulong, void>)resolver("glNamedBufferAttachMemoryNV");
+        s_byName["glNamedBufferAttachMemoryNV"] = (nint)NamedBufferAttachMemoryNV;
         if (NamedBufferAttachMemoryNV is null) { missingCount++; missing?.Add("glNamedBufferAttachMemoryNV"); }
         NamedBufferData = (delegate* unmanaged<uint, nint, void*, uint, void>)resolver("glNamedBufferData");
+        s_byName["glNamedBufferData"] = (nint)NamedBufferData;
         if (NamedBufferData is null) { missingCount++; missing?.Add("glNamedBufferData"); }
         NamedBufferDataEXT = (delegate* unmanaged<uint, nint, void*, uint, void>)resolver("glNamedBufferDataEXT");
+        s_byName["glNamedBufferDataEXT"] = (nint)NamedBufferDataEXT;
         if (NamedBufferDataEXT is null) { missingCount++; missing?.Add("glNamedBufferDataEXT"); }
         NamedBufferPageCommitmentARB = (delegate* unmanaged<uint, nint, nint, byte, void>)resolver("glNamedBufferPageCommitmentARB");
+        s_byName["glNamedBufferPageCommitmentARB"] = (nint)NamedBufferPageCommitmentARB;
         if (NamedBufferPageCommitmentARB is null) { missingCount++; missing?.Add("glNamedBufferPageCommitmentARB"); }
         NamedBufferPageCommitmentEXT = (delegate* unmanaged<uint, nint, nint, byte, void>)resolver("glNamedBufferPageCommitmentEXT");
+        s_byName["glNamedBufferPageCommitmentEXT"] = (nint)NamedBufferPageCommitmentEXT;
         if (NamedBufferPageCommitmentEXT is null) { missingCount++; missing?.Add("glNamedBufferPageCommitmentEXT"); }
         NamedBufferPageCommitmentMemNV = (delegate* unmanaged<uint, nint, nint, uint, ulong, byte, void>)resolver("glNamedBufferPageCommitmentMemNV");
+        s_byName["glNamedBufferPageCommitmentMemNV"] = (nint)NamedBufferPageCommitmentMemNV;
         if (NamedBufferPageCommitmentMemNV is null) { missingCount++; missing?.Add("glNamedBufferPageCommitmentMemNV"); }
         NamedBufferStorage = (delegate* unmanaged<uint, nint, void*, uint, void>)resolver("glNamedBufferStorage");
+        s_byName["glNamedBufferStorage"] = (nint)NamedBufferStorage;
         if (NamedBufferStorage is null) { missingCount++; missing?.Add("glNamedBufferStorage"); }
         NamedBufferStorageEXT = (delegate* unmanaged<uint, nint, void*, uint, void>)resolver("glNamedBufferStorageEXT");
+        s_byName["glNamedBufferStorageEXT"] = (nint)NamedBufferStorageEXT;
         if (NamedBufferStorageEXT is null) { missingCount++; missing?.Add("glNamedBufferStorageEXT"); }
         NamedBufferStorageMemEXT = (delegate* unmanaged<uint, nint, uint, ulong, void>)resolver("glNamedBufferStorageMemEXT");
+        s_byName["glNamedBufferStorageMemEXT"] = (nint)NamedBufferStorageMemEXT;
         if (NamedBufferStorageMemEXT is null) { missingCount++; missing?.Add("glNamedBufferStorageMemEXT"); }
         NamedBufferSubData = (delegate* unmanaged<uint, nint, nint, void*, void>)resolver("glNamedBufferSubData");
+        s_byName["glNamedBufferSubData"] = (nint)NamedBufferSubData;
         if (NamedBufferSubData is null) { missingCount++; missing?.Add("glNamedBufferSubData"); }
         NamedBufferSubDataEXT = (delegate* unmanaged<uint, nint, nint, void*, void>)resolver("glNamedBufferSubDataEXT");
+        s_byName["glNamedBufferSubDataEXT"] = (nint)NamedBufferSubDataEXT;
         if (NamedBufferSubDataEXT is null) { missingCount++; missing?.Add("glNamedBufferSubDataEXT"); }
         NamedCopyBufferSubDataEXT = (delegate* unmanaged<uint, uint, nint, nint, nint, void>)resolver("glNamedCopyBufferSubDataEXT");
+        s_byName["glNamedCopyBufferSubDataEXT"] = (nint)NamedCopyBufferSubDataEXT;
         if (NamedCopyBufferSubDataEXT is null) { missingCount++; missing?.Add("glNamedCopyBufferSubDataEXT"); }
         NamedFramebufferDrawBuffer = (delegate* unmanaged<uint, uint, void>)resolver("glNamedFramebufferDrawBuffer");
+        s_byName["glNamedFramebufferDrawBuffer"] = (nint)NamedFramebufferDrawBuffer;
         if (NamedFramebufferDrawBuffer is null) { missingCount++; missing?.Add("glNamedFramebufferDrawBuffer"); }
         NamedFramebufferDrawBuffers = (delegate* unmanaged<uint, int, uint*, void>)resolver("glNamedFramebufferDrawBuffers");
+        s_byName["glNamedFramebufferDrawBuffers"] = (nint)NamedFramebufferDrawBuffers;
         if (NamedFramebufferDrawBuffers is null) { missingCount++; missing?.Add("glNamedFramebufferDrawBuffers"); }
         NamedFramebufferParameteri = (delegate* unmanaged<uint, uint, int, void>)resolver("glNamedFramebufferParameteri");
+        s_byName["glNamedFramebufferParameteri"] = (nint)NamedFramebufferParameteri;
         if (NamedFramebufferParameteri is null) { missingCount++; missing?.Add("glNamedFramebufferParameteri"); }
         NamedFramebufferParameteriEXT = (delegate* unmanaged<uint, uint, int, void>)resolver("glNamedFramebufferParameteriEXT");
+        s_byName["glNamedFramebufferParameteriEXT"] = (nint)NamedFramebufferParameteriEXT;
         if (NamedFramebufferParameteriEXT is null) { missingCount++; missing?.Add("glNamedFramebufferParameteriEXT"); }
         NamedFramebufferReadBuffer = (delegate* unmanaged<uint, uint, void>)resolver("glNamedFramebufferReadBuffer");
+        s_byName["glNamedFramebufferReadBuffer"] = (nint)NamedFramebufferReadBuffer;
         if (NamedFramebufferReadBuffer is null) { missingCount++; missing?.Add("glNamedFramebufferReadBuffer"); }
         NamedFramebufferRenderbuffer = (delegate* unmanaged<uint, uint, uint, uint, void>)resolver("glNamedFramebufferRenderbuffer");
+        s_byName["glNamedFramebufferRenderbuffer"] = (nint)NamedFramebufferRenderbuffer;
         if (NamedFramebufferRenderbuffer is null) { missingCount++; missing?.Add("glNamedFramebufferRenderbuffer"); }
         NamedFramebufferRenderbufferEXT = (delegate* unmanaged<uint, uint, uint, uint, void>)resolver("glNamedFramebufferRenderbufferEXT");
+        s_byName["glNamedFramebufferRenderbufferEXT"] = (nint)NamedFramebufferRenderbufferEXT;
         if (NamedFramebufferRenderbufferEXT is null) { missingCount++; missing?.Add("glNamedFramebufferRenderbufferEXT"); }
         NamedFramebufferSampleLocationsfvARB = (delegate* unmanaged<uint, uint, int, float*, void>)resolver("glNamedFramebufferSampleLocationsfvARB");
+        s_byName["glNamedFramebufferSampleLocationsfvARB"] = (nint)NamedFramebufferSampleLocationsfvARB;
         if (NamedFramebufferSampleLocationsfvARB is null) { missingCount++; missing?.Add("glNamedFramebufferSampleLocationsfvARB"); }
         NamedFramebufferSampleLocationsfvNV = (delegate* unmanaged<uint, uint, int, float*, void>)resolver("glNamedFramebufferSampleLocationsfvNV");
+        s_byName["glNamedFramebufferSampleLocationsfvNV"] = (nint)NamedFramebufferSampleLocationsfvNV;
         if (NamedFramebufferSampleLocationsfvNV is null) { missingCount++; missing?.Add("glNamedFramebufferSampleLocationsfvNV"); }
         NamedFramebufferSamplePositionsfvAMD = (delegate* unmanaged<uint, uint, uint, float*, void>)resolver("glNamedFramebufferSamplePositionsfvAMD");
+        s_byName["glNamedFramebufferSamplePositionsfvAMD"] = (nint)NamedFramebufferSamplePositionsfvAMD;
         if (NamedFramebufferSamplePositionsfvAMD is null) { missingCount++; missing?.Add("glNamedFramebufferSamplePositionsfvAMD"); }
         NamedFramebufferTexture = (delegate* unmanaged<uint, uint, uint, int, void>)resolver("glNamedFramebufferTexture");
+        s_byName["glNamedFramebufferTexture"] = (nint)NamedFramebufferTexture;
         if (NamedFramebufferTexture is null) { missingCount++; missing?.Add("glNamedFramebufferTexture"); }
         NamedFramebufferTexture1DEXT = (delegate* unmanaged<uint, uint, uint, uint, int, void>)resolver("glNamedFramebufferTexture1DEXT");
+        s_byName["glNamedFramebufferTexture1DEXT"] = (nint)NamedFramebufferTexture1DEXT;
         if (NamedFramebufferTexture1DEXT is null) { missingCount++; missing?.Add("glNamedFramebufferTexture1DEXT"); }
         NamedFramebufferTexture2DEXT = (delegate* unmanaged<uint, uint, uint, uint, int, void>)resolver("glNamedFramebufferTexture2DEXT");
+        s_byName["glNamedFramebufferTexture2DEXT"] = (nint)NamedFramebufferTexture2DEXT;
         if (NamedFramebufferTexture2DEXT is null) { missingCount++; missing?.Add("glNamedFramebufferTexture2DEXT"); }
         NamedFramebufferTexture3DEXT = (delegate* unmanaged<uint, uint, uint, uint, int, int, void>)resolver("glNamedFramebufferTexture3DEXT");
+        s_byName["glNamedFramebufferTexture3DEXT"] = (nint)NamedFramebufferTexture3DEXT;
         if (NamedFramebufferTexture3DEXT is null) { missingCount++; missing?.Add("glNamedFramebufferTexture3DEXT"); }
         NamedFramebufferTextureEXT = (delegate* unmanaged<uint, uint, uint, int, void>)resolver("glNamedFramebufferTextureEXT");
+        s_byName["glNamedFramebufferTextureEXT"] = (nint)NamedFramebufferTextureEXT;
         if (NamedFramebufferTextureEXT is null) { missingCount++; missing?.Add("glNamedFramebufferTextureEXT"); }
         NamedFramebufferTextureFaceEXT = (delegate* unmanaged<uint, uint, uint, int, uint, void>)resolver("glNamedFramebufferTextureFaceEXT");
+        s_byName["glNamedFramebufferTextureFaceEXT"] = (nint)NamedFramebufferTextureFaceEXT;
         if (NamedFramebufferTextureFaceEXT is null) { missingCount++; missing?.Add("glNamedFramebufferTextureFaceEXT"); }
         NamedFramebufferTextureLayer = (delegate* unmanaged<uint, uint, uint, int, int, void>)resolver("glNamedFramebufferTextureLayer");
+        s_byName["glNamedFramebufferTextureLayer"] = (nint)NamedFramebufferTextureLayer;
         if (NamedFramebufferTextureLayer is null) { missingCount++; missing?.Add("glNamedFramebufferTextureLayer"); }
         NamedFramebufferTextureLayerEXT = (delegate* unmanaged<uint, uint, uint, int, int, void>)resolver("glNamedFramebufferTextureLayerEXT");
+        s_byName["glNamedFramebufferTextureLayerEXT"] = (nint)NamedFramebufferTextureLayerEXT;
         if (NamedFramebufferTextureLayerEXT is null) { missingCount++; missing?.Add("glNamedFramebufferTextureLayerEXT"); }
         NamedFramebufferTextureMultiviewOVR = (delegate* unmanaged<uint, uint, uint, int, int, int, void>)resolver("glNamedFramebufferTextureMultiviewOVR");
+        s_byName["glNamedFramebufferTextureMultiviewOVR"] = (nint)NamedFramebufferTextureMultiviewOVR;
         if (NamedFramebufferTextureMultiviewOVR is null) { missingCount++; missing?.Add("glNamedFramebufferTextureMultiviewOVR"); }
         NamedProgramLocalParameter4dEXT = (delegate* unmanaged<uint, uint, uint, double, double, double, double, void>)resolver("glNamedProgramLocalParameter4dEXT");
+        s_byName["glNamedProgramLocalParameter4dEXT"] = (nint)NamedProgramLocalParameter4dEXT;
         if (NamedProgramLocalParameter4dEXT is null) { missingCount++; missing?.Add("glNamedProgramLocalParameter4dEXT"); }
         NamedProgramLocalParameter4dvEXT = (delegate* unmanaged<uint, uint, uint, double*, void>)resolver("glNamedProgramLocalParameter4dvEXT");
+        s_byName["glNamedProgramLocalParameter4dvEXT"] = (nint)NamedProgramLocalParameter4dvEXT;
         if (NamedProgramLocalParameter4dvEXT is null) { missingCount++; missing?.Add("glNamedProgramLocalParameter4dvEXT"); }
         NamedProgramLocalParameter4fEXT = (delegate* unmanaged<uint, uint, uint, float, float, float, float, void>)resolver("glNamedProgramLocalParameter4fEXT");
+        s_byName["glNamedProgramLocalParameter4fEXT"] = (nint)NamedProgramLocalParameter4fEXT;
         if (NamedProgramLocalParameter4fEXT is null) { missingCount++; missing?.Add("glNamedProgramLocalParameter4fEXT"); }
         NamedProgramLocalParameter4fvEXT = (delegate* unmanaged<uint, uint, uint, float*, void>)resolver("glNamedProgramLocalParameter4fvEXT");
+        s_byName["glNamedProgramLocalParameter4fvEXT"] = (nint)NamedProgramLocalParameter4fvEXT;
         if (NamedProgramLocalParameter4fvEXT is null) { missingCount++; missing?.Add("glNamedProgramLocalParameter4fvEXT"); }
         NamedProgramLocalParameterI4iEXT = (delegate* unmanaged<uint, uint, uint, int, int, int, int, void>)resolver("glNamedProgramLocalParameterI4iEXT");
+        s_byName["glNamedProgramLocalParameterI4iEXT"] = (nint)NamedProgramLocalParameterI4iEXT;
         if (NamedProgramLocalParameterI4iEXT is null) { missingCount++; missing?.Add("glNamedProgramLocalParameterI4iEXT"); }
         NamedProgramLocalParameterI4ivEXT = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glNamedProgramLocalParameterI4ivEXT");
+        s_byName["glNamedProgramLocalParameterI4ivEXT"] = (nint)NamedProgramLocalParameterI4ivEXT;
         if (NamedProgramLocalParameterI4ivEXT is null) { missingCount++; missing?.Add("glNamedProgramLocalParameterI4ivEXT"); }
         NamedProgramLocalParameterI4uiEXT = (delegate* unmanaged<uint, uint, uint, uint, uint, uint, uint, void>)resolver("glNamedProgramLocalParameterI4uiEXT");
+        s_byName["glNamedProgramLocalParameterI4uiEXT"] = (nint)NamedProgramLocalParameterI4uiEXT;
         if (NamedProgramLocalParameterI4uiEXT is null) { missingCount++; missing?.Add("glNamedProgramLocalParameterI4uiEXT"); }
         NamedProgramLocalParameterI4uivEXT = (delegate* unmanaged<uint, uint, uint, uint*, void>)resolver("glNamedProgramLocalParameterI4uivEXT");
+        s_byName["glNamedProgramLocalParameterI4uivEXT"] = (nint)NamedProgramLocalParameterI4uivEXT;
         if (NamedProgramLocalParameterI4uivEXT is null) { missingCount++; missing?.Add("glNamedProgramLocalParameterI4uivEXT"); }
         NamedProgramLocalParameters4fvEXT = (delegate* unmanaged<uint, uint, uint, int, float*, void>)resolver("glNamedProgramLocalParameters4fvEXT");
+        s_byName["glNamedProgramLocalParameters4fvEXT"] = (nint)NamedProgramLocalParameters4fvEXT;
         if (NamedProgramLocalParameters4fvEXT is null) { missingCount++; missing?.Add("glNamedProgramLocalParameters4fvEXT"); }
         NamedProgramLocalParametersI4ivEXT = (delegate* unmanaged<uint, uint, uint, int, int*, void>)resolver("glNamedProgramLocalParametersI4ivEXT");
+        s_byName["glNamedProgramLocalParametersI4ivEXT"] = (nint)NamedProgramLocalParametersI4ivEXT;
         if (NamedProgramLocalParametersI4ivEXT is null) { missingCount++; missing?.Add("glNamedProgramLocalParametersI4ivEXT"); }
         NamedProgramLocalParametersI4uivEXT = (delegate* unmanaged<uint, uint, uint, int, uint*, void>)resolver("glNamedProgramLocalParametersI4uivEXT");
+        s_byName["glNamedProgramLocalParametersI4uivEXT"] = (nint)NamedProgramLocalParametersI4uivEXT;
         if (NamedProgramLocalParametersI4uivEXT is null) { missingCount++; missing?.Add("glNamedProgramLocalParametersI4uivEXT"); }
         NamedProgramStringEXT = (delegate* unmanaged<uint, uint, uint, int, void*, void>)resolver("glNamedProgramStringEXT");
+        s_byName["glNamedProgramStringEXT"] = (nint)NamedProgramStringEXT;
         if (NamedProgramStringEXT is null) { missingCount++; missing?.Add("glNamedProgramStringEXT"); }
         NamedRenderbufferStorage = (delegate* unmanaged<uint, uint, int, int, void>)resolver("glNamedRenderbufferStorage");
+        s_byName["glNamedRenderbufferStorage"] = (nint)NamedRenderbufferStorage;
         if (NamedRenderbufferStorage is null) { missingCount++; missing?.Add("glNamedRenderbufferStorage"); }
         NamedRenderbufferStorageEXT = (delegate* unmanaged<uint, uint, int, int, void>)resolver("glNamedRenderbufferStorageEXT");
+        s_byName["glNamedRenderbufferStorageEXT"] = (nint)NamedRenderbufferStorageEXT;
         if (NamedRenderbufferStorageEXT is null) { missingCount++; missing?.Add("glNamedRenderbufferStorageEXT"); }
         NamedRenderbufferStorageMultisample = (delegate* unmanaged<uint, int, uint, int, int, void>)resolver("glNamedRenderbufferStorageMultisample");
+        s_byName["glNamedRenderbufferStorageMultisample"] = (nint)NamedRenderbufferStorageMultisample;
         if (NamedRenderbufferStorageMultisample is null) { missingCount++; missing?.Add("glNamedRenderbufferStorageMultisample"); }
         NamedRenderbufferStorageMultisampleAdvancedAMD = (delegate* unmanaged<uint, int, int, uint, int, int, void>)resolver("glNamedRenderbufferStorageMultisampleAdvancedAMD");
+        s_byName["glNamedRenderbufferStorageMultisampleAdvancedAMD"] = (nint)NamedRenderbufferStorageMultisampleAdvancedAMD;
         if (NamedRenderbufferStorageMultisampleAdvancedAMD is null) { missingCount++; missing?.Add("glNamedRenderbufferStorageMultisampleAdvancedAMD"); }
         NamedRenderbufferStorageMultisampleCoverageEXT = (delegate* unmanaged<uint, int, int, uint, int, int, void>)resolver("glNamedRenderbufferStorageMultisampleCoverageEXT");
+        s_byName["glNamedRenderbufferStorageMultisampleCoverageEXT"] = (nint)NamedRenderbufferStorageMultisampleCoverageEXT;
         if (NamedRenderbufferStorageMultisampleCoverageEXT is null) { missingCount++; missing?.Add("glNamedRenderbufferStorageMultisampleCoverageEXT"); }
         NamedRenderbufferStorageMultisampleEXT = (delegate* unmanaged<uint, int, uint, int, int, void>)resolver("glNamedRenderbufferStorageMultisampleEXT");
+        s_byName["glNamedRenderbufferStorageMultisampleEXT"] = (nint)NamedRenderbufferStorageMultisampleEXT;
         if (NamedRenderbufferStorageMultisampleEXT is null) { missingCount++; missing?.Add("glNamedRenderbufferStorageMultisampleEXT"); }
         NamedStringARB = (delegate* unmanaged<uint, int, byte*, int, byte*, void>)resolver("glNamedStringARB");
+        s_byName["glNamedStringARB"] = (nint)NamedStringARB;
         if (NamedStringARB is null) { missingCount++; missing?.Add("glNamedStringARB"); }
         NewObjectBufferATI = (delegate* unmanaged<int, void*, uint, uint>)resolver("glNewObjectBufferATI");
+        s_byName["glNewObjectBufferATI"] = (nint)NewObjectBufferATI;
         if (NewObjectBufferATI is null) { missingCount++; missing?.Add("glNewObjectBufferATI"); }
         Normal3fVertex3fSUN = (delegate* unmanaged<float, float, float, float, float, float, void>)resolver("glNormal3fVertex3fSUN");
+        s_byName["glNormal3fVertex3fSUN"] = (nint)Normal3fVertex3fSUN;
         if (Normal3fVertex3fSUN is null) { missingCount++; missing?.Add("glNormal3fVertex3fSUN"); }
         Normal3fVertex3fvSUN = (delegate* unmanaged<float*, float*, void>)resolver("glNormal3fVertex3fvSUN");
+        s_byName["glNormal3fVertex3fvSUN"] = (nint)Normal3fVertex3fvSUN;
         if (Normal3fVertex3fvSUN is null) { missingCount++; missing?.Add("glNormal3fVertex3fvSUN"); }
         Normal3hNV = (delegate* unmanaged<ushort, ushort, ushort, void>)resolver("glNormal3hNV");
+        s_byName["glNormal3hNV"] = (nint)Normal3hNV;
         if (Normal3hNV is null) { missingCount++; missing?.Add("glNormal3hNV"); }
         Normal3hvNV = (delegate* unmanaged<ushort*, void>)resolver("glNormal3hvNV");
+        s_byName["glNormal3hvNV"] = (nint)Normal3hvNV;
         if (Normal3hvNV is null) { missingCount++; missing?.Add("glNormal3hvNV"); }
         Normal3xOES = (delegate* unmanaged<int, int, int, void>)resolver("glNormal3xOES");
+        s_byName["glNormal3xOES"] = (nint)Normal3xOES;
         if (Normal3xOES is null) { missingCount++; missing?.Add("glNormal3xOES"); }
         Normal3xvOES = (delegate* unmanaged<int*, void>)resolver("glNormal3xvOES");
+        s_byName["glNormal3xvOES"] = (nint)Normal3xvOES;
         if (Normal3xvOES is null) { missingCount++; missing?.Add("glNormal3xvOES"); }
         NormalFormatNV = (delegate* unmanaged<uint, int, void>)resolver("glNormalFormatNV");
+        s_byName["glNormalFormatNV"] = (nint)NormalFormatNV;
         if (NormalFormatNV is null) { missingCount++; missing?.Add("glNormalFormatNV"); }
         NormalP3ui = (delegate* unmanaged<uint, uint, void>)resolver("glNormalP3ui");
+        s_byName["glNormalP3ui"] = (nint)NormalP3ui;
         if (NormalP3ui is null) { missingCount++; missing?.Add("glNormalP3ui"); }
         NormalP3uiv = (delegate* unmanaged<uint, uint*, void>)resolver("glNormalP3uiv");
+        s_byName["glNormalP3uiv"] = (nint)NormalP3uiv;
         if (NormalP3uiv is null) { missingCount++; missing?.Add("glNormalP3uiv"); }
         NormalPointerEXT = (delegate* unmanaged<uint, int, int, void*, void>)resolver("glNormalPointerEXT");
+        s_byName["glNormalPointerEXT"] = (nint)NormalPointerEXT;
         if (NormalPointerEXT is null) { missingCount++; missing?.Add("glNormalPointerEXT"); }
         NormalPointerListIBM = (delegate* unmanaged<uint, int, void**, int, void>)resolver("glNormalPointerListIBM");
+        s_byName["glNormalPointerListIBM"] = (nint)NormalPointerListIBM;
         if (NormalPointerListIBM is null) { missingCount++; missing?.Add("glNormalPointerListIBM"); }
         NormalPointervINTEL = (delegate* unmanaged<uint, void**, void>)resolver("glNormalPointervINTEL");
+        s_byName["glNormalPointervINTEL"] = (nint)NormalPointervINTEL;
         if (NormalPointervINTEL is null) { missingCount++; missing?.Add("glNormalPointervINTEL"); }
         NormalStream3bATI = (delegate* unmanaged<uint, sbyte, sbyte, sbyte, void>)resolver("glNormalStream3bATI");
+        s_byName["glNormalStream3bATI"] = (nint)NormalStream3bATI;
         if (NormalStream3bATI is null) { missingCount++; missing?.Add("glNormalStream3bATI"); }
         NormalStream3bvATI = (delegate* unmanaged<uint, sbyte*, void>)resolver("glNormalStream3bvATI");
+        s_byName["glNormalStream3bvATI"] = (nint)NormalStream3bvATI;
         if (NormalStream3bvATI is null) { missingCount++; missing?.Add("glNormalStream3bvATI"); }
         NormalStream3dATI = (delegate* unmanaged<uint, double, double, double, void>)resolver("glNormalStream3dATI");
+        s_byName["glNormalStream3dATI"] = (nint)NormalStream3dATI;
         if (NormalStream3dATI is null) { missingCount++; missing?.Add("glNormalStream3dATI"); }
         NormalStream3dvATI = (delegate* unmanaged<uint, double*, void>)resolver("glNormalStream3dvATI");
+        s_byName["glNormalStream3dvATI"] = (nint)NormalStream3dvATI;
         if (NormalStream3dvATI is null) { missingCount++; missing?.Add("glNormalStream3dvATI"); }
         NormalStream3fATI = (delegate* unmanaged<uint, float, float, float, void>)resolver("glNormalStream3fATI");
+        s_byName["glNormalStream3fATI"] = (nint)NormalStream3fATI;
         if (NormalStream3fATI is null) { missingCount++; missing?.Add("glNormalStream3fATI"); }
         NormalStream3fvATI = (delegate* unmanaged<uint, float*, void>)resolver("glNormalStream3fvATI");
+        s_byName["glNormalStream3fvATI"] = (nint)NormalStream3fvATI;
         if (NormalStream3fvATI is null) { missingCount++; missing?.Add("glNormalStream3fvATI"); }
         NormalStream3iATI = (delegate* unmanaged<uint, int, int, int, void>)resolver("glNormalStream3iATI");
+        s_byName["glNormalStream3iATI"] = (nint)NormalStream3iATI;
         if (NormalStream3iATI is null) { missingCount++; missing?.Add("glNormalStream3iATI"); }
         NormalStream3ivATI = (delegate* unmanaged<uint, int*, void>)resolver("glNormalStream3ivATI");
+        s_byName["glNormalStream3ivATI"] = (nint)NormalStream3ivATI;
         if (NormalStream3ivATI is null) { missingCount++; missing?.Add("glNormalStream3ivATI"); }
         NormalStream3sATI = (delegate* unmanaged<uint, short, short, short, void>)resolver("glNormalStream3sATI");
+        s_byName["glNormalStream3sATI"] = (nint)NormalStream3sATI;
         if (NormalStream3sATI is null) { missingCount++; missing?.Add("glNormalStream3sATI"); }
         NormalStream3svATI = (delegate* unmanaged<uint, short*, void>)resolver("glNormalStream3svATI");
+        s_byName["glNormalStream3svATI"] = (nint)NormalStream3svATI;
         if (NormalStream3svATI is null) { missingCount++; missing?.Add("glNormalStream3svATI"); }
         ObjectLabel = (delegate* unmanaged<uint, uint, int, byte*, void>)resolver("glObjectLabel");
+        s_byName["glObjectLabel"] = (nint)ObjectLabel;
         if (ObjectLabel is null) { missingCount++; missing?.Add("glObjectLabel"); }
         ObjectLabelKHR = (delegate* unmanaged<uint, uint, int, byte*, void>)resolver("glObjectLabelKHR");
+        s_byName["glObjectLabelKHR"] = (nint)ObjectLabelKHR;
         if (ObjectLabelKHR is null) { missingCount++; missing?.Add("glObjectLabelKHR"); }
         ObjectPtrLabel = (delegate* unmanaged<void*, int, byte*, void>)resolver("glObjectPtrLabel");
+        s_byName["glObjectPtrLabel"] = (nint)ObjectPtrLabel;
         if (ObjectPtrLabel is null) { missingCount++; missing?.Add("glObjectPtrLabel"); }
         ObjectPtrLabelKHR = (delegate* unmanaged<void*, int, byte*, void>)resolver("glObjectPtrLabelKHR");
+        s_byName["glObjectPtrLabelKHR"] = (nint)ObjectPtrLabelKHR;
         if (ObjectPtrLabelKHR is null) { missingCount++; missing?.Add("glObjectPtrLabelKHR"); }
         ObjectPurgeableAPPLE = (delegate* unmanaged<uint, uint, uint, uint>)resolver("glObjectPurgeableAPPLE");
+        s_byName["glObjectPurgeableAPPLE"] = (nint)ObjectPurgeableAPPLE;
         if (ObjectPurgeableAPPLE is null) { missingCount++; missing?.Add("glObjectPurgeableAPPLE"); }
         ObjectUnpurgeableAPPLE = (delegate* unmanaged<uint, uint, uint, uint>)resolver("glObjectUnpurgeableAPPLE");
+        s_byName["glObjectUnpurgeableAPPLE"] = (nint)ObjectUnpurgeableAPPLE;
         if (ObjectUnpurgeableAPPLE is null) { missingCount++; missing?.Add("glObjectUnpurgeableAPPLE"); }
         OrthofOES = (delegate* unmanaged<float, float, float, float, float, float, void>)resolver("glOrthofOES");
+        s_byName["glOrthofOES"] = (nint)OrthofOES;
         if (OrthofOES is null) { missingCount++; missing?.Add("glOrthofOES"); }
         OrthoxOES = (delegate* unmanaged<int, int, int, int, int, int, void>)resolver("glOrthoxOES");
+        s_byName["glOrthoxOES"] = (nint)OrthoxOES;
         if (OrthoxOES is null) { missingCount++; missing?.Add("glOrthoxOES"); }
         PNTrianglesfATI = (delegate* unmanaged<uint, float, void>)resolver("glPNTrianglesfATI");
+        s_byName["glPNTrianglesfATI"] = (nint)PNTrianglesfATI;
         if (PNTrianglesfATI is null) { missingCount++; missing?.Add("glPNTrianglesfATI"); }
         PNTrianglesiATI = (delegate* unmanaged<uint, int, void>)resolver("glPNTrianglesiATI");
+        s_byName["glPNTrianglesiATI"] = (nint)PNTrianglesiATI;
         if (PNTrianglesiATI is null) { missingCount++; missing?.Add("glPNTrianglesiATI"); }
         PassTexCoordATI = (delegate* unmanaged<uint, uint, uint, void>)resolver("glPassTexCoordATI");
+        s_byName["glPassTexCoordATI"] = (nint)PassTexCoordATI;
         if (PassTexCoordATI is null) { missingCount++; missing?.Add("glPassTexCoordATI"); }
         PassThroughxOES = (delegate* unmanaged<int, void>)resolver("glPassThroughxOES");
+        s_byName["glPassThroughxOES"] = (nint)PassThroughxOES;
         if (PassThroughxOES is null) { missingCount++; missing?.Add("glPassThroughxOES"); }
         PatchParameterfv = (delegate* unmanaged<uint, float*, void>)resolver("glPatchParameterfv");
+        s_byName["glPatchParameterfv"] = (nint)PatchParameterfv;
         if (PatchParameterfv is null) { missingCount++; missing?.Add("glPatchParameterfv"); }
         PatchParameteri = (delegate* unmanaged<uint, int, void>)resolver("glPatchParameteri");
+        s_byName["glPatchParameteri"] = (nint)PatchParameteri;
         if (PatchParameteri is null) { missingCount++; missing?.Add("glPatchParameteri"); }
         PathColorGenNV = (delegate* unmanaged<uint, uint, uint, float*, void>)resolver("glPathColorGenNV");
+        s_byName["glPathColorGenNV"] = (nint)PathColorGenNV;
         if (PathColorGenNV is null) { missingCount++; missing?.Add("glPathColorGenNV"); }
         PathCommandsNV = (delegate* unmanaged<uint, int, byte*, int, uint, void*, void>)resolver("glPathCommandsNV");
+        s_byName["glPathCommandsNV"] = (nint)PathCommandsNV;
         if (PathCommandsNV is null) { missingCount++; missing?.Add("glPathCommandsNV"); }
         PathCoordsNV = (delegate* unmanaged<uint, int, uint, void*, void>)resolver("glPathCoordsNV");
+        s_byName["glPathCoordsNV"] = (nint)PathCoordsNV;
         if (PathCoordsNV is null) { missingCount++; missing?.Add("glPathCoordsNV"); }
         PathCoverDepthFuncNV = (delegate* unmanaged<uint, void>)resolver("glPathCoverDepthFuncNV");
+        s_byName["glPathCoverDepthFuncNV"] = (nint)PathCoverDepthFuncNV;
         if (PathCoverDepthFuncNV is null) { missingCount++; missing?.Add("glPathCoverDepthFuncNV"); }
         PathDashArrayNV = (delegate* unmanaged<uint, int, float*, void>)resolver("glPathDashArrayNV");
+        s_byName["glPathDashArrayNV"] = (nint)PathDashArrayNV;
         if (PathDashArrayNV is null) { missingCount++; missing?.Add("glPathDashArrayNV"); }
         PathFogGenNV = (delegate* unmanaged<uint, void>)resolver("glPathFogGenNV");
+        s_byName["glPathFogGenNV"] = (nint)PathFogGenNV;
         if (PathFogGenNV is null) { missingCount++; missing?.Add("glPathFogGenNV"); }
         PathGlyphIndexArrayNV = (delegate* unmanaged<uint, uint, void*, uint, uint, int, uint, float, uint>)resolver("glPathGlyphIndexArrayNV");
+        s_byName["glPathGlyphIndexArrayNV"] = (nint)PathGlyphIndexArrayNV;
         if (PathGlyphIndexArrayNV is null) { missingCount++; missing?.Add("glPathGlyphIndexArrayNV"); }
         PathGlyphIndexRangeNV = (delegate* unmanaged<uint, void*, uint, uint, float, uint*, uint>)resolver("glPathGlyphIndexRangeNV");
+        s_byName["glPathGlyphIndexRangeNV"] = (nint)PathGlyphIndexRangeNV;
         if (PathGlyphIndexRangeNV is null) { missingCount++; missing?.Add("glPathGlyphIndexRangeNV"); }
         PathGlyphRangeNV = (delegate* unmanaged<uint, uint, void*, uint, uint, int, uint, uint, float, void>)resolver("glPathGlyphRangeNV");
+        s_byName["glPathGlyphRangeNV"] = (nint)PathGlyphRangeNV;
         if (PathGlyphRangeNV is null) { missingCount++; missing?.Add("glPathGlyphRangeNV"); }
         PathGlyphsNV = (delegate* unmanaged<uint, uint, void*, uint, int, uint, void*, uint, uint, float, void>)resolver("glPathGlyphsNV");
+        s_byName["glPathGlyphsNV"] = (nint)PathGlyphsNV;
         if (PathGlyphsNV is null) { missingCount++; missing?.Add("glPathGlyphsNV"); }
         PathMemoryGlyphIndexArrayNV = (delegate* unmanaged<uint, uint, nint, void*, int, uint, int, uint, float, uint>)resolver("glPathMemoryGlyphIndexArrayNV");
+        s_byName["glPathMemoryGlyphIndexArrayNV"] = (nint)PathMemoryGlyphIndexArrayNV;
         if (PathMemoryGlyphIndexArrayNV is null) { missingCount++; missing?.Add("glPathMemoryGlyphIndexArrayNV"); }
         PathParameterfNV = (delegate* unmanaged<uint, uint, float, void>)resolver("glPathParameterfNV");
+        s_byName["glPathParameterfNV"] = (nint)PathParameterfNV;
         if (PathParameterfNV is null) { missingCount++; missing?.Add("glPathParameterfNV"); }
         PathParameterfvNV = (delegate* unmanaged<uint, uint, float*, void>)resolver("glPathParameterfvNV");
+        s_byName["glPathParameterfvNV"] = (nint)PathParameterfvNV;
         if (PathParameterfvNV is null) { missingCount++; missing?.Add("glPathParameterfvNV"); }
         PathParameteriNV = (delegate* unmanaged<uint, uint, int, void>)resolver("glPathParameteriNV");
+        s_byName["glPathParameteriNV"] = (nint)PathParameteriNV;
         if (PathParameteriNV is null) { missingCount++; missing?.Add("glPathParameteriNV"); }
         PathParameterivNV = (delegate* unmanaged<uint, uint, int*, void>)resolver("glPathParameterivNV");
+        s_byName["glPathParameterivNV"] = (nint)PathParameterivNV;
         if (PathParameterivNV is null) { missingCount++; missing?.Add("glPathParameterivNV"); }
         PathStencilDepthOffsetNV = (delegate* unmanaged<float, float, void>)resolver("glPathStencilDepthOffsetNV");
+        s_byName["glPathStencilDepthOffsetNV"] = (nint)PathStencilDepthOffsetNV;
         if (PathStencilDepthOffsetNV is null) { missingCount++; missing?.Add("glPathStencilDepthOffsetNV"); }
         PathStencilFuncNV = (delegate* unmanaged<uint, int, uint, void>)resolver("glPathStencilFuncNV");
+        s_byName["glPathStencilFuncNV"] = (nint)PathStencilFuncNV;
         if (PathStencilFuncNV is null) { missingCount++; missing?.Add("glPathStencilFuncNV"); }
         PathStringNV = (delegate* unmanaged<uint, uint, int, void*, void>)resolver("glPathStringNV");
+        s_byName["glPathStringNV"] = (nint)PathStringNV;
         if (PathStringNV is null) { missingCount++; missing?.Add("glPathStringNV"); }
         PathSubCommandsNV = (delegate* unmanaged<uint, int, int, int, byte*, int, uint, void*, void>)resolver("glPathSubCommandsNV");
+        s_byName["glPathSubCommandsNV"] = (nint)PathSubCommandsNV;
         if (PathSubCommandsNV is null) { missingCount++; missing?.Add("glPathSubCommandsNV"); }
         PathSubCoordsNV = (delegate* unmanaged<uint, int, int, uint, void*, void>)resolver("glPathSubCoordsNV");
+        s_byName["glPathSubCoordsNV"] = (nint)PathSubCoordsNV;
         if (PathSubCoordsNV is null) { missingCount++; missing?.Add("glPathSubCoordsNV"); }
         PathTexGenNV = (delegate* unmanaged<uint, uint, int, float*, void>)resolver("glPathTexGenNV");
+        s_byName["glPathTexGenNV"] = (nint)PathTexGenNV;
         if (PathTexGenNV is null) { missingCount++; missing?.Add("glPathTexGenNV"); }
         PauseTransformFeedback = (delegate* unmanaged<void>)resolver("glPauseTransformFeedback");
+        s_byName["glPauseTransformFeedback"] = (nint)PauseTransformFeedback;
         if (PauseTransformFeedback is null) { missingCount++; missing?.Add("glPauseTransformFeedback"); }
         PauseTransformFeedbackNV = (delegate* unmanaged<void>)resolver("glPauseTransformFeedbackNV");
+        s_byName["glPauseTransformFeedbackNV"] = (nint)PauseTransformFeedbackNV;
         if (PauseTransformFeedbackNV is null) { missingCount++; missing?.Add("glPauseTransformFeedbackNV"); }
         PixelDataRangeNV = (delegate* unmanaged<uint, int, void*, void>)resolver("glPixelDataRangeNV");
+        s_byName["glPixelDataRangeNV"] = (nint)PixelDataRangeNV;
         if (PixelDataRangeNV is null) { missingCount++; missing?.Add("glPixelDataRangeNV"); }
         PixelMapx = (delegate* unmanaged<uint, int, int*, void>)resolver("glPixelMapx");
+        s_byName["glPixelMapx"] = (nint)PixelMapx;
         if (PixelMapx is null) { missingCount++; missing?.Add("glPixelMapx"); }
         PixelStoref = (delegate* unmanaged<uint, float, void>)resolver("glPixelStoref");
+        s_byName["glPixelStoref"] = (nint)PixelStoref;
         if (PixelStoref is null) { missingCount++; missing?.Add("glPixelStoref"); }
         PixelStorei = (delegate* unmanaged<uint, int, void>)resolver("glPixelStorei");
+        s_byName["glPixelStorei"] = (nint)PixelStorei;
         if (PixelStorei is null) { missingCount++; missing?.Add("glPixelStorei"); }
         PixelStorex = (delegate* unmanaged<uint, int, void>)resolver("glPixelStorex");
+        s_byName["glPixelStorex"] = (nint)PixelStorex;
         if (PixelStorex is null) { missingCount++; missing?.Add("glPixelStorex"); }
         PixelTexGenParameterfSGIS = (delegate* unmanaged<uint, float, void>)resolver("glPixelTexGenParameterfSGIS");
+        s_byName["glPixelTexGenParameterfSGIS"] = (nint)PixelTexGenParameterfSGIS;
         if (PixelTexGenParameterfSGIS is null) { missingCount++; missing?.Add("glPixelTexGenParameterfSGIS"); }
         PixelTexGenParameterfvSGIS = (delegate* unmanaged<uint, float*, void>)resolver("glPixelTexGenParameterfvSGIS");
+        s_byName["glPixelTexGenParameterfvSGIS"] = (nint)PixelTexGenParameterfvSGIS;
         if (PixelTexGenParameterfvSGIS is null) { missingCount++; missing?.Add("glPixelTexGenParameterfvSGIS"); }
         PixelTexGenParameteriSGIS = (delegate* unmanaged<uint, int, void>)resolver("glPixelTexGenParameteriSGIS");
+        s_byName["glPixelTexGenParameteriSGIS"] = (nint)PixelTexGenParameteriSGIS;
         if (PixelTexGenParameteriSGIS is null) { missingCount++; missing?.Add("glPixelTexGenParameteriSGIS"); }
         PixelTexGenParameterivSGIS = (delegate* unmanaged<uint, int*, void>)resolver("glPixelTexGenParameterivSGIS");
+        s_byName["glPixelTexGenParameterivSGIS"] = (nint)PixelTexGenParameterivSGIS;
         if (PixelTexGenParameterivSGIS is null) { missingCount++; missing?.Add("glPixelTexGenParameterivSGIS"); }
         PixelTexGenSGIX = (delegate* unmanaged<uint, void>)resolver("glPixelTexGenSGIX");
+        s_byName["glPixelTexGenSGIX"] = (nint)PixelTexGenSGIX;
         if (PixelTexGenSGIX is null) { missingCount++; missing?.Add("glPixelTexGenSGIX"); }
         PixelTransferxOES = (delegate* unmanaged<uint, int, void>)resolver("glPixelTransferxOES");
+        s_byName["glPixelTransferxOES"] = (nint)PixelTransferxOES;
         if (PixelTransferxOES is null) { missingCount++; missing?.Add("glPixelTransferxOES"); }
         PixelTransformParameterfEXT = (delegate* unmanaged<uint, uint, float, void>)resolver("glPixelTransformParameterfEXT");
+        s_byName["glPixelTransformParameterfEXT"] = (nint)PixelTransformParameterfEXT;
         if (PixelTransformParameterfEXT is null) { missingCount++; missing?.Add("glPixelTransformParameterfEXT"); }
         PixelTransformParameterfvEXT = (delegate* unmanaged<uint, uint, float*, void>)resolver("glPixelTransformParameterfvEXT");
+        s_byName["glPixelTransformParameterfvEXT"] = (nint)PixelTransformParameterfvEXT;
         if (PixelTransformParameterfvEXT is null) { missingCount++; missing?.Add("glPixelTransformParameterfvEXT"); }
         PixelTransformParameteriEXT = (delegate* unmanaged<uint, uint, int, void>)resolver("glPixelTransformParameteriEXT");
+        s_byName["glPixelTransformParameteriEXT"] = (nint)PixelTransformParameteriEXT;
         if (PixelTransformParameteriEXT is null) { missingCount++; missing?.Add("glPixelTransformParameteriEXT"); }
         PixelTransformParameterivEXT = (delegate* unmanaged<uint, uint, int*, void>)resolver("glPixelTransformParameterivEXT");
+        s_byName["glPixelTransformParameterivEXT"] = (nint)PixelTransformParameterivEXT;
         if (PixelTransformParameterivEXT is null) { missingCount++; missing?.Add("glPixelTransformParameterivEXT"); }
         PixelZoomxOES = (delegate* unmanaged<int, int, void>)resolver("glPixelZoomxOES");
+        s_byName["glPixelZoomxOES"] = (nint)PixelZoomxOES;
         if (PixelZoomxOES is null) { missingCount++; missing?.Add("glPixelZoomxOES"); }
         PointAlongPathNV = (delegate* unmanaged<uint, int, int, float, float*, float*, float*, float*, byte>)resolver("glPointAlongPathNV");
+        s_byName["glPointAlongPathNV"] = (nint)PointAlongPathNV;
         if (PointAlongPathNV is null) { missingCount++; missing?.Add("glPointAlongPathNV"); }
         PointParameterf = (delegate* unmanaged<uint, float, void>)resolver("glPointParameterf");
+        s_byName["glPointParameterf"] = (nint)PointParameterf;
         if (PointParameterf is null) { missingCount++; missing?.Add("glPointParameterf"); }
         PointParameterfARB = (delegate* unmanaged<uint, float, void>)resolver("glPointParameterfARB");
+        s_byName["glPointParameterfARB"] = (nint)PointParameterfARB;
         if (PointParameterfARB is null) { missingCount++; missing?.Add("glPointParameterfARB"); }
         PointParameterfEXT = (delegate* unmanaged<uint, float, void>)resolver("glPointParameterfEXT");
+        s_byName["glPointParameterfEXT"] = (nint)PointParameterfEXT;
         if (PointParameterfEXT is null) { missingCount++; missing?.Add("glPointParameterfEXT"); }
         PointParameterfSGIS = (delegate* unmanaged<uint, float, void>)resolver("glPointParameterfSGIS");
+        s_byName["glPointParameterfSGIS"] = (nint)PointParameterfSGIS;
         if (PointParameterfSGIS is null) { missingCount++; missing?.Add("glPointParameterfSGIS"); }
         PointParameterfv = (delegate* unmanaged<uint, float*, void>)resolver("glPointParameterfv");
+        s_byName["glPointParameterfv"] = (nint)PointParameterfv;
         if (PointParameterfv is null) { missingCount++; missing?.Add("glPointParameterfv"); }
         PointParameterfvARB = (delegate* unmanaged<uint, float*, void>)resolver("glPointParameterfvARB");
+        s_byName["glPointParameterfvARB"] = (nint)PointParameterfvARB;
         if (PointParameterfvARB is null) { missingCount++; missing?.Add("glPointParameterfvARB"); }
         PointParameterfvEXT = (delegate* unmanaged<uint, float*, void>)resolver("glPointParameterfvEXT");
+        s_byName["glPointParameterfvEXT"] = (nint)PointParameterfvEXT;
         if (PointParameterfvEXT is null) { missingCount++; missing?.Add("glPointParameterfvEXT"); }
         PointParameterfvSGIS = (delegate* unmanaged<uint, float*, void>)resolver("glPointParameterfvSGIS");
+        s_byName["glPointParameterfvSGIS"] = (nint)PointParameterfvSGIS;
         if (PointParameterfvSGIS is null) { missingCount++; missing?.Add("glPointParameterfvSGIS"); }
         PointParameteri = (delegate* unmanaged<uint, int, void>)resolver("glPointParameteri");
+        s_byName["glPointParameteri"] = (nint)PointParameteri;
         if (PointParameteri is null) { missingCount++; missing?.Add("glPointParameteri"); }
         PointParameteriNV = (delegate* unmanaged<uint, int, void>)resolver("glPointParameteriNV");
+        s_byName["glPointParameteriNV"] = (nint)PointParameteriNV;
         if (PointParameteriNV is null) { missingCount++; missing?.Add("glPointParameteriNV"); }
         PointParameteriv = (delegate* unmanaged<uint, int*, void>)resolver("glPointParameteriv");
+        s_byName["glPointParameteriv"] = (nint)PointParameteriv;
         if (PointParameteriv is null) { missingCount++; missing?.Add("glPointParameteriv"); }
         PointParameterivNV = (delegate* unmanaged<uint, int*, void>)resolver("glPointParameterivNV");
+        s_byName["glPointParameterivNV"] = (nint)PointParameterivNV;
         if (PointParameterivNV is null) { missingCount++; missing?.Add("glPointParameterivNV"); }
         PointParameterxOES = (delegate* unmanaged<uint, int, void>)resolver("glPointParameterxOES");
+        s_byName["glPointParameterxOES"] = (nint)PointParameterxOES;
         if (PointParameterxOES is null) { missingCount++; missing?.Add("glPointParameterxOES"); }
         PointParameterxvOES = (delegate* unmanaged<uint, int*, void>)resolver("glPointParameterxvOES");
+        s_byName["glPointParameterxvOES"] = (nint)PointParameterxvOES;
         if (PointParameterxvOES is null) { missingCount++; missing?.Add("glPointParameterxvOES"); }
         PointSize = (delegate* unmanaged<float, void>)resolver("glPointSize");
+        s_byName["glPointSize"] = (nint)PointSize;
         if (PointSize is null) { missingCount++; missing?.Add("glPointSize"); }
         PointSizexOES = (delegate* unmanaged<int, void>)resolver("glPointSizexOES");
+        s_byName["glPointSizexOES"] = (nint)PointSizexOES;
         if (PointSizexOES is null) { missingCount++; missing?.Add("glPointSizexOES"); }
         PollAsyncSGIX = (delegate* unmanaged<uint*, int>)resolver("glPollAsyncSGIX");
+        s_byName["glPollAsyncSGIX"] = (nint)PollAsyncSGIX;
         if (PollAsyncSGIX is null) { missingCount++; missing?.Add("glPollAsyncSGIX"); }
         PollInstrumentsSGIX = (delegate* unmanaged<int*, int>)resolver("glPollInstrumentsSGIX");
+        s_byName["glPollInstrumentsSGIX"] = (nint)PollInstrumentsSGIX;
         if (PollInstrumentsSGIX is null) { missingCount++; missing?.Add("glPollInstrumentsSGIX"); }
         PolygonMode = (delegate* unmanaged<uint, uint, void>)resolver("glPolygonMode");
+        s_byName["glPolygonMode"] = (nint)PolygonMode;
         if (PolygonMode is null) { missingCount++; missing?.Add("glPolygonMode"); }
         PolygonOffset = (delegate* unmanaged<float, float, void>)resolver("glPolygonOffset");
+        s_byName["glPolygonOffset"] = (nint)PolygonOffset;
         if (PolygonOffset is null) { missingCount++; missing?.Add("glPolygonOffset"); }
         PolygonOffsetClamp = (delegate* unmanaged<float, float, float, void>)resolver("glPolygonOffsetClamp");
+        s_byName["glPolygonOffsetClamp"] = (nint)PolygonOffsetClamp;
         if (PolygonOffsetClamp is null) { missingCount++; missing?.Add("glPolygonOffsetClamp"); }
         PolygonOffsetClampEXT = (delegate* unmanaged<float, float, float, void>)resolver("glPolygonOffsetClampEXT");
+        s_byName["glPolygonOffsetClampEXT"] = (nint)PolygonOffsetClampEXT;
         if (PolygonOffsetClampEXT is null) { missingCount++; missing?.Add("glPolygonOffsetClampEXT"); }
         PolygonOffsetEXT = (delegate* unmanaged<float, float, void>)resolver("glPolygonOffsetEXT");
+        s_byName["glPolygonOffsetEXT"] = (nint)PolygonOffsetEXT;
         if (PolygonOffsetEXT is null) { missingCount++; missing?.Add("glPolygonOffsetEXT"); }
         PolygonOffsetxOES = (delegate* unmanaged<int, int, void>)resolver("glPolygonOffsetxOES");
+        s_byName["glPolygonOffsetxOES"] = (nint)PolygonOffsetxOES;
         if (PolygonOffsetxOES is null) { missingCount++; missing?.Add("glPolygonOffsetxOES"); }
         PopDebugGroup = (delegate* unmanaged<void>)resolver("glPopDebugGroup");
+        s_byName["glPopDebugGroup"] = (nint)PopDebugGroup;
         if (PopDebugGroup is null) { missingCount++; missing?.Add("glPopDebugGroup"); }
         PopDebugGroupKHR = (delegate* unmanaged<void>)resolver("glPopDebugGroupKHR");
+        s_byName["glPopDebugGroupKHR"] = (nint)PopDebugGroupKHR;
         if (PopDebugGroupKHR is null) { missingCount++; missing?.Add("glPopDebugGroupKHR"); }
         PopGroupMarkerEXT = (delegate* unmanaged<void>)resolver("glPopGroupMarkerEXT");
+        s_byName["glPopGroupMarkerEXT"] = (nint)PopGroupMarkerEXT;
         if (PopGroupMarkerEXT is null) { missingCount++; missing?.Add("glPopGroupMarkerEXT"); }
         PresentFrameDualFillNV = (delegate* unmanaged<uint, ulong, uint, uint, uint, uint, uint, uint, uint, uint, uint, uint, uint, void>)resolver("glPresentFrameDualFillNV");
+        s_byName["glPresentFrameDualFillNV"] = (nint)PresentFrameDualFillNV;
         if (PresentFrameDualFillNV is null) { missingCount++; missing?.Add("glPresentFrameDualFillNV"); }
         PresentFrameKeyedNV = (delegate* unmanaged<uint, ulong, uint, uint, uint, uint, uint, uint, uint, uint, uint, void>)resolver("glPresentFrameKeyedNV");
+        s_byName["glPresentFrameKeyedNV"] = (nint)PresentFrameKeyedNV;
         if (PresentFrameKeyedNV is null) { missingCount++; missing?.Add("glPresentFrameKeyedNV"); }
         PrimitiveBoundingBoxARB = (delegate* unmanaged<float, float, float, float, float, float, float, float, void>)resolver("glPrimitiveBoundingBoxARB");
+        s_byName["glPrimitiveBoundingBoxARB"] = (nint)PrimitiveBoundingBoxARB;
         if (PrimitiveBoundingBoxARB is null) { missingCount++; missing?.Add("glPrimitiveBoundingBoxARB"); }
         PrimitiveRestartIndex = (delegate* unmanaged<uint, void>)resolver("glPrimitiveRestartIndex");
+        s_byName["glPrimitiveRestartIndex"] = (nint)PrimitiveRestartIndex;
         if (PrimitiveRestartIndex is null) { missingCount++; missing?.Add("glPrimitiveRestartIndex"); }
         PrimitiveRestartIndexNV = (delegate* unmanaged<uint, void>)resolver("glPrimitiveRestartIndexNV");
+        s_byName["glPrimitiveRestartIndexNV"] = (nint)PrimitiveRestartIndexNV;
         if (PrimitiveRestartIndexNV is null) { missingCount++; missing?.Add("glPrimitiveRestartIndexNV"); }
         PrimitiveRestartNV = (delegate* unmanaged<void>)resolver("glPrimitiveRestartNV");
+        s_byName["glPrimitiveRestartNV"] = (nint)PrimitiveRestartNV;
         if (PrimitiveRestartNV is null) { missingCount++; missing?.Add("glPrimitiveRestartNV"); }
         PrioritizeTexturesEXT = (delegate* unmanaged<int, uint*, float*, void>)resolver("glPrioritizeTexturesEXT");
+        s_byName["glPrioritizeTexturesEXT"] = (nint)PrioritizeTexturesEXT;
         if (PrioritizeTexturesEXT is null) { missingCount++; missing?.Add("glPrioritizeTexturesEXT"); }
         PrioritizeTexturesxOES = (delegate* unmanaged<int, uint*, int*, void>)resolver("glPrioritizeTexturesxOES");
+        s_byName["glPrioritizeTexturesxOES"] = (nint)PrioritizeTexturesxOES;
         if (PrioritizeTexturesxOES is null) { missingCount++; missing?.Add("glPrioritizeTexturesxOES"); }
         ProgramBinary = (delegate* unmanaged<uint, uint, void*, int, void>)resolver("glProgramBinary");
+        s_byName["glProgramBinary"] = (nint)ProgramBinary;
         if (ProgramBinary is null) { missingCount++; missing?.Add("glProgramBinary"); }
         ProgramBufferParametersIivNV = (delegate* unmanaged<uint, uint, uint, int, int*, void>)resolver("glProgramBufferParametersIivNV");
+        s_byName["glProgramBufferParametersIivNV"] = (nint)ProgramBufferParametersIivNV;
         if (ProgramBufferParametersIivNV is null) { missingCount++; missing?.Add("glProgramBufferParametersIivNV"); }
         ProgramBufferParametersIuivNV = (delegate* unmanaged<uint, uint, uint, int, uint*, void>)resolver("glProgramBufferParametersIuivNV");
+        s_byName["glProgramBufferParametersIuivNV"] = (nint)ProgramBufferParametersIuivNV;
         if (ProgramBufferParametersIuivNV is null) { missingCount++; missing?.Add("glProgramBufferParametersIuivNV"); }
         ProgramBufferParametersfvNV = (delegate* unmanaged<uint, uint, uint, int, float*, void>)resolver("glProgramBufferParametersfvNV");
+        s_byName["glProgramBufferParametersfvNV"] = (nint)ProgramBufferParametersfvNV;
         if (ProgramBufferParametersfvNV is null) { missingCount++; missing?.Add("glProgramBufferParametersfvNV"); }
         ProgramEnvParameter4dARB = (delegate* unmanaged<uint, uint, double, double, double, double, void>)resolver("glProgramEnvParameter4dARB");
+        s_byName["glProgramEnvParameter4dARB"] = (nint)ProgramEnvParameter4dARB;
         if (ProgramEnvParameter4dARB is null) { missingCount++; missing?.Add("glProgramEnvParameter4dARB"); }
         ProgramEnvParameter4dvARB = (delegate* unmanaged<uint, uint, double*, void>)resolver("glProgramEnvParameter4dvARB");
+        s_byName["glProgramEnvParameter4dvARB"] = (nint)ProgramEnvParameter4dvARB;
         if (ProgramEnvParameter4dvARB is null) { missingCount++; missing?.Add("glProgramEnvParameter4dvARB"); }
         ProgramEnvParameter4fARB = (delegate* unmanaged<uint, uint, float, float, float, float, void>)resolver("glProgramEnvParameter4fARB");
+        s_byName["glProgramEnvParameter4fARB"] = (nint)ProgramEnvParameter4fARB;
         if (ProgramEnvParameter4fARB is null) { missingCount++; missing?.Add("glProgramEnvParameter4fARB"); }
         ProgramEnvParameter4fvARB = (delegate* unmanaged<uint, uint, float*, void>)resolver("glProgramEnvParameter4fvARB");
+        s_byName["glProgramEnvParameter4fvARB"] = (nint)ProgramEnvParameter4fvARB;
         if (ProgramEnvParameter4fvARB is null) { missingCount++; missing?.Add("glProgramEnvParameter4fvARB"); }
         ProgramEnvParameterI4iNV = (delegate* unmanaged<uint, uint, int, int, int, int, void>)resolver("glProgramEnvParameterI4iNV");
+        s_byName["glProgramEnvParameterI4iNV"] = (nint)ProgramEnvParameterI4iNV;
         if (ProgramEnvParameterI4iNV is null) { missingCount++; missing?.Add("glProgramEnvParameterI4iNV"); }
         ProgramEnvParameterI4ivNV = (delegate* unmanaged<uint, uint, int*, void>)resolver("glProgramEnvParameterI4ivNV");
+        s_byName["glProgramEnvParameterI4ivNV"] = (nint)ProgramEnvParameterI4ivNV;
         if (ProgramEnvParameterI4ivNV is null) { missingCount++; missing?.Add("glProgramEnvParameterI4ivNV"); }
         ProgramEnvParameterI4uiNV = (delegate* unmanaged<uint, uint, uint, uint, uint, uint, void>)resolver("glProgramEnvParameterI4uiNV");
+        s_byName["glProgramEnvParameterI4uiNV"] = (nint)ProgramEnvParameterI4uiNV;
         if (ProgramEnvParameterI4uiNV is null) { missingCount++; missing?.Add("glProgramEnvParameterI4uiNV"); }
         ProgramEnvParameterI4uivNV = (delegate* unmanaged<uint, uint, uint*, void>)resolver("glProgramEnvParameterI4uivNV");
+        s_byName["glProgramEnvParameterI4uivNV"] = (nint)ProgramEnvParameterI4uivNV;
         if (ProgramEnvParameterI4uivNV is null) { missingCount++; missing?.Add("glProgramEnvParameterI4uivNV"); }
         ProgramEnvParameters4fvEXT = (delegate* unmanaged<uint, uint, int, float*, void>)resolver("glProgramEnvParameters4fvEXT");
+        s_byName["glProgramEnvParameters4fvEXT"] = (nint)ProgramEnvParameters4fvEXT;
         if (ProgramEnvParameters4fvEXT is null) { missingCount++; missing?.Add("glProgramEnvParameters4fvEXT"); }
         ProgramEnvParametersI4ivNV = (delegate* unmanaged<uint, uint, int, int*, void>)resolver("glProgramEnvParametersI4ivNV");
+        s_byName["glProgramEnvParametersI4ivNV"] = (nint)ProgramEnvParametersI4ivNV;
         if (ProgramEnvParametersI4ivNV is null) { missingCount++; missing?.Add("glProgramEnvParametersI4ivNV"); }
         ProgramEnvParametersI4uivNV = (delegate* unmanaged<uint, uint, int, uint*, void>)resolver("glProgramEnvParametersI4uivNV");
+        s_byName["glProgramEnvParametersI4uivNV"] = (nint)ProgramEnvParametersI4uivNV;
         if (ProgramEnvParametersI4uivNV is null) { missingCount++; missing?.Add("glProgramEnvParametersI4uivNV"); }
         ProgramLocalParameter4dARB = (delegate* unmanaged<uint, uint, double, double, double, double, void>)resolver("glProgramLocalParameter4dARB");
+        s_byName["glProgramLocalParameter4dARB"] = (nint)ProgramLocalParameter4dARB;
         if (ProgramLocalParameter4dARB is null) { missingCount++; missing?.Add("glProgramLocalParameter4dARB"); }
         ProgramLocalParameter4dvARB = (delegate* unmanaged<uint, uint, double*, void>)resolver("glProgramLocalParameter4dvARB");
+        s_byName["glProgramLocalParameter4dvARB"] = (nint)ProgramLocalParameter4dvARB;
         if (ProgramLocalParameter4dvARB is null) { missingCount++; missing?.Add("glProgramLocalParameter4dvARB"); }
         ProgramLocalParameter4fARB = (delegate* unmanaged<uint, uint, float, float, float, float, void>)resolver("glProgramLocalParameter4fARB");
+        s_byName["glProgramLocalParameter4fARB"] = (nint)ProgramLocalParameter4fARB;
         if (ProgramLocalParameter4fARB is null) { missingCount++; missing?.Add("glProgramLocalParameter4fARB"); }
         ProgramLocalParameter4fvARB = (delegate* unmanaged<uint, uint, float*, void>)resolver("glProgramLocalParameter4fvARB");
+        s_byName["glProgramLocalParameter4fvARB"] = (nint)ProgramLocalParameter4fvARB;
         if (ProgramLocalParameter4fvARB is null) { missingCount++; missing?.Add("glProgramLocalParameter4fvARB"); }
         ProgramLocalParameterI4iNV = (delegate* unmanaged<uint, uint, int, int, int, int, void>)resolver("glProgramLocalParameterI4iNV");
+        s_byName["glProgramLocalParameterI4iNV"] = (nint)ProgramLocalParameterI4iNV;
         if (ProgramLocalParameterI4iNV is null) { missingCount++; missing?.Add("glProgramLocalParameterI4iNV"); }
         ProgramLocalParameterI4ivNV = (delegate* unmanaged<uint, uint, int*, void>)resolver("glProgramLocalParameterI4ivNV");
+        s_byName["glProgramLocalParameterI4ivNV"] = (nint)ProgramLocalParameterI4ivNV;
         if (ProgramLocalParameterI4ivNV is null) { missingCount++; missing?.Add("glProgramLocalParameterI4ivNV"); }
         ProgramLocalParameterI4uiNV = (delegate* unmanaged<uint, uint, uint, uint, uint, uint, void>)resolver("glProgramLocalParameterI4uiNV");
+        s_byName["glProgramLocalParameterI4uiNV"] = (nint)ProgramLocalParameterI4uiNV;
         if (ProgramLocalParameterI4uiNV is null) { missingCount++; missing?.Add("glProgramLocalParameterI4uiNV"); }
         ProgramLocalParameterI4uivNV = (delegate* unmanaged<uint, uint, uint*, void>)resolver("glProgramLocalParameterI4uivNV");
+        s_byName["glProgramLocalParameterI4uivNV"] = (nint)ProgramLocalParameterI4uivNV;
         if (ProgramLocalParameterI4uivNV is null) { missingCount++; missing?.Add("glProgramLocalParameterI4uivNV"); }
         ProgramLocalParameters4fvEXT = (delegate* unmanaged<uint, uint, int, float*, void>)resolver("glProgramLocalParameters4fvEXT");
+        s_byName["glProgramLocalParameters4fvEXT"] = (nint)ProgramLocalParameters4fvEXT;
         if (ProgramLocalParameters4fvEXT is null) { missingCount++; missing?.Add("glProgramLocalParameters4fvEXT"); }
         ProgramLocalParametersI4ivNV = (delegate* unmanaged<uint, uint, int, int*, void>)resolver("glProgramLocalParametersI4ivNV");
+        s_byName["glProgramLocalParametersI4ivNV"] = (nint)ProgramLocalParametersI4ivNV;
         if (ProgramLocalParametersI4ivNV is null) { missingCount++; missing?.Add("glProgramLocalParametersI4ivNV"); }
         ProgramLocalParametersI4uivNV = (delegate* unmanaged<uint, uint, int, uint*, void>)resolver("glProgramLocalParametersI4uivNV");
+        s_byName["glProgramLocalParametersI4uivNV"] = (nint)ProgramLocalParametersI4uivNV;
         if (ProgramLocalParametersI4uivNV is null) { missingCount++; missing?.Add("glProgramLocalParametersI4uivNV"); }
         ProgramNamedParameter4dNV = (delegate* unmanaged<uint, int, byte*, double, double, double, double, void>)resolver("glProgramNamedParameter4dNV");
+        s_byName["glProgramNamedParameter4dNV"] = (nint)ProgramNamedParameter4dNV;
         if (ProgramNamedParameter4dNV is null) { missingCount++; missing?.Add("glProgramNamedParameter4dNV"); }
         ProgramNamedParameter4dvNV = (delegate* unmanaged<uint, int, byte*, double*, void>)resolver("glProgramNamedParameter4dvNV");
+        s_byName["glProgramNamedParameter4dvNV"] = (nint)ProgramNamedParameter4dvNV;
         if (ProgramNamedParameter4dvNV is null) { missingCount++; missing?.Add("glProgramNamedParameter4dvNV"); }
         ProgramNamedParameter4fNV = (delegate* unmanaged<uint, int, byte*, float, float, float, float, void>)resolver("glProgramNamedParameter4fNV");
+        s_byName["glProgramNamedParameter4fNV"] = (nint)ProgramNamedParameter4fNV;
         if (ProgramNamedParameter4fNV is null) { missingCount++; missing?.Add("glProgramNamedParameter4fNV"); }
         ProgramNamedParameter4fvNV = (delegate* unmanaged<uint, int, byte*, float*, void>)resolver("glProgramNamedParameter4fvNV");
+        s_byName["glProgramNamedParameter4fvNV"] = (nint)ProgramNamedParameter4fvNV;
         if (ProgramNamedParameter4fvNV is null) { missingCount++; missing?.Add("glProgramNamedParameter4fvNV"); }
         ProgramParameter4dNV = (delegate* unmanaged<uint, uint, double, double, double, double, void>)resolver("glProgramParameter4dNV");
+        s_byName["glProgramParameter4dNV"] = (nint)ProgramParameter4dNV;
         if (ProgramParameter4dNV is null) { missingCount++; missing?.Add("glProgramParameter4dNV"); }
         ProgramParameter4dvNV = (delegate* unmanaged<uint, uint, double*, void>)resolver("glProgramParameter4dvNV");
+        s_byName["glProgramParameter4dvNV"] = (nint)ProgramParameter4dvNV;
         if (ProgramParameter4dvNV is null) { missingCount++; missing?.Add("glProgramParameter4dvNV"); }
         ProgramParameter4fNV = (delegate* unmanaged<uint, uint, float, float, float, float, void>)resolver("glProgramParameter4fNV");
+        s_byName["glProgramParameter4fNV"] = (nint)ProgramParameter4fNV;
         if (ProgramParameter4fNV is null) { missingCount++; missing?.Add("glProgramParameter4fNV"); }
         ProgramParameter4fvNV = (delegate* unmanaged<uint, uint, float*, void>)resolver("glProgramParameter4fvNV");
+        s_byName["glProgramParameter4fvNV"] = (nint)ProgramParameter4fvNV;
         if (ProgramParameter4fvNV is null) { missingCount++; missing?.Add("glProgramParameter4fvNV"); }
         ProgramParameteri = (delegate* unmanaged<uint, uint, int, void>)resolver("glProgramParameteri");
+        s_byName["glProgramParameteri"] = (nint)ProgramParameteri;
         if (ProgramParameteri is null) { missingCount++; missing?.Add("glProgramParameteri"); }
         ProgramParameteriARB = (delegate* unmanaged<uint, uint, int, void>)resolver("glProgramParameteriARB");
+        s_byName["glProgramParameteriARB"] = (nint)ProgramParameteriARB;
         if (ProgramParameteriARB is null) { missingCount++; missing?.Add("glProgramParameteriARB"); }
         ProgramParameteriEXT = (delegate* unmanaged<uint, uint, int, void>)resolver("glProgramParameteriEXT");
+        s_byName["glProgramParameteriEXT"] = (nint)ProgramParameteriEXT;
         if (ProgramParameteriEXT is null) { missingCount++; missing?.Add("glProgramParameteriEXT"); }
         ProgramParameters4dvNV = (delegate* unmanaged<uint, uint, int, double*, void>)resolver("glProgramParameters4dvNV");
+        s_byName["glProgramParameters4dvNV"] = (nint)ProgramParameters4dvNV;
         if (ProgramParameters4dvNV is null) { missingCount++; missing?.Add("glProgramParameters4dvNV"); }
         ProgramParameters4fvNV = (delegate* unmanaged<uint, uint, int, float*, void>)resolver("glProgramParameters4fvNV");
+        s_byName["glProgramParameters4fvNV"] = (nint)ProgramParameters4fvNV;
         if (ProgramParameters4fvNV is null) { missingCount++; missing?.Add("glProgramParameters4fvNV"); }
         ProgramPathFragmentInputGenNV = (delegate* unmanaged<uint, int, uint, int, float*, void>)resolver("glProgramPathFragmentInputGenNV");
+        s_byName["glProgramPathFragmentInputGenNV"] = (nint)ProgramPathFragmentInputGenNV;
         if (ProgramPathFragmentInputGenNV is null) { missingCount++; missing?.Add("glProgramPathFragmentInputGenNV"); }
         ProgramStringARB = (delegate* unmanaged<uint, uint, int, void*, void>)resolver("glProgramStringARB");
+        s_byName["glProgramStringARB"] = (nint)ProgramStringARB;
         if (ProgramStringARB is null) { missingCount++; missing?.Add("glProgramStringARB"); }
         ProgramSubroutineParametersuivNV = (delegate* unmanaged<uint, int, uint*, void>)resolver("glProgramSubroutineParametersuivNV");
+        s_byName["glProgramSubroutineParametersuivNV"] = (nint)ProgramSubroutineParametersuivNV;
         if (ProgramSubroutineParametersuivNV is null) { missingCount++; missing?.Add("glProgramSubroutineParametersuivNV"); }
         ProgramUniform1d = (delegate* unmanaged<uint, int, double, void>)resolver("glProgramUniform1d");
+        s_byName["glProgramUniform1d"] = (nint)ProgramUniform1d;
         if (ProgramUniform1d is null) { missingCount++; missing?.Add("glProgramUniform1d"); }
         ProgramUniform1dEXT = (delegate* unmanaged<uint, int, double, void>)resolver("glProgramUniform1dEXT");
+        s_byName["glProgramUniform1dEXT"] = (nint)ProgramUniform1dEXT;
         if (ProgramUniform1dEXT is null) { missingCount++; missing?.Add("glProgramUniform1dEXT"); }
         ProgramUniform1dv = (delegate* unmanaged<uint, int, int, double*, void>)resolver("glProgramUniform1dv");
+        s_byName["glProgramUniform1dv"] = (nint)ProgramUniform1dv;
         if (ProgramUniform1dv is null) { missingCount++; missing?.Add("glProgramUniform1dv"); }
         ProgramUniform1dvEXT = (delegate* unmanaged<uint, int, int, double*, void>)resolver("glProgramUniform1dvEXT");
+        s_byName["glProgramUniform1dvEXT"] = (nint)ProgramUniform1dvEXT;
         if (ProgramUniform1dvEXT is null) { missingCount++; missing?.Add("glProgramUniform1dvEXT"); }
         ProgramUniform1f = (delegate* unmanaged<uint, int, float, void>)resolver("glProgramUniform1f");
+        s_byName["glProgramUniform1f"] = (nint)ProgramUniform1f;
         if (ProgramUniform1f is null) { missingCount++; missing?.Add("glProgramUniform1f"); }
         ProgramUniform1fEXT = (delegate* unmanaged<uint, int, float, void>)resolver("glProgramUniform1fEXT");
+        s_byName["glProgramUniform1fEXT"] = (nint)ProgramUniform1fEXT;
         if (ProgramUniform1fEXT is null) { missingCount++; missing?.Add("glProgramUniform1fEXT"); }
         ProgramUniform1fv = (delegate* unmanaged<uint, int, int, float*, void>)resolver("glProgramUniform1fv");
+        s_byName["glProgramUniform1fv"] = (nint)ProgramUniform1fv;
         if (ProgramUniform1fv is null) { missingCount++; missing?.Add("glProgramUniform1fv"); }
         ProgramUniform1fvEXT = (delegate* unmanaged<uint, int, int, float*, void>)resolver("glProgramUniform1fvEXT");
+        s_byName["glProgramUniform1fvEXT"] = (nint)ProgramUniform1fvEXT;
         if (ProgramUniform1fvEXT is null) { missingCount++; missing?.Add("glProgramUniform1fvEXT"); }
         ProgramUniform1i = (delegate* unmanaged<uint, int, int, void>)resolver("glProgramUniform1i");
+        s_byName["glProgramUniform1i"] = (nint)ProgramUniform1i;
         if (ProgramUniform1i is null) { missingCount++; missing?.Add("glProgramUniform1i"); }
         ProgramUniform1i64ARB = (delegate* unmanaged<uint, int, long, void>)resolver("glProgramUniform1i64ARB");
+        s_byName["glProgramUniform1i64ARB"] = (nint)ProgramUniform1i64ARB;
         if (ProgramUniform1i64ARB is null) { missingCount++; missing?.Add("glProgramUniform1i64ARB"); }
         ProgramUniform1i64NV = (delegate* unmanaged<uint, int, long, void>)resolver("glProgramUniform1i64NV");
+        s_byName["glProgramUniform1i64NV"] = (nint)ProgramUniform1i64NV;
         if (ProgramUniform1i64NV is null) { missingCount++; missing?.Add("glProgramUniform1i64NV"); }
         ProgramUniform1i64vARB = (delegate* unmanaged<uint, int, int, long*, void>)resolver("glProgramUniform1i64vARB");
+        s_byName["glProgramUniform1i64vARB"] = (nint)ProgramUniform1i64vARB;
         if (ProgramUniform1i64vARB is null) { missingCount++; missing?.Add("glProgramUniform1i64vARB"); }
         ProgramUniform1i64vNV = (delegate* unmanaged<uint, int, int, long*, void>)resolver("glProgramUniform1i64vNV");
+        s_byName["glProgramUniform1i64vNV"] = (nint)ProgramUniform1i64vNV;
         if (ProgramUniform1i64vNV is null) { missingCount++; missing?.Add("glProgramUniform1i64vNV"); }
         ProgramUniform1iEXT = (delegate* unmanaged<uint, int, int, void>)resolver("glProgramUniform1iEXT");
+        s_byName["glProgramUniform1iEXT"] = (nint)ProgramUniform1iEXT;
         if (ProgramUniform1iEXT is null) { missingCount++; missing?.Add("glProgramUniform1iEXT"); }
         ProgramUniform1iv = (delegate* unmanaged<uint, int, int, int*, void>)resolver("glProgramUniform1iv");
+        s_byName["glProgramUniform1iv"] = (nint)ProgramUniform1iv;
         if (ProgramUniform1iv is null) { missingCount++; missing?.Add("glProgramUniform1iv"); }
         ProgramUniform1ivEXT = (delegate* unmanaged<uint, int, int, int*, void>)resolver("glProgramUniform1ivEXT");
+        s_byName["glProgramUniform1ivEXT"] = (nint)ProgramUniform1ivEXT;
         if (ProgramUniform1ivEXT is null) { missingCount++; missing?.Add("glProgramUniform1ivEXT"); }
         ProgramUniform1ui = (delegate* unmanaged<uint, int, uint, void>)resolver("glProgramUniform1ui");
+        s_byName["glProgramUniform1ui"] = (nint)ProgramUniform1ui;
         if (ProgramUniform1ui is null) { missingCount++; missing?.Add("glProgramUniform1ui"); }
         ProgramUniform1ui64ARB = (delegate* unmanaged<uint, int, ulong, void>)resolver("glProgramUniform1ui64ARB");
+        s_byName["glProgramUniform1ui64ARB"] = (nint)ProgramUniform1ui64ARB;
         if (ProgramUniform1ui64ARB is null) { missingCount++; missing?.Add("glProgramUniform1ui64ARB"); }
         ProgramUniform1ui64NV = (delegate* unmanaged<uint, int, ulong, void>)resolver("glProgramUniform1ui64NV");
+        s_byName["glProgramUniform1ui64NV"] = (nint)ProgramUniform1ui64NV;
         if (ProgramUniform1ui64NV is null) { missingCount++; missing?.Add("glProgramUniform1ui64NV"); }
         ProgramUniform1ui64vARB = (delegate* unmanaged<uint, int, int, ulong*, void>)resolver("glProgramUniform1ui64vARB");
+        s_byName["glProgramUniform1ui64vARB"] = (nint)ProgramUniform1ui64vARB;
         if (ProgramUniform1ui64vARB is null) { missingCount++; missing?.Add("glProgramUniform1ui64vARB"); }
         ProgramUniform1ui64vNV = (delegate* unmanaged<uint, int, int, ulong*, void>)resolver("glProgramUniform1ui64vNV");
+        s_byName["glProgramUniform1ui64vNV"] = (nint)ProgramUniform1ui64vNV;
         if (ProgramUniform1ui64vNV is null) { missingCount++; missing?.Add("glProgramUniform1ui64vNV"); }
         ProgramUniform1uiEXT = (delegate* unmanaged<uint, int, uint, void>)resolver("glProgramUniform1uiEXT");
+        s_byName["glProgramUniform1uiEXT"] = (nint)ProgramUniform1uiEXT;
         if (ProgramUniform1uiEXT is null) { missingCount++; missing?.Add("glProgramUniform1uiEXT"); }
         ProgramUniform1uiv = (delegate* unmanaged<uint, int, int, uint*, void>)resolver("glProgramUniform1uiv");
+        s_byName["glProgramUniform1uiv"] = (nint)ProgramUniform1uiv;
         if (ProgramUniform1uiv is null) { missingCount++; missing?.Add("glProgramUniform1uiv"); }
         ProgramUniform1uivEXT = (delegate* unmanaged<uint, int, int, uint*, void>)resolver("glProgramUniform1uivEXT");
+        s_byName["glProgramUniform1uivEXT"] = (nint)ProgramUniform1uivEXT;
         if (ProgramUniform1uivEXT is null) { missingCount++; missing?.Add("glProgramUniform1uivEXT"); }
         ProgramUniform2d = (delegate* unmanaged<uint, int, double, double, void>)resolver("glProgramUniform2d");
+        s_byName["glProgramUniform2d"] = (nint)ProgramUniform2d;
         if (ProgramUniform2d is null) { missingCount++; missing?.Add("glProgramUniform2d"); }
         ProgramUniform2dEXT = (delegate* unmanaged<uint, int, double, double, void>)resolver("glProgramUniform2dEXT");
+        s_byName["glProgramUniform2dEXT"] = (nint)ProgramUniform2dEXT;
         if (ProgramUniform2dEXT is null) { missingCount++; missing?.Add("glProgramUniform2dEXT"); }
         ProgramUniform2dv = (delegate* unmanaged<uint, int, int, double*, void>)resolver("glProgramUniform2dv");
+        s_byName["glProgramUniform2dv"] = (nint)ProgramUniform2dv;
         if (ProgramUniform2dv is null) { missingCount++; missing?.Add("glProgramUniform2dv"); }
         ProgramUniform2dvEXT = (delegate* unmanaged<uint, int, int, double*, void>)resolver("glProgramUniform2dvEXT");
+        s_byName["glProgramUniform2dvEXT"] = (nint)ProgramUniform2dvEXT;
         if (ProgramUniform2dvEXT is null) { missingCount++; missing?.Add("glProgramUniform2dvEXT"); }
         ProgramUniform2f = (delegate* unmanaged<uint, int, float, float, void>)resolver("glProgramUniform2f");
+        s_byName["glProgramUniform2f"] = (nint)ProgramUniform2f;
         if (ProgramUniform2f is null) { missingCount++; missing?.Add("glProgramUniform2f"); }
         ProgramUniform2fEXT = (delegate* unmanaged<uint, int, float, float, void>)resolver("glProgramUniform2fEXT");
+        s_byName["glProgramUniform2fEXT"] = (nint)ProgramUniform2fEXT;
         if (ProgramUniform2fEXT is null) { missingCount++; missing?.Add("glProgramUniform2fEXT"); }
         ProgramUniform2fv = (delegate* unmanaged<uint, int, int, float*, void>)resolver("glProgramUniform2fv");
+        s_byName["glProgramUniform2fv"] = (nint)ProgramUniform2fv;
         if (ProgramUniform2fv is null) { missingCount++; missing?.Add("glProgramUniform2fv"); }
         ProgramUniform2fvEXT = (delegate* unmanaged<uint, int, int, float*, void>)resolver("glProgramUniform2fvEXT");
+        s_byName["glProgramUniform2fvEXT"] = (nint)ProgramUniform2fvEXT;
         if (ProgramUniform2fvEXT is null) { missingCount++; missing?.Add("glProgramUniform2fvEXT"); }
         ProgramUniform2i = (delegate* unmanaged<uint, int, int, int, void>)resolver("glProgramUniform2i");
+        s_byName["glProgramUniform2i"] = (nint)ProgramUniform2i;
         if (ProgramUniform2i is null) { missingCount++; missing?.Add("glProgramUniform2i"); }
         ProgramUniform2i64ARB = (delegate* unmanaged<uint, int, long, long, void>)resolver("glProgramUniform2i64ARB");
+        s_byName["glProgramUniform2i64ARB"] = (nint)ProgramUniform2i64ARB;
         if (ProgramUniform2i64ARB is null) { missingCount++; missing?.Add("glProgramUniform2i64ARB"); }
         ProgramUniform2i64NV = (delegate* unmanaged<uint, int, long, long, void>)resolver("glProgramUniform2i64NV");
+        s_byName["glProgramUniform2i64NV"] = (nint)ProgramUniform2i64NV;
         if (ProgramUniform2i64NV is null) { missingCount++; missing?.Add("glProgramUniform2i64NV"); }
         ProgramUniform2i64vARB = (delegate* unmanaged<uint, int, int, long*, void>)resolver("glProgramUniform2i64vARB");
+        s_byName["glProgramUniform2i64vARB"] = (nint)ProgramUniform2i64vARB;
         if (ProgramUniform2i64vARB is null) { missingCount++; missing?.Add("glProgramUniform2i64vARB"); }
         ProgramUniform2i64vNV = (delegate* unmanaged<uint, int, int, long*, void>)resolver("glProgramUniform2i64vNV");
+        s_byName["glProgramUniform2i64vNV"] = (nint)ProgramUniform2i64vNV;
         if (ProgramUniform2i64vNV is null) { missingCount++; missing?.Add("glProgramUniform2i64vNV"); }
         ProgramUniform2iEXT = (delegate* unmanaged<uint, int, int, int, void>)resolver("glProgramUniform2iEXT");
+        s_byName["glProgramUniform2iEXT"] = (nint)ProgramUniform2iEXT;
         if (ProgramUniform2iEXT is null) { missingCount++; missing?.Add("glProgramUniform2iEXT"); }
         ProgramUniform2iv = (delegate* unmanaged<uint, int, int, int*, void>)resolver("glProgramUniform2iv");
+        s_byName["glProgramUniform2iv"] = (nint)ProgramUniform2iv;
         if (ProgramUniform2iv is null) { missingCount++; missing?.Add("glProgramUniform2iv"); }
         ProgramUniform2ivEXT = (delegate* unmanaged<uint, int, int, int*, void>)resolver("glProgramUniform2ivEXT");
+        s_byName["glProgramUniform2ivEXT"] = (nint)ProgramUniform2ivEXT;
         if (ProgramUniform2ivEXT is null) { missingCount++; missing?.Add("glProgramUniform2ivEXT"); }
         ProgramUniform2ui = (delegate* unmanaged<uint, int, uint, uint, void>)resolver("glProgramUniform2ui");
+        s_byName["glProgramUniform2ui"] = (nint)ProgramUniform2ui;
         if (ProgramUniform2ui is null) { missingCount++; missing?.Add("glProgramUniform2ui"); }
         ProgramUniform2ui64ARB = (delegate* unmanaged<uint, int, ulong, ulong, void>)resolver("glProgramUniform2ui64ARB");
+        s_byName["glProgramUniform2ui64ARB"] = (nint)ProgramUniform2ui64ARB;
         if (ProgramUniform2ui64ARB is null) { missingCount++; missing?.Add("glProgramUniform2ui64ARB"); }
         ProgramUniform2ui64NV = (delegate* unmanaged<uint, int, ulong, ulong, void>)resolver("glProgramUniform2ui64NV");
+        s_byName["glProgramUniform2ui64NV"] = (nint)ProgramUniform2ui64NV;
         if (ProgramUniform2ui64NV is null) { missingCount++; missing?.Add("glProgramUniform2ui64NV"); }
         ProgramUniform2ui64vARB = (delegate* unmanaged<uint, int, int, ulong*, void>)resolver("glProgramUniform2ui64vARB");
+        s_byName["glProgramUniform2ui64vARB"] = (nint)ProgramUniform2ui64vARB;
         if (ProgramUniform2ui64vARB is null) { missingCount++; missing?.Add("glProgramUniform2ui64vARB"); }
         ProgramUniform2ui64vNV = (delegate* unmanaged<uint, int, int, ulong*, void>)resolver("glProgramUniform2ui64vNV");
+        s_byName["glProgramUniform2ui64vNV"] = (nint)ProgramUniform2ui64vNV;
         if (ProgramUniform2ui64vNV is null) { missingCount++; missing?.Add("glProgramUniform2ui64vNV"); }
         ProgramUniform2uiEXT = (delegate* unmanaged<uint, int, uint, uint, void>)resolver("glProgramUniform2uiEXT");
+        s_byName["glProgramUniform2uiEXT"] = (nint)ProgramUniform2uiEXT;
         if (ProgramUniform2uiEXT is null) { missingCount++; missing?.Add("glProgramUniform2uiEXT"); }
         ProgramUniform2uiv = (delegate* unmanaged<uint, int, int, uint*, void>)resolver("glProgramUniform2uiv");
+        s_byName["glProgramUniform2uiv"] = (nint)ProgramUniform2uiv;
         if (ProgramUniform2uiv is null) { missingCount++; missing?.Add("glProgramUniform2uiv"); }
         ProgramUniform2uivEXT = (delegate* unmanaged<uint, int, int, uint*, void>)resolver("glProgramUniform2uivEXT");
+        s_byName["glProgramUniform2uivEXT"] = (nint)ProgramUniform2uivEXT;
         if (ProgramUniform2uivEXT is null) { missingCount++; missing?.Add("glProgramUniform2uivEXT"); }
         ProgramUniform3d = (delegate* unmanaged<uint, int, double, double, double, void>)resolver("glProgramUniform3d");
+        s_byName["glProgramUniform3d"] = (nint)ProgramUniform3d;
         if (ProgramUniform3d is null) { missingCount++; missing?.Add("glProgramUniform3d"); }
         ProgramUniform3dEXT = (delegate* unmanaged<uint, int, double, double, double, void>)resolver("glProgramUniform3dEXT");
+        s_byName["glProgramUniform3dEXT"] = (nint)ProgramUniform3dEXT;
         if (ProgramUniform3dEXT is null) { missingCount++; missing?.Add("glProgramUniform3dEXT"); }
         ProgramUniform3dv = (delegate* unmanaged<uint, int, int, double*, void>)resolver("glProgramUniform3dv");
+        s_byName["glProgramUniform3dv"] = (nint)ProgramUniform3dv;
         if (ProgramUniform3dv is null) { missingCount++; missing?.Add("glProgramUniform3dv"); }
         ProgramUniform3dvEXT = (delegate* unmanaged<uint, int, int, double*, void>)resolver("glProgramUniform3dvEXT");
+        s_byName["glProgramUniform3dvEXT"] = (nint)ProgramUniform3dvEXT;
         if (ProgramUniform3dvEXT is null) { missingCount++; missing?.Add("glProgramUniform3dvEXT"); }
         ProgramUniform3f = (delegate* unmanaged<uint, int, float, float, float, void>)resolver("glProgramUniform3f");
+        s_byName["glProgramUniform3f"] = (nint)ProgramUniform3f;
         if (ProgramUniform3f is null) { missingCount++; missing?.Add("glProgramUniform3f"); }
         ProgramUniform3fEXT = (delegate* unmanaged<uint, int, float, float, float, void>)resolver("glProgramUniform3fEXT");
+        s_byName["glProgramUniform3fEXT"] = (nint)ProgramUniform3fEXT;
         if (ProgramUniform3fEXT is null) { missingCount++; missing?.Add("glProgramUniform3fEXT"); }
         ProgramUniform3fv = (delegate* unmanaged<uint, int, int, float*, void>)resolver("glProgramUniform3fv");
+        s_byName["glProgramUniform3fv"] = (nint)ProgramUniform3fv;
         if (ProgramUniform3fv is null) { missingCount++; missing?.Add("glProgramUniform3fv"); }
         ProgramUniform3fvEXT = (delegate* unmanaged<uint, int, int, float*, void>)resolver("glProgramUniform3fvEXT");
+        s_byName["glProgramUniform3fvEXT"] = (nint)ProgramUniform3fvEXT;
         if (ProgramUniform3fvEXT is null) { missingCount++; missing?.Add("glProgramUniform3fvEXT"); }
         ProgramUniform3i = (delegate* unmanaged<uint, int, int, int, int, void>)resolver("glProgramUniform3i");
+        s_byName["glProgramUniform3i"] = (nint)ProgramUniform3i;
         if (ProgramUniform3i is null) { missingCount++; missing?.Add("glProgramUniform3i"); }
         ProgramUniform3i64ARB = (delegate* unmanaged<uint, int, long, long, long, void>)resolver("glProgramUniform3i64ARB");
+        s_byName["glProgramUniform3i64ARB"] = (nint)ProgramUniform3i64ARB;
         if (ProgramUniform3i64ARB is null) { missingCount++; missing?.Add("glProgramUniform3i64ARB"); }
         ProgramUniform3i64NV = (delegate* unmanaged<uint, int, long, long, long, void>)resolver("glProgramUniform3i64NV");
+        s_byName["glProgramUniform3i64NV"] = (nint)ProgramUniform3i64NV;
         if (ProgramUniform3i64NV is null) { missingCount++; missing?.Add("glProgramUniform3i64NV"); }
         ProgramUniform3i64vARB = (delegate* unmanaged<uint, int, int, long*, void>)resolver("glProgramUniform3i64vARB");
+        s_byName["glProgramUniform3i64vARB"] = (nint)ProgramUniform3i64vARB;
         if (ProgramUniform3i64vARB is null) { missingCount++; missing?.Add("glProgramUniform3i64vARB"); }
         ProgramUniform3i64vNV = (delegate* unmanaged<uint, int, int, long*, void>)resolver("glProgramUniform3i64vNV");
+        s_byName["glProgramUniform3i64vNV"] = (nint)ProgramUniform3i64vNV;
         if (ProgramUniform3i64vNV is null) { missingCount++; missing?.Add("glProgramUniform3i64vNV"); }
         ProgramUniform3iEXT = (delegate* unmanaged<uint, int, int, int, int, void>)resolver("glProgramUniform3iEXT");
+        s_byName["glProgramUniform3iEXT"] = (nint)ProgramUniform3iEXT;
         if (ProgramUniform3iEXT is null) { missingCount++; missing?.Add("glProgramUniform3iEXT"); }
         ProgramUniform3iv = (delegate* unmanaged<uint, int, int, int*, void>)resolver("glProgramUniform3iv");
+        s_byName["glProgramUniform3iv"] = (nint)ProgramUniform3iv;
         if (ProgramUniform3iv is null) { missingCount++; missing?.Add("glProgramUniform3iv"); }
         ProgramUniform3ivEXT = (delegate* unmanaged<uint, int, int, int*, void>)resolver("glProgramUniform3ivEXT");
+        s_byName["glProgramUniform3ivEXT"] = (nint)ProgramUniform3ivEXT;
         if (ProgramUniform3ivEXT is null) { missingCount++; missing?.Add("glProgramUniform3ivEXT"); }
         ProgramUniform3ui = (delegate* unmanaged<uint, int, uint, uint, uint, void>)resolver("glProgramUniform3ui");
+        s_byName["glProgramUniform3ui"] = (nint)ProgramUniform3ui;
         if (ProgramUniform3ui is null) { missingCount++; missing?.Add("glProgramUniform3ui"); }
         ProgramUniform3ui64ARB = (delegate* unmanaged<uint, int, ulong, ulong, ulong, void>)resolver("glProgramUniform3ui64ARB");
+        s_byName["glProgramUniform3ui64ARB"] = (nint)ProgramUniform3ui64ARB;
         if (ProgramUniform3ui64ARB is null) { missingCount++; missing?.Add("glProgramUniform3ui64ARB"); }
         ProgramUniform3ui64NV = (delegate* unmanaged<uint, int, ulong, ulong, ulong, void>)resolver("glProgramUniform3ui64NV");
+        s_byName["glProgramUniform3ui64NV"] = (nint)ProgramUniform3ui64NV;
         if (ProgramUniform3ui64NV is null) { missingCount++; missing?.Add("glProgramUniform3ui64NV"); }
         ProgramUniform3ui64vARB = (delegate* unmanaged<uint, int, int, ulong*, void>)resolver("glProgramUniform3ui64vARB");
+        s_byName["glProgramUniform3ui64vARB"] = (nint)ProgramUniform3ui64vARB;
         if (ProgramUniform3ui64vARB is null) { missingCount++; missing?.Add("glProgramUniform3ui64vARB"); }
         ProgramUniform3ui64vNV = (delegate* unmanaged<uint, int, int, ulong*, void>)resolver("glProgramUniform3ui64vNV");
+        s_byName["glProgramUniform3ui64vNV"] = (nint)ProgramUniform3ui64vNV;
         if (ProgramUniform3ui64vNV is null) { missingCount++; missing?.Add("glProgramUniform3ui64vNV"); }
         ProgramUniform3uiEXT = (delegate* unmanaged<uint, int, uint, uint, uint, void>)resolver("glProgramUniform3uiEXT");
+        s_byName["glProgramUniform3uiEXT"] = (nint)ProgramUniform3uiEXT;
         if (ProgramUniform3uiEXT is null) { missingCount++; missing?.Add("glProgramUniform3uiEXT"); }
         ProgramUniform3uiv = (delegate* unmanaged<uint, int, int, uint*, void>)resolver("glProgramUniform3uiv");
+        s_byName["glProgramUniform3uiv"] = (nint)ProgramUniform3uiv;
         if (ProgramUniform3uiv is null) { missingCount++; missing?.Add("glProgramUniform3uiv"); }
         ProgramUniform3uivEXT = (delegate* unmanaged<uint, int, int, uint*, void>)resolver("glProgramUniform3uivEXT");
+        s_byName["glProgramUniform3uivEXT"] = (nint)ProgramUniform3uivEXT;
         if (ProgramUniform3uivEXT is null) { missingCount++; missing?.Add("glProgramUniform3uivEXT"); }
         ProgramUniform4d = (delegate* unmanaged<uint, int, double, double, double, double, void>)resolver("glProgramUniform4d");
+        s_byName["glProgramUniform4d"] = (nint)ProgramUniform4d;
         if (ProgramUniform4d is null) { missingCount++; missing?.Add("glProgramUniform4d"); }
         ProgramUniform4dEXT = (delegate* unmanaged<uint, int, double, double, double, double, void>)resolver("glProgramUniform4dEXT");
+        s_byName["glProgramUniform4dEXT"] = (nint)ProgramUniform4dEXT;
         if (ProgramUniform4dEXT is null) { missingCount++; missing?.Add("glProgramUniform4dEXT"); }
         ProgramUniform4dv = (delegate* unmanaged<uint, int, int, double*, void>)resolver("glProgramUniform4dv");
+        s_byName["glProgramUniform4dv"] = (nint)ProgramUniform4dv;
         if (ProgramUniform4dv is null) { missingCount++; missing?.Add("glProgramUniform4dv"); }
         ProgramUniform4dvEXT = (delegate* unmanaged<uint, int, int, double*, void>)resolver("glProgramUniform4dvEXT");
+        s_byName["glProgramUniform4dvEXT"] = (nint)ProgramUniform4dvEXT;
         if (ProgramUniform4dvEXT is null) { missingCount++; missing?.Add("glProgramUniform4dvEXT"); }
         ProgramUniform4f = (delegate* unmanaged<uint, int, float, float, float, float, void>)resolver("glProgramUniform4f");
+        s_byName["glProgramUniform4f"] = (nint)ProgramUniform4f;
         if (ProgramUniform4f is null) { missingCount++; missing?.Add("glProgramUniform4f"); }
         ProgramUniform4fEXT = (delegate* unmanaged<uint, int, float, float, float, float, void>)resolver("glProgramUniform4fEXT");
+        s_byName["glProgramUniform4fEXT"] = (nint)ProgramUniform4fEXT;
         if (ProgramUniform4fEXT is null) { missingCount++; missing?.Add("glProgramUniform4fEXT"); }
         ProgramUniform4fv = (delegate* unmanaged<uint, int, int, float*, void>)resolver("glProgramUniform4fv");
+        s_byName["glProgramUniform4fv"] = (nint)ProgramUniform4fv;
         if (ProgramUniform4fv is null) { missingCount++; missing?.Add("glProgramUniform4fv"); }
         ProgramUniform4fvEXT = (delegate* unmanaged<uint, int, int, float*, void>)resolver("glProgramUniform4fvEXT");
+        s_byName["glProgramUniform4fvEXT"] = (nint)ProgramUniform4fvEXT;
         if (ProgramUniform4fvEXT is null) { missingCount++; missing?.Add("glProgramUniform4fvEXT"); }
         ProgramUniform4i = (delegate* unmanaged<uint, int, int, int, int, int, void>)resolver("glProgramUniform4i");
+        s_byName["glProgramUniform4i"] = (nint)ProgramUniform4i;
         if (ProgramUniform4i is null) { missingCount++; missing?.Add("glProgramUniform4i"); }
         ProgramUniform4i64ARB = (delegate* unmanaged<uint, int, long, long, long, long, void>)resolver("glProgramUniform4i64ARB");
+        s_byName["glProgramUniform4i64ARB"] = (nint)ProgramUniform4i64ARB;
         if (ProgramUniform4i64ARB is null) { missingCount++; missing?.Add("glProgramUniform4i64ARB"); }
         ProgramUniform4i64NV = (delegate* unmanaged<uint, int, long, long, long, long, void>)resolver("glProgramUniform4i64NV");
+        s_byName["glProgramUniform4i64NV"] = (nint)ProgramUniform4i64NV;
         if (ProgramUniform4i64NV is null) { missingCount++; missing?.Add("glProgramUniform4i64NV"); }
         ProgramUniform4i64vARB = (delegate* unmanaged<uint, int, int, long*, void>)resolver("glProgramUniform4i64vARB");
+        s_byName["glProgramUniform4i64vARB"] = (nint)ProgramUniform4i64vARB;
         if (ProgramUniform4i64vARB is null) { missingCount++; missing?.Add("glProgramUniform4i64vARB"); }
         ProgramUniform4i64vNV = (delegate* unmanaged<uint, int, int, long*, void>)resolver("glProgramUniform4i64vNV");
+        s_byName["glProgramUniform4i64vNV"] = (nint)ProgramUniform4i64vNV;
         if (ProgramUniform4i64vNV is null) { missingCount++; missing?.Add("glProgramUniform4i64vNV"); }
         ProgramUniform4iEXT = (delegate* unmanaged<uint, int, int, int, int, int, void>)resolver("glProgramUniform4iEXT");
+        s_byName["glProgramUniform4iEXT"] = (nint)ProgramUniform4iEXT;
         if (ProgramUniform4iEXT is null) { missingCount++; missing?.Add("glProgramUniform4iEXT"); }
         ProgramUniform4iv = (delegate* unmanaged<uint, int, int, int*, void>)resolver("glProgramUniform4iv");
+        s_byName["glProgramUniform4iv"] = (nint)ProgramUniform4iv;
         if (ProgramUniform4iv is null) { missingCount++; missing?.Add("glProgramUniform4iv"); }
         ProgramUniform4ivEXT = (delegate* unmanaged<uint, int, int, int*, void>)resolver("glProgramUniform4ivEXT");
+        s_byName["glProgramUniform4ivEXT"] = (nint)ProgramUniform4ivEXT;
         if (ProgramUniform4ivEXT is null) { missingCount++; missing?.Add("glProgramUniform4ivEXT"); }
         ProgramUniform4ui = (delegate* unmanaged<uint, int, uint, uint, uint, uint, void>)resolver("glProgramUniform4ui");
+        s_byName["glProgramUniform4ui"] = (nint)ProgramUniform4ui;
         if (ProgramUniform4ui is null) { missingCount++; missing?.Add("glProgramUniform4ui"); }
         ProgramUniform4ui64ARB = (delegate* unmanaged<uint, int, ulong, ulong, ulong, ulong, void>)resolver("glProgramUniform4ui64ARB");
+        s_byName["glProgramUniform4ui64ARB"] = (nint)ProgramUniform4ui64ARB;
         if (ProgramUniform4ui64ARB is null) { missingCount++; missing?.Add("glProgramUniform4ui64ARB"); }
         ProgramUniform4ui64NV = (delegate* unmanaged<uint, int, ulong, ulong, ulong, ulong, void>)resolver("glProgramUniform4ui64NV");
+        s_byName["glProgramUniform4ui64NV"] = (nint)ProgramUniform4ui64NV;
         if (ProgramUniform4ui64NV is null) { missingCount++; missing?.Add("glProgramUniform4ui64NV"); }
         ProgramUniform4ui64vARB = (delegate* unmanaged<uint, int, int, ulong*, void>)resolver("glProgramUniform4ui64vARB");
+        s_byName["glProgramUniform4ui64vARB"] = (nint)ProgramUniform4ui64vARB;
         if (ProgramUniform4ui64vARB is null) { missingCount++; missing?.Add("glProgramUniform4ui64vARB"); }
         ProgramUniform4ui64vNV = (delegate* unmanaged<uint, int, int, ulong*, void>)resolver("glProgramUniform4ui64vNV");
+        s_byName["glProgramUniform4ui64vNV"] = (nint)ProgramUniform4ui64vNV;
         if (ProgramUniform4ui64vNV is null) { missingCount++; missing?.Add("glProgramUniform4ui64vNV"); }
         ProgramUniform4uiEXT = (delegate* unmanaged<uint, int, uint, uint, uint, uint, void>)resolver("glProgramUniform4uiEXT");
+        s_byName["glProgramUniform4uiEXT"] = (nint)ProgramUniform4uiEXT;
         if (ProgramUniform4uiEXT is null) { missingCount++; missing?.Add("glProgramUniform4uiEXT"); }
         ProgramUniform4uiv = (delegate* unmanaged<uint, int, int, uint*, void>)resolver("glProgramUniform4uiv");
+        s_byName["glProgramUniform4uiv"] = (nint)ProgramUniform4uiv;
         if (ProgramUniform4uiv is null) { missingCount++; missing?.Add("glProgramUniform4uiv"); }
         ProgramUniform4uivEXT = (delegate* unmanaged<uint, int, int, uint*, void>)resolver("glProgramUniform4uivEXT");
+        s_byName["glProgramUniform4uivEXT"] = (nint)ProgramUniform4uivEXT;
         if (ProgramUniform4uivEXT is null) { missingCount++; missing?.Add("glProgramUniform4uivEXT"); }
         ProgramUniformHandleui64ARB = (delegate* unmanaged<uint, int, ulong, void>)resolver("glProgramUniformHandleui64ARB");
+        s_byName["glProgramUniformHandleui64ARB"] = (nint)ProgramUniformHandleui64ARB;
         if (ProgramUniformHandleui64ARB is null) { missingCount++; missing?.Add("glProgramUniformHandleui64ARB"); }
         ProgramUniformHandleui64NV = (delegate* unmanaged<uint, int, ulong, void>)resolver("glProgramUniformHandleui64NV");
+        s_byName["glProgramUniformHandleui64NV"] = (nint)ProgramUniformHandleui64NV;
         if (ProgramUniformHandleui64NV is null) { missingCount++; missing?.Add("glProgramUniformHandleui64NV"); }
         ProgramUniformHandleui64vARB = (delegate* unmanaged<uint, int, int, ulong*, void>)resolver("glProgramUniformHandleui64vARB");
+        s_byName["glProgramUniformHandleui64vARB"] = (nint)ProgramUniformHandleui64vARB;
         if (ProgramUniformHandleui64vARB is null) { missingCount++; missing?.Add("glProgramUniformHandleui64vARB"); }
         ProgramUniformHandleui64vNV = (delegate* unmanaged<uint, int, int, ulong*, void>)resolver("glProgramUniformHandleui64vNV");
+        s_byName["glProgramUniformHandleui64vNV"] = (nint)ProgramUniformHandleui64vNV;
         if (ProgramUniformHandleui64vNV is null) { missingCount++; missing?.Add("glProgramUniformHandleui64vNV"); }
         ProgramUniformMatrix2dv = (delegate* unmanaged<uint, int, int, byte, double*, void>)resolver("glProgramUniformMatrix2dv");
+        s_byName["glProgramUniformMatrix2dv"] = (nint)ProgramUniformMatrix2dv;
         if (ProgramUniformMatrix2dv is null) { missingCount++; missing?.Add("glProgramUniformMatrix2dv"); }
         ProgramUniformMatrix2dvEXT = (delegate* unmanaged<uint, int, int, byte, double*, void>)resolver("glProgramUniformMatrix2dvEXT");
+        s_byName["glProgramUniformMatrix2dvEXT"] = (nint)ProgramUniformMatrix2dvEXT;
         if (ProgramUniformMatrix2dvEXT is null) { missingCount++; missing?.Add("glProgramUniformMatrix2dvEXT"); }
         ProgramUniformMatrix2fv = (delegate* unmanaged<uint, int, int, byte, float*, void>)resolver("glProgramUniformMatrix2fv");
+        s_byName["glProgramUniformMatrix2fv"] = (nint)ProgramUniformMatrix2fv;
         if (ProgramUniformMatrix2fv is null) { missingCount++; missing?.Add("glProgramUniformMatrix2fv"); }
         ProgramUniformMatrix2fvEXT = (delegate* unmanaged<uint, int, int, byte, float*, void>)resolver("glProgramUniformMatrix2fvEXT");
+        s_byName["glProgramUniformMatrix2fvEXT"] = (nint)ProgramUniformMatrix2fvEXT;
         if (ProgramUniformMatrix2fvEXT is null) { missingCount++; missing?.Add("glProgramUniformMatrix2fvEXT"); }
         ProgramUniformMatrix2x3dv = (delegate* unmanaged<uint, int, int, byte, double*, void>)resolver("glProgramUniformMatrix2x3dv");
+        s_byName["glProgramUniformMatrix2x3dv"] = (nint)ProgramUniformMatrix2x3dv;
         if (ProgramUniformMatrix2x3dv is null) { missingCount++; missing?.Add("glProgramUniformMatrix2x3dv"); }
         ProgramUniformMatrix2x3dvEXT = (delegate* unmanaged<uint, int, int, byte, double*, void>)resolver("glProgramUniformMatrix2x3dvEXT");
+        s_byName["glProgramUniformMatrix2x3dvEXT"] = (nint)ProgramUniformMatrix2x3dvEXT;
         if (ProgramUniformMatrix2x3dvEXT is null) { missingCount++; missing?.Add("glProgramUniformMatrix2x3dvEXT"); }
         ProgramUniformMatrix2x3fv = (delegate* unmanaged<uint, int, int, byte, float*, void>)resolver("glProgramUniformMatrix2x3fv");
+        s_byName["glProgramUniformMatrix2x3fv"] = (nint)ProgramUniformMatrix2x3fv;
         if (ProgramUniformMatrix2x3fv is null) { missingCount++; missing?.Add("glProgramUniformMatrix2x3fv"); }
         ProgramUniformMatrix2x3fvEXT = (delegate* unmanaged<uint, int, int, byte, float*, void>)resolver("glProgramUniformMatrix2x3fvEXT");
+        s_byName["glProgramUniformMatrix2x3fvEXT"] = (nint)ProgramUniformMatrix2x3fvEXT;
         if (ProgramUniformMatrix2x3fvEXT is null) { missingCount++; missing?.Add("glProgramUniformMatrix2x3fvEXT"); }
         ProgramUniformMatrix2x4dv = (delegate* unmanaged<uint, int, int, byte, double*, void>)resolver("glProgramUniformMatrix2x4dv");
+        s_byName["glProgramUniformMatrix2x4dv"] = (nint)ProgramUniformMatrix2x4dv;
         if (ProgramUniformMatrix2x4dv is null) { missingCount++; missing?.Add("glProgramUniformMatrix2x4dv"); }
         ProgramUniformMatrix2x4dvEXT = (delegate* unmanaged<uint, int, int, byte, double*, void>)resolver("glProgramUniformMatrix2x4dvEXT");
+        s_byName["glProgramUniformMatrix2x4dvEXT"] = (nint)ProgramUniformMatrix2x4dvEXT;
         if (ProgramUniformMatrix2x4dvEXT is null) { missingCount++; missing?.Add("glProgramUniformMatrix2x4dvEXT"); }
         ProgramUniformMatrix2x4fv = (delegate* unmanaged<uint, int, int, byte, float*, void>)resolver("glProgramUniformMatrix2x4fv");
+        s_byName["glProgramUniformMatrix2x4fv"] = (nint)ProgramUniformMatrix2x4fv;
         if (ProgramUniformMatrix2x4fv is null) { missingCount++; missing?.Add("glProgramUniformMatrix2x4fv"); }
         ProgramUniformMatrix2x4fvEXT = (delegate* unmanaged<uint, int, int, byte, float*, void>)resolver("glProgramUniformMatrix2x4fvEXT");
+        s_byName["glProgramUniformMatrix2x4fvEXT"] = (nint)ProgramUniformMatrix2x4fvEXT;
         if (ProgramUniformMatrix2x4fvEXT is null) { missingCount++; missing?.Add("glProgramUniformMatrix2x4fvEXT"); }
         ProgramUniformMatrix3dv = (delegate* unmanaged<uint, int, int, byte, double*, void>)resolver("glProgramUniformMatrix3dv");
+        s_byName["glProgramUniformMatrix3dv"] = (nint)ProgramUniformMatrix3dv;
         if (ProgramUniformMatrix3dv is null) { missingCount++; missing?.Add("glProgramUniformMatrix3dv"); }
         ProgramUniformMatrix3dvEXT = (delegate* unmanaged<uint, int, int, byte, double*, void>)resolver("glProgramUniformMatrix3dvEXT");
+        s_byName["glProgramUniformMatrix3dvEXT"] = (nint)ProgramUniformMatrix3dvEXT;
         if (ProgramUniformMatrix3dvEXT is null) { missingCount++; missing?.Add("glProgramUniformMatrix3dvEXT"); }
         ProgramUniformMatrix3fv = (delegate* unmanaged<uint, int, int, byte, float*, void>)resolver("glProgramUniformMatrix3fv");
+        s_byName["glProgramUniformMatrix3fv"] = (nint)ProgramUniformMatrix3fv;
         if (ProgramUniformMatrix3fv is null) { missingCount++; missing?.Add("glProgramUniformMatrix3fv"); }
         ProgramUniformMatrix3fvEXT = (delegate* unmanaged<uint, int, int, byte, float*, void>)resolver("glProgramUniformMatrix3fvEXT");
+        s_byName["glProgramUniformMatrix3fvEXT"] = (nint)ProgramUniformMatrix3fvEXT;
         if (ProgramUniformMatrix3fvEXT is null) { missingCount++; missing?.Add("glProgramUniformMatrix3fvEXT"); }
         ProgramUniformMatrix3x2dv = (delegate* unmanaged<uint, int, int, byte, double*, void>)resolver("glProgramUniformMatrix3x2dv");
+        s_byName["glProgramUniformMatrix3x2dv"] = (nint)ProgramUniformMatrix3x2dv;
         if (ProgramUniformMatrix3x2dv is null) { missingCount++; missing?.Add("glProgramUniformMatrix3x2dv"); }
         ProgramUniformMatrix3x2dvEXT = (delegate* unmanaged<uint, int, int, byte, double*, void>)resolver("glProgramUniformMatrix3x2dvEXT");
+        s_byName["glProgramUniformMatrix3x2dvEXT"] = (nint)ProgramUniformMatrix3x2dvEXT;
         if (ProgramUniformMatrix3x2dvEXT is null) { missingCount++; missing?.Add("glProgramUniformMatrix3x2dvEXT"); }
         ProgramUniformMatrix3x2fv = (delegate* unmanaged<uint, int, int, byte, float*, void>)resolver("glProgramUniformMatrix3x2fv");
+        s_byName["glProgramUniformMatrix3x2fv"] = (nint)ProgramUniformMatrix3x2fv;
         if (ProgramUniformMatrix3x2fv is null) { missingCount++; missing?.Add("glProgramUniformMatrix3x2fv"); }
         ProgramUniformMatrix3x2fvEXT = (delegate* unmanaged<uint, int, int, byte, float*, void>)resolver("glProgramUniformMatrix3x2fvEXT");
+        s_byName["glProgramUniformMatrix3x2fvEXT"] = (nint)ProgramUniformMatrix3x2fvEXT;
         if (ProgramUniformMatrix3x2fvEXT is null) { missingCount++; missing?.Add("glProgramUniformMatrix3x2fvEXT"); }
         ProgramUniformMatrix3x4dv = (delegate* unmanaged<uint, int, int, byte, double*, void>)resolver("glProgramUniformMatrix3x4dv");
+        s_byName["glProgramUniformMatrix3x4dv"] = (nint)ProgramUniformMatrix3x4dv;
         if (ProgramUniformMatrix3x4dv is null) { missingCount++; missing?.Add("glProgramUniformMatrix3x4dv"); }
         ProgramUniformMatrix3x4dvEXT = (delegate* unmanaged<uint, int, int, byte, double*, void>)resolver("glProgramUniformMatrix3x4dvEXT");
+        s_byName["glProgramUniformMatrix3x4dvEXT"] = (nint)ProgramUniformMatrix3x4dvEXT;
         if (ProgramUniformMatrix3x4dvEXT is null) { missingCount++; missing?.Add("glProgramUniformMatrix3x4dvEXT"); }
         ProgramUniformMatrix3x4fv = (delegate* unmanaged<uint, int, int, byte, float*, void>)resolver("glProgramUniformMatrix3x4fv");
+        s_byName["glProgramUniformMatrix3x4fv"] = (nint)ProgramUniformMatrix3x4fv;
         if (ProgramUniformMatrix3x4fv is null) { missingCount++; missing?.Add("glProgramUniformMatrix3x4fv"); }
         ProgramUniformMatrix3x4fvEXT = (delegate* unmanaged<uint, int, int, byte, float*, void>)resolver("glProgramUniformMatrix3x4fvEXT");
+        s_byName["glProgramUniformMatrix3x4fvEXT"] = (nint)ProgramUniformMatrix3x4fvEXT;
         if (ProgramUniformMatrix3x4fvEXT is null) { missingCount++; missing?.Add("glProgramUniformMatrix3x4fvEXT"); }
         ProgramUniformMatrix4dv = (delegate* unmanaged<uint, int, int, byte, double*, void>)resolver("glProgramUniformMatrix4dv");
+        s_byName["glProgramUniformMatrix4dv"] = (nint)ProgramUniformMatrix4dv;
         if (ProgramUniformMatrix4dv is null) { missingCount++; missing?.Add("glProgramUniformMatrix4dv"); }
         ProgramUniformMatrix4dvEXT = (delegate* unmanaged<uint, int, int, byte, double*, void>)resolver("glProgramUniformMatrix4dvEXT");
+        s_byName["glProgramUniformMatrix4dvEXT"] = (nint)ProgramUniformMatrix4dvEXT;
         if (ProgramUniformMatrix4dvEXT is null) { missingCount++; missing?.Add("glProgramUniformMatrix4dvEXT"); }
         ProgramUniformMatrix4fv = (delegate* unmanaged<uint, int, int, byte, float*, void>)resolver("glProgramUniformMatrix4fv");
+        s_byName["glProgramUniformMatrix4fv"] = (nint)ProgramUniformMatrix4fv;
         if (ProgramUniformMatrix4fv is null) { missingCount++; missing?.Add("glProgramUniformMatrix4fv"); }
         ProgramUniformMatrix4fvEXT = (delegate* unmanaged<uint, int, int, byte, float*, void>)resolver("glProgramUniformMatrix4fvEXT");
+        s_byName["glProgramUniformMatrix4fvEXT"] = (nint)ProgramUniformMatrix4fvEXT;
         if (ProgramUniformMatrix4fvEXT is null) { missingCount++; missing?.Add("glProgramUniformMatrix4fvEXT"); }
         ProgramUniformMatrix4x2dv = (delegate* unmanaged<uint, int, int, byte, double*, void>)resolver("glProgramUniformMatrix4x2dv");
+        s_byName["glProgramUniformMatrix4x2dv"] = (nint)ProgramUniformMatrix4x2dv;
         if (ProgramUniformMatrix4x2dv is null) { missingCount++; missing?.Add("glProgramUniformMatrix4x2dv"); }
         ProgramUniformMatrix4x2dvEXT = (delegate* unmanaged<uint, int, int, byte, double*, void>)resolver("glProgramUniformMatrix4x2dvEXT");
+        s_byName["glProgramUniformMatrix4x2dvEXT"] = (nint)ProgramUniformMatrix4x2dvEXT;
         if (ProgramUniformMatrix4x2dvEXT is null) { missingCount++; missing?.Add("glProgramUniformMatrix4x2dvEXT"); }
         ProgramUniformMatrix4x2fv = (delegate* unmanaged<uint, int, int, byte, float*, void>)resolver("glProgramUniformMatrix4x2fv");
+        s_byName["glProgramUniformMatrix4x2fv"] = (nint)ProgramUniformMatrix4x2fv;
         if (ProgramUniformMatrix4x2fv is null) { missingCount++; missing?.Add("glProgramUniformMatrix4x2fv"); }
         ProgramUniformMatrix4x2fvEXT = (delegate* unmanaged<uint, int, int, byte, float*, void>)resolver("glProgramUniformMatrix4x2fvEXT");
+        s_byName["glProgramUniformMatrix4x2fvEXT"] = (nint)ProgramUniformMatrix4x2fvEXT;
         if (ProgramUniformMatrix4x2fvEXT is null) { missingCount++; missing?.Add("glProgramUniformMatrix4x2fvEXT"); }
         ProgramUniformMatrix4x3dv = (delegate* unmanaged<uint, int, int, byte, double*, void>)resolver("glProgramUniformMatrix4x3dv");
+        s_byName["glProgramUniformMatrix4x3dv"] = (nint)ProgramUniformMatrix4x3dv;
         if (ProgramUniformMatrix4x3dv is null) { missingCount++; missing?.Add("glProgramUniformMatrix4x3dv"); }
         ProgramUniformMatrix4x3dvEXT = (delegate* unmanaged<uint, int, int, byte, double*, void>)resolver("glProgramUniformMatrix4x3dvEXT");
+        s_byName["glProgramUniformMatrix4x3dvEXT"] = (nint)ProgramUniformMatrix4x3dvEXT;
         if (ProgramUniformMatrix4x3dvEXT is null) { missingCount++; missing?.Add("glProgramUniformMatrix4x3dvEXT"); }
         ProgramUniformMatrix4x3fv = (delegate* unmanaged<uint, int, int, byte, float*, void>)resolver("glProgramUniformMatrix4x3fv");
+        s_byName["glProgramUniformMatrix4x3fv"] = (nint)ProgramUniformMatrix4x3fv;
         if (ProgramUniformMatrix4x3fv is null) { missingCount++; missing?.Add("glProgramUniformMatrix4x3fv"); }
         ProgramUniformMatrix4x3fvEXT = (delegate* unmanaged<uint, int, int, byte, float*, void>)resolver("glProgramUniformMatrix4x3fvEXT");
+        s_byName["glProgramUniformMatrix4x3fvEXT"] = (nint)ProgramUniformMatrix4x3fvEXT;
         if (ProgramUniformMatrix4x3fvEXT is null) { missingCount++; missing?.Add("glProgramUniformMatrix4x3fvEXT"); }
         ProgramUniformui64NV = (delegate* unmanaged<uint, int, ulong, void>)resolver("glProgramUniformui64NV");
+        s_byName["glProgramUniformui64NV"] = (nint)ProgramUniformui64NV;
         if (ProgramUniformui64NV is null) { missingCount++; missing?.Add("glProgramUniformui64NV"); }
         ProgramUniformui64vNV = (delegate* unmanaged<uint, int, int, ulong*, void>)resolver("glProgramUniformui64vNV");
+        s_byName["glProgramUniformui64vNV"] = (nint)ProgramUniformui64vNV;
         if (ProgramUniformui64vNV is null) { missingCount++; missing?.Add("glProgramUniformui64vNV"); }
         ProgramVertexLimitNV = (delegate* unmanaged<uint, int, void>)resolver("glProgramVertexLimitNV");
+        s_byName["glProgramVertexLimitNV"] = (nint)ProgramVertexLimitNV;
         if (ProgramVertexLimitNV is null) { missingCount++; missing?.Add("glProgramVertexLimitNV"); }
         ProvokingVertex = (delegate* unmanaged<uint, void>)resolver("glProvokingVertex");
+        s_byName["glProvokingVertex"] = (nint)ProvokingVertex;
         if (ProvokingVertex is null) { missingCount++; missing?.Add("glProvokingVertex"); }
         ProvokingVertexEXT = (delegate* unmanaged<uint, void>)resolver("glProvokingVertexEXT");
+        s_byName["glProvokingVertexEXT"] = (nint)ProvokingVertexEXT;
         if (ProvokingVertexEXT is null) { missingCount++; missing?.Add("glProvokingVertexEXT"); }
         PushClientAttribDefaultEXT = (delegate* unmanaged<uint, void>)resolver("glPushClientAttribDefaultEXT");
+        s_byName["glPushClientAttribDefaultEXT"] = (nint)PushClientAttribDefaultEXT;
         if (PushClientAttribDefaultEXT is null) { missingCount++; missing?.Add("glPushClientAttribDefaultEXT"); }
         PushDebugGroup = (delegate* unmanaged<uint, uint, int, byte*, void>)resolver("glPushDebugGroup");
+        s_byName["glPushDebugGroup"] = (nint)PushDebugGroup;
         if (PushDebugGroup is null) { missingCount++; missing?.Add("glPushDebugGroup"); }
         PushDebugGroupKHR = (delegate* unmanaged<uint, uint, int, byte*, void>)resolver("glPushDebugGroupKHR");
+        s_byName["glPushDebugGroupKHR"] = (nint)PushDebugGroupKHR;
         if (PushDebugGroupKHR is null) { missingCount++; missing?.Add("glPushDebugGroupKHR"); }
         PushGroupMarkerEXT = (delegate* unmanaged<int, byte*, void>)resolver("glPushGroupMarkerEXT");
+        s_byName["glPushGroupMarkerEXT"] = (nint)PushGroupMarkerEXT;
         if (PushGroupMarkerEXT is null) { missingCount++; missing?.Add("glPushGroupMarkerEXT"); }
         QueryCounter = (delegate* unmanaged<uint, uint, void>)resolver("glQueryCounter");
+        s_byName["glQueryCounter"] = (nint)QueryCounter;
         if (QueryCounter is null) { missingCount++; missing?.Add("glQueryCounter"); }
         QueryMatrixxOES = (delegate* unmanaged<int*, int*, uint>)resolver("glQueryMatrixxOES");
+        s_byName["glQueryMatrixxOES"] = (nint)QueryMatrixxOES;
         if (QueryMatrixxOES is null) { missingCount++; missing?.Add("glQueryMatrixxOES"); }
         QueryObjectParameteruiAMD = (delegate* unmanaged<uint, uint, uint, uint, void>)resolver("glQueryObjectParameteruiAMD");
+        s_byName["glQueryObjectParameteruiAMD"] = (nint)QueryObjectParameteruiAMD;
         if (QueryObjectParameteruiAMD is null) { missingCount++; missing?.Add("glQueryObjectParameteruiAMD"); }
         QueryResourceNV = (delegate* unmanaged<uint, int, uint, int*, int>)resolver("glQueryResourceNV");
+        s_byName["glQueryResourceNV"] = (nint)QueryResourceNV;
         if (QueryResourceNV is null) { missingCount++; missing?.Add("glQueryResourceNV"); }
         QueryResourceTagNV = (delegate* unmanaged<int, byte*, void>)resolver("glQueryResourceTagNV");
+        s_byName["glQueryResourceTagNV"] = (nint)QueryResourceTagNV;
         if (QueryResourceTagNV is null) { missingCount++; missing?.Add("glQueryResourceTagNV"); }
         RasterPos2xOES = (delegate* unmanaged<int, int, void>)resolver("glRasterPos2xOES");
+        s_byName["glRasterPos2xOES"] = (nint)RasterPos2xOES;
         if (RasterPos2xOES is null) { missingCount++; missing?.Add("glRasterPos2xOES"); }
         RasterPos2xvOES = (delegate* unmanaged<int*, void>)resolver("glRasterPos2xvOES");
+        s_byName["glRasterPos2xvOES"] = (nint)RasterPos2xvOES;
         if (RasterPos2xvOES is null) { missingCount++; missing?.Add("glRasterPos2xvOES"); }
         RasterPos3xOES = (delegate* unmanaged<int, int, int, void>)resolver("glRasterPos3xOES");
+        s_byName["glRasterPos3xOES"] = (nint)RasterPos3xOES;
         if (RasterPos3xOES is null) { missingCount++; missing?.Add("glRasterPos3xOES"); }
         RasterPos3xvOES = (delegate* unmanaged<int*, void>)resolver("glRasterPos3xvOES");
+        s_byName["glRasterPos3xvOES"] = (nint)RasterPos3xvOES;
         if (RasterPos3xvOES is null) { missingCount++; missing?.Add("glRasterPos3xvOES"); }
         RasterPos4xOES = (delegate* unmanaged<int, int, int, int, void>)resolver("glRasterPos4xOES");
+        s_byName["glRasterPos4xOES"] = (nint)RasterPos4xOES;
         if (RasterPos4xOES is null) { missingCount++; missing?.Add("glRasterPos4xOES"); }
         RasterPos4xvOES = (delegate* unmanaged<int*, void>)resolver("glRasterPos4xvOES");
+        s_byName["glRasterPos4xvOES"] = (nint)RasterPos4xvOES;
         if (RasterPos4xvOES is null) { missingCount++; missing?.Add("glRasterPos4xvOES"); }
         RasterSamplesEXT = (delegate* unmanaged<uint, byte, void>)resolver("glRasterSamplesEXT");
+        s_byName["glRasterSamplesEXT"] = (nint)RasterSamplesEXT;
         if (RasterSamplesEXT is null) { missingCount++; missing?.Add("glRasterSamplesEXT"); }
         ReadBuffer = (delegate* unmanaged<uint, void>)resolver("glReadBuffer");
+        s_byName["glReadBuffer"] = (nint)ReadBuffer;
         if (ReadBuffer is null) { missingCount++; missing?.Add("glReadBuffer"); }
         ReadInstrumentsSGIX = (delegate* unmanaged<int, void>)resolver("glReadInstrumentsSGIX");
+        s_byName["glReadInstrumentsSGIX"] = (nint)ReadInstrumentsSGIX;
         if (ReadInstrumentsSGIX is null) { missingCount++; missing?.Add("glReadInstrumentsSGIX"); }
         ReadPixels = (delegate* unmanaged<int, int, int, int, uint, uint, void*, void>)resolver("glReadPixels");
+        s_byName["glReadPixels"] = (nint)ReadPixels;
         if (ReadPixels is null) { missingCount++; missing?.Add("glReadPixels"); }
         ReadnPixels = (delegate* unmanaged<int, int, int, int, uint, uint, int, void*, void>)resolver("glReadnPixels");
+        s_byName["glReadnPixels"] = (nint)ReadnPixels;
         if (ReadnPixels is null) { missingCount++; missing?.Add("glReadnPixels"); }
         ReadnPixelsARB = (delegate* unmanaged<int, int, int, int, uint, uint, int, void*, void>)resolver("glReadnPixelsARB");
+        s_byName["glReadnPixelsARB"] = (nint)ReadnPixelsARB;
         if (ReadnPixelsARB is null) { missingCount++; missing?.Add("glReadnPixelsARB"); }
         ReadnPixelsKHR = (delegate* unmanaged<int, int, int, int, uint, uint, int, void*, void>)resolver("glReadnPixelsKHR");
+        s_byName["glReadnPixelsKHR"] = (nint)ReadnPixelsKHR;
         if (ReadnPixelsKHR is null) { missingCount++; missing?.Add("glReadnPixelsKHR"); }
         RectxOES = (delegate* unmanaged<int, int, int, int, void>)resolver("glRectxOES");
+        s_byName["glRectxOES"] = (nint)RectxOES;
         if (RectxOES is null) { missingCount++; missing?.Add("glRectxOES"); }
         RectxvOES = (delegate* unmanaged<int*, int*, void>)resolver("glRectxvOES");
+        s_byName["glRectxvOES"] = (nint)RectxvOES;
         if (RectxvOES is null) { missingCount++; missing?.Add("glRectxvOES"); }
         ReferencePlaneSGIX = (delegate* unmanaged<double*, void>)resolver("glReferencePlaneSGIX");
+        s_byName["glReferencePlaneSGIX"] = (nint)ReferencePlaneSGIX;
         if (ReferencePlaneSGIX is null) { missingCount++; missing?.Add("glReferencePlaneSGIX"); }
         ReleaseClientPointerRangeMESA = (delegate* unmanaged<uint, nint*, void*>)resolver("glReleaseClientPointerRangeMESA");
+        s_byName["glReleaseClientPointerRangeMESA"] = (nint)ReleaseClientPointerRangeMESA;
         if (ReleaseClientPointerRangeMESA is null) { missingCount++; missing?.Add("glReleaseClientPointerRangeMESA"); }
         ReleaseKeyedMutexWin32EXT = (delegate* unmanaged<uint, ulong, byte>)resolver("glReleaseKeyedMutexWin32EXT");
+        s_byName["glReleaseKeyedMutexWin32EXT"] = (nint)ReleaseKeyedMutexWin32EXT;
         if (ReleaseKeyedMutexWin32EXT is null) { missingCount++; missing?.Add("glReleaseKeyedMutexWin32EXT"); }
         ReleaseShaderCompiler = (delegate* unmanaged<void>)resolver("glReleaseShaderCompiler");
+        s_byName["glReleaseShaderCompiler"] = (nint)ReleaseShaderCompiler;
         if (ReleaseShaderCompiler is null) { missingCount++; missing?.Add("glReleaseShaderCompiler"); }
         RenderGpuMaskNV = (delegate* unmanaged<uint, void>)resolver("glRenderGpuMaskNV");
+        s_byName["glRenderGpuMaskNV"] = (nint)RenderGpuMaskNV;
         if (RenderGpuMaskNV is null) { missingCount++; missing?.Add("glRenderGpuMaskNV"); }
         RenderbufferStorage = (delegate* unmanaged<uint, uint, int, int, void>)resolver("glRenderbufferStorage");
+        s_byName["glRenderbufferStorage"] = (nint)RenderbufferStorage;
         if (RenderbufferStorage is null) { missingCount++; missing?.Add("glRenderbufferStorage"); }
         RenderbufferStorageEXT = (delegate* unmanaged<uint, uint, int, int, void>)resolver("glRenderbufferStorageEXT");
+        s_byName["glRenderbufferStorageEXT"] = (nint)RenderbufferStorageEXT;
         if (RenderbufferStorageEXT is null) { missingCount++; missing?.Add("glRenderbufferStorageEXT"); }
         RenderbufferStorageMultisample = (delegate* unmanaged<uint, int, uint, int, int, void>)resolver("glRenderbufferStorageMultisample");
+        s_byName["glRenderbufferStorageMultisample"] = (nint)RenderbufferStorageMultisample;
         if (RenderbufferStorageMultisample is null) { missingCount++; missing?.Add("glRenderbufferStorageMultisample"); }
         RenderbufferStorageMultisampleAdvancedAMD = (delegate* unmanaged<uint, int, int, uint, int, int, void>)resolver("glRenderbufferStorageMultisampleAdvancedAMD");
+        s_byName["glRenderbufferStorageMultisampleAdvancedAMD"] = (nint)RenderbufferStorageMultisampleAdvancedAMD;
         if (RenderbufferStorageMultisampleAdvancedAMD is null) { missingCount++; missing?.Add("glRenderbufferStorageMultisampleAdvancedAMD"); }
         RenderbufferStorageMultisampleCoverageNV = (delegate* unmanaged<uint, int, int, uint, int, int, void>)resolver("glRenderbufferStorageMultisampleCoverageNV");
+        s_byName["glRenderbufferStorageMultisampleCoverageNV"] = (nint)RenderbufferStorageMultisampleCoverageNV;
         if (RenderbufferStorageMultisampleCoverageNV is null) { missingCount++; missing?.Add("glRenderbufferStorageMultisampleCoverageNV"); }
         RenderbufferStorageMultisampleEXT = (delegate* unmanaged<uint, int, uint, int, int, void>)resolver("glRenderbufferStorageMultisampleEXT");
+        s_byName["glRenderbufferStorageMultisampleEXT"] = (nint)RenderbufferStorageMultisampleEXT;
         if (RenderbufferStorageMultisampleEXT is null) { missingCount++; missing?.Add("glRenderbufferStorageMultisampleEXT"); }
         ReplacementCodePointerSUN = (delegate* unmanaged<uint, int, void**, void>)resolver("glReplacementCodePointerSUN");
+        s_byName["glReplacementCodePointerSUN"] = (nint)ReplacementCodePointerSUN;
         if (ReplacementCodePointerSUN is null) { missingCount++; missing?.Add("glReplacementCodePointerSUN"); }
         ReplacementCodeubSUN = (delegate* unmanaged<byte, void>)resolver("glReplacementCodeubSUN");
+        s_byName["glReplacementCodeubSUN"] = (nint)ReplacementCodeubSUN;
         if (ReplacementCodeubSUN is null) { missingCount++; missing?.Add("glReplacementCodeubSUN"); }
         ReplacementCodeubvSUN = (delegate* unmanaged<byte*, void>)resolver("glReplacementCodeubvSUN");
+        s_byName["glReplacementCodeubvSUN"] = (nint)ReplacementCodeubvSUN;
         if (ReplacementCodeubvSUN is null) { missingCount++; missing?.Add("glReplacementCodeubvSUN"); }
         ReplacementCodeuiColor3fVertex3fSUN = (delegate* unmanaged<uint, float, float, float, float, float, float, void>)resolver("glReplacementCodeuiColor3fVertex3fSUN");
+        s_byName["glReplacementCodeuiColor3fVertex3fSUN"] = (nint)ReplacementCodeuiColor3fVertex3fSUN;
         if (ReplacementCodeuiColor3fVertex3fSUN is null) { missingCount++; missing?.Add("glReplacementCodeuiColor3fVertex3fSUN"); }
         ReplacementCodeuiColor3fVertex3fvSUN = (delegate* unmanaged<uint*, float*, float*, void>)resolver("glReplacementCodeuiColor3fVertex3fvSUN");
+        s_byName["glReplacementCodeuiColor3fVertex3fvSUN"] = (nint)ReplacementCodeuiColor3fVertex3fvSUN;
         if (ReplacementCodeuiColor3fVertex3fvSUN is null) { missingCount++; missing?.Add("glReplacementCodeuiColor3fVertex3fvSUN"); }
         ReplacementCodeuiColor4fNormal3fVertex3fSUN = (delegate* unmanaged<uint, float, float, float, float, float, float, float, float, float, float, void>)resolver("glReplacementCodeuiColor4fNormal3fVertex3fSUN");
+        s_byName["glReplacementCodeuiColor4fNormal3fVertex3fSUN"] = (nint)ReplacementCodeuiColor4fNormal3fVertex3fSUN;
         if (ReplacementCodeuiColor4fNormal3fVertex3fSUN is null) { missingCount++; missing?.Add("glReplacementCodeuiColor4fNormal3fVertex3fSUN"); }
         ReplacementCodeuiColor4fNormal3fVertex3fvSUN = (delegate* unmanaged<uint*, float*, float*, float*, void>)resolver("glReplacementCodeuiColor4fNormal3fVertex3fvSUN");
+        s_byName["glReplacementCodeuiColor4fNormal3fVertex3fvSUN"] = (nint)ReplacementCodeuiColor4fNormal3fVertex3fvSUN;
         if (ReplacementCodeuiColor4fNormal3fVertex3fvSUN is null) { missingCount++; missing?.Add("glReplacementCodeuiColor4fNormal3fVertex3fvSUN"); }
         ReplacementCodeuiColor4ubVertex3fSUN = (delegate* unmanaged<uint, byte, byte, byte, byte, float, float, float, void>)resolver("glReplacementCodeuiColor4ubVertex3fSUN");
+        s_byName["glReplacementCodeuiColor4ubVertex3fSUN"] = (nint)ReplacementCodeuiColor4ubVertex3fSUN;
         if (ReplacementCodeuiColor4ubVertex3fSUN is null) { missingCount++; missing?.Add("glReplacementCodeuiColor4ubVertex3fSUN"); }
         ReplacementCodeuiColor4ubVertex3fvSUN = (delegate* unmanaged<uint*, byte*, float*, void>)resolver("glReplacementCodeuiColor4ubVertex3fvSUN");
+        s_byName["glReplacementCodeuiColor4ubVertex3fvSUN"] = (nint)ReplacementCodeuiColor4ubVertex3fvSUN;
         if (ReplacementCodeuiColor4ubVertex3fvSUN is null) { missingCount++; missing?.Add("glReplacementCodeuiColor4ubVertex3fvSUN"); }
         ReplacementCodeuiNormal3fVertex3fSUN = (delegate* unmanaged<uint, float, float, float, float, float, float, void>)resolver("glReplacementCodeuiNormal3fVertex3fSUN");
+        s_byName["glReplacementCodeuiNormal3fVertex3fSUN"] = (nint)ReplacementCodeuiNormal3fVertex3fSUN;
         if (ReplacementCodeuiNormal3fVertex3fSUN is null) { missingCount++; missing?.Add("glReplacementCodeuiNormal3fVertex3fSUN"); }
         ReplacementCodeuiNormal3fVertex3fvSUN = (delegate* unmanaged<uint*, float*, float*, void>)resolver("glReplacementCodeuiNormal3fVertex3fvSUN");
+        s_byName["glReplacementCodeuiNormal3fVertex3fvSUN"] = (nint)ReplacementCodeuiNormal3fVertex3fvSUN;
         if (ReplacementCodeuiNormal3fVertex3fvSUN is null) { missingCount++; missing?.Add("glReplacementCodeuiNormal3fVertex3fvSUN"); }
         ReplacementCodeuiSUN = (delegate* unmanaged<uint, void>)resolver("glReplacementCodeuiSUN");
+        s_byName["glReplacementCodeuiSUN"] = (nint)ReplacementCodeuiSUN;
         if (ReplacementCodeuiSUN is null) { missingCount++; missing?.Add("glReplacementCodeuiSUN"); }
         ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fSUN = (delegate* unmanaged<uint, float, float, float, float, float, float, float, float, float, float, float, float, void>)resolver("glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fSUN");
+        s_byName["glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fSUN"] = (nint)ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fSUN;
         if (ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fSUN is null) { missingCount++; missing?.Add("glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fSUN"); }
         ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN = (delegate* unmanaged<uint*, float*, float*, float*, float*, void>)resolver("glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN");
+        s_byName["glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN"] = (nint)ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN;
         if (ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN is null) { missingCount++; missing?.Add("glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN"); }
         ReplacementCodeuiTexCoord2fNormal3fVertex3fSUN = (delegate* unmanaged<uint, float, float, float, float, float, float, float, float, void>)resolver("glReplacementCodeuiTexCoord2fNormal3fVertex3fSUN");
+        s_byName["glReplacementCodeuiTexCoord2fNormal3fVertex3fSUN"] = (nint)ReplacementCodeuiTexCoord2fNormal3fVertex3fSUN;
         if (ReplacementCodeuiTexCoord2fNormal3fVertex3fSUN is null) { missingCount++; missing?.Add("glReplacementCodeuiTexCoord2fNormal3fVertex3fSUN"); }
         ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN = (delegate* unmanaged<uint*, float*, float*, float*, void>)resolver("glReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN");
+        s_byName["glReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN"] = (nint)ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN;
         if (ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN is null) { missingCount++; missing?.Add("glReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN"); }
         ReplacementCodeuiTexCoord2fVertex3fSUN = (delegate* unmanaged<uint, float, float, float, float, float, void>)resolver("glReplacementCodeuiTexCoord2fVertex3fSUN");
+        s_byName["glReplacementCodeuiTexCoord2fVertex3fSUN"] = (nint)ReplacementCodeuiTexCoord2fVertex3fSUN;
         if (ReplacementCodeuiTexCoord2fVertex3fSUN is null) { missingCount++; missing?.Add("glReplacementCodeuiTexCoord2fVertex3fSUN"); }
         ReplacementCodeuiTexCoord2fVertex3fvSUN = (delegate* unmanaged<uint*, float*, float*, void>)resolver("glReplacementCodeuiTexCoord2fVertex3fvSUN");
+        s_byName["glReplacementCodeuiTexCoord2fVertex3fvSUN"] = (nint)ReplacementCodeuiTexCoord2fVertex3fvSUN;
         if (ReplacementCodeuiTexCoord2fVertex3fvSUN is null) { missingCount++; missing?.Add("glReplacementCodeuiTexCoord2fVertex3fvSUN"); }
         ReplacementCodeuiVertex3fSUN = (delegate* unmanaged<uint, float, float, float, void>)resolver("glReplacementCodeuiVertex3fSUN");
+        s_byName["glReplacementCodeuiVertex3fSUN"] = (nint)ReplacementCodeuiVertex3fSUN;
         if (ReplacementCodeuiVertex3fSUN is null) { missingCount++; missing?.Add("glReplacementCodeuiVertex3fSUN"); }
         ReplacementCodeuiVertex3fvSUN = (delegate* unmanaged<uint*, float*, void>)resolver("glReplacementCodeuiVertex3fvSUN");
+        s_byName["glReplacementCodeuiVertex3fvSUN"] = (nint)ReplacementCodeuiVertex3fvSUN;
         if (ReplacementCodeuiVertex3fvSUN is null) { missingCount++; missing?.Add("glReplacementCodeuiVertex3fvSUN"); }
         ReplacementCodeuivSUN = (delegate* unmanaged<uint*, void>)resolver("glReplacementCodeuivSUN");
+        s_byName["glReplacementCodeuivSUN"] = (nint)ReplacementCodeuivSUN;
         if (ReplacementCodeuivSUN is null) { missingCount++; missing?.Add("glReplacementCodeuivSUN"); }
         ReplacementCodeusSUN = (delegate* unmanaged<ushort, void>)resolver("glReplacementCodeusSUN");
+        s_byName["glReplacementCodeusSUN"] = (nint)ReplacementCodeusSUN;
         if (ReplacementCodeusSUN is null) { missingCount++; missing?.Add("glReplacementCodeusSUN"); }
         ReplacementCodeusvSUN = (delegate* unmanaged<ushort*, void>)resolver("glReplacementCodeusvSUN");
+        s_byName["glReplacementCodeusvSUN"] = (nint)ReplacementCodeusvSUN;
         if (ReplacementCodeusvSUN is null) { missingCount++; missing?.Add("glReplacementCodeusvSUN"); }
         RequestResidentProgramsNV = (delegate* unmanaged<int, uint*, void>)resolver("glRequestResidentProgramsNV");
+        s_byName["glRequestResidentProgramsNV"] = (nint)RequestResidentProgramsNV;
         if (RequestResidentProgramsNV is null) { missingCount++; missing?.Add("glRequestResidentProgramsNV"); }
         ResetHistogram = (delegate* unmanaged<uint, void>)resolver("glResetHistogram");
+        s_byName["glResetHistogram"] = (nint)ResetHistogram;
         if (ResetHistogram is null) { missingCount++; missing?.Add("glResetHistogram"); }
         ResetHistogramEXT = (delegate* unmanaged<uint, void>)resolver("glResetHistogramEXT");
+        s_byName["glResetHistogramEXT"] = (nint)ResetHistogramEXT;
         if (ResetHistogramEXT is null) { missingCount++; missing?.Add("glResetHistogramEXT"); }
         ResetMemoryObjectParameterNV = (delegate* unmanaged<uint, uint, void>)resolver("glResetMemoryObjectParameterNV");
+        s_byName["glResetMemoryObjectParameterNV"] = (nint)ResetMemoryObjectParameterNV;
         if (ResetMemoryObjectParameterNV is null) { missingCount++; missing?.Add("glResetMemoryObjectParameterNV"); }
         ResetMinmax = (delegate* unmanaged<uint, void>)resolver("glResetMinmax");
+        s_byName["glResetMinmax"] = (nint)ResetMinmax;
         if (ResetMinmax is null) { missingCount++; missing?.Add("glResetMinmax"); }
         ResetMinmaxEXT = (delegate* unmanaged<uint, void>)resolver("glResetMinmaxEXT");
+        s_byName["glResetMinmaxEXT"] = (nint)ResetMinmaxEXT;
         if (ResetMinmaxEXT is null) { missingCount++; missing?.Add("glResetMinmaxEXT"); }
         ResizeBuffersMESA = (delegate* unmanaged<void>)resolver("glResizeBuffersMESA");
+        s_byName["glResizeBuffersMESA"] = (nint)ResizeBuffersMESA;
         if (ResizeBuffersMESA is null) { missingCount++; missing?.Add("glResizeBuffersMESA"); }
         ResolveDepthValuesNV = (delegate* unmanaged<void>)resolver("glResolveDepthValuesNV");
+        s_byName["glResolveDepthValuesNV"] = (nint)ResolveDepthValuesNV;
         if (ResolveDepthValuesNV is null) { missingCount++; missing?.Add("glResolveDepthValuesNV"); }
         ResumeTransformFeedback = (delegate* unmanaged<void>)resolver("glResumeTransformFeedback");
+        s_byName["glResumeTransformFeedback"] = (nint)ResumeTransformFeedback;
         if (ResumeTransformFeedback is null) { missingCount++; missing?.Add("glResumeTransformFeedback"); }
         ResumeTransformFeedbackNV = (delegate* unmanaged<void>)resolver("glResumeTransformFeedbackNV");
+        s_byName["glResumeTransformFeedbackNV"] = (nint)ResumeTransformFeedbackNV;
         if (ResumeTransformFeedbackNV is null) { missingCount++; missing?.Add("glResumeTransformFeedbackNV"); }
         RotatexOES = (delegate* unmanaged<int, int, int, int, void>)resolver("glRotatexOES");
+        s_byName["glRotatexOES"] = (nint)RotatexOES;
         if (RotatexOES is null) { missingCount++; missing?.Add("glRotatexOES"); }
         SampleCoverage = (delegate* unmanaged<float, byte, void>)resolver("glSampleCoverage");
+        s_byName["glSampleCoverage"] = (nint)SampleCoverage;
         if (SampleCoverage is null) { missingCount++; missing?.Add("glSampleCoverage"); }
         SampleCoverageARB = (delegate* unmanaged<float, byte, void>)resolver("glSampleCoverageARB");
+        s_byName["glSampleCoverageARB"] = (nint)SampleCoverageARB;
         if (SampleCoverageARB is null) { missingCount++; missing?.Add("glSampleCoverageARB"); }
         SampleCoveragexOES = (delegate* unmanaged<int, byte, void>)resolver("glSampleCoveragexOES");
+        s_byName["glSampleCoveragexOES"] = (nint)SampleCoveragexOES;
         if (SampleCoveragexOES is null) { missingCount++; missing?.Add("glSampleCoveragexOES"); }
         SampleMapATI = (delegate* unmanaged<uint, uint, uint, void>)resolver("glSampleMapATI");
+        s_byName["glSampleMapATI"] = (nint)SampleMapATI;
         if (SampleMapATI is null) { missingCount++; missing?.Add("glSampleMapATI"); }
         SampleMaskEXT = (delegate* unmanaged<float, byte, void>)resolver("glSampleMaskEXT");
+        s_byName["glSampleMaskEXT"] = (nint)SampleMaskEXT;
         if (SampleMaskEXT is null) { missingCount++; missing?.Add("glSampleMaskEXT"); }
         SampleMaskIndexedNV = (delegate* unmanaged<uint, uint, void>)resolver("glSampleMaskIndexedNV");
+        s_byName["glSampleMaskIndexedNV"] = (nint)SampleMaskIndexedNV;
         if (SampleMaskIndexedNV is null) { missingCount++; missing?.Add("glSampleMaskIndexedNV"); }
         SampleMaskSGIS = (delegate* unmanaged<float, byte, void>)resolver("glSampleMaskSGIS");
+        s_byName["glSampleMaskSGIS"] = (nint)SampleMaskSGIS;
         if (SampleMaskSGIS is null) { missingCount++; missing?.Add("glSampleMaskSGIS"); }
         SampleMaski = (delegate* unmanaged<uint, uint, void>)resolver("glSampleMaski");
+        s_byName["glSampleMaski"] = (nint)SampleMaski;
         if (SampleMaski is null) { missingCount++; missing?.Add("glSampleMaski"); }
         SamplePatternEXT = (delegate* unmanaged<uint, void>)resolver("glSamplePatternEXT");
+        s_byName["glSamplePatternEXT"] = (nint)SamplePatternEXT;
         if (SamplePatternEXT is null) { missingCount++; missing?.Add("glSamplePatternEXT"); }
         SamplePatternSGIS = (delegate* unmanaged<uint, void>)resolver("glSamplePatternSGIS");
+        s_byName["glSamplePatternSGIS"] = (nint)SamplePatternSGIS;
         if (SamplePatternSGIS is null) { missingCount++; missing?.Add("glSamplePatternSGIS"); }
         SamplerParameterIiv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glSamplerParameterIiv");
+        s_byName["glSamplerParameterIiv"] = (nint)SamplerParameterIiv;
         if (SamplerParameterIiv is null) { missingCount++; missing?.Add("glSamplerParameterIiv"); }
         SamplerParameterIuiv = (delegate* unmanaged<uint, uint, uint*, void>)resolver("glSamplerParameterIuiv");
+        s_byName["glSamplerParameterIuiv"] = (nint)SamplerParameterIuiv;
         if (SamplerParameterIuiv is null) { missingCount++; missing?.Add("glSamplerParameterIuiv"); }
         SamplerParameterf = (delegate* unmanaged<uint, uint, float, void>)resolver("glSamplerParameterf");
+        s_byName["glSamplerParameterf"] = (nint)SamplerParameterf;
         if (SamplerParameterf is null) { missingCount++; missing?.Add("glSamplerParameterf"); }
         SamplerParameterfv = (delegate* unmanaged<uint, uint, float*, void>)resolver("glSamplerParameterfv");
+        s_byName["glSamplerParameterfv"] = (nint)SamplerParameterfv;
         if (SamplerParameterfv is null) { missingCount++; missing?.Add("glSamplerParameterfv"); }
         SamplerParameteri = (delegate* unmanaged<uint, uint, int, void>)resolver("glSamplerParameteri");
+        s_byName["glSamplerParameteri"] = (nint)SamplerParameteri;
         if (SamplerParameteri is null) { missingCount++; missing?.Add("glSamplerParameteri"); }
         SamplerParameteriv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glSamplerParameteriv");
+        s_byName["glSamplerParameteriv"] = (nint)SamplerParameteriv;
         if (SamplerParameteriv is null) { missingCount++; missing?.Add("glSamplerParameteriv"); }
         ScalexOES = (delegate* unmanaged<int, int, int, void>)resolver("glScalexOES");
+        s_byName["glScalexOES"] = (nint)ScalexOES;
         if (ScalexOES is null) { missingCount++; missing?.Add("glScalexOES"); }
         Scissor = (delegate* unmanaged<int, int, int, int, void>)resolver("glScissor");
+        s_byName["glScissor"] = (nint)Scissor;
         if (Scissor is null) { missingCount++; missing?.Add("glScissor"); }
         ScissorArrayv = (delegate* unmanaged<uint, int, int*, void>)resolver("glScissorArrayv");
+        s_byName["glScissorArrayv"] = (nint)ScissorArrayv;
         if (ScissorArrayv is null) { missingCount++; missing?.Add("glScissorArrayv"); }
         ScissorExclusiveArrayvNV = (delegate* unmanaged<uint, int, int*, void>)resolver("glScissorExclusiveArrayvNV");
+        s_byName["glScissorExclusiveArrayvNV"] = (nint)ScissorExclusiveArrayvNV;
         if (ScissorExclusiveArrayvNV is null) { missingCount++; missing?.Add("glScissorExclusiveArrayvNV"); }
         ScissorExclusiveNV = (delegate* unmanaged<int, int, int, int, void>)resolver("glScissorExclusiveNV");
+        s_byName["glScissorExclusiveNV"] = (nint)ScissorExclusiveNV;
         if (ScissorExclusiveNV is null) { missingCount++; missing?.Add("glScissorExclusiveNV"); }
         ScissorIndexed = (delegate* unmanaged<uint, int, int, int, int, void>)resolver("glScissorIndexed");
+        s_byName["glScissorIndexed"] = (nint)ScissorIndexed;
         if (ScissorIndexed is null) { missingCount++; missing?.Add("glScissorIndexed"); }
         ScissorIndexedv = (delegate* unmanaged<uint, int*, void>)resolver("glScissorIndexedv");
+        s_byName["glScissorIndexedv"] = (nint)ScissorIndexedv;
         if (ScissorIndexedv is null) { missingCount++; missing?.Add("glScissorIndexedv"); }
         SecondaryColor3bEXT = (delegate* unmanaged<sbyte, sbyte, sbyte, void>)resolver("glSecondaryColor3bEXT");
+        s_byName["glSecondaryColor3bEXT"] = (nint)SecondaryColor3bEXT;
         if (SecondaryColor3bEXT is null) { missingCount++; missing?.Add("glSecondaryColor3bEXT"); }
         SecondaryColor3bvEXT = (delegate* unmanaged<sbyte*, void>)resolver("glSecondaryColor3bvEXT");
+        s_byName["glSecondaryColor3bvEXT"] = (nint)SecondaryColor3bvEXT;
         if (SecondaryColor3bvEXT is null) { missingCount++; missing?.Add("glSecondaryColor3bvEXT"); }
         SecondaryColor3dEXT = (delegate* unmanaged<double, double, double, void>)resolver("glSecondaryColor3dEXT");
+        s_byName["glSecondaryColor3dEXT"] = (nint)SecondaryColor3dEXT;
         if (SecondaryColor3dEXT is null) { missingCount++; missing?.Add("glSecondaryColor3dEXT"); }
         SecondaryColor3dvEXT = (delegate* unmanaged<double*, void>)resolver("glSecondaryColor3dvEXT");
+        s_byName["glSecondaryColor3dvEXT"] = (nint)SecondaryColor3dvEXT;
         if (SecondaryColor3dvEXT is null) { missingCount++; missing?.Add("glSecondaryColor3dvEXT"); }
         SecondaryColor3fEXT = (delegate* unmanaged<float, float, float, void>)resolver("glSecondaryColor3fEXT");
+        s_byName["glSecondaryColor3fEXT"] = (nint)SecondaryColor3fEXT;
         if (SecondaryColor3fEXT is null) { missingCount++; missing?.Add("glSecondaryColor3fEXT"); }
         SecondaryColor3fvEXT = (delegate* unmanaged<float*, void>)resolver("glSecondaryColor3fvEXT");
+        s_byName["glSecondaryColor3fvEXT"] = (nint)SecondaryColor3fvEXT;
         if (SecondaryColor3fvEXT is null) { missingCount++; missing?.Add("glSecondaryColor3fvEXT"); }
         SecondaryColor3hNV = (delegate* unmanaged<ushort, ushort, ushort, void>)resolver("glSecondaryColor3hNV");
+        s_byName["glSecondaryColor3hNV"] = (nint)SecondaryColor3hNV;
         if (SecondaryColor3hNV is null) { missingCount++; missing?.Add("glSecondaryColor3hNV"); }
         SecondaryColor3hvNV = (delegate* unmanaged<ushort*, void>)resolver("glSecondaryColor3hvNV");
+        s_byName["glSecondaryColor3hvNV"] = (nint)SecondaryColor3hvNV;
         if (SecondaryColor3hvNV is null) { missingCount++; missing?.Add("glSecondaryColor3hvNV"); }
         SecondaryColor3iEXT = (delegate* unmanaged<int, int, int, void>)resolver("glSecondaryColor3iEXT");
+        s_byName["glSecondaryColor3iEXT"] = (nint)SecondaryColor3iEXT;
         if (SecondaryColor3iEXT is null) { missingCount++; missing?.Add("glSecondaryColor3iEXT"); }
         SecondaryColor3ivEXT = (delegate* unmanaged<int*, void>)resolver("glSecondaryColor3ivEXT");
+        s_byName["glSecondaryColor3ivEXT"] = (nint)SecondaryColor3ivEXT;
         if (SecondaryColor3ivEXT is null) { missingCount++; missing?.Add("glSecondaryColor3ivEXT"); }
         SecondaryColor3sEXT = (delegate* unmanaged<short, short, short, void>)resolver("glSecondaryColor3sEXT");
+        s_byName["glSecondaryColor3sEXT"] = (nint)SecondaryColor3sEXT;
         if (SecondaryColor3sEXT is null) { missingCount++; missing?.Add("glSecondaryColor3sEXT"); }
         SecondaryColor3svEXT = (delegate* unmanaged<short*, void>)resolver("glSecondaryColor3svEXT");
+        s_byName["glSecondaryColor3svEXT"] = (nint)SecondaryColor3svEXT;
         if (SecondaryColor3svEXT is null) { missingCount++; missing?.Add("glSecondaryColor3svEXT"); }
         SecondaryColor3ubEXT = (delegate* unmanaged<byte, byte, byte, void>)resolver("glSecondaryColor3ubEXT");
+        s_byName["glSecondaryColor3ubEXT"] = (nint)SecondaryColor3ubEXT;
         if (SecondaryColor3ubEXT is null) { missingCount++; missing?.Add("glSecondaryColor3ubEXT"); }
         SecondaryColor3ubvEXT = (delegate* unmanaged<byte*, void>)resolver("glSecondaryColor3ubvEXT");
+        s_byName["glSecondaryColor3ubvEXT"] = (nint)SecondaryColor3ubvEXT;
         if (SecondaryColor3ubvEXT is null) { missingCount++; missing?.Add("glSecondaryColor3ubvEXT"); }
         SecondaryColor3uiEXT = (delegate* unmanaged<uint, uint, uint, void>)resolver("glSecondaryColor3uiEXT");
+        s_byName["glSecondaryColor3uiEXT"] = (nint)SecondaryColor3uiEXT;
         if (SecondaryColor3uiEXT is null) { missingCount++; missing?.Add("glSecondaryColor3uiEXT"); }
         SecondaryColor3uivEXT = (delegate* unmanaged<uint*, void>)resolver("glSecondaryColor3uivEXT");
+        s_byName["glSecondaryColor3uivEXT"] = (nint)SecondaryColor3uivEXT;
         if (SecondaryColor3uivEXT is null) { missingCount++; missing?.Add("glSecondaryColor3uivEXT"); }
         SecondaryColor3usEXT = (delegate* unmanaged<ushort, ushort, ushort, void>)resolver("glSecondaryColor3usEXT");
+        s_byName["glSecondaryColor3usEXT"] = (nint)SecondaryColor3usEXT;
         if (SecondaryColor3usEXT is null) { missingCount++; missing?.Add("glSecondaryColor3usEXT"); }
         SecondaryColor3usvEXT = (delegate* unmanaged<ushort*, void>)resolver("glSecondaryColor3usvEXT");
+        s_byName["glSecondaryColor3usvEXT"] = (nint)SecondaryColor3usvEXT;
         if (SecondaryColor3usvEXT is null) { missingCount++; missing?.Add("glSecondaryColor3usvEXT"); }
         SecondaryColorFormatNV = (delegate* unmanaged<int, uint, int, void>)resolver("glSecondaryColorFormatNV");
+        s_byName["glSecondaryColorFormatNV"] = (nint)SecondaryColorFormatNV;
         if (SecondaryColorFormatNV is null) { missingCount++; missing?.Add("glSecondaryColorFormatNV"); }
         SecondaryColorP3ui = (delegate* unmanaged<uint, uint, void>)resolver("glSecondaryColorP3ui");
+        s_byName["glSecondaryColorP3ui"] = (nint)SecondaryColorP3ui;
         if (SecondaryColorP3ui is null) { missingCount++; missing?.Add("glSecondaryColorP3ui"); }
         SecondaryColorP3uiv = (delegate* unmanaged<uint, uint*, void>)resolver("glSecondaryColorP3uiv");
+        s_byName["glSecondaryColorP3uiv"] = (nint)SecondaryColorP3uiv;
         if (SecondaryColorP3uiv is null) { missingCount++; missing?.Add("glSecondaryColorP3uiv"); }
         SecondaryColorPointerEXT = (delegate* unmanaged<int, uint, int, void*, void>)resolver("glSecondaryColorPointerEXT");
+        s_byName["glSecondaryColorPointerEXT"] = (nint)SecondaryColorPointerEXT;
         if (SecondaryColorPointerEXT is null) { missingCount++; missing?.Add("glSecondaryColorPointerEXT"); }
         SecondaryColorPointerListIBM = (delegate* unmanaged<int, uint, int, void**, int, void>)resolver("glSecondaryColorPointerListIBM");
+        s_byName["glSecondaryColorPointerListIBM"] = (nint)SecondaryColorPointerListIBM;
         if (SecondaryColorPointerListIBM is null) { missingCount++; missing?.Add("glSecondaryColorPointerListIBM"); }
         SelectPerfMonitorCountersAMD = (delegate* unmanaged<uint, byte, uint, int, uint*, void>)resolver("glSelectPerfMonitorCountersAMD");
+        s_byName["glSelectPerfMonitorCountersAMD"] = (nint)SelectPerfMonitorCountersAMD;
         if (SelectPerfMonitorCountersAMD is null) { missingCount++; missing?.Add("glSelectPerfMonitorCountersAMD"); }
         SemaphoreParameterivNV = (delegate* unmanaged<uint, uint, int*, void>)resolver("glSemaphoreParameterivNV");
+        s_byName["glSemaphoreParameterivNV"] = (nint)SemaphoreParameterivNV;
         if (SemaphoreParameterivNV is null) { missingCount++; missing?.Add("glSemaphoreParameterivNV"); }
         SemaphoreParameterui64vEXT = (delegate* unmanaged<uint, uint, ulong*, void>)resolver("glSemaphoreParameterui64vEXT");
+        s_byName["glSemaphoreParameterui64vEXT"] = (nint)SemaphoreParameterui64vEXT;
         if (SemaphoreParameterui64vEXT is null) { missingCount++; missing?.Add("glSemaphoreParameterui64vEXT"); }
         SeparableFilter2D = (delegate* unmanaged<uint, uint, int, int, uint, uint, void*, void*, void>)resolver("glSeparableFilter2D");
+        s_byName["glSeparableFilter2D"] = (nint)SeparableFilter2D;
         if (SeparableFilter2D is null) { missingCount++; missing?.Add("glSeparableFilter2D"); }
         SeparableFilter2DEXT = (delegate* unmanaged<uint, uint, int, int, uint, uint, void*, void*, void>)resolver("glSeparableFilter2DEXT");
+        s_byName["glSeparableFilter2DEXT"] = (nint)SeparableFilter2DEXT;
         if (SeparableFilter2DEXT is null) { missingCount++; missing?.Add("glSeparableFilter2DEXT"); }
         SetFenceAPPLE = (delegate* unmanaged<uint, void>)resolver("glSetFenceAPPLE");
+        s_byName["glSetFenceAPPLE"] = (nint)SetFenceAPPLE;
         if (SetFenceAPPLE is null) { missingCount++; missing?.Add("glSetFenceAPPLE"); }
         SetFenceNV = (delegate* unmanaged<uint, uint, void>)resolver("glSetFenceNV");
+        s_byName["glSetFenceNV"] = (nint)SetFenceNV;
         if (SetFenceNV is null) { missingCount++; missing?.Add("glSetFenceNV"); }
         SetFragmentShaderConstantATI = (delegate* unmanaged<uint, float*, void>)resolver("glSetFragmentShaderConstantATI");
+        s_byName["glSetFragmentShaderConstantATI"] = (nint)SetFragmentShaderConstantATI;
         if (SetFragmentShaderConstantATI is null) { missingCount++; missing?.Add("glSetFragmentShaderConstantATI"); }
         SetInvariantEXT = (delegate* unmanaged<uint, uint, void*, void>)resolver("glSetInvariantEXT");
+        s_byName["glSetInvariantEXT"] = (nint)SetInvariantEXT;
         if (SetInvariantEXT is null) { missingCount++; missing?.Add("glSetInvariantEXT"); }
         SetLocalConstantEXT = (delegate* unmanaged<uint, uint, void*, void>)resolver("glSetLocalConstantEXT");
+        s_byName["glSetLocalConstantEXT"] = (nint)SetLocalConstantEXT;
         if (SetLocalConstantEXT is null) { missingCount++; missing?.Add("glSetLocalConstantEXT"); }
         SetMultisamplefvAMD = (delegate* unmanaged<uint, uint, float*, void>)resolver("glSetMultisamplefvAMD");
+        s_byName["glSetMultisamplefvAMD"] = (nint)SetMultisamplefvAMD;
         if (SetMultisamplefvAMD is null) { missingCount++; missing?.Add("glSetMultisamplefvAMD"); }
         ShaderBinary = (delegate* unmanaged<int, uint*, uint, void*, int, void>)resolver("glShaderBinary");
+        s_byName["glShaderBinary"] = (nint)ShaderBinary;
         if (ShaderBinary is null) { missingCount++; missing?.Add("glShaderBinary"); }
         ShaderOp1EXT = (delegate* unmanaged<uint, uint, uint, void>)resolver("glShaderOp1EXT");
+        s_byName["glShaderOp1EXT"] = (nint)ShaderOp1EXT;
         if (ShaderOp1EXT is null) { missingCount++; missing?.Add("glShaderOp1EXT"); }
         ShaderOp2EXT = (delegate* unmanaged<uint, uint, uint, uint, void>)resolver("glShaderOp2EXT");
+        s_byName["glShaderOp2EXT"] = (nint)ShaderOp2EXT;
         if (ShaderOp2EXT is null) { missingCount++; missing?.Add("glShaderOp2EXT"); }
         ShaderOp3EXT = (delegate* unmanaged<uint, uint, uint, uint, uint, void>)resolver("glShaderOp3EXT");
+        s_byName["glShaderOp3EXT"] = (nint)ShaderOp3EXT;
         if (ShaderOp3EXT is null) { missingCount++; missing?.Add("glShaderOp3EXT"); }
         ShaderSource = (delegate* unmanaged<uint, int, byte**, int*, void>)resolver("glShaderSource");
+        s_byName["glShaderSource"] = (nint)ShaderSource;
         if (ShaderSource is null) { missingCount++; missing?.Add("glShaderSource"); }
         ShaderSourceARB = (delegate* unmanaged<uint, int, byte**, int*, void>)resolver("glShaderSourceARB");
+        s_byName["glShaderSourceARB"] = (nint)ShaderSourceARB;
         if (ShaderSourceARB is null) { missingCount++; missing?.Add("glShaderSourceARB"); }
         ShaderStorageBlockBinding = (delegate* unmanaged<uint, uint, uint, void>)resolver("glShaderStorageBlockBinding");
+        s_byName["glShaderStorageBlockBinding"] = (nint)ShaderStorageBlockBinding;
         if (ShaderStorageBlockBinding is null) { missingCount++; missing?.Add("glShaderStorageBlockBinding"); }
         ShadingRateCombinerOpsEXT = (delegate* unmanaged<uint, uint, void>)resolver("glShadingRateCombinerOpsEXT");
+        s_byName["glShadingRateCombinerOpsEXT"] = (nint)ShadingRateCombinerOpsEXT;
         if (ShadingRateCombinerOpsEXT is null) { missingCount++; missing?.Add("glShadingRateCombinerOpsEXT"); }
         ShadingRateEXT = (delegate* unmanaged<uint, void>)resolver("glShadingRateEXT");
+        s_byName["glShadingRateEXT"] = (nint)ShadingRateEXT;
         if (ShadingRateEXT is null) { missingCount++; missing?.Add("glShadingRateEXT"); }
         ShadingRateImageBarrierNV = (delegate* unmanaged<byte, void>)resolver("glShadingRateImageBarrierNV");
+        s_byName["glShadingRateImageBarrierNV"] = (nint)ShadingRateImageBarrierNV;
         if (ShadingRateImageBarrierNV is null) { missingCount++; missing?.Add("glShadingRateImageBarrierNV"); }
         ShadingRateImagePaletteNV = (delegate* unmanaged<uint, uint, int, uint*, void>)resolver("glShadingRateImagePaletteNV");
+        s_byName["glShadingRateImagePaletteNV"] = (nint)ShadingRateImagePaletteNV;
         if (ShadingRateImagePaletteNV is null) { missingCount++; missing?.Add("glShadingRateImagePaletteNV"); }
         ShadingRateSampleOrderCustomNV = (delegate* unmanaged<uint, uint, int*, void>)resolver("glShadingRateSampleOrderCustomNV");
+        s_byName["glShadingRateSampleOrderCustomNV"] = (nint)ShadingRateSampleOrderCustomNV;
         if (ShadingRateSampleOrderCustomNV is null) { missingCount++; missing?.Add("glShadingRateSampleOrderCustomNV"); }
         ShadingRateSampleOrderNV = (delegate* unmanaged<uint, void>)resolver("glShadingRateSampleOrderNV");
+        s_byName["glShadingRateSampleOrderNV"] = (nint)ShadingRateSampleOrderNV;
         if (ShadingRateSampleOrderNV is null) { missingCount++; missing?.Add("glShadingRateSampleOrderNV"); }
         SharpenTexFuncSGIS = (delegate* unmanaged<uint, int, float*, void>)resolver("glSharpenTexFuncSGIS");
+        s_byName["glSharpenTexFuncSGIS"] = (nint)SharpenTexFuncSGIS;
         if (SharpenTexFuncSGIS is null) { missingCount++; missing?.Add("glSharpenTexFuncSGIS"); }
         SignalSemaphoreEXT = (delegate* unmanaged<uint, uint, uint*, uint, uint*, uint*, void>)resolver("glSignalSemaphoreEXT");
+        s_byName["glSignalSemaphoreEXT"] = (nint)SignalSemaphoreEXT;
         if (SignalSemaphoreEXT is null) { missingCount++; missing?.Add("glSignalSemaphoreEXT"); }
         SignalSemaphoreui64NVX = (delegate* unmanaged<uint, int, uint*, ulong*, void>)resolver("glSignalSemaphoreui64NVX");
+        s_byName["glSignalSemaphoreui64NVX"] = (nint)SignalSemaphoreui64NVX;
         if (SignalSemaphoreui64NVX is null) { missingCount++; missing?.Add("glSignalSemaphoreui64NVX"); }
         SignalVkFenceNV = (delegate* unmanaged<ulong, void>)resolver("glSignalVkFenceNV");
+        s_byName["glSignalVkFenceNV"] = (nint)SignalVkFenceNV;
         if (SignalVkFenceNV is null) { missingCount++; missing?.Add("glSignalVkFenceNV"); }
         SignalVkSemaphoreNV = (delegate* unmanaged<ulong, void>)resolver("glSignalVkSemaphoreNV");
+        s_byName["glSignalVkSemaphoreNV"] = (nint)SignalVkSemaphoreNV;
         if (SignalVkSemaphoreNV is null) { missingCount++; missing?.Add("glSignalVkSemaphoreNV"); }
         SpecializeShader = (delegate* unmanaged<uint, byte*, uint, uint*, uint*, void>)resolver("glSpecializeShader");
+        s_byName["glSpecializeShader"] = (nint)SpecializeShader;
         if (SpecializeShader is null) { missingCount++; missing?.Add("glSpecializeShader"); }
         SpecializeShaderARB = (delegate* unmanaged<uint, byte*, uint, uint*, uint*, void>)resolver("glSpecializeShaderARB");
+        s_byName["glSpecializeShaderARB"] = (nint)SpecializeShaderARB;
         if (SpecializeShaderARB is null) { missingCount++; missing?.Add("glSpecializeShaderARB"); }
         SpriteParameterfSGIX = (delegate* unmanaged<uint, float, void>)resolver("glSpriteParameterfSGIX");
+        s_byName["glSpriteParameterfSGIX"] = (nint)SpriteParameterfSGIX;
         if (SpriteParameterfSGIX is null) { missingCount++; missing?.Add("glSpriteParameterfSGIX"); }
         SpriteParameterfvSGIX = (delegate* unmanaged<uint, float*, void>)resolver("glSpriteParameterfvSGIX");
+        s_byName["glSpriteParameterfvSGIX"] = (nint)SpriteParameterfvSGIX;
         if (SpriteParameterfvSGIX is null) { missingCount++; missing?.Add("glSpriteParameterfvSGIX"); }
         SpriteParameteriSGIX = (delegate* unmanaged<uint, int, void>)resolver("glSpriteParameteriSGIX");
+        s_byName["glSpriteParameteriSGIX"] = (nint)SpriteParameteriSGIX;
         if (SpriteParameteriSGIX is null) { missingCount++; missing?.Add("glSpriteParameteriSGIX"); }
         SpriteParameterivSGIX = (delegate* unmanaged<uint, int*, void>)resolver("glSpriteParameterivSGIX");
+        s_byName["glSpriteParameterivSGIX"] = (nint)SpriteParameterivSGIX;
         if (SpriteParameterivSGIX is null) { missingCount++; missing?.Add("glSpriteParameterivSGIX"); }
         StartInstrumentsSGIX = (delegate* unmanaged<void>)resolver("glStartInstrumentsSGIX");
+        s_byName["glStartInstrumentsSGIX"] = (nint)StartInstrumentsSGIX;
         if (StartInstrumentsSGIX is null) { missingCount++; missing?.Add("glStartInstrumentsSGIX"); }
         StateCaptureNV = (delegate* unmanaged<uint, uint, void>)resolver("glStateCaptureNV");
+        s_byName["glStateCaptureNV"] = (nint)StateCaptureNV;
         if (StateCaptureNV is null) { missingCount++; missing?.Add("glStateCaptureNV"); }
         StencilClearTagEXT = (delegate* unmanaged<int, uint, void>)resolver("glStencilClearTagEXT");
+        s_byName["glStencilClearTagEXT"] = (nint)StencilClearTagEXT;
         if (StencilClearTagEXT is null) { missingCount++; missing?.Add("glStencilClearTagEXT"); }
         StencilFillPathInstancedNV = (delegate* unmanaged<int, uint, void*, uint, uint, uint, uint, float*, void>)resolver("glStencilFillPathInstancedNV");
+        s_byName["glStencilFillPathInstancedNV"] = (nint)StencilFillPathInstancedNV;
         if (StencilFillPathInstancedNV is null) { missingCount++; missing?.Add("glStencilFillPathInstancedNV"); }
         StencilFillPathNV = (delegate* unmanaged<uint, uint, uint, void>)resolver("glStencilFillPathNV");
+        s_byName["glStencilFillPathNV"] = (nint)StencilFillPathNV;
         if (StencilFillPathNV is null) { missingCount++; missing?.Add("glStencilFillPathNV"); }
         StencilFunc = (delegate* unmanaged<uint, int, uint, void>)resolver("glStencilFunc");
+        s_byName["glStencilFunc"] = (nint)StencilFunc;
         if (StencilFunc is null) { missingCount++; missing?.Add("glStencilFunc"); }
         StencilFuncSeparate = (delegate* unmanaged<uint, uint, int, uint, void>)resolver("glStencilFuncSeparate");
+        s_byName["glStencilFuncSeparate"] = (nint)StencilFuncSeparate;
         if (StencilFuncSeparate is null) { missingCount++; missing?.Add("glStencilFuncSeparate"); }
         StencilFuncSeparateATI = (delegate* unmanaged<uint, uint, int, uint, void>)resolver("glStencilFuncSeparateATI");
+        s_byName["glStencilFuncSeparateATI"] = (nint)StencilFuncSeparateATI;
         if (StencilFuncSeparateATI is null) { missingCount++; missing?.Add("glStencilFuncSeparateATI"); }
         StencilMask = (delegate* unmanaged<uint, void>)resolver("glStencilMask");
+        s_byName["glStencilMask"] = (nint)StencilMask;
         if (StencilMask is null) { missingCount++; missing?.Add("glStencilMask"); }
         StencilMaskSeparate = (delegate* unmanaged<uint, uint, void>)resolver("glStencilMaskSeparate");
+        s_byName["glStencilMaskSeparate"] = (nint)StencilMaskSeparate;
         if (StencilMaskSeparate is null) { missingCount++; missing?.Add("glStencilMaskSeparate"); }
         StencilOp = (delegate* unmanaged<uint, uint, uint, void>)resolver("glStencilOp");
+        s_byName["glStencilOp"] = (nint)StencilOp;
         if (StencilOp is null) { missingCount++; missing?.Add("glStencilOp"); }
         StencilOpSeparate = (delegate* unmanaged<uint, uint, uint, uint, void>)resolver("glStencilOpSeparate");
+        s_byName["glStencilOpSeparate"] = (nint)StencilOpSeparate;
         if (StencilOpSeparate is null) { missingCount++; missing?.Add("glStencilOpSeparate"); }
         StencilOpSeparateATI = (delegate* unmanaged<uint, uint, uint, uint, void>)resolver("glStencilOpSeparateATI");
+        s_byName["glStencilOpSeparateATI"] = (nint)StencilOpSeparateATI;
         if (StencilOpSeparateATI is null) { missingCount++; missing?.Add("glStencilOpSeparateATI"); }
         StencilOpValueAMD = (delegate* unmanaged<uint, uint, void>)resolver("glStencilOpValueAMD");
+        s_byName["glStencilOpValueAMD"] = (nint)StencilOpValueAMD;
         if (StencilOpValueAMD is null) { missingCount++; missing?.Add("glStencilOpValueAMD"); }
         StencilStrokePathInstancedNV = (delegate* unmanaged<int, uint, void*, uint, int, uint, uint, float*, void>)resolver("glStencilStrokePathInstancedNV");
+        s_byName["glStencilStrokePathInstancedNV"] = (nint)StencilStrokePathInstancedNV;
         if (StencilStrokePathInstancedNV is null) { missingCount++; missing?.Add("glStencilStrokePathInstancedNV"); }
         StencilStrokePathNV = (delegate* unmanaged<uint, int, uint, void>)resolver("glStencilStrokePathNV");
+        s_byName["glStencilStrokePathNV"] = (nint)StencilStrokePathNV;
         if (StencilStrokePathNV is null) { missingCount++; missing?.Add("glStencilStrokePathNV"); }
         StencilThenCoverFillPathInstancedNV = (delegate* unmanaged<int, uint, void*, uint, uint, uint, uint, uint, float*, void>)resolver("glStencilThenCoverFillPathInstancedNV");
+        s_byName["glStencilThenCoverFillPathInstancedNV"] = (nint)StencilThenCoverFillPathInstancedNV;
         if (StencilThenCoverFillPathInstancedNV is null) { missingCount++; missing?.Add("glStencilThenCoverFillPathInstancedNV"); }
         StencilThenCoverFillPathNV = (delegate* unmanaged<uint, uint, uint, uint, void>)resolver("glStencilThenCoverFillPathNV");
+        s_byName["glStencilThenCoverFillPathNV"] = (nint)StencilThenCoverFillPathNV;
         if (StencilThenCoverFillPathNV is null) { missingCount++; missing?.Add("glStencilThenCoverFillPathNV"); }
         StencilThenCoverStrokePathInstancedNV = (delegate* unmanaged<int, uint, void*, uint, int, uint, uint, uint, float*, void>)resolver("glStencilThenCoverStrokePathInstancedNV");
+        s_byName["glStencilThenCoverStrokePathInstancedNV"] = (nint)StencilThenCoverStrokePathInstancedNV;
         if (StencilThenCoverStrokePathInstancedNV is null) { missingCount++; missing?.Add("glStencilThenCoverStrokePathInstancedNV"); }
         StencilThenCoverStrokePathNV = (delegate* unmanaged<uint, int, uint, uint, void>)resolver("glStencilThenCoverStrokePathNV");
+        s_byName["glStencilThenCoverStrokePathNV"] = (nint)StencilThenCoverStrokePathNV;
         if (StencilThenCoverStrokePathNV is null) { missingCount++; missing?.Add("glStencilThenCoverStrokePathNV"); }
         StopInstrumentsSGIX = (delegate* unmanaged<int, void>)resolver("glStopInstrumentsSGIX");
+        s_byName["glStopInstrumentsSGIX"] = (nint)StopInstrumentsSGIX;
         if (StopInstrumentsSGIX is null) { missingCount++; missing?.Add("glStopInstrumentsSGIX"); }
         StringMarkerGREMEDY = (delegate* unmanaged<int, void*, void>)resolver("glStringMarkerGREMEDY");
+        s_byName["glStringMarkerGREMEDY"] = (nint)StringMarkerGREMEDY;
         if (StringMarkerGREMEDY is null) { missingCount++; missing?.Add("glStringMarkerGREMEDY"); }
         SubpixelPrecisionBiasNV = (delegate* unmanaged<uint, uint, void>)resolver("glSubpixelPrecisionBiasNV");
+        s_byName["glSubpixelPrecisionBiasNV"] = (nint)SubpixelPrecisionBiasNV;
         if (SubpixelPrecisionBiasNV is null) { missingCount++; missing?.Add("glSubpixelPrecisionBiasNV"); }
         SwizzleEXT = (delegate* unmanaged<uint, uint, uint, uint, uint, uint, void>)resolver("glSwizzleEXT");
+        s_byName["glSwizzleEXT"] = (nint)SwizzleEXT;
         if (SwizzleEXT is null) { missingCount++; missing?.Add("glSwizzleEXT"); }
         SyncTextureINTEL = (delegate* unmanaged<uint, void>)resolver("glSyncTextureINTEL");
+        s_byName["glSyncTextureINTEL"] = (nint)SyncTextureINTEL;
         if (SyncTextureINTEL is null) { missingCount++; missing?.Add("glSyncTextureINTEL"); }
         TagSampleBufferSGIX = (delegate* unmanaged<void>)resolver("glTagSampleBufferSGIX");
+        s_byName["glTagSampleBufferSGIX"] = (nint)TagSampleBufferSGIX;
         if (TagSampleBufferSGIX is null) { missingCount++; missing?.Add("glTagSampleBufferSGIX"); }
         Tangent3bEXT = (delegate* unmanaged<sbyte, sbyte, sbyte, void>)resolver("glTangent3bEXT");
+        s_byName["glTangent3bEXT"] = (nint)Tangent3bEXT;
         if (Tangent3bEXT is null) { missingCount++; missing?.Add("glTangent3bEXT"); }
         Tangent3bvEXT = (delegate* unmanaged<sbyte*, void>)resolver("glTangent3bvEXT");
+        s_byName["glTangent3bvEXT"] = (nint)Tangent3bvEXT;
         if (Tangent3bvEXT is null) { missingCount++; missing?.Add("glTangent3bvEXT"); }
         Tangent3dEXT = (delegate* unmanaged<double, double, double, void>)resolver("glTangent3dEXT");
+        s_byName["glTangent3dEXT"] = (nint)Tangent3dEXT;
         if (Tangent3dEXT is null) { missingCount++; missing?.Add("glTangent3dEXT"); }
         Tangent3dvEXT = (delegate* unmanaged<double*, void>)resolver("glTangent3dvEXT");
+        s_byName["glTangent3dvEXT"] = (nint)Tangent3dvEXT;
         if (Tangent3dvEXT is null) { missingCount++; missing?.Add("glTangent3dvEXT"); }
         Tangent3fEXT = (delegate* unmanaged<float, float, float, void>)resolver("glTangent3fEXT");
+        s_byName["glTangent3fEXT"] = (nint)Tangent3fEXT;
         if (Tangent3fEXT is null) { missingCount++; missing?.Add("glTangent3fEXT"); }
         Tangent3fvEXT = (delegate* unmanaged<float*, void>)resolver("glTangent3fvEXT");
+        s_byName["glTangent3fvEXT"] = (nint)Tangent3fvEXT;
         if (Tangent3fvEXT is null) { missingCount++; missing?.Add("glTangent3fvEXT"); }
         Tangent3iEXT = (delegate* unmanaged<int, int, int, void>)resolver("glTangent3iEXT");
+        s_byName["glTangent3iEXT"] = (nint)Tangent3iEXT;
         if (Tangent3iEXT is null) { missingCount++; missing?.Add("glTangent3iEXT"); }
         Tangent3ivEXT = (delegate* unmanaged<int*, void>)resolver("glTangent3ivEXT");
+        s_byName["glTangent3ivEXT"] = (nint)Tangent3ivEXT;
         if (Tangent3ivEXT is null) { missingCount++; missing?.Add("glTangent3ivEXT"); }
         Tangent3sEXT = (delegate* unmanaged<short, short, short, void>)resolver("glTangent3sEXT");
+        s_byName["glTangent3sEXT"] = (nint)Tangent3sEXT;
         if (Tangent3sEXT is null) { missingCount++; missing?.Add("glTangent3sEXT"); }
         Tangent3svEXT = (delegate* unmanaged<short*, void>)resolver("glTangent3svEXT");
+        s_byName["glTangent3svEXT"] = (nint)Tangent3svEXT;
         if (Tangent3svEXT is null) { missingCount++; missing?.Add("glTangent3svEXT"); }
         TangentPointerEXT = (delegate* unmanaged<uint, int, void*, void>)resolver("glTangentPointerEXT");
+        s_byName["glTangentPointerEXT"] = (nint)TangentPointerEXT;
         if (TangentPointerEXT is null) { missingCount++; missing?.Add("glTangentPointerEXT"); }
         TbufferMask3DFX = (delegate* unmanaged<uint, void>)resolver("glTbufferMask3DFX");
+        s_byName["glTbufferMask3DFX"] = (nint)TbufferMask3DFX;
         if (TbufferMask3DFX is null) { missingCount++; missing?.Add("glTbufferMask3DFX"); }
         TessellationFactorAMD = (delegate* unmanaged<float, void>)resolver("glTessellationFactorAMD");
+        s_byName["glTessellationFactorAMD"] = (nint)TessellationFactorAMD;
         if (TessellationFactorAMD is null) { missingCount++; missing?.Add("glTessellationFactorAMD"); }
         TessellationModeAMD = (delegate* unmanaged<uint, void>)resolver("glTessellationModeAMD");
+        s_byName["glTessellationModeAMD"] = (nint)TessellationModeAMD;
         if (TessellationModeAMD is null) { missingCount++; missing?.Add("glTessellationModeAMD"); }
         TestFenceAPPLE = (delegate* unmanaged<uint, byte>)resolver("glTestFenceAPPLE");
+        s_byName["glTestFenceAPPLE"] = (nint)TestFenceAPPLE;
         if (TestFenceAPPLE is null) { missingCount++; missing?.Add("glTestFenceAPPLE"); }
         TestFenceNV = (delegate* unmanaged<uint, byte>)resolver("glTestFenceNV");
+        s_byName["glTestFenceNV"] = (nint)TestFenceNV;
         if (TestFenceNV is null) { missingCount++; missing?.Add("glTestFenceNV"); }
         TestObjectAPPLE = (delegate* unmanaged<uint, uint, byte>)resolver("glTestObjectAPPLE");
+        s_byName["glTestObjectAPPLE"] = (nint)TestObjectAPPLE;
         if (TestObjectAPPLE is null) { missingCount++; missing?.Add("glTestObjectAPPLE"); }
         TexAttachMemoryNV = (delegate* unmanaged<uint, uint, ulong, void>)resolver("glTexAttachMemoryNV");
+        s_byName["glTexAttachMemoryNV"] = (nint)TexAttachMemoryNV;
         if (TexAttachMemoryNV is null) { missingCount++; missing?.Add("glTexAttachMemoryNV"); }
         TexBuffer = (delegate* unmanaged<uint, uint, uint, void>)resolver("glTexBuffer");
+        s_byName["glTexBuffer"] = (nint)TexBuffer;
         if (TexBuffer is null) { missingCount++; missing?.Add("glTexBuffer"); }
         TexBufferARB = (delegate* unmanaged<uint, uint, uint, void>)resolver("glTexBufferARB");
+        s_byName["glTexBufferARB"] = (nint)TexBufferARB;
         if (TexBufferARB is null) { missingCount++; missing?.Add("glTexBufferARB"); }
         TexBufferEXT = (delegate* unmanaged<uint, uint, uint, void>)resolver("glTexBufferEXT");
+        s_byName["glTexBufferEXT"] = (nint)TexBufferEXT;
         if (TexBufferEXT is null) { missingCount++; missing?.Add("glTexBufferEXT"); }
         TexBufferRange = (delegate* unmanaged<uint, uint, uint, nint, nint, void>)resolver("glTexBufferRange");
+        s_byName["glTexBufferRange"] = (nint)TexBufferRange;
         if (TexBufferRange is null) { missingCount++; missing?.Add("glTexBufferRange"); }
         TexBumpParameterfvATI = (delegate* unmanaged<uint, float*, void>)resolver("glTexBumpParameterfvATI");
+        s_byName["glTexBumpParameterfvATI"] = (nint)TexBumpParameterfvATI;
         if (TexBumpParameterfvATI is null) { missingCount++; missing?.Add("glTexBumpParameterfvATI"); }
         TexBumpParameterivATI = (delegate* unmanaged<uint, int*, void>)resolver("glTexBumpParameterivATI");
+        s_byName["glTexBumpParameterivATI"] = (nint)TexBumpParameterivATI;
         if (TexBumpParameterivATI is null) { missingCount++; missing?.Add("glTexBumpParameterivATI"); }
         TexCoord1bOES = (delegate* unmanaged<sbyte, void>)resolver("glTexCoord1bOES");
+        s_byName["glTexCoord1bOES"] = (nint)TexCoord1bOES;
         if (TexCoord1bOES is null) { missingCount++; missing?.Add("glTexCoord1bOES"); }
         TexCoord1bvOES = (delegate* unmanaged<sbyte*, void>)resolver("glTexCoord1bvOES");
+        s_byName["glTexCoord1bvOES"] = (nint)TexCoord1bvOES;
         if (TexCoord1bvOES is null) { missingCount++; missing?.Add("glTexCoord1bvOES"); }
         TexCoord1hNV = (delegate* unmanaged<ushort, void>)resolver("glTexCoord1hNV");
+        s_byName["glTexCoord1hNV"] = (nint)TexCoord1hNV;
         if (TexCoord1hNV is null) { missingCount++; missing?.Add("glTexCoord1hNV"); }
         TexCoord1hvNV = (delegate* unmanaged<ushort*, void>)resolver("glTexCoord1hvNV");
+        s_byName["glTexCoord1hvNV"] = (nint)TexCoord1hvNV;
         if (TexCoord1hvNV is null) { missingCount++; missing?.Add("glTexCoord1hvNV"); }
         TexCoord1xOES = (delegate* unmanaged<int, void>)resolver("glTexCoord1xOES");
+        s_byName["glTexCoord1xOES"] = (nint)TexCoord1xOES;
         if (TexCoord1xOES is null) { missingCount++; missing?.Add("glTexCoord1xOES"); }
         TexCoord1xvOES = (delegate* unmanaged<int*, void>)resolver("glTexCoord1xvOES");
+        s_byName["glTexCoord1xvOES"] = (nint)TexCoord1xvOES;
         if (TexCoord1xvOES is null) { missingCount++; missing?.Add("glTexCoord1xvOES"); }
         TexCoord2bOES = (delegate* unmanaged<sbyte, sbyte, void>)resolver("glTexCoord2bOES");
+        s_byName["glTexCoord2bOES"] = (nint)TexCoord2bOES;
         if (TexCoord2bOES is null) { missingCount++; missing?.Add("glTexCoord2bOES"); }
         TexCoord2bvOES = (delegate* unmanaged<sbyte*, void>)resolver("glTexCoord2bvOES");
+        s_byName["glTexCoord2bvOES"] = (nint)TexCoord2bvOES;
         if (TexCoord2bvOES is null) { missingCount++; missing?.Add("glTexCoord2bvOES"); }
         TexCoord2fColor3fVertex3fSUN = (delegate* unmanaged<float, float, float, float, float, float, float, float, void>)resolver("glTexCoord2fColor3fVertex3fSUN");
+        s_byName["glTexCoord2fColor3fVertex3fSUN"] = (nint)TexCoord2fColor3fVertex3fSUN;
         if (TexCoord2fColor3fVertex3fSUN is null) { missingCount++; missing?.Add("glTexCoord2fColor3fVertex3fSUN"); }
         TexCoord2fColor3fVertex3fvSUN = (delegate* unmanaged<float*, float*, float*, void>)resolver("glTexCoord2fColor3fVertex3fvSUN");
+        s_byName["glTexCoord2fColor3fVertex3fvSUN"] = (nint)TexCoord2fColor3fVertex3fvSUN;
         if (TexCoord2fColor3fVertex3fvSUN is null) { missingCount++; missing?.Add("glTexCoord2fColor3fVertex3fvSUN"); }
         TexCoord2fColor4fNormal3fVertex3fSUN = (delegate* unmanaged<float, float, float, float, float, float, float, float, float, float, float, float, void>)resolver("glTexCoord2fColor4fNormal3fVertex3fSUN");
+        s_byName["glTexCoord2fColor4fNormal3fVertex3fSUN"] = (nint)TexCoord2fColor4fNormal3fVertex3fSUN;
         if (TexCoord2fColor4fNormal3fVertex3fSUN is null) { missingCount++; missing?.Add("glTexCoord2fColor4fNormal3fVertex3fSUN"); }
         TexCoord2fColor4fNormal3fVertex3fvSUN = (delegate* unmanaged<float*, float*, float*, float*, void>)resolver("glTexCoord2fColor4fNormal3fVertex3fvSUN");
+        s_byName["glTexCoord2fColor4fNormal3fVertex3fvSUN"] = (nint)TexCoord2fColor4fNormal3fVertex3fvSUN;
         if (TexCoord2fColor4fNormal3fVertex3fvSUN is null) { missingCount++; missing?.Add("glTexCoord2fColor4fNormal3fVertex3fvSUN"); }
         TexCoord2fColor4ubVertex3fSUN = (delegate* unmanaged<float, float, byte, byte, byte, byte, float, float, float, void>)resolver("glTexCoord2fColor4ubVertex3fSUN");
+        s_byName["glTexCoord2fColor4ubVertex3fSUN"] = (nint)TexCoord2fColor4ubVertex3fSUN;
         if (TexCoord2fColor4ubVertex3fSUN is null) { missingCount++; missing?.Add("glTexCoord2fColor4ubVertex3fSUN"); }
         TexCoord2fColor4ubVertex3fvSUN = (delegate* unmanaged<float*, byte*, float*, void>)resolver("glTexCoord2fColor4ubVertex3fvSUN");
+        s_byName["glTexCoord2fColor4ubVertex3fvSUN"] = (nint)TexCoord2fColor4ubVertex3fvSUN;
         if (TexCoord2fColor4ubVertex3fvSUN is null) { missingCount++; missing?.Add("glTexCoord2fColor4ubVertex3fvSUN"); }
         TexCoord2fNormal3fVertex3fSUN = (delegate* unmanaged<float, float, float, float, float, float, float, float, void>)resolver("glTexCoord2fNormal3fVertex3fSUN");
+        s_byName["glTexCoord2fNormal3fVertex3fSUN"] = (nint)TexCoord2fNormal3fVertex3fSUN;
         if (TexCoord2fNormal3fVertex3fSUN is null) { missingCount++; missing?.Add("glTexCoord2fNormal3fVertex3fSUN"); }
         TexCoord2fNormal3fVertex3fvSUN = (delegate* unmanaged<float*, float*, float*, void>)resolver("glTexCoord2fNormal3fVertex3fvSUN");
+        s_byName["glTexCoord2fNormal3fVertex3fvSUN"] = (nint)TexCoord2fNormal3fVertex3fvSUN;
         if (TexCoord2fNormal3fVertex3fvSUN is null) { missingCount++; missing?.Add("glTexCoord2fNormal3fVertex3fvSUN"); }
         TexCoord2fVertex3fSUN = (delegate* unmanaged<float, float, float, float, float, void>)resolver("glTexCoord2fVertex3fSUN");
+        s_byName["glTexCoord2fVertex3fSUN"] = (nint)TexCoord2fVertex3fSUN;
         if (TexCoord2fVertex3fSUN is null) { missingCount++; missing?.Add("glTexCoord2fVertex3fSUN"); }
         TexCoord2fVertex3fvSUN = (delegate* unmanaged<float*, float*, void>)resolver("glTexCoord2fVertex3fvSUN");
+        s_byName["glTexCoord2fVertex3fvSUN"] = (nint)TexCoord2fVertex3fvSUN;
         if (TexCoord2fVertex3fvSUN is null) { missingCount++; missing?.Add("glTexCoord2fVertex3fvSUN"); }
         TexCoord2hNV = (delegate* unmanaged<ushort, ushort, void>)resolver("glTexCoord2hNV");
+        s_byName["glTexCoord2hNV"] = (nint)TexCoord2hNV;
         if (TexCoord2hNV is null) { missingCount++; missing?.Add("glTexCoord2hNV"); }
         TexCoord2hvNV = (delegate* unmanaged<ushort*, void>)resolver("glTexCoord2hvNV");
+        s_byName["glTexCoord2hvNV"] = (nint)TexCoord2hvNV;
         if (TexCoord2hvNV is null) { missingCount++; missing?.Add("glTexCoord2hvNV"); }
         TexCoord2xOES = (delegate* unmanaged<int, int, void>)resolver("glTexCoord2xOES");
+        s_byName["glTexCoord2xOES"] = (nint)TexCoord2xOES;
         if (TexCoord2xOES is null) { missingCount++; missing?.Add("glTexCoord2xOES"); }
         TexCoord2xvOES = (delegate* unmanaged<int*, void>)resolver("glTexCoord2xvOES");
+        s_byName["glTexCoord2xvOES"] = (nint)TexCoord2xvOES;
         if (TexCoord2xvOES is null) { missingCount++; missing?.Add("glTexCoord2xvOES"); }
         TexCoord3bOES = (delegate* unmanaged<sbyte, sbyte, sbyte, void>)resolver("glTexCoord3bOES");
+        s_byName["glTexCoord3bOES"] = (nint)TexCoord3bOES;
         if (TexCoord3bOES is null) { missingCount++; missing?.Add("glTexCoord3bOES"); }
         TexCoord3bvOES = (delegate* unmanaged<sbyte*, void>)resolver("glTexCoord3bvOES");
+        s_byName["glTexCoord3bvOES"] = (nint)TexCoord3bvOES;
         if (TexCoord3bvOES is null) { missingCount++; missing?.Add("glTexCoord3bvOES"); }
         TexCoord3hNV = (delegate* unmanaged<ushort, ushort, ushort, void>)resolver("glTexCoord3hNV");
+        s_byName["glTexCoord3hNV"] = (nint)TexCoord3hNV;
         if (TexCoord3hNV is null) { missingCount++; missing?.Add("glTexCoord3hNV"); }
         TexCoord3hvNV = (delegate* unmanaged<ushort*, void>)resolver("glTexCoord3hvNV");
+        s_byName["glTexCoord3hvNV"] = (nint)TexCoord3hvNV;
         if (TexCoord3hvNV is null) { missingCount++; missing?.Add("glTexCoord3hvNV"); }
         TexCoord3xOES = (delegate* unmanaged<int, int, int, void>)resolver("glTexCoord3xOES");
+        s_byName["glTexCoord3xOES"] = (nint)TexCoord3xOES;
         if (TexCoord3xOES is null) { missingCount++; missing?.Add("glTexCoord3xOES"); }
         TexCoord3xvOES = (delegate* unmanaged<int*, void>)resolver("glTexCoord3xvOES");
+        s_byName["glTexCoord3xvOES"] = (nint)TexCoord3xvOES;
         if (TexCoord3xvOES is null) { missingCount++; missing?.Add("glTexCoord3xvOES"); }
         TexCoord4bOES = (delegate* unmanaged<sbyte, sbyte, sbyte, sbyte, void>)resolver("glTexCoord4bOES");
+        s_byName["glTexCoord4bOES"] = (nint)TexCoord4bOES;
         if (TexCoord4bOES is null) { missingCount++; missing?.Add("glTexCoord4bOES"); }
         TexCoord4bvOES = (delegate* unmanaged<sbyte*, void>)resolver("glTexCoord4bvOES");
+        s_byName["glTexCoord4bvOES"] = (nint)TexCoord4bvOES;
         if (TexCoord4bvOES is null) { missingCount++; missing?.Add("glTexCoord4bvOES"); }
         TexCoord4fColor4fNormal3fVertex4fSUN = (delegate* unmanaged<float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, void>)resolver("glTexCoord4fColor4fNormal3fVertex4fSUN");
+        s_byName["glTexCoord4fColor4fNormal3fVertex4fSUN"] = (nint)TexCoord4fColor4fNormal3fVertex4fSUN;
         if (TexCoord4fColor4fNormal3fVertex4fSUN is null) { missingCount++; missing?.Add("glTexCoord4fColor4fNormal3fVertex4fSUN"); }
         TexCoord4fColor4fNormal3fVertex4fvSUN = (delegate* unmanaged<float*, float*, float*, float*, void>)resolver("glTexCoord4fColor4fNormal3fVertex4fvSUN");
+        s_byName["glTexCoord4fColor4fNormal3fVertex4fvSUN"] = (nint)TexCoord4fColor4fNormal3fVertex4fvSUN;
         if (TexCoord4fColor4fNormal3fVertex4fvSUN is null) { missingCount++; missing?.Add("glTexCoord4fColor4fNormal3fVertex4fvSUN"); }
         TexCoord4fVertex4fSUN = (delegate* unmanaged<float, float, float, float, float, float, float, float, void>)resolver("glTexCoord4fVertex4fSUN");
+        s_byName["glTexCoord4fVertex4fSUN"] = (nint)TexCoord4fVertex4fSUN;
         if (TexCoord4fVertex4fSUN is null) { missingCount++; missing?.Add("glTexCoord4fVertex4fSUN"); }
         TexCoord4fVertex4fvSUN = (delegate* unmanaged<float*, float*, void>)resolver("glTexCoord4fVertex4fvSUN");
+        s_byName["glTexCoord4fVertex4fvSUN"] = (nint)TexCoord4fVertex4fvSUN;
         if (TexCoord4fVertex4fvSUN is null) { missingCount++; missing?.Add("glTexCoord4fVertex4fvSUN"); }
         TexCoord4hNV = (delegate* unmanaged<ushort, ushort, ushort, ushort, void>)resolver("glTexCoord4hNV");
+        s_byName["glTexCoord4hNV"] = (nint)TexCoord4hNV;
         if (TexCoord4hNV is null) { missingCount++; missing?.Add("glTexCoord4hNV"); }
         TexCoord4hvNV = (delegate* unmanaged<ushort*, void>)resolver("glTexCoord4hvNV");
+        s_byName["glTexCoord4hvNV"] = (nint)TexCoord4hvNV;
         if (TexCoord4hvNV is null) { missingCount++; missing?.Add("glTexCoord4hvNV"); }
         TexCoord4xOES = (delegate* unmanaged<int, int, int, int, void>)resolver("glTexCoord4xOES");
+        s_byName["glTexCoord4xOES"] = (nint)TexCoord4xOES;
         if (TexCoord4xOES is null) { missingCount++; missing?.Add("glTexCoord4xOES"); }
         TexCoord4xvOES = (delegate* unmanaged<int*, void>)resolver("glTexCoord4xvOES");
+        s_byName["glTexCoord4xvOES"] = (nint)TexCoord4xvOES;
         if (TexCoord4xvOES is null) { missingCount++; missing?.Add("glTexCoord4xvOES"); }
         TexCoordFormatNV = (delegate* unmanaged<int, uint, int, void>)resolver("glTexCoordFormatNV");
+        s_byName["glTexCoordFormatNV"] = (nint)TexCoordFormatNV;
         if (TexCoordFormatNV is null) { missingCount++; missing?.Add("glTexCoordFormatNV"); }
         TexCoordP1ui = (delegate* unmanaged<uint, uint, void>)resolver("glTexCoordP1ui");
+        s_byName["glTexCoordP1ui"] = (nint)TexCoordP1ui;
         if (TexCoordP1ui is null) { missingCount++; missing?.Add("glTexCoordP1ui"); }
         TexCoordP1uiv = (delegate* unmanaged<uint, uint*, void>)resolver("glTexCoordP1uiv");
+        s_byName["glTexCoordP1uiv"] = (nint)TexCoordP1uiv;
         if (TexCoordP1uiv is null) { missingCount++; missing?.Add("glTexCoordP1uiv"); }
         TexCoordP2ui = (delegate* unmanaged<uint, uint, void>)resolver("glTexCoordP2ui");
+        s_byName["glTexCoordP2ui"] = (nint)TexCoordP2ui;
         if (TexCoordP2ui is null) { missingCount++; missing?.Add("glTexCoordP2ui"); }
         TexCoordP2uiv = (delegate* unmanaged<uint, uint*, void>)resolver("glTexCoordP2uiv");
+        s_byName["glTexCoordP2uiv"] = (nint)TexCoordP2uiv;
         if (TexCoordP2uiv is null) { missingCount++; missing?.Add("glTexCoordP2uiv"); }
         TexCoordP3ui = (delegate* unmanaged<uint, uint, void>)resolver("glTexCoordP3ui");
+        s_byName["glTexCoordP3ui"] = (nint)TexCoordP3ui;
         if (TexCoordP3ui is null) { missingCount++; missing?.Add("glTexCoordP3ui"); }
         TexCoordP3uiv = (delegate* unmanaged<uint, uint*, void>)resolver("glTexCoordP3uiv");
+        s_byName["glTexCoordP3uiv"] = (nint)TexCoordP3uiv;
         if (TexCoordP3uiv is null) { missingCount++; missing?.Add("glTexCoordP3uiv"); }
         TexCoordP4ui = (delegate* unmanaged<uint, uint, void>)resolver("glTexCoordP4ui");
+        s_byName["glTexCoordP4ui"] = (nint)TexCoordP4ui;
         if (TexCoordP4ui is null) { missingCount++; missing?.Add("glTexCoordP4ui"); }
         TexCoordP4uiv = (delegate* unmanaged<uint, uint*, void>)resolver("glTexCoordP4uiv");
+        s_byName["glTexCoordP4uiv"] = (nint)TexCoordP4uiv;
         if (TexCoordP4uiv is null) { missingCount++; missing?.Add("glTexCoordP4uiv"); }
         TexCoordPointerEXT = (delegate* unmanaged<int, uint, int, int, void*, void>)resolver("glTexCoordPointerEXT");
+        s_byName["glTexCoordPointerEXT"] = (nint)TexCoordPointerEXT;
         if (TexCoordPointerEXT is null) { missingCount++; missing?.Add("glTexCoordPointerEXT"); }
         TexCoordPointerListIBM = (delegate* unmanaged<int, uint, int, void**, int, void>)resolver("glTexCoordPointerListIBM");
+        s_byName["glTexCoordPointerListIBM"] = (nint)TexCoordPointerListIBM;
         if (TexCoordPointerListIBM is null) { missingCount++; missing?.Add("glTexCoordPointerListIBM"); }
         TexCoordPointervINTEL = (delegate* unmanaged<int, uint, void**, void>)resolver("glTexCoordPointervINTEL");
+        s_byName["glTexCoordPointervINTEL"] = (nint)TexCoordPointervINTEL;
         if (TexCoordPointervINTEL is null) { missingCount++; missing?.Add("glTexCoordPointervINTEL"); }
         TexEnvxOES = (delegate* unmanaged<uint, uint, int, void>)resolver("glTexEnvxOES");
+        s_byName["glTexEnvxOES"] = (nint)TexEnvxOES;
         if (TexEnvxOES is null) { missingCount++; missing?.Add("glTexEnvxOES"); }
         TexEnvxvOES = (delegate* unmanaged<uint, uint, int*, void>)resolver("glTexEnvxvOES");
+        s_byName["glTexEnvxvOES"] = (nint)TexEnvxvOES;
         if (TexEnvxvOES is null) { missingCount++; missing?.Add("glTexEnvxvOES"); }
         TexFilterFuncSGIS = (delegate* unmanaged<uint, uint, int, float*, void>)resolver("glTexFilterFuncSGIS");
+        s_byName["glTexFilterFuncSGIS"] = (nint)TexFilterFuncSGIS;
         if (TexFilterFuncSGIS is null) { missingCount++; missing?.Add("glTexFilterFuncSGIS"); }
         TexGenxOES = (delegate* unmanaged<uint, uint, int, void>)resolver("glTexGenxOES");
+        s_byName["glTexGenxOES"] = (nint)TexGenxOES;
         if (TexGenxOES is null) { missingCount++; missing?.Add("glTexGenxOES"); }
         TexGenxvOES = (delegate* unmanaged<uint, uint, int*, void>)resolver("glTexGenxvOES");
+        s_byName["glTexGenxvOES"] = (nint)TexGenxvOES;
         if (TexGenxvOES is null) { missingCount++; missing?.Add("glTexGenxvOES"); }
         TexImage1D = (delegate* unmanaged<uint, int, int, int, int, uint, uint, void*, void>)resolver("glTexImage1D");
+        s_byName["glTexImage1D"] = (nint)TexImage1D;
         if (TexImage1D is null) { missingCount++; missing?.Add("glTexImage1D"); }
         TexImage2D = (delegate* unmanaged<uint, int, int, int, int, int, uint, uint, void*, void>)resolver("glTexImage2D");
+        s_byName["glTexImage2D"] = (nint)TexImage2D;
         if (TexImage2D is null) { missingCount++; missing?.Add("glTexImage2D"); }
         TexImage2DMultisample = (delegate* unmanaged<uint, int, uint, int, int, byte, void>)resolver("glTexImage2DMultisample");
+        s_byName["glTexImage2DMultisample"] = (nint)TexImage2DMultisample;
         if (TexImage2DMultisample is null) { missingCount++; missing?.Add("glTexImage2DMultisample"); }
         TexImage2DMultisampleCoverageNV = (delegate* unmanaged<uint, int, int, int, int, int, byte, void>)resolver("glTexImage2DMultisampleCoverageNV");
+        s_byName["glTexImage2DMultisampleCoverageNV"] = (nint)TexImage2DMultisampleCoverageNV;
         if (TexImage2DMultisampleCoverageNV is null) { missingCount++; missing?.Add("glTexImage2DMultisampleCoverageNV"); }
         TexImage3D = (delegate* unmanaged<uint, int, int, int, int, int, int, uint, uint, void*, void>)resolver("glTexImage3D");
+        s_byName["glTexImage3D"] = (nint)TexImage3D;
         if (TexImage3D is null) { missingCount++; missing?.Add("glTexImage3D"); }
         TexImage3DEXT = (delegate* unmanaged<uint, int, uint, int, int, int, int, uint, uint, void*, void>)resolver("glTexImage3DEXT");
+        s_byName["glTexImage3DEXT"] = (nint)TexImage3DEXT;
         if (TexImage3DEXT is null) { missingCount++; missing?.Add("glTexImage3DEXT"); }
         TexImage3DMultisample = (delegate* unmanaged<uint, int, uint, int, int, int, byte, void>)resolver("glTexImage3DMultisample");
+        s_byName["glTexImage3DMultisample"] = (nint)TexImage3DMultisample;
         if (TexImage3DMultisample is null) { missingCount++; missing?.Add("glTexImage3DMultisample"); }
         TexImage3DMultisampleCoverageNV = (delegate* unmanaged<uint, int, int, int, int, int, int, byte, void>)resolver("glTexImage3DMultisampleCoverageNV");
+        s_byName["glTexImage3DMultisampleCoverageNV"] = (nint)TexImage3DMultisampleCoverageNV;
         if (TexImage3DMultisampleCoverageNV is null) { missingCount++; missing?.Add("glTexImage3DMultisampleCoverageNV"); }
         TexImage4DSGIS = (delegate* unmanaged<uint, int, uint, int, int, int, int, int, uint, uint, void*, void>)resolver("glTexImage4DSGIS");
+        s_byName["glTexImage4DSGIS"] = (nint)TexImage4DSGIS;
         if (TexImage4DSGIS is null) { missingCount++; missing?.Add("glTexImage4DSGIS"); }
         TexPageCommitmentARB = (delegate* unmanaged<uint, int, int, int, int, int, int, int, byte, void>)resolver("glTexPageCommitmentARB");
+        s_byName["glTexPageCommitmentARB"] = (nint)TexPageCommitmentARB;
         if (TexPageCommitmentARB is null) { missingCount++; missing?.Add("glTexPageCommitmentARB"); }
         TexPageCommitmentMemNV = (delegate* unmanaged<uint, int, int, int, int, int, int, int, int, uint, ulong, byte, void>)resolver("glTexPageCommitmentMemNV");
+        s_byName["glTexPageCommitmentMemNV"] = (nint)TexPageCommitmentMemNV;
         if (TexPageCommitmentMemNV is null) { missingCount++; missing?.Add("glTexPageCommitmentMemNV"); }
         TexParameterIiv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glTexParameterIiv");
+        s_byName["glTexParameterIiv"] = (nint)TexParameterIiv;
         if (TexParameterIiv is null) { missingCount++; missing?.Add("glTexParameterIiv"); }
         TexParameterIivEXT = (delegate* unmanaged<uint, uint, int*, void>)resolver("glTexParameterIivEXT");
+        s_byName["glTexParameterIivEXT"] = (nint)TexParameterIivEXT;
         if (TexParameterIivEXT is null) { missingCount++; missing?.Add("glTexParameterIivEXT"); }
         TexParameterIuiv = (delegate* unmanaged<uint, uint, uint*, void>)resolver("glTexParameterIuiv");
+        s_byName["glTexParameterIuiv"] = (nint)TexParameterIuiv;
         if (TexParameterIuiv is null) { missingCount++; missing?.Add("glTexParameterIuiv"); }
         TexParameterIuivEXT = (delegate* unmanaged<uint, uint, uint*, void>)resolver("glTexParameterIuivEXT");
+        s_byName["glTexParameterIuivEXT"] = (nint)TexParameterIuivEXT;
         if (TexParameterIuivEXT is null) { missingCount++; missing?.Add("glTexParameterIuivEXT"); }
         TexParameterf = (delegate* unmanaged<uint, uint, float, void>)resolver("glTexParameterf");
+        s_byName["glTexParameterf"] = (nint)TexParameterf;
         if (TexParameterf is null) { missingCount++; missing?.Add("glTexParameterf"); }
         TexParameterfv = (delegate* unmanaged<uint, uint, float*, void>)resolver("glTexParameterfv");
+        s_byName["glTexParameterfv"] = (nint)TexParameterfv;
         if (TexParameterfv is null) { missingCount++; missing?.Add("glTexParameterfv"); }
         TexParameteri = (delegate* unmanaged<uint, uint, int, void>)resolver("glTexParameteri");
+        s_byName["glTexParameteri"] = (nint)TexParameteri;
         if (TexParameteri is null) { missingCount++; missing?.Add("glTexParameteri"); }
         TexParameteriv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glTexParameteriv");
+        s_byName["glTexParameteriv"] = (nint)TexParameteriv;
         if (TexParameteriv is null) { missingCount++; missing?.Add("glTexParameteriv"); }
         TexParameterxOES = (delegate* unmanaged<uint, uint, int, void>)resolver("glTexParameterxOES");
+        s_byName["glTexParameterxOES"] = (nint)TexParameterxOES;
         if (TexParameterxOES is null) { missingCount++; missing?.Add("glTexParameterxOES"); }
         TexParameterxvOES = (delegate* unmanaged<uint, uint, int*, void>)resolver("glTexParameterxvOES");
+        s_byName["glTexParameterxvOES"] = (nint)TexParameterxvOES;
         if (TexParameterxvOES is null) { missingCount++; missing?.Add("glTexParameterxvOES"); }
         TexRenderbufferNV = (delegate* unmanaged<uint, uint, void>)resolver("glTexRenderbufferNV");
+        s_byName["glTexRenderbufferNV"] = (nint)TexRenderbufferNV;
         if (TexRenderbufferNV is null) { missingCount++; missing?.Add("glTexRenderbufferNV"); }
         TexStorage1D = (delegate* unmanaged<uint, int, uint, int, void>)resolver("glTexStorage1D");
+        s_byName["glTexStorage1D"] = (nint)TexStorage1D;
         if (TexStorage1D is null) { missingCount++; missing?.Add("glTexStorage1D"); }
         TexStorage1DEXT = (delegate* unmanaged<uint, int, uint, int, void>)resolver("glTexStorage1DEXT");
+        s_byName["glTexStorage1DEXT"] = (nint)TexStorage1DEXT;
         if (TexStorage1DEXT is null) { missingCount++; missing?.Add("glTexStorage1DEXT"); }
         TexStorage2D = (delegate* unmanaged<uint, int, uint, int, int, void>)resolver("glTexStorage2D");
+        s_byName["glTexStorage2D"] = (nint)TexStorage2D;
         if (TexStorage2D is null) { missingCount++; missing?.Add("glTexStorage2D"); }
         TexStorage2DEXT = (delegate* unmanaged<uint, int, uint, int, int, void>)resolver("glTexStorage2DEXT");
+        s_byName["glTexStorage2DEXT"] = (nint)TexStorage2DEXT;
         if (TexStorage2DEXT is null) { missingCount++; missing?.Add("glTexStorage2DEXT"); }
         TexStorage2DMultisample = (delegate* unmanaged<uint, int, uint, int, int, byte, void>)resolver("glTexStorage2DMultisample");
+        s_byName["glTexStorage2DMultisample"] = (nint)TexStorage2DMultisample;
         if (TexStorage2DMultisample is null) { missingCount++; missing?.Add("glTexStorage2DMultisample"); }
         TexStorage3D = (delegate* unmanaged<uint, int, uint, int, int, int, void>)resolver("glTexStorage3D");
+        s_byName["glTexStorage3D"] = (nint)TexStorage3D;
         if (TexStorage3D is null) { missingCount++; missing?.Add("glTexStorage3D"); }
         TexStorage3DEXT = (delegate* unmanaged<uint, int, uint, int, int, int, void>)resolver("glTexStorage3DEXT");
+        s_byName["glTexStorage3DEXT"] = (nint)TexStorage3DEXT;
         if (TexStorage3DEXT is null) { missingCount++; missing?.Add("glTexStorage3DEXT"); }
         TexStorage3DMultisample = (delegate* unmanaged<uint, int, uint, int, int, int, byte, void>)resolver("glTexStorage3DMultisample");
+        s_byName["glTexStorage3DMultisample"] = (nint)TexStorage3DMultisample;
         if (TexStorage3DMultisample is null) { missingCount++; missing?.Add("glTexStorage3DMultisample"); }
         TexStorageMem1DEXT = (delegate* unmanaged<uint, int, uint, int, uint, ulong, void>)resolver("glTexStorageMem1DEXT");
+        s_byName["glTexStorageMem1DEXT"] = (nint)TexStorageMem1DEXT;
         if (TexStorageMem1DEXT is null) { missingCount++; missing?.Add("glTexStorageMem1DEXT"); }
         TexStorageMem2DEXT = (delegate* unmanaged<uint, int, uint, int, int, uint, ulong, void>)resolver("glTexStorageMem2DEXT");
+        s_byName["glTexStorageMem2DEXT"] = (nint)TexStorageMem2DEXT;
         if (TexStorageMem2DEXT is null) { missingCount++; missing?.Add("glTexStorageMem2DEXT"); }
         TexStorageMem2DMultisampleEXT = (delegate* unmanaged<uint, int, uint, int, int, byte, uint, ulong, void>)resolver("glTexStorageMem2DMultisampleEXT");
+        s_byName["glTexStorageMem2DMultisampleEXT"] = (nint)TexStorageMem2DMultisampleEXT;
         if (TexStorageMem2DMultisampleEXT is null) { missingCount++; missing?.Add("glTexStorageMem2DMultisampleEXT"); }
         TexStorageMem3DEXT = (delegate* unmanaged<uint, int, uint, int, int, int, uint, ulong, void>)resolver("glTexStorageMem3DEXT");
+        s_byName["glTexStorageMem3DEXT"] = (nint)TexStorageMem3DEXT;
         if (TexStorageMem3DEXT is null) { missingCount++; missing?.Add("glTexStorageMem3DEXT"); }
         TexStorageMem3DMultisampleEXT = (delegate* unmanaged<uint, int, uint, int, int, int, byte, uint, ulong, void>)resolver("glTexStorageMem3DMultisampleEXT");
+        s_byName["glTexStorageMem3DMultisampleEXT"] = (nint)TexStorageMem3DMultisampleEXT;
         if (TexStorageMem3DMultisampleEXT is null) { missingCount++; missing?.Add("glTexStorageMem3DMultisampleEXT"); }
         TexStorageSparseAMD = (delegate* unmanaged<uint, uint, int, int, int, int, uint, void>)resolver("glTexStorageSparseAMD");
+        s_byName["glTexStorageSparseAMD"] = (nint)TexStorageSparseAMD;
         if (TexStorageSparseAMD is null) { missingCount++; missing?.Add("glTexStorageSparseAMD"); }
         TexSubImage1D = (delegate* unmanaged<uint, int, int, int, uint, uint, void*, void>)resolver("glTexSubImage1D");
+        s_byName["glTexSubImage1D"] = (nint)TexSubImage1D;
         if (TexSubImage1D is null) { missingCount++; missing?.Add("glTexSubImage1D"); }
         TexSubImage1DEXT = (delegate* unmanaged<uint, int, int, int, uint, uint, void*, void>)resolver("glTexSubImage1DEXT");
+        s_byName["glTexSubImage1DEXT"] = (nint)TexSubImage1DEXT;
         if (TexSubImage1DEXT is null) { missingCount++; missing?.Add("glTexSubImage1DEXT"); }
         TexSubImage2D = (delegate* unmanaged<uint, int, int, int, int, int, uint, uint, void*, void>)resolver("glTexSubImage2D");
+        s_byName["glTexSubImage2D"] = (nint)TexSubImage2D;
         if (TexSubImage2D is null) { missingCount++; missing?.Add("glTexSubImage2D"); }
         TexSubImage2DEXT = (delegate* unmanaged<uint, int, int, int, int, int, uint, uint, void*, void>)resolver("glTexSubImage2DEXT");
+        s_byName["glTexSubImage2DEXT"] = (nint)TexSubImage2DEXT;
         if (TexSubImage2DEXT is null) { missingCount++; missing?.Add("glTexSubImage2DEXT"); }
         TexSubImage3D = (delegate* unmanaged<uint, int, int, int, int, int, int, int, uint, uint, void*, void>)resolver("glTexSubImage3D");
+        s_byName["glTexSubImage3D"] = (nint)TexSubImage3D;
         if (TexSubImage3D is null) { missingCount++; missing?.Add("glTexSubImage3D"); }
         TexSubImage3DEXT = (delegate* unmanaged<uint, int, int, int, int, int, int, int, uint, uint, void*, void>)resolver("glTexSubImage3DEXT");
+        s_byName["glTexSubImage3DEXT"] = (nint)TexSubImage3DEXT;
         if (TexSubImage3DEXT is null) { missingCount++; missing?.Add("glTexSubImage3DEXT"); }
         TexSubImage4DSGIS = (delegate* unmanaged<uint, int, int, int, int, int, int, int, int, int, uint, uint, void*, void>)resolver("glTexSubImage4DSGIS");
+        s_byName["glTexSubImage4DSGIS"] = (nint)TexSubImage4DSGIS;
         if (TexSubImage4DSGIS is null) { missingCount++; missing?.Add("glTexSubImage4DSGIS"); }
         TextureAttachMemoryNV = (delegate* unmanaged<uint, uint, ulong, void>)resolver("glTextureAttachMemoryNV");
+        s_byName["glTextureAttachMemoryNV"] = (nint)TextureAttachMemoryNV;
         if (TextureAttachMemoryNV is null) { missingCount++; missing?.Add("glTextureAttachMemoryNV"); }
         TextureBarrier = (delegate* unmanaged<void>)resolver("glTextureBarrier");
+        s_byName["glTextureBarrier"] = (nint)TextureBarrier;
         if (TextureBarrier is null) { missingCount++; missing?.Add("glTextureBarrier"); }
         TextureBarrierNV = (delegate* unmanaged<void>)resolver("glTextureBarrierNV");
+        s_byName["glTextureBarrierNV"] = (nint)TextureBarrierNV;
         if (TextureBarrierNV is null) { missingCount++; missing?.Add("glTextureBarrierNV"); }
         TextureBuffer = (delegate* unmanaged<uint, uint, uint, void>)resolver("glTextureBuffer");
+        s_byName["glTextureBuffer"] = (nint)TextureBuffer;
         if (TextureBuffer is null) { missingCount++; missing?.Add("glTextureBuffer"); }
         TextureBufferEXT = (delegate* unmanaged<uint, uint, uint, uint, void>)resolver("glTextureBufferEXT");
+        s_byName["glTextureBufferEXT"] = (nint)TextureBufferEXT;
         if (TextureBufferEXT is null) { missingCount++; missing?.Add("glTextureBufferEXT"); }
         TextureBufferRange = (delegate* unmanaged<uint, uint, uint, nint, nint, void>)resolver("glTextureBufferRange");
+        s_byName["glTextureBufferRange"] = (nint)TextureBufferRange;
         if (TextureBufferRange is null) { missingCount++; missing?.Add("glTextureBufferRange"); }
         TextureBufferRangeEXT = (delegate* unmanaged<uint, uint, uint, uint, nint, nint, void>)resolver("glTextureBufferRangeEXT");
+        s_byName["glTextureBufferRangeEXT"] = (nint)TextureBufferRangeEXT;
         if (TextureBufferRangeEXT is null) { missingCount++; missing?.Add("glTextureBufferRangeEXT"); }
         TextureColorMaskSGIS = (delegate* unmanaged<byte, byte, byte, byte, void>)resolver("glTextureColorMaskSGIS");
+        s_byName["glTextureColorMaskSGIS"] = (nint)TextureColorMaskSGIS;
         if (TextureColorMaskSGIS is null) { missingCount++; missing?.Add("glTextureColorMaskSGIS"); }
         TextureImage1DEXT = (delegate* unmanaged<uint, uint, int, int, int, int, uint, uint, void*, void>)resolver("glTextureImage1DEXT");
+        s_byName["glTextureImage1DEXT"] = (nint)TextureImage1DEXT;
         if (TextureImage1DEXT is null) { missingCount++; missing?.Add("glTextureImage1DEXT"); }
         TextureImage2DEXT = (delegate* unmanaged<uint, uint, int, int, int, int, int, uint, uint, void*, void>)resolver("glTextureImage2DEXT");
+        s_byName["glTextureImage2DEXT"] = (nint)TextureImage2DEXT;
         if (TextureImage2DEXT is null) { missingCount++; missing?.Add("glTextureImage2DEXT"); }
         TextureImage2DMultisampleCoverageNV = (delegate* unmanaged<uint, uint, int, int, int, int, int, byte, void>)resolver("glTextureImage2DMultisampleCoverageNV");
+        s_byName["glTextureImage2DMultisampleCoverageNV"] = (nint)TextureImage2DMultisampleCoverageNV;
         if (TextureImage2DMultisampleCoverageNV is null) { missingCount++; missing?.Add("glTextureImage2DMultisampleCoverageNV"); }
         TextureImage2DMultisampleNV = (delegate* unmanaged<uint, uint, int, int, int, int, byte, void>)resolver("glTextureImage2DMultisampleNV");
+        s_byName["glTextureImage2DMultisampleNV"] = (nint)TextureImage2DMultisampleNV;
         if (TextureImage2DMultisampleNV is null) { missingCount++; missing?.Add("glTextureImage2DMultisampleNV"); }
         TextureImage3DEXT = (delegate* unmanaged<uint, uint, int, int, int, int, int, int, uint, uint, void*, void>)resolver("glTextureImage3DEXT");
+        s_byName["glTextureImage3DEXT"] = (nint)TextureImage3DEXT;
         if (TextureImage3DEXT is null) { missingCount++; missing?.Add("glTextureImage3DEXT"); }
         TextureImage3DMultisampleCoverageNV = (delegate* unmanaged<uint, uint, int, int, int, int, int, int, byte, void>)resolver("glTextureImage3DMultisampleCoverageNV");
+        s_byName["glTextureImage3DMultisampleCoverageNV"] = (nint)TextureImage3DMultisampleCoverageNV;
         if (TextureImage3DMultisampleCoverageNV is null) { missingCount++; missing?.Add("glTextureImage3DMultisampleCoverageNV"); }
         TextureImage3DMultisampleNV = (delegate* unmanaged<uint, uint, int, int, int, int, int, byte, void>)resolver("glTextureImage3DMultisampleNV");
+        s_byName["glTextureImage3DMultisampleNV"] = (nint)TextureImage3DMultisampleNV;
         if (TextureImage3DMultisampleNV is null) { missingCount++; missing?.Add("glTextureImage3DMultisampleNV"); }
         TextureLightEXT = (delegate* unmanaged<uint, void>)resolver("glTextureLightEXT");
+        s_byName["glTextureLightEXT"] = (nint)TextureLightEXT;
         if (TextureLightEXT is null) { missingCount++; missing?.Add("glTextureLightEXT"); }
         TextureMaterialEXT = (delegate* unmanaged<uint, uint, void>)resolver("glTextureMaterialEXT");
+        s_byName["glTextureMaterialEXT"] = (nint)TextureMaterialEXT;
         if (TextureMaterialEXT is null) { missingCount++; missing?.Add("glTextureMaterialEXT"); }
         TextureNormalEXT = (delegate* unmanaged<uint, void>)resolver("glTextureNormalEXT");
+        s_byName["glTextureNormalEXT"] = (nint)TextureNormalEXT;
         if (TextureNormalEXT is null) { missingCount++; missing?.Add("glTextureNormalEXT"); }
         TexturePageCommitmentEXT = (delegate* unmanaged<uint, int, int, int, int, int, int, int, byte, void>)resolver("glTexturePageCommitmentEXT");
+        s_byName["glTexturePageCommitmentEXT"] = (nint)TexturePageCommitmentEXT;
         if (TexturePageCommitmentEXT is null) { missingCount++; missing?.Add("glTexturePageCommitmentEXT"); }
         TexturePageCommitmentMemNV = (delegate* unmanaged<uint, int, int, int, int, int, int, int, int, uint, ulong, byte, void>)resolver("glTexturePageCommitmentMemNV");
+        s_byName["glTexturePageCommitmentMemNV"] = (nint)TexturePageCommitmentMemNV;
         if (TexturePageCommitmentMemNV is null) { missingCount++; missing?.Add("glTexturePageCommitmentMemNV"); }
         TextureParameterIiv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glTextureParameterIiv");
+        s_byName["glTextureParameterIiv"] = (nint)TextureParameterIiv;
         if (TextureParameterIiv is null) { missingCount++; missing?.Add("glTextureParameterIiv"); }
         TextureParameterIivEXT = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glTextureParameterIivEXT");
+        s_byName["glTextureParameterIivEXT"] = (nint)TextureParameterIivEXT;
         if (TextureParameterIivEXT is null) { missingCount++; missing?.Add("glTextureParameterIivEXT"); }
         TextureParameterIuiv = (delegate* unmanaged<uint, uint, uint*, void>)resolver("glTextureParameterIuiv");
+        s_byName["glTextureParameterIuiv"] = (nint)TextureParameterIuiv;
         if (TextureParameterIuiv is null) { missingCount++; missing?.Add("glTextureParameterIuiv"); }
         TextureParameterIuivEXT = (delegate* unmanaged<uint, uint, uint, uint*, void>)resolver("glTextureParameterIuivEXT");
+        s_byName["glTextureParameterIuivEXT"] = (nint)TextureParameterIuivEXT;
         if (TextureParameterIuivEXT is null) { missingCount++; missing?.Add("glTextureParameterIuivEXT"); }
         TextureParameterf = (delegate* unmanaged<uint, uint, float, void>)resolver("glTextureParameterf");
+        s_byName["glTextureParameterf"] = (nint)TextureParameterf;
         if (TextureParameterf is null) { missingCount++; missing?.Add("glTextureParameterf"); }
         TextureParameterfEXT = (delegate* unmanaged<uint, uint, uint, float, void>)resolver("glTextureParameterfEXT");
+        s_byName["glTextureParameterfEXT"] = (nint)TextureParameterfEXT;
         if (TextureParameterfEXT is null) { missingCount++; missing?.Add("glTextureParameterfEXT"); }
         TextureParameterfv = (delegate* unmanaged<uint, uint, float*, void>)resolver("glTextureParameterfv");
+        s_byName["glTextureParameterfv"] = (nint)TextureParameterfv;
         if (TextureParameterfv is null) { missingCount++; missing?.Add("glTextureParameterfv"); }
         TextureParameterfvEXT = (delegate* unmanaged<uint, uint, uint, float*, void>)resolver("glTextureParameterfvEXT");
+        s_byName["glTextureParameterfvEXT"] = (nint)TextureParameterfvEXT;
         if (TextureParameterfvEXT is null) { missingCount++; missing?.Add("glTextureParameterfvEXT"); }
         TextureParameteri = (delegate* unmanaged<uint, uint, int, void>)resolver("glTextureParameteri");
+        s_byName["glTextureParameteri"] = (nint)TextureParameteri;
         if (TextureParameteri is null) { missingCount++; missing?.Add("glTextureParameteri"); }
         TextureParameteriEXT = (delegate* unmanaged<uint, uint, uint, int, void>)resolver("glTextureParameteriEXT");
+        s_byName["glTextureParameteriEXT"] = (nint)TextureParameteriEXT;
         if (TextureParameteriEXT is null) { missingCount++; missing?.Add("glTextureParameteriEXT"); }
         TextureParameteriv = (delegate* unmanaged<uint, uint, int*, void>)resolver("glTextureParameteriv");
+        s_byName["glTextureParameteriv"] = (nint)TextureParameteriv;
         if (TextureParameteriv is null) { missingCount++; missing?.Add("glTextureParameteriv"); }
         TextureParameterivEXT = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glTextureParameterivEXT");
+        s_byName["glTextureParameterivEXT"] = (nint)TextureParameterivEXT;
         if (TextureParameterivEXT is null) { missingCount++; missing?.Add("glTextureParameterivEXT"); }
         TextureRangeAPPLE = (delegate* unmanaged<uint, int, void*, void>)resolver("glTextureRangeAPPLE");
+        s_byName["glTextureRangeAPPLE"] = (nint)TextureRangeAPPLE;
         if (TextureRangeAPPLE is null) { missingCount++; missing?.Add("glTextureRangeAPPLE"); }
         TextureRenderbufferEXT = (delegate* unmanaged<uint, uint, uint, void>)resolver("glTextureRenderbufferEXT");
+        s_byName["glTextureRenderbufferEXT"] = (nint)TextureRenderbufferEXT;
         if (TextureRenderbufferEXT is null) { missingCount++; missing?.Add("glTextureRenderbufferEXT"); }
         TextureStorage1D = (delegate* unmanaged<uint, int, uint, int, void>)resolver("glTextureStorage1D");
+        s_byName["glTextureStorage1D"] = (nint)TextureStorage1D;
         if (TextureStorage1D is null) { missingCount++; missing?.Add("glTextureStorage1D"); }
         TextureStorage1DEXT = (delegate* unmanaged<uint, uint, int, uint, int, void>)resolver("glTextureStorage1DEXT");
+        s_byName["glTextureStorage1DEXT"] = (nint)TextureStorage1DEXT;
         if (TextureStorage1DEXT is null) { missingCount++; missing?.Add("glTextureStorage1DEXT"); }
         TextureStorage2D = (delegate* unmanaged<uint, int, uint, int, int, void>)resolver("glTextureStorage2D");
+        s_byName["glTextureStorage2D"] = (nint)TextureStorage2D;
         if (TextureStorage2D is null) { missingCount++; missing?.Add("glTextureStorage2D"); }
         TextureStorage2DEXT = (delegate* unmanaged<uint, uint, int, uint, int, int, void>)resolver("glTextureStorage2DEXT");
+        s_byName["glTextureStorage2DEXT"] = (nint)TextureStorage2DEXT;
         if (TextureStorage2DEXT is null) { missingCount++; missing?.Add("glTextureStorage2DEXT"); }
         TextureStorage2DMultisample = (delegate* unmanaged<uint, int, uint, int, int, byte, void>)resolver("glTextureStorage2DMultisample");
+        s_byName["glTextureStorage2DMultisample"] = (nint)TextureStorage2DMultisample;
         if (TextureStorage2DMultisample is null) { missingCount++; missing?.Add("glTextureStorage2DMultisample"); }
         TextureStorage2DMultisampleEXT = (delegate* unmanaged<uint, uint, int, uint, int, int, byte, void>)resolver("glTextureStorage2DMultisampleEXT");
+        s_byName["glTextureStorage2DMultisampleEXT"] = (nint)TextureStorage2DMultisampleEXT;
         if (TextureStorage2DMultisampleEXT is null) { missingCount++; missing?.Add("glTextureStorage2DMultisampleEXT"); }
         TextureStorage3D = (delegate* unmanaged<uint, int, uint, int, int, int, void>)resolver("glTextureStorage3D");
+        s_byName["glTextureStorage3D"] = (nint)TextureStorage3D;
         if (TextureStorage3D is null) { missingCount++; missing?.Add("glTextureStorage3D"); }
         TextureStorage3DEXT = (delegate* unmanaged<uint, uint, int, uint, int, int, int, void>)resolver("glTextureStorage3DEXT");
+        s_byName["glTextureStorage3DEXT"] = (nint)TextureStorage3DEXT;
         if (TextureStorage3DEXT is null) { missingCount++; missing?.Add("glTextureStorage3DEXT"); }
         TextureStorage3DMultisample = (delegate* unmanaged<uint, int, uint, int, int, int, byte, void>)resolver("glTextureStorage3DMultisample");
+        s_byName["glTextureStorage3DMultisample"] = (nint)TextureStorage3DMultisample;
         if (TextureStorage3DMultisample is null) { missingCount++; missing?.Add("glTextureStorage3DMultisample"); }
         TextureStorage3DMultisampleEXT = (delegate* unmanaged<uint, uint, int, uint, int, int, int, byte, void>)resolver("glTextureStorage3DMultisampleEXT");
+        s_byName["glTextureStorage3DMultisampleEXT"] = (nint)TextureStorage3DMultisampleEXT;
         if (TextureStorage3DMultisampleEXT is null) { missingCount++; missing?.Add("glTextureStorage3DMultisampleEXT"); }
         TextureStorageMem1DEXT = (delegate* unmanaged<uint, int, uint, int, uint, ulong, void>)resolver("glTextureStorageMem1DEXT");
+        s_byName["glTextureStorageMem1DEXT"] = (nint)TextureStorageMem1DEXT;
         if (TextureStorageMem1DEXT is null) { missingCount++; missing?.Add("glTextureStorageMem1DEXT"); }
         TextureStorageMem2DEXT = (delegate* unmanaged<uint, int, uint, int, int, uint, ulong, void>)resolver("glTextureStorageMem2DEXT");
+        s_byName["glTextureStorageMem2DEXT"] = (nint)TextureStorageMem2DEXT;
         if (TextureStorageMem2DEXT is null) { missingCount++; missing?.Add("glTextureStorageMem2DEXT"); }
         TextureStorageMem2DMultisampleEXT = (delegate* unmanaged<uint, int, uint, int, int, byte, uint, ulong, void>)resolver("glTextureStorageMem2DMultisampleEXT");
+        s_byName["glTextureStorageMem2DMultisampleEXT"] = (nint)TextureStorageMem2DMultisampleEXT;
         if (TextureStorageMem2DMultisampleEXT is null) { missingCount++; missing?.Add("glTextureStorageMem2DMultisampleEXT"); }
         TextureStorageMem3DEXT = (delegate* unmanaged<uint, int, uint, int, int, int, uint, ulong, void>)resolver("glTextureStorageMem3DEXT");
+        s_byName["glTextureStorageMem3DEXT"] = (nint)TextureStorageMem3DEXT;
         if (TextureStorageMem3DEXT is null) { missingCount++; missing?.Add("glTextureStorageMem3DEXT"); }
         TextureStorageMem3DMultisampleEXT = (delegate* unmanaged<uint, int, uint, int, int, int, byte, uint, ulong, void>)resolver("glTextureStorageMem3DMultisampleEXT");
+        s_byName["glTextureStorageMem3DMultisampleEXT"] = (nint)TextureStorageMem3DMultisampleEXT;
         if (TextureStorageMem3DMultisampleEXT is null) { missingCount++; missing?.Add("glTextureStorageMem3DMultisampleEXT"); }
         TextureStorageSparseAMD = (delegate* unmanaged<uint, uint, uint, int, int, int, int, uint, void>)resolver("glTextureStorageSparseAMD");
+        s_byName["glTextureStorageSparseAMD"] = (nint)TextureStorageSparseAMD;
         if (TextureStorageSparseAMD is null) { missingCount++; missing?.Add("glTextureStorageSparseAMD"); }
         TextureSubImage1D = (delegate* unmanaged<uint, int, int, int, uint, uint, void*, void>)resolver("glTextureSubImage1D");
+        s_byName["glTextureSubImage1D"] = (nint)TextureSubImage1D;
         if (TextureSubImage1D is null) { missingCount++; missing?.Add("glTextureSubImage1D"); }
         TextureSubImage1DEXT = (delegate* unmanaged<uint, uint, int, int, int, uint, uint, void*, void>)resolver("glTextureSubImage1DEXT");
+        s_byName["glTextureSubImage1DEXT"] = (nint)TextureSubImage1DEXT;
         if (TextureSubImage1DEXT is null) { missingCount++; missing?.Add("glTextureSubImage1DEXT"); }
         TextureSubImage2D = (delegate* unmanaged<uint, int, int, int, int, int, uint, uint, void*, void>)resolver("glTextureSubImage2D");
+        s_byName["glTextureSubImage2D"] = (nint)TextureSubImage2D;
         if (TextureSubImage2D is null) { missingCount++; missing?.Add("glTextureSubImage2D"); }
         TextureSubImage2DEXT = (delegate* unmanaged<uint, uint, int, int, int, int, int, uint, uint, void*, void>)resolver("glTextureSubImage2DEXT");
+        s_byName["glTextureSubImage2DEXT"] = (nint)TextureSubImage2DEXT;
         if (TextureSubImage2DEXT is null) { missingCount++; missing?.Add("glTextureSubImage2DEXT"); }
         TextureSubImage3D = (delegate* unmanaged<uint, int, int, int, int, int, int, int, uint, uint, void*, void>)resolver("glTextureSubImage3D");
+        s_byName["glTextureSubImage3D"] = (nint)TextureSubImage3D;
         if (TextureSubImage3D is null) { missingCount++; missing?.Add("glTextureSubImage3D"); }
         TextureSubImage3DEXT = (delegate* unmanaged<uint, uint, int, int, int, int, int, int, int, uint, uint, void*, void>)resolver("glTextureSubImage3DEXT");
+        s_byName["glTextureSubImage3DEXT"] = (nint)TextureSubImage3DEXT;
         if (TextureSubImage3DEXT is null) { missingCount++; missing?.Add("glTextureSubImage3DEXT"); }
         TextureView = (delegate* unmanaged<uint, uint, uint, uint, uint, uint, uint, uint, void>)resolver("glTextureView");
+        s_byName["glTextureView"] = (nint)TextureView;
         if (TextureView is null) { missingCount++; missing?.Add("glTextureView"); }
         TrackMatrixNV = (delegate* unmanaged<uint, uint, uint, uint, void>)resolver("glTrackMatrixNV");
+        s_byName["glTrackMatrixNV"] = (nint)TrackMatrixNV;
         if (TrackMatrixNV is null) { missingCount++; missing?.Add("glTrackMatrixNV"); }
         TransformFeedbackAttribsNV = (delegate* unmanaged<int, int*, uint, void>)resolver("glTransformFeedbackAttribsNV");
+        s_byName["glTransformFeedbackAttribsNV"] = (nint)TransformFeedbackAttribsNV;
         if (TransformFeedbackAttribsNV is null) { missingCount++; missing?.Add("glTransformFeedbackAttribsNV"); }
         TransformFeedbackBufferBase = (delegate* unmanaged<uint, uint, uint, void>)resolver("glTransformFeedbackBufferBase");
+        s_byName["glTransformFeedbackBufferBase"] = (nint)TransformFeedbackBufferBase;
         if (TransformFeedbackBufferBase is null) { missingCount++; missing?.Add("glTransformFeedbackBufferBase"); }
         TransformFeedbackBufferRange = (delegate* unmanaged<uint, uint, uint, nint, nint, void>)resolver("glTransformFeedbackBufferRange");
+        s_byName["glTransformFeedbackBufferRange"] = (nint)TransformFeedbackBufferRange;
         if (TransformFeedbackBufferRange is null) { missingCount++; missing?.Add("glTransformFeedbackBufferRange"); }
         TransformFeedbackStreamAttribsNV = (delegate* unmanaged<int, int*, int, int*, uint, void>)resolver("glTransformFeedbackStreamAttribsNV");
+        s_byName["glTransformFeedbackStreamAttribsNV"] = (nint)TransformFeedbackStreamAttribsNV;
         if (TransformFeedbackStreamAttribsNV is null) { missingCount++; missing?.Add("glTransformFeedbackStreamAttribsNV"); }
         TransformFeedbackVaryings = (delegate* unmanaged<uint, int, byte**, uint, void>)resolver("glTransformFeedbackVaryings");
+        s_byName["glTransformFeedbackVaryings"] = (nint)TransformFeedbackVaryings;
         if (TransformFeedbackVaryings is null) { missingCount++; missing?.Add("glTransformFeedbackVaryings"); }
         TransformFeedbackVaryingsEXT = (delegate* unmanaged<uint, int, byte**, uint, void>)resolver("glTransformFeedbackVaryingsEXT");
+        s_byName["glTransformFeedbackVaryingsEXT"] = (nint)TransformFeedbackVaryingsEXT;
         if (TransformFeedbackVaryingsEXT is null) { missingCount++; missing?.Add("glTransformFeedbackVaryingsEXT"); }
         TransformFeedbackVaryingsNV = (delegate* unmanaged<uint, int, int*, uint, void>)resolver("glTransformFeedbackVaryingsNV");
+        s_byName["glTransformFeedbackVaryingsNV"] = (nint)TransformFeedbackVaryingsNV;
         if (TransformFeedbackVaryingsNV is null) { missingCount++; missing?.Add("glTransformFeedbackVaryingsNV"); }
         TransformPathNV = (delegate* unmanaged<uint, uint, uint, float*, void>)resolver("glTransformPathNV");
+        s_byName["glTransformPathNV"] = (nint)TransformPathNV;
         if (TransformPathNV is null) { missingCount++; missing?.Add("glTransformPathNV"); }
         TranslatexOES = (delegate* unmanaged<int, int, int, void>)resolver("glTranslatexOES");
+        s_byName["glTranslatexOES"] = (nint)TranslatexOES;
         if (TranslatexOES is null) { missingCount++; missing?.Add("glTranslatexOES"); }
         Uniform1d = (delegate* unmanaged<int, double, void>)resolver("glUniform1d");
+        s_byName["glUniform1d"] = (nint)Uniform1d;
         if (Uniform1d is null) { missingCount++; missing?.Add("glUniform1d"); }
         Uniform1dv = (delegate* unmanaged<int, int, double*, void>)resolver("glUniform1dv");
+        s_byName["glUniform1dv"] = (nint)Uniform1dv;
         if (Uniform1dv is null) { missingCount++; missing?.Add("glUniform1dv"); }
         Uniform1f = (delegate* unmanaged<int, float, void>)resolver("glUniform1f");
+        s_byName["glUniform1f"] = (nint)Uniform1f;
         if (Uniform1f is null) { missingCount++; missing?.Add("glUniform1f"); }
         Uniform1fARB = (delegate* unmanaged<int, float, void>)resolver("glUniform1fARB");
+        s_byName["glUniform1fARB"] = (nint)Uniform1fARB;
         if (Uniform1fARB is null) { missingCount++; missing?.Add("glUniform1fARB"); }
         Uniform1fv = (delegate* unmanaged<int, int, float*, void>)resolver("glUniform1fv");
+        s_byName["glUniform1fv"] = (nint)Uniform1fv;
         if (Uniform1fv is null) { missingCount++; missing?.Add("glUniform1fv"); }
         Uniform1fvARB = (delegate* unmanaged<int, int, float*, void>)resolver("glUniform1fvARB");
+        s_byName["glUniform1fvARB"] = (nint)Uniform1fvARB;
         if (Uniform1fvARB is null) { missingCount++; missing?.Add("glUniform1fvARB"); }
         Uniform1i = (delegate* unmanaged<int, int, void>)resolver("glUniform1i");
+        s_byName["glUniform1i"] = (nint)Uniform1i;
         if (Uniform1i is null) { missingCount++; missing?.Add("glUniform1i"); }
         Uniform1i64ARB = (delegate* unmanaged<int, long, void>)resolver("glUniform1i64ARB");
+        s_byName["glUniform1i64ARB"] = (nint)Uniform1i64ARB;
         if (Uniform1i64ARB is null) { missingCount++; missing?.Add("glUniform1i64ARB"); }
         Uniform1i64NV = (delegate* unmanaged<int, long, void>)resolver("glUniform1i64NV");
+        s_byName["glUniform1i64NV"] = (nint)Uniform1i64NV;
         if (Uniform1i64NV is null) { missingCount++; missing?.Add("glUniform1i64NV"); }
         Uniform1i64vARB = (delegate* unmanaged<int, int, long*, void>)resolver("glUniform1i64vARB");
+        s_byName["glUniform1i64vARB"] = (nint)Uniform1i64vARB;
         if (Uniform1i64vARB is null) { missingCount++; missing?.Add("glUniform1i64vARB"); }
         Uniform1i64vNV = (delegate* unmanaged<int, int, long*, void>)resolver("glUniform1i64vNV");
+        s_byName["glUniform1i64vNV"] = (nint)Uniform1i64vNV;
         if (Uniform1i64vNV is null) { missingCount++; missing?.Add("glUniform1i64vNV"); }
         Uniform1iARB = (delegate* unmanaged<int, int, void>)resolver("glUniform1iARB");
+        s_byName["glUniform1iARB"] = (nint)Uniform1iARB;
         if (Uniform1iARB is null) { missingCount++; missing?.Add("glUniform1iARB"); }
         Uniform1iv = (delegate* unmanaged<int, int, int*, void>)resolver("glUniform1iv");
+        s_byName["glUniform1iv"] = (nint)Uniform1iv;
         if (Uniform1iv is null) { missingCount++; missing?.Add("glUniform1iv"); }
         Uniform1ivARB = (delegate* unmanaged<int, int, int*, void>)resolver("glUniform1ivARB");
+        s_byName["glUniform1ivARB"] = (nint)Uniform1ivARB;
         if (Uniform1ivARB is null) { missingCount++; missing?.Add("glUniform1ivARB"); }
         Uniform1ui = (delegate* unmanaged<int, uint, void>)resolver("glUniform1ui");
+        s_byName["glUniform1ui"] = (nint)Uniform1ui;
         if (Uniform1ui is null) { missingCount++; missing?.Add("glUniform1ui"); }
         Uniform1ui64ARB = (delegate* unmanaged<int, ulong, void>)resolver("glUniform1ui64ARB");
+        s_byName["glUniform1ui64ARB"] = (nint)Uniform1ui64ARB;
         if (Uniform1ui64ARB is null) { missingCount++; missing?.Add("glUniform1ui64ARB"); }
         Uniform1ui64NV = (delegate* unmanaged<int, ulong, void>)resolver("glUniform1ui64NV");
+        s_byName["glUniform1ui64NV"] = (nint)Uniform1ui64NV;
         if (Uniform1ui64NV is null) { missingCount++; missing?.Add("glUniform1ui64NV"); }
         Uniform1ui64vARB = (delegate* unmanaged<int, int, ulong*, void>)resolver("glUniform1ui64vARB");
+        s_byName["glUniform1ui64vARB"] = (nint)Uniform1ui64vARB;
         if (Uniform1ui64vARB is null) { missingCount++; missing?.Add("glUniform1ui64vARB"); }
         Uniform1ui64vNV = (delegate* unmanaged<int, int, ulong*, void>)resolver("glUniform1ui64vNV");
+        s_byName["glUniform1ui64vNV"] = (nint)Uniform1ui64vNV;
         if (Uniform1ui64vNV is null) { missingCount++; missing?.Add("glUniform1ui64vNV"); }
         Uniform1uiEXT = (delegate* unmanaged<int, uint, void>)resolver("glUniform1uiEXT");
+        s_byName["glUniform1uiEXT"] = (nint)Uniform1uiEXT;
         if (Uniform1uiEXT is null) { missingCount++; missing?.Add("glUniform1uiEXT"); }
         Uniform1uiv = (delegate* unmanaged<int, int, uint*, void>)resolver("glUniform1uiv");
+        s_byName["glUniform1uiv"] = (nint)Uniform1uiv;
         if (Uniform1uiv is null) { missingCount++; missing?.Add("glUniform1uiv"); }
         Uniform1uivEXT = (delegate* unmanaged<int, int, uint*, void>)resolver("glUniform1uivEXT");
+        s_byName["glUniform1uivEXT"] = (nint)Uniform1uivEXT;
         if (Uniform1uivEXT is null) { missingCount++; missing?.Add("glUniform1uivEXT"); }
         Uniform2d = (delegate* unmanaged<int, double, double, void>)resolver("glUniform2d");
+        s_byName["glUniform2d"] = (nint)Uniform2d;
         if (Uniform2d is null) { missingCount++; missing?.Add("glUniform2d"); }
         Uniform2dv = (delegate* unmanaged<int, int, double*, void>)resolver("glUniform2dv");
+        s_byName["glUniform2dv"] = (nint)Uniform2dv;
         if (Uniform2dv is null) { missingCount++; missing?.Add("glUniform2dv"); }
         Uniform2f = (delegate* unmanaged<int, float, float, void>)resolver("glUniform2f");
+        s_byName["glUniform2f"] = (nint)Uniform2f;
         if (Uniform2f is null) { missingCount++; missing?.Add("glUniform2f"); }
         Uniform2fARB = (delegate* unmanaged<int, float, float, void>)resolver("glUniform2fARB");
+        s_byName["glUniform2fARB"] = (nint)Uniform2fARB;
         if (Uniform2fARB is null) { missingCount++; missing?.Add("glUniform2fARB"); }
         Uniform2fv = (delegate* unmanaged<int, int, float*, void>)resolver("glUniform2fv");
+        s_byName["glUniform2fv"] = (nint)Uniform2fv;
         if (Uniform2fv is null) { missingCount++; missing?.Add("glUniform2fv"); }
         Uniform2fvARB = (delegate* unmanaged<int, int, float*, void>)resolver("glUniform2fvARB");
+        s_byName["glUniform2fvARB"] = (nint)Uniform2fvARB;
         if (Uniform2fvARB is null) { missingCount++; missing?.Add("glUniform2fvARB"); }
         Uniform2i = (delegate* unmanaged<int, int, int, void>)resolver("glUniform2i");
+        s_byName["glUniform2i"] = (nint)Uniform2i;
         if (Uniform2i is null) { missingCount++; missing?.Add("glUniform2i"); }
         Uniform2i64ARB = (delegate* unmanaged<int, long, long, void>)resolver("glUniform2i64ARB");
+        s_byName["glUniform2i64ARB"] = (nint)Uniform2i64ARB;
         if (Uniform2i64ARB is null) { missingCount++; missing?.Add("glUniform2i64ARB"); }
         Uniform2i64NV = (delegate* unmanaged<int, long, long, void>)resolver("glUniform2i64NV");
+        s_byName["glUniform2i64NV"] = (nint)Uniform2i64NV;
         if (Uniform2i64NV is null) { missingCount++; missing?.Add("glUniform2i64NV"); }
         Uniform2i64vARB = (delegate* unmanaged<int, int, long*, void>)resolver("glUniform2i64vARB");
+        s_byName["glUniform2i64vARB"] = (nint)Uniform2i64vARB;
         if (Uniform2i64vARB is null) { missingCount++; missing?.Add("glUniform2i64vARB"); }
         Uniform2i64vNV = (delegate* unmanaged<int, int, long*, void>)resolver("glUniform2i64vNV");
+        s_byName["glUniform2i64vNV"] = (nint)Uniform2i64vNV;
         if (Uniform2i64vNV is null) { missingCount++; missing?.Add("glUniform2i64vNV"); }
         Uniform2iARB = (delegate* unmanaged<int, int, int, void>)resolver("glUniform2iARB");
+        s_byName["glUniform2iARB"] = (nint)Uniform2iARB;
         if (Uniform2iARB is null) { missingCount++; missing?.Add("glUniform2iARB"); }
         Uniform2iv = (delegate* unmanaged<int, int, int*, void>)resolver("glUniform2iv");
+        s_byName["glUniform2iv"] = (nint)Uniform2iv;
         if (Uniform2iv is null) { missingCount++; missing?.Add("glUniform2iv"); }
         Uniform2ivARB = (delegate* unmanaged<int, int, int*, void>)resolver("glUniform2ivARB");
+        s_byName["glUniform2ivARB"] = (nint)Uniform2ivARB;
         if (Uniform2ivARB is null) { missingCount++; missing?.Add("glUniform2ivARB"); }
         Uniform2ui = (delegate* unmanaged<int, uint, uint, void>)resolver("glUniform2ui");
+        s_byName["glUniform2ui"] = (nint)Uniform2ui;
         if (Uniform2ui is null) { missingCount++; missing?.Add("glUniform2ui"); }
         Uniform2ui64ARB = (delegate* unmanaged<int, ulong, ulong, void>)resolver("glUniform2ui64ARB");
+        s_byName["glUniform2ui64ARB"] = (nint)Uniform2ui64ARB;
         if (Uniform2ui64ARB is null) { missingCount++; missing?.Add("glUniform2ui64ARB"); }
         Uniform2ui64NV = (delegate* unmanaged<int, ulong, ulong, void>)resolver("glUniform2ui64NV");
+        s_byName["glUniform2ui64NV"] = (nint)Uniform2ui64NV;
         if (Uniform2ui64NV is null) { missingCount++; missing?.Add("glUniform2ui64NV"); }
         Uniform2ui64vARB = (delegate* unmanaged<int, int, ulong*, void>)resolver("glUniform2ui64vARB");
+        s_byName["glUniform2ui64vARB"] = (nint)Uniform2ui64vARB;
         if (Uniform2ui64vARB is null) { missingCount++; missing?.Add("glUniform2ui64vARB"); }
         Uniform2ui64vNV = (delegate* unmanaged<int, int, ulong*, void>)resolver("glUniform2ui64vNV");
+        s_byName["glUniform2ui64vNV"] = (nint)Uniform2ui64vNV;
         if (Uniform2ui64vNV is null) { missingCount++; missing?.Add("glUniform2ui64vNV"); }
         Uniform2uiEXT = (delegate* unmanaged<int, uint, uint, void>)resolver("glUniform2uiEXT");
+        s_byName["glUniform2uiEXT"] = (nint)Uniform2uiEXT;
         if (Uniform2uiEXT is null) { missingCount++; missing?.Add("glUniform2uiEXT"); }
         Uniform2uiv = (delegate* unmanaged<int, int, uint*, void>)resolver("glUniform2uiv");
+        s_byName["glUniform2uiv"] = (nint)Uniform2uiv;
         if (Uniform2uiv is null) { missingCount++; missing?.Add("glUniform2uiv"); }
         Uniform2uivEXT = (delegate* unmanaged<int, int, uint*, void>)resolver("glUniform2uivEXT");
+        s_byName["glUniform2uivEXT"] = (nint)Uniform2uivEXT;
         if (Uniform2uivEXT is null) { missingCount++; missing?.Add("glUniform2uivEXT"); }
         Uniform3d = (delegate* unmanaged<int, double, double, double, void>)resolver("glUniform3d");
+        s_byName["glUniform3d"] = (nint)Uniform3d;
         if (Uniform3d is null) { missingCount++; missing?.Add("glUniform3d"); }
         Uniform3dv = (delegate* unmanaged<int, int, double*, void>)resolver("glUniform3dv");
+        s_byName["glUniform3dv"] = (nint)Uniform3dv;
         if (Uniform3dv is null) { missingCount++; missing?.Add("glUniform3dv"); }
         Uniform3f = (delegate* unmanaged<int, float, float, float, void>)resolver("glUniform3f");
+        s_byName["glUniform3f"] = (nint)Uniform3f;
         if (Uniform3f is null) { missingCount++; missing?.Add("glUniform3f"); }
         Uniform3fARB = (delegate* unmanaged<int, float, float, float, void>)resolver("glUniform3fARB");
+        s_byName["glUniform3fARB"] = (nint)Uniform3fARB;
         if (Uniform3fARB is null) { missingCount++; missing?.Add("glUniform3fARB"); }
         Uniform3fv = (delegate* unmanaged<int, int, float*, void>)resolver("glUniform3fv");
+        s_byName["glUniform3fv"] = (nint)Uniform3fv;
         if (Uniform3fv is null) { missingCount++; missing?.Add("glUniform3fv"); }
         Uniform3fvARB = (delegate* unmanaged<int, int, float*, void>)resolver("glUniform3fvARB");
+        s_byName["glUniform3fvARB"] = (nint)Uniform3fvARB;
         if (Uniform3fvARB is null) { missingCount++; missing?.Add("glUniform3fvARB"); }
         Uniform3i = (delegate* unmanaged<int, int, int, int, void>)resolver("glUniform3i");
+        s_byName["glUniform3i"] = (nint)Uniform3i;
         if (Uniform3i is null) { missingCount++; missing?.Add("glUniform3i"); }
         Uniform3i64ARB = (delegate* unmanaged<int, long, long, long, void>)resolver("glUniform3i64ARB");
+        s_byName["glUniform3i64ARB"] = (nint)Uniform3i64ARB;
         if (Uniform3i64ARB is null) { missingCount++; missing?.Add("glUniform3i64ARB"); }
         Uniform3i64NV = (delegate* unmanaged<int, long, long, long, void>)resolver("glUniform3i64NV");
+        s_byName["glUniform3i64NV"] = (nint)Uniform3i64NV;
         if (Uniform3i64NV is null) { missingCount++; missing?.Add("glUniform3i64NV"); }
         Uniform3i64vARB = (delegate* unmanaged<int, int, long*, void>)resolver("glUniform3i64vARB");
+        s_byName["glUniform3i64vARB"] = (nint)Uniform3i64vARB;
         if (Uniform3i64vARB is null) { missingCount++; missing?.Add("glUniform3i64vARB"); }
         Uniform3i64vNV = (delegate* unmanaged<int, int, long*, void>)resolver("glUniform3i64vNV");
+        s_byName["glUniform3i64vNV"] = (nint)Uniform3i64vNV;
         if (Uniform3i64vNV is null) { missingCount++; missing?.Add("glUniform3i64vNV"); }
         Uniform3iARB = (delegate* unmanaged<int, int, int, int, void>)resolver("glUniform3iARB");
+        s_byName["glUniform3iARB"] = (nint)Uniform3iARB;
         if (Uniform3iARB is null) { missingCount++; missing?.Add("glUniform3iARB"); }
         Uniform3iv = (delegate* unmanaged<int, int, int*, void>)resolver("glUniform3iv");
+        s_byName["glUniform3iv"] = (nint)Uniform3iv;
         if (Uniform3iv is null) { missingCount++; missing?.Add("glUniform3iv"); }
         Uniform3ivARB = (delegate* unmanaged<int, int, int*, void>)resolver("glUniform3ivARB");
+        s_byName["glUniform3ivARB"] = (nint)Uniform3ivARB;
         if (Uniform3ivARB is null) { missingCount++; missing?.Add("glUniform3ivARB"); }
         Uniform3ui = (delegate* unmanaged<int, uint, uint, uint, void>)resolver("glUniform3ui");
+        s_byName["glUniform3ui"] = (nint)Uniform3ui;
         if (Uniform3ui is null) { missingCount++; missing?.Add("glUniform3ui"); }
         Uniform3ui64ARB = (delegate* unmanaged<int, ulong, ulong, ulong, void>)resolver("glUniform3ui64ARB");
+        s_byName["glUniform3ui64ARB"] = (nint)Uniform3ui64ARB;
         if (Uniform3ui64ARB is null) { missingCount++; missing?.Add("glUniform3ui64ARB"); }
         Uniform3ui64NV = (delegate* unmanaged<int, ulong, ulong, ulong, void>)resolver("glUniform3ui64NV");
+        s_byName["glUniform3ui64NV"] = (nint)Uniform3ui64NV;
         if (Uniform3ui64NV is null) { missingCount++; missing?.Add("glUniform3ui64NV"); }
         Uniform3ui64vARB = (delegate* unmanaged<int, int, ulong*, void>)resolver("glUniform3ui64vARB");
+        s_byName["glUniform3ui64vARB"] = (nint)Uniform3ui64vARB;
         if (Uniform3ui64vARB is null) { missingCount++; missing?.Add("glUniform3ui64vARB"); }
         Uniform3ui64vNV = (delegate* unmanaged<int, int, ulong*, void>)resolver("glUniform3ui64vNV");
+        s_byName["glUniform3ui64vNV"] = (nint)Uniform3ui64vNV;
         if (Uniform3ui64vNV is null) { missingCount++; missing?.Add("glUniform3ui64vNV"); }
         Uniform3uiEXT = (delegate* unmanaged<int, uint, uint, uint, void>)resolver("glUniform3uiEXT");
+        s_byName["glUniform3uiEXT"] = (nint)Uniform3uiEXT;
         if (Uniform3uiEXT is null) { missingCount++; missing?.Add("glUniform3uiEXT"); }
         Uniform3uiv = (delegate* unmanaged<int, int, uint*, void>)resolver("glUniform3uiv");
+        s_byName["glUniform3uiv"] = (nint)Uniform3uiv;
         if (Uniform3uiv is null) { missingCount++; missing?.Add("glUniform3uiv"); }
         Uniform3uivEXT = (delegate* unmanaged<int, int, uint*, void>)resolver("glUniform3uivEXT");
+        s_byName["glUniform3uivEXT"] = (nint)Uniform3uivEXT;
         if (Uniform3uivEXT is null) { missingCount++; missing?.Add("glUniform3uivEXT"); }
         Uniform4d = (delegate* unmanaged<int, double, double, double, double, void>)resolver("glUniform4d");
+        s_byName["glUniform4d"] = (nint)Uniform4d;
         if (Uniform4d is null) { missingCount++; missing?.Add("glUniform4d"); }
         Uniform4dv = (delegate* unmanaged<int, int, double*, void>)resolver("glUniform4dv");
+        s_byName["glUniform4dv"] = (nint)Uniform4dv;
         if (Uniform4dv is null) { missingCount++; missing?.Add("glUniform4dv"); }
         Uniform4f = (delegate* unmanaged<int, float, float, float, float, void>)resolver("glUniform4f");
+        s_byName["glUniform4f"] = (nint)Uniform4f;
         if (Uniform4f is null) { missingCount++; missing?.Add("glUniform4f"); }
         Uniform4fARB = (delegate* unmanaged<int, float, float, float, float, void>)resolver("glUniform4fARB");
+        s_byName["glUniform4fARB"] = (nint)Uniform4fARB;
         if (Uniform4fARB is null) { missingCount++; missing?.Add("glUniform4fARB"); }
         Uniform4fv = (delegate* unmanaged<int, int, float*, void>)resolver("glUniform4fv");
+        s_byName["glUniform4fv"] = (nint)Uniform4fv;
         if (Uniform4fv is null) { missingCount++; missing?.Add("glUniform4fv"); }
         Uniform4fvARB = (delegate* unmanaged<int, int, float*, void>)resolver("glUniform4fvARB");
+        s_byName["glUniform4fvARB"] = (nint)Uniform4fvARB;
         if (Uniform4fvARB is null) { missingCount++; missing?.Add("glUniform4fvARB"); }
         Uniform4i = (delegate* unmanaged<int, int, int, int, int, void>)resolver("glUniform4i");
+        s_byName["glUniform4i"] = (nint)Uniform4i;
         if (Uniform4i is null) { missingCount++; missing?.Add("glUniform4i"); }
         Uniform4i64ARB = (delegate* unmanaged<int, long, long, long, long, void>)resolver("glUniform4i64ARB");
+        s_byName["glUniform4i64ARB"] = (nint)Uniform4i64ARB;
         if (Uniform4i64ARB is null) { missingCount++; missing?.Add("glUniform4i64ARB"); }
         Uniform4i64NV = (delegate* unmanaged<int, long, long, long, long, void>)resolver("glUniform4i64NV");
+        s_byName["glUniform4i64NV"] = (nint)Uniform4i64NV;
         if (Uniform4i64NV is null) { missingCount++; missing?.Add("glUniform4i64NV"); }
         Uniform4i64vARB = (delegate* unmanaged<int, int, long*, void>)resolver("glUniform4i64vARB");
+        s_byName["glUniform4i64vARB"] = (nint)Uniform4i64vARB;
         if (Uniform4i64vARB is null) { missingCount++; missing?.Add("glUniform4i64vARB"); }
         Uniform4i64vNV = (delegate* unmanaged<int, int, long*, void>)resolver("glUniform4i64vNV");
+        s_byName["glUniform4i64vNV"] = (nint)Uniform4i64vNV;
         if (Uniform4i64vNV is null) { missingCount++; missing?.Add("glUniform4i64vNV"); }
         Uniform4iARB = (delegate* unmanaged<int, int, int, int, int, void>)resolver("glUniform4iARB");
+        s_byName["glUniform4iARB"] = (nint)Uniform4iARB;
         if (Uniform4iARB is null) { missingCount++; missing?.Add("glUniform4iARB"); }
         Uniform4iv = (delegate* unmanaged<int, int, int*, void>)resolver("glUniform4iv");
+        s_byName["glUniform4iv"] = (nint)Uniform4iv;
         if (Uniform4iv is null) { missingCount++; missing?.Add("glUniform4iv"); }
         Uniform4ivARB = (delegate* unmanaged<int, int, int*, void>)resolver("glUniform4ivARB");
+        s_byName["glUniform4ivARB"] = (nint)Uniform4ivARB;
         if (Uniform4ivARB is null) { missingCount++; missing?.Add("glUniform4ivARB"); }
         Uniform4ui = (delegate* unmanaged<int, uint, uint, uint, uint, void>)resolver("glUniform4ui");
+        s_byName["glUniform4ui"] = (nint)Uniform4ui;
         if (Uniform4ui is null) { missingCount++; missing?.Add("glUniform4ui"); }
         Uniform4ui64ARB = (delegate* unmanaged<int, ulong, ulong, ulong, ulong, void>)resolver("glUniform4ui64ARB");
+        s_byName["glUniform4ui64ARB"] = (nint)Uniform4ui64ARB;
         if (Uniform4ui64ARB is null) { missingCount++; missing?.Add("glUniform4ui64ARB"); }
         Uniform4ui64NV = (delegate* unmanaged<int, ulong, ulong, ulong, ulong, void>)resolver("glUniform4ui64NV");
+        s_byName["glUniform4ui64NV"] = (nint)Uniform4ui64NV;
         if (Uniform4ui64NV is null) { missingCount++; missing?.Add("glUniform4ui64NV"); }
         Uniform4ui64vARB = (delegate* unmanaged<int, int, ulong*, void>)resolver("glUniform4ui64vARB");
+        s_byName["glUniform4ui64vARB"] = (nint)Uniform4ui64vARB;
         if (Uniform4ui64vARB is null) { missingCount++; missing?.Add("glUniform4ui64vARB"); }
         Uniform4ui64vNV = (delegate* unmanaged<int, int, ulong*, void>)resolver("glUniform4ui64vNV");
+        s_byName["glUniform4ui64vNV"] = (nint)Uniform4ui64vNV;
         if (Uniform4ui64vNV is null) { missingCount++; missing?.Add("glUniform4ui64vNV"); }
         Uniform4uiEXT = (delegate* unmanaged<int, uint, uint, uint, uint, void>)resolver("glUniform4uiEXT");
+        s_byName["glUniform4uiEXT"] = (nint)Uniform4uiEXT;
         if (Uniform4uiEXT is null) { missingCount++; missing?.Add("glUniform4uiEXT"); }
         Uniform4uiv = (delegate* unmanaged<int, int, uint*, void>)resolver("glUniform4uiv");
+        s_byName["glUniform4uiv"] = (nint)Uniform4uiv;
         if (Uniform4uiv is null) { missingCount++; missing?.Add("glUniform4uiv"); }
         Uniform4uivEXT = (delegate* unmanaged<int, int, uint*, void>)resolver("glUniform4uivEXT");
+        s_byName["glUniform4uivEXT"] = (nint)Uniform4uivEXT;
         if (Uniform4uivEXT is null) { missingCount++; missing?.Add("glUniform4uivEXT"); }
         UniformBlockBinding = (delegate* unmanaged<uint, uint, uint, void>)resolver("glUniformBlockBinding");
+        s_byName["glUniformBlockBinding"] = (nint)UniformBlockBinding;
         if (UniformBlockBinding is null) { missingCount++; missing?.Add("glUniformBlockBinding"); }
         UniformBufferEXT = (delegate* unmanaged<uint, int, uint, void>)resolver("glUniformBufferEXT");
+        s_byName["glUniformBufferEXT"] = (nint)UniformBufferEXT;
         if (UniformBufferEXT is null) { missingCount++; missing?.Add("glUniformBufferEXT"); }
         UniformHandleui64ARB = (delegate* unmanaged<int, ulong, void>)resolver("glUniformHandleui64ARB");
+        s_byName["glUniformHandleui64ARB"] = (nint)UniformHandleui64ARB;
         if (UniformHandleui64ARB is null) { missingCount++; missing?.Add("glUniformHandleui64ARB"); }
         UniformHandleui64NV = (delegate* unmanaged<int, ulong, void>)resolver("glUniformHandleui64NV");
+        s_byName["glUniformHandleui64NV"] = (nint)UniformHandleui64NV;
         if (UniformHandleui64NV is null) { missingCount++; missing?.Add("glUniformHandleui64NV"); }
         UniformHandleui64vARB = (delegate* unmanaged<int, int, ulong*, void>)resolver("glUniformHandleui64vARB");
+        s_byName["glUniformHandleui64vARB"] = (nint)UniformHandleui64vARB;
         if (UniformHandleui64vARB is null) { missingCount++; missing?.Add("glUniformHandleui64vARB"); }
         UniformHandleui64vNV = (delegate* unmanaged<int, int, ulong*, void>)resolver("glUniformHandleui64vNV");
+        s_byName["glUniformHandleui64vNV"] = (nint)UniformHandleui64vNV;
         if (UniformHandleui64vNV is null) { missingCount++; missing?.Add("glUniformHandleui64vNV"); }
         UniformMatrix2dv = (delegate* unmanaged<int, int, byte, double*, void>)resolver("glUniformMatrix2dv");
+        s_byName["glUniformMatrix2dv"] = (nint)UniformMatrix2dv;
         if (UniformMatrix2dv is null) { missingCount++; missing?.Add("glUniformMatrix2dv"); }
         UniformMatrix2fv = (delegate* unmanaged<int, int, byte, float*, void>)resolver("glUniformMatrix2fv");
+        s_byName["glUniformMatrix2fv"] = (nint)UniformMatrix2fv;
         if (UniformMatrix2fv is null) { missingCount++; missing?.Add("glUniformMatrix2fv"); }
         UniformMatrix2fvARB = (delegate* unmanaged<int, int, byte, float*, void>)resolver("glUniformMatrix2fvARB");
+        s_byName["glUniformMatrix2fvARB"] = (nint)UniformMatrix2fvARB;
         if (UniformMatrix2fvARB is null) { missingCount++; missing?.Add("glUniformMatrix2fvARB"); }
         UniformMatrix2x3dv = (delegate* unmanaged<int, int, byte, double*, void>)resolver("glUniformMatrix2x3dv");
+        s_byName["glUniformMatrix2x3dv"] = (nint)UniformMatrix2x3dv;
         if (UniformMatrix2x3dv is null) { missingCount++; missing?.Add("glUniformMatrix2x3dv"); }
         UniformMatrix2x3fv = (delegate* unmanaged<int, int, byte, float*, void>)resolver("glUniformMatrix2x3fv");
+        s_byName["glUniformMatrix2x3fv"] = (nint)UniformMatrix2x3fv;
         if (UniformMatrix2x3fv is null) { missingCount++; missing?.Add("glUniformMatrix2x3fv"); }
         UniformMatrix2x4dv = (delegate* unmanaged<int, int, byte, double*, void>)resolver("glUniformMatrix2x4dv");
+        s_byName["glUniformMatrix2x4dv"] = (nint)UniformMatrix2x4dv;
         if (UniformMatrix2x4dv is null) { missingCount++; missing?.Add("glUniformMatrix2x4dv"); }
         UniformMatrix2x4fv = (delegate* unmanaged<int, int, byte, float*, void>)resolver("glUniformMatrix2x4fv");
+        s_byName["glUniformMatrix2x4fv"] = (nint)UniformMatrix2x4fv;
         if (UniformMatrix2x4fv is null) { missingCount++; missing?.Add("glUniformMatrix2x4fv"); }
         UniformMatrix3dv = (delegate* unmanaged<int, int, byte, double*, void>)resolver("glUniformMatrix3dv");
+        s_byName["glUniformMatrix3dv"] = (nint)UniformMatrix3dv;
         if (UniformMatrix3dv is null) { missingCount++; missing?.Add("glUniformMatrix3dv"); }
         UniformMatrix3fv = (delegate* unmanaged<int, int, byte, float*, void>)resolver("glUniformMatrix3fv");
+        s_byName["glUniformMatrix3fv"] = (nint)UniformMatrix3fv;
         if (UniformMatrix3fv is null) { missingCount++; missing?.Add("glUniformMatrix3fv"); }
         UniformMatrix3fvARB = (delegate* unmanaged<int, int, byte, float*, void>)resolver("glUniformMatrix3fvARB");
+        s_byName["glUniformMatrix3fvARB"] = (nint)UniformMatrix3fvARB;
         if (UniformMatrix3fvARB is null) { missingCount++; missing?.Add("glUniformMatrix3fvARB"); }
         UniformMatrix3x2dv = (delegate* unmanaged<int, int, byte, double*, void>)resolver("glUniformMatrix3x2dv");
+        s_byName["glUniformMatrix3x2dv"] = (nint)UniformMatrix3x2dv;
         if (UniformMatrix3x2dv is null) { missingCount++; missing?.Add("glUniformMatrix3x2dv"); }
         UniformMatrix3x2fv = (delegate* unmanaged<int, int, byte, float*, void>)resolver("glUniformMatrix3x2fv");
+        s_byName["glUniformMatrix3x2fv"] = (nint)UniformMatrix3x2fv;
         if (UniformMatrix3x2fv is null) { missingCount++; missing?.Add("glUniformMatrix3x2fv"); }
         UniformMatrix3x4dv = (delegate* unmanaged<int, int, byte, double*, void>)resolver("glUniformMatrix3x4dv");
+        s_byName["glUniformMatrix3x4dv"] = (nint)UniformMatrix3x4dv;
         if (UniformMatrix3x4dv is null) { missingCount++; missing?.Add("glUniformMatrix3x4dv"); }
         UniformMatrix3x4fv = (delegate* unmanaged<int, int, byte, float*, void>)resolver("glUniformMatrix3x4fv");
+        s_byName["glUniformMatrix3x4fv"] = (nint)UniformMatrix3x4fv;
         if (UniformMatrix3x4fv is null) { missingCount++; missing?.Add("glUniformMatrix3x4fv"); }
         UniformMatrix4dv = (delegate* unmanaged<int, int, byte, double*, void>)resolver("glUniformMatrix4dv");
+        s_byName["glUniformMatrix4dv"] = (nint)UniformMatrix4dv;
         if (UniformMatrix4dv is null) { missingCount++; missing?.Add("glUniformMatrix4dv"); }
         UniformMatrix4fv = (delegate* unmanaged<int, int, byte, float*, void>)resolver("glUniformMatrix4fv");
+        s_byName["glUniformMatrix4fv"] = (nint)UniformMatrix4fv;
         if (UniformMatrix4fv is null) { missingCount++; missing?.Add("glUniformMatrix4fv"); }
         UniformMatrix4fvARB = (delegate* unmanaged<int, int, byte, float*, void>)resolver("glUniformMatrix4fvARB");
+        s_byName["glUniformMatrix4fvARB"] = (nint)UniformMatrix4fvARB;
         if (UniformMatrix4fvARB is null) { missingCount++; missing?.Add("glUniformMatrix4fvARB"); }
         UniformMatrix4x2dv = (delegate* unmanaged<int, int, byte, double*, void>)resolver("glUniformMatrix4x2dv");
+        s_byName["glUniformMatrix4x2dv"] = (nint)UniformMatrix4x2dv;
         if (UniformMatrix4x2dv is null) { missingCount++; missing?.Add("glUniformMatrix4x2dv"); }
         UniformMatrix4x2fv = (delegate* unmanaged<int, int, byte, float*, void>)resolver("glUniformMatrix4x2fv");
+        s_byName["glUniformMatrix4x2fv"] = (nint)UniformMatrix4x2fv;
         if (UniformMatrix4x2fv is null) { missingCount++; missing?.Add("glUniformMatrix4x2fv"); }
         UniformMatrix4x3dv = (delegate* unmanaged<int, int, byte, double*, void>)resolver("glUniformMatrix4x3dv");
+        s_byName["glUniformMatrix4x3dv"] = (nint)UniformMatrix4x3dv;
         if (UniformMatrix4x3dv is null) { missingCount++; missing?.Add("glUniformMatrix4x3dv"); }
         UniformMatrix4x3fv = (delegate* unmanaged<int, int, byte, float*, void>)resolver("glUniformMatrix4x3fv");
+        s_byName["glUniformMatrix4x3fv"] = (nint)UniformMatrix4x3fv;
         if (UniformMatrix4x3fv is null) { missingCount++; missing?.Add("glUniformMatrix4x3fv"); }
         UniformSubroutinesuiv = (delegate* unmanaged<uint, int, uint*, void>)resolver("glUniformSubroutinesuiv");
+        s_byName["glUniformSubroutinesuiv"] = (nint)UniformSubroutinesuiv;
         if (UniformSubroutinesuiv is null) { missingCount++; missing?.Add("glUniformSubroutinesuiv"); }
         Uniformui64NV = (delegate* unmanaged<int, ulong, void>)resolver("glUniformui64NV");
+        s_byName["glUniformui64NV"] = (nint)Uniformui64NV;
         if (Uniformui64NV is null) { missingCount++; missing?.Add("glUniformui64NV"); }
         Uniformui64vNV = (delegate* unmanaged<int, int, ulong*, void>)resolver("glUniformui64vNV");
+        s_byName["glUniformui64vNV"] = (nint)Uniformui64vNV;
         if (Uniformui64vNV is null) { missingCount++; missing?.Add("glUniformui64vNV"); }
         UnlockArraysEXT = (delegate* unmanaged<void>)resolver("glUnlockArraysEXT");
+        s_byName["glUnlockArraysEXT"] = (nint)UnlockArraysEXT;
         if (UnlockArraysEXT is null) { missingCount++; missing?.Add("glUnlockArraysEXT"); }
         UnmapBuffer = (delegate* unmanaged<uint, byte>)resolver("glUnmapBuffer");
+        s_byName["glUnmapBuffer"] = (nint)UnmapBuffer;
         if (UnmapBuffer is null) { missingCount++; missing?.Add("glUnmapBuffer"); }
         UnmapBufferARB = (delegate* unmanaged<uint, byte>)resolver("glUnmapBufferARB");
+        s_byName["glUnmapBufferARB"] = (nint)UnmapBufferARB;
         if (UnmapBufferARB is null) { missingCount++; missing?.Add("glUnmapBufferARB"); }
         UnmapNamedBuffer = (delegate* unmanaged<uint, byte>)resolver("glUnmapNamedBuffer");
+        s_byName["glUnmapNamedBuffer"] = (nint)UnmapNamedBuffer;
         if (UnmapNamedBuffer is null) { missingCount++; missing?.Add("glUnmapNamedBuffer"); }
         UnmapNamedBufferEXT = (delegate* unmanaged<uint, byte>)resolver("glUnmapNamedBufferEXT");
+        s_byName["glUnmapNamedBufferEXT"] = (nint)UnmapNamedBufferEXT;
         if (UnmapNamedBufferEXT is null) { missingCount++; missing?.Add("glUnmapNamedBufferEXT"); }
         UnmapObjectBufferATI = (delegate* unmanaged<uint, void>)resolver("glUnmapObjectBufferATI");
+        s_byName["glUnmapObjectBufferATI"] = (nint)UnmapObjectBufferATI;
         if (UnmapObjectBufferATI is null) { missingCount++; missing?.Add("glUnmapObjectBufferATI"); }
         UnmapTexture2DINTEL = (delegate* unmanaged<uint, int, void>)resolver("glUnmapTexture2DINTEL");
+        s_byName["glUnmapTexture2DINTEL"] = (nint)UnmapTexture2DINTEL;
         if (UnmapTexture2DINTEL is null) { missingCount++; missing?.Add("glUnmapTexture2DINTEL"); }
         UpdateObjectBufferATI = (delegate* unmanaged<uint, uint, int, void*, uint, void>)resolver("glUpdateObjectBufferATI");
+        s_byName["glUpdateObjectBufferATI"] = (nint)UpdateObjectBufferATI;
         if (UpdateObjectBufferATI is null) { missingCount++; missing?.Add("glUpdateObjectBufferATI"); }
         UploadGpuMaskNVX = (delegate* unmanaged<uint, void>)resolver("glUploadGpuMaskNVX");
+        s_byName["glUploadGpuMaskNVX"] = (nint)UploadGpuMaskNVX;
         if (UploadGpuMaskNVX is null) { missingCount++; missing?.Add("glUploadGpuMaskNVX"); }
         UseProgram = (delegate* unmanaged<uint, void>)resolver("glUseProgram");
+        s_byName["glUseProgram"] = (nint)UseProgram;
         if (UseProgram is null) { missingCount++; missing?.Add("glUseProgram"); }
         UseProgramObjectARB = (delegate* unmanaged<uint, void>)resolver("glUseProgramObjectARB");
+        s_byName["glUseProgramObjectARB"] = (nint)UseProgramObjectARB;
         if (UseProgramObjectARB is null) { missingCount++; missing?.Add("glUseProgramObjectARB"); }
         UseProgramStages = (delegate* unmanaged<uint, uint, uint, void>)resolver("glUseProgramStages");
+        s_byName["glUseProgramStages"] = (nint)UseProgramStages;
         if (UseProgramStages is null) { missingCount++; missing?.Add("glUseProgramStages"); }
         UseProgramStagesEXT = (delegate* unmanaged<uint, uint, uint, void>)resolver("glUseProgramStagesEXT");
+        s_byName["glUseProgramStagesEXT"] = (nint)UseProgramStagesEXT;
         if (UseProgramStagesEXT is null) { missingCount++; missing?.Add("glUseProgramStagesEXT"); }
         UseShaderProgramEXT = (delegate* unmanaged<uint, uint, void>)resolver("glUseShaderProgramEXT");
+        s_byName["glUseShaderProgramEXT"] = (nint)UseShaderProgramEXT;
         if (UseShaderProgramEXT is null) { missingCount++; missing?.Add("glUseShaderProgramEXT"); }
         VDPAUFiniNV = (delegate* unmanaged<void>)resolver("glVDPAUFiniNV");
+        s_byName["glVDPAUFiniNV"] = (nint)VDPAUFiniNV;
         if (VDPAUFiniNV is null) { missingCount++; missing?.Add("glVDPAUFiniNV"); }
         VDPAUInitNV = (delegate* unmanaged<void*, void*, void>)resolver("glVDPAUInitNV");
+        s_byName["glVDPAUInitNV"] = (nint)VDPAUInitNV;
         if (VDPAUInitNV is null) { missingCount++; missing?.Add("glVDPAUInitNV"); }
         ValidateProgram = (delegate* unmanaged<uint, void>)resolver("glValidateProgram");
+        s_byName["glValidateProgram"] = (nint)ValidateProgram;
         if (ValidateProgram is null) { missingCount++; missing?.Add("glValidateProgram"); }
         ValidateProgramARB = (delegate* unmanaged<uint, void>)resolver("glValidateProgramARB");
+        s_byName["glValidateProgramARB"] = (nint)ValidateProgramARB;
         if (ValidateProgramARB is null) { missingCount++; missing?.Add("glValidateProgramARB"); }
         ValidateProgramPipeline = (delegate* unmanaged<uint, void>)resolver("glValidateProgramPipeline");
+        s_byName["glValidateProgramPipeline"] = (nint)ValidateProgramPipeline;
         if (ValidateProgramPipeline is null) { missingCount++; missing?.Add("glValidateProgramPipeline"); }
         ValidateProgramPipelineEXT = (delegate* unmanaged<uint, void>)resolver("glValidateProgramPipelineEXT");
+        s_byName["glValidateProgramPipelineEXT"] = (nint)ValidateProgramPipelineEXT;
         if (ValidateProgramPipelineEXT is null) { missingCount++; missing?.Add("glValidateProgramPipelineEXT"); }
         VariantArrayObjectATI = (delegate* unmanaged<uint, uint, int, uint, uint, void>)resolver("glVariantArrayObjectATI");
+        s_byName["glVariantArrayObjectATI"] = (nint)VariantArrayObjectATI;
         if (VariantArrayObjectATI is null) { missingCount++; missing?.Add("glVariantArrayObjectATI"); }
         VariantPointerEXT = (delegate* unmanaged<uint, uint, uint, void*, void>)resolver("glVariantPointerEXT");
+        s_byName["glVariantPointerEXT"] = (nint)VariantPointerEXT;
         if (VariantPointerEXT is null) { missingCount++; missing?.Add("glVariantPointerEXT"); }
         VariantbvEXT = (delegate* unmanaged<uint, sbyte*, void>)resolver("glVariantbvEXT");
+        s_byName["glVariantbvEXT"] = (nint)VariantbvEXT;
         if (VariantbvEXT is null) { missingCount++; missing?.Add("glVariantbvEXT"); }
         VariantdvEXT = (delegate* unmanaged<uint, double*, void>)resolver("glVariantdvEXT");
+        s_byName["glVariantdvEXT"] = (nint)VariantdvEXT;
         if (VariantdvEXT is null) { missingCount++; missing?.Add("glVariantdvEXT"); }
         VariantfvEXT = (delegate* unmanaged<uint, float*, void>)resolver("glVariantfvEXT");
+        s_byName["glVariantfvEXT"] = (nint)VariantfvEXT;
         if (VariantfvEXT is null) { missingCount++; missing?.Add("glVariantfvEXT"); }
         VariantivEXT = (delegate* unmanaged<uint, int*, void>)resolver("glVariantivEXT");
+        s_byName["glVariantivEXT"] = (nint)VariantivEXT;
         if (VariantivEXT is null) { missingCount++; missing?.Add("glVariantivEXT"); }
         VariantsvEXT = (delegate* unmanaged<uint, short*, void>)resolver("glVariantsvEXT");
+        s_byName["glVariantsvEXT"] = (nint)VariantsvEXT;
         if (VariantsvEXT is null) { missingCount++; missing?.Add("glVariantsvEXT"); }
         VariantubvEXT = (delegate* unmanaged<uint, byte*, void>)resolver("glVariantubvEXT");
+        s_byName["glVariantubvEXT"] = (nint)VariantubvEXT;
         if (VariantubvEXT is null) { missingCount++; missing?.Add("glVariantubvEXT"); }
         VariantuivEXT = (delegate* unmanaged<uint, uint*, void>)resolver("glVariantuivEXT");
+        s_byName["glVariantuivEXT"] = (nint)VariantuivEXT;
         if (VariantuivEXT is null) { missingCount++; missing?.Add("glVariantuivEXT"); }
         VariantusvEXT = (delegate* unmanaged<uint, ushort*, void>)resolver("glVariantusvEXT");
+        s_byName["glVariantusvEXT"] = (nint)VariantusvEXT;
         if (VariantusvEXT is null) { missingCount++; missing?.Add("glVariantusvEXT"); }
         Vertex2bOES = (delegate* unmanaged<sbyte, sbyte, void>)resolver("glVertex2bOES");
+        s_byName["glVertex2bOES"] = (nint)Vertex2bOES;
         if (Vertex2bOES is null) { missingCount++; missing?.Add("glVertex2bOES"); }
         Vertex2bvOES = (delegate* unmanaged<sbyte*, void>)resolver("glVertex2bvOES");
+        s_byName["glVertex2bvOES"] = (nint)Vertex2bvOES;
         if (Vertex2bvOES is null) { missingCount++; missing?.Add("glVertex2bvOES"); }
         Vertex2hNV = (delegate* unmanaged<ushort, ushort, void>)resolver("glVertex2hNV");
+        s_byName["glVertex2hNV"] = (nint)Vertex2hNV;
         if (Vertex2hNV is null) { missingCount++; missing?.Add("glVertex2hNV"); }
         Vertex2hvNV = (delegate* unmanaged<ushort*, void>)resolver("glVertex2hvNV");
+        s_byName["glVertex2hvNV"] = (nint)Vertex2hvNV;
         if (Vertex2hvNV is null) { missingCount++; missing?.Add("glVertex2hvNV"); }
         Vertex2xOES = (delegate* unmanaged<int, void>)resolver("glVertex2xOES");
+        s_byName["glVertex2xOES"] = (nint)Vertex2xOES;
         if (Vertex2xOES is null) { missingCount++; missing?.Add("glVertex2xOES"); }
         Vertex2xvOES = (delegate* unmanaged<int*, void>)resolver("glVertex2xvOES");
+        s_byName["glVertex2xvOES"] = (nint)Vertex2xvOES;
         if (Vertex2xvOES is null) { missingCount++; missing?.Add("glVertex2xvOES"); }
         Vertex3bOES = (delegate* unmanaged<sbyte, sbyte, sbyte, void>)resolver("glVertex3bOES");
+        s_byName["glVertex3bOES"] = (nint)Vertex3bOES;
         if (Vertex3bOES is null) { missingCount++; missing?.Add("glVertex3bOES"); }
         Vertex3bvOES = (delegate* unmanaged<sbyte*, void>)resolver("glVertex3bvOES");
+        s_byName["glVertex3bvOES"] = (nint)Vertex3bvOES;
         if (Vertex3bvOES is null) { missingCount++; missing?.Add("glVertex3bvOES"); }
         Vertex3hNV = (delegate* unmanaged<ushort, ushort, ushort, void>)resolver("glVertex3hNV");
+        s_byName["glVertex3hNV"] = (nint)Vertex3hNV;
         if (Vertex3hNV is null) { missingCount++; missing?.Add("glVertex3hNV"); }
         Vertex3hvNV = (delegate* unmanaged<ushort*, void>)resolver("glVertex3hvNV");
+        s_byName["glVertex3hvNV"] = (nint)Vertex3hvNV;
         if (Vertex3hvNV is null) { missingCount++; missing?.Add("glVertex3hvNV"); }
         Vertex3xOES = (delegate* unmanaged<int, int, void>)resolver("glVertex3xOES");
+        s_byName["glVertex3xOES"] = (nint)Vertex3xOES;
         if (Vertex3xOES is null) { missingCount++; missing?.Add("glVertex3xOES"); }
         Vertex3xvOES = (delegate* unmanaged<int*, void>)resolver("glVertex3xvOES");
+        s_byName["glVertex3xvOES"] = (nint)Vertex3xvOES;
         if (Vertex3xvOES is null) { missingCount++; missing?.Add("glVertex3xvOES"); }
         Vertex4bOES = (delegate* unmanaged<sbyte, sbyte, sbyte, sbyte, void>)resolver("glVertex4bOES");
+        s_byName["glVertex4bOES"] = (nint)Vertex4bOES;
         if (Vertex4bOES is null) { missingCount++; missing?.Add("glVertex4bOES"); }
         Vertex4bvOES = (delegate* unmanaged<sbyte*, void>)resolver("glVertex4bvOES");
+        s_byName["glVertex4bvOES"] = (nint)Vertex4bvOES;
         if (Vertex4bvOES is null) { missingCount++; missing?.Add("glVertex4bvOES"); }
         Vertex4hNV = (delegate* unmanaged<ushort, ushort, ushort, ushort, void>)resolver("glVertex4hNV");
+        s_byName["glVertex4hNV"] = (nint)Vertex4hNV;
         if (Vertex4hNV is null) { missingCount++; missing?.Add("glVertex4hNV"); }
         Vertex4hvNV = (delegate* unmanaged<ushort*, void>)resolver("glVertex4hvNV");
+        s_byName["glVertex4hvNV"] = (nint)Vertex4hvNV;
         if (Vertex4hvNV is null) { missingCount++; missing?.Add("glVertex4hvNV"); }
         Vertex4xOES = (delegate* unmanaged<int, int, int, void>)resolver("glVertex4xOES");
+        s_byName["glVertex4xOES"] = (nint)Vertex4xOES;
         if (Vertex4xOES is null) { missingCount++; missing?.Add("glVertex4xOES"); }
         Vertex4xvOES = (delegate* unmanaged<int*, void>)resolver("glVertex4xvOES");
+        s_byName["glVertex4xvOES"] = (nint)Vertex4xvOES;
         if (Vertex4xvOES is null) { missingCount++; missing?.Add("glVertex4xvOES"); }
         VertexArrayAttribBinding = (delegate* unmanaged<uint, uint, uint, void>)resolver("glVertexArrayAttribBinding");
+        s_byName["glVertexArrayAttribBinding"] = (nint)VertexArrayAttribBinding;
         if (VertexArrayAttribBinding is null) { missingCount++; missing?.Add("glVertexArrayAttribBinding"); }
         VertexArrayAttribFormat = (delegate* unmanaged<uint, uint, int, uint, byte, uint, void>)resolver("glVertexArrayAttribFormat");
+        s_byName["glVertexArrayAttribFormat"] = (nint)VertexArrayAttribFormat;
         if (VertexArrayAttribFormat is null) { missingCount++; missing?.Add("glVertexArrayAttribFormat"); }
         VertexArrayAttribIFormat = (delegate* unmanaged<uint, uint, int, uint, uint, void>)resolver("glVertexArrayAttribIFormat");
+        s_byName["glVertexArrayAttribIFormat"] = (nint)VertexArrayAttribIFormat;
         if (VertexArrayAttribIFormat is null) { missingCount++; missing?.Add("glVertexArrayAttribIFormat"); }
         VertexArrayAttribLFormat = (delegate* unmanaged<uint, uint, int, uint, uint, void>)resolver("glVertexArrayAttribLFormat");
+        s_byName["glVertexArrayAttribLFormat"] = (nint)VertexArrayAttribLFormat;
         if (VertexArrayAttribLFormat is null) { missingCount++; missing?.Add("glVertexArrayAttribLFormat"); }
         VertexArrayBindVertexBufferEXT = (delegate* unmanaged<uint, uint, uint, nint, int, void>)resolver("glVertexArrayBindVertexBufferEXT");
+        s_byName["glVertexArrayBindVertexBufferEXT"] = (nint)VertexArrayBindVertexBufferEXT;
         if (VertexArrayBindVertexBufferEXT is null) { missingCount++; missing?.Add("glVertexArrayBindVertexBufferEXT"); }
         VertexArrayBindingDivisor = (delegate* unmanaged<uint, uint, uint, void>)resolver("glVertexArrayBindingDivisor");
+        s_byName["glVertexArrayBindingDivisor"] = (nint)VertexArrayBindingDivisor;
         if (VertexArrayBindingDivisor is null) { missingCount++; missing?.Add("glVertexArrayBindingDivisor"); }
         VertexArrayColorOffsetEXT = (delegate* unmanaged<uint, uint, int, uint, int, nint, void>)resolver("glVertexArrayColorOffsetEXT");
+        s_byName["glVertexArrayColorOffsetEXT"] = (nint)VertexArrayColorOffsetEXT;
         if (VertexArrayColorOffsetEXT is null) { missingCount++; missing?.Add("glVertexArrayColorOffsetEXT"); }
         VertexArrayEdgeFlagOffsetEXT = (delegate* unmanaged<uint, uint, int, nint, void>)resolver("glVertexArrayEdgeFlagOffsetEXT");
+        s_byName["glVertexArrayEdgeFlagOffsetEXT"] = (nint)VertexArrayEdgeFlagOffsetEXT;
         if (VertexArrayEdgeFlagOffsetEXT is null) { missingCount++; missing?.Add("glVertexArrayEdgeFlagOffsetEXT"); }
         VertexArrayElementBuffer = (delegate* unmanaged<uint, uint, void>)resolver("glVertexArrayElementBuffer");
+        s_byName["glVertexArrayElementBuffer"] = (nint)VertexArrayElementBuffer;
         if (VertexArrayElementBuffer is null) { missingCount++; missing?.Add("glVertexArrayElementBuffer"); }
         VertexArrayFogCoordOffsetEXT = (delegate* unmanaged<uint, uint, uint, int, nint, void>)resolver("glVertexArrayFogCoordOffsetEXT");
+        s_byName["glVertexArrayFogCoordOffsetEXT"] = (nint)VertexArrayFogCoordOffsetEXT;
         if (VertexArrayFogCoordOffsetEXT is null) { missingCount++; missing?.Add("glVertexArrayFogCoordOffsetEXT"); }
         VertexArrayIndexOffsetEXT = (delegate* unmanaged<uint, uint, uint, int, nint, void>)resolver("glVertexArrayIndexOffsetEXT");
+        s_byName["glVertexArrayIndexOffsetEXT"] = (nint)VertexArrayIndexOffsetEXT;
         if (VertexArrayIndexOffsetEXT is null) { missingCount++; missing?.Add("glVertexArrayIndexOffsetEXT"); }
         VertexArrayMultiTexCoordOffsetEXT = (delegate* unmanaged<uint, uint, uint, int, uint, int, nint, void>)resolver("glVertexArrayMultiTexCoordOffsetEXT");
+        s_byName["glVertexArrayMultiTexCoordOffsetEXT"] = (nint)VertexArrayMultiTexCoordOffsetEXT;
         if (VertexArrayMultiTexCoordOffsetEXT is null) { missingCount++; missing?.Add("glVertexArrayMultiTexCoordOffsetEXT"); }
         VertexArrayNormalOffsetEXT = (delegate* unmanaged<uint, uint, uint, int, nint, void>)resolver("glVertexArrayNormalOffsetEXT");
+        s_byName["glVertexArrayNormalOffsetEXT"] = (nint)VertexArrayNormalOffsetEXT;
         if (VertexArrayNormalOffsetEXT is null) { missingCount++; missing?.Add("glVertexArrayNormalOffsetEXT"); }
         VertexArrayParameteriAPPLE = (delegate* unmanaged<uint, int, void>)resolver("glVertexArrayParameteriAPPLE");
+        s_byName["glVertexArrayParameteriAPPLE"] = (nint)VertexArrayParameteriAPPLE;
         if (VertexArrayParameteriAPPLE is null) { missingCount++; missing?.Add("glVertexArrayParameteriAPPLE"); }
         VertexArrayRangeAPPLE = (delegate* unmanaged<int, void*, void>)resolver("glVertexArrayRangeAPPLE");
+        s_byName["glVertexArrayRangeAPPLE"] = (nint)VertexArrayRangeAPPLE;
         if (VertexArrayRangeAPPLE is null) { missingCount++; missing?.Add("glVertexArrayRangeAPPLE"); }
         VertexArrayRangeNV = (delegate* unmanaged<int, void*, void>)resolver("glVertexArrayRangeNV");
+        s_byName["glVertexArrayRangeNV"] = (nint)VertexArrayRangeNV;
         if (VertexArrayRangeNV is null) { missingCount++; missing?.Add("glVertexArrayRangeNV"); }
         VertexArraySecondaryColorOffsetEXT = (delegate* unmanaged<uint, uint, int, uint, int, nint, void>)resolver("glVertexArraySecondaryColorOffsetEXT");
+        s_byName["glVertexArraySecondaryColorOffsetEXT"] = (nint)VertexArraySecondaryColorOffsetEXT;
         if (VertexArraySecondaryColorOffsetEXT is null) { missingCount++; missing?.Add("glVertexArraySecondaryColorOffsetEXT"); }
         VertexArrayTexCoordOffsetEXT = (delegate* unmanaged<uint, uint, int, uint, int, nint, void>)resolver("glVertexArrayTexCoordOffsetEXT");
+        s_byName["glVertexArrayTexCoordOffsetEXT"] = (nint)VertexArrayTexCoordOffsetEXT;
         if (VertexArrayTexCoordOffsetEXT is null) { missingCount++; missing?.Add("glVertexArrayTexCoordOffsetEXT"); }
         VertexArrayVertexAttribBindingEXT = (delegate* unmanaged<uint, uint, uint, void>)resolver("glVertexArrayVertexAttribBindingEXT");
+        s_byName["glVertexArrayVertexAttribBindingEXT"] = (nint)VertexArrayVertexAttribBindingEXT;
         if (VertexArrayVertexAttribBindingEXT is null) { missingCount++; missing?.Add("glVertexArrayVertexAttribBindingEXT"); }
         VertexArrayVertexAttribDivisorEXT = (delegate* unmanaged<uint, uint, uint, void>)resolver("glVertexArrayVertexAttribDivisorEXT");
+        s_byName["glVertexArrayVertexAttribDivisorEXT"] = (nint)VertexArrayVertexAttribDivisorEXT;
         if (VertexArrayVertexAttribDivisorEXT is null) { missingCount++; missing?.Add("glVertexArrayVertexAttribDivisorEXT"); }
         VertexArrayVertexAttribFormatEXT = (delegate* unmanaged<uint, uint, int, uint, byte, uint, void>)resolver("glVertexArrayVertexAttribFormatEXT");
+        s_byName["glVertexArrayVertexAttribFormatEXT"] = (nint)VertexArrayVertexAttribFormatEXT;
         if (VertexArrayVertexAttribFormatEXT is null) { missingCount++; missing?.Add("glVertexArrayVertexAttribFormatEXT"); }
         VertexArrayVertexAttribIFormatEXT = (delegate* unmanaged<uint, uint, int, uint, uint, void>)resolver("glVertexArrayVertexAttribIFormatEXT");
+        s_byName["glVertexArrayVertexAttribIFormatEXT"] = (nint)VertexArrayVertexAttribIFormatEXT;
         if (VertexArrayVertexAttribIFormatEXT is null) { missingCount++; missing?.Add("glVertexArrayVertexAttribIFormatEXT"); }
         VertexArrayVertexAttribIOffsetEXT = (delegate* unmanaged<uint, uint, uint, int, uint, int, nint, void>)resolver("glVertexArrayVertexAttribIOffsetEXT");
+        s_byName["glVertexArrayVertexAttribIOffsetEXT"] = (nint)VertexArrayVertexAttribIOffsetEXT;
         if (VertexArrayVertexAttribIOffsetEXT is null) { missingCount++; missing?.Add("glVertexArrayVertexAttribIOffsetEXT"); }
         VertexArrayVertexAttribLFormatEXT = (delegate* unmanaged<uint, uint, int, uint, uint, void>)resolver("glVertexArrayVertexAttribLFormatEXT");
+        s_byName["glVertexArrayVertexAttribLFormatEXT"] = (nint)VertexArrayVertexAttribLFormatEXT;
         if (VertexArrayVertexAttribLFormatEXT is null) { missingCount++; missing?.Add("glVertexArrayVertexAttribLFormatEXT"); }
         VertexArrayVertexAttribLOffsetEXT = (delegate* unmanaged<uint, uint, uint, int, uint, int, nint, void>)resolver("glVertexArrayVertexAttribLOffsetEXT");
+        s_byName["glVertexArrayVertexAttribLOffsetEXT"] = (nint)VertexArrayVertexAttribLOffsetEXT;
         if (VertexArrayVertexAttribLOffsetEXT is null) { missingCount++; missing?.Add("glVertexArrayVertexAttribLOffsetEXT"); }
         VertexArrayVertexAttribOffsetEXT = (delegate* unmanaged<uint, uint, uint, int, uint, byte, int, nint, void>)resolver("glVertexArrayVertexAttribOffsetEXT");
+        s_byName["glVertexArrayVertexAttribOffsetEXT"] = (nint)VertexArrayVertexAttribOffsetEXT;
         if (VertexArrayVertexAttribOffsetEXT is null) { missingCount++; missing?.Add("glVertexArrayVertexAttribOffsetEXT"); }
         VertexArrayVertexBindingDivisorEXT = (delegate* unmanaged<uint, uint, uint, void>)resolver("glVertexArrayVertexBindingDivisorEXT");
+        s_byName["glVertexArrayVertexBindingDivisorEXT"] = (nint)VertexArrayVertexBindingDivisorEXT;
         if (VertexArrayVertexBindingDivisorEXT is null) { missingCount++; missing?.Add("glVertexArrayVertexBindingDivisorEXT"); }
         VertexArrayVertexBuffer = (delegate* unmanaged<uint, uint, uint, nint, int, void>)resolver("glVertexArrayVertexBuffer");
+        s_byName["glVertexArrayVertexBuffer"] = (nint)VertexArrayVertexBuffer;
         if (VertexArrayVertexBuffer is null) { missingCount++; missing?.Add("glVertexArrayVertexBuffer"); }
         VertexArrayVertexBuffers = (delegate* unmanaged<uint, uint, int, uint*, nint*, int*, void>)resolver("glVertexArrayVertexBuffers");
+        s_byName["glVertexArrayVertexBuffers"] = (nint)VertexArrayVertexBuffers;
         if (VertexArrayVertexBuffers is null) { missingCount++; missing?.Add("glVertexArrayVertexBuffers"); }
         VertexArrayVertexOffsetEXT = (delegate* unmanaged<uint, uint, int, uint, int, nint, void>)resolver("glVertexArrayVertexOffsetEXT");
+        s_byName["glVertexArrayVertexOffsetEXT"] = (nint)VertexArrayVertexOffsetEXT;
         if (VertexArrayVertexOffsetEXT is null) { missingCount++; missing?.Add("glVertexArrayVertexOffsetEXT"); }
         VertexAttrib1d = (delegate* unmanaged<uint, double, void>)resolver("glVertexAttrib1d");
+        s_byName["glVertexAttrib1d"] = (nint)VertexAttrib1d;
         if (VertexAttrib1d is null) { missingCount++; missing?.Add("glVertexAttrib1d"); }
         VertexAttrib1dARB = (delegate* unmanaged<uint, double, void>)resolver("glVertexAttrib1dARB");
+        s_byName["glVertexAttrib1dARB"] = (nint)VertexAttrib1dARB;
         if (VertexAttrib1dARB is null) { missingCount++; missing?.Add("glVertexAttrib1dARB"); }
         VertexAttrib1dNV = (delegate* unmanaged<uint, double, void>)resolver("glVertexAttrib1dNV");
+        s_byName["glVertexAttrib1dNV"] = (nint)VertexAttrib1dNV;
         if (VertexAttrib1dNV is null) { missingCount++; missing?.Add("glVertexAttrib1dNV"); }
         VertexAttrib1dv = (delegate* unmanaged<uint, double*, void>)resolver("glVertexAttrib1dv");
+        s_byName["glVertexAttrib1dv"] = (nint)VertexAttrib1dv;
         if (VertexAttrib1dv is null) { missingCount++; missing?.Add("glVertexAttrib1dv"); }
         VertexAttrib1dvARB = (delegate* unmanaged<uint, double*, void>)resolver("glVertexAttrib1dvARB");
+        s_byName["glVertexAttrib1dvARB"] = (nint)VertexAttrib1dvARB;
         if (VertexAttrib1dvARB is null) { missingCount++; missing?.Add("glVertexAttrib1dvARB"); }
         VertexAttrib1dvNV = (delegate* unmanaged<uint, double*, void>)resolver("glVertexAttrib1dvNV");
+        s_byName["glVertexAttrib1dvNV"] = (nint)VertexAttrib1dvNV;
         if (VertexAttrib1dvNV is null) { missingCount++; missing?.Add("glVertexAttrib1dvNV"); }
         VertexAttrib1f = (delegate* unmanaged<uint, float, void>)resolver("glVertexAttrib1f");
+        s_byName["glVertexAttrib1f"] = (nint)VertexAttrib1f;
         if (VertexAttrib1f is null) { missingCount++; missing?.Add("glVertexAttrib1f"); }
         VertexAttrib1fARB = (delegate* unmanaged<uint, float, void>)resolver("glVertexAttrib1fARB");
+        s_byName["glVertexAttrib1fARB"] = (nint)VertexAttrib1fARB;
         if (VertexAttrib1fARB is null) { missingCount++; missing?.Add("glVertexAttrib1fARB"); }
         VertexAttrib1fNV = (delegate* unmanaged<uint, float, void>)resolver("glVertexAttrib1fNV");
+        s_byName["glVertexAttrib1fNV"] = (nint)VertexAttrib1fNV;
         if (VertexAttrib1fNV is null) { missingCount++; missing?.Add("glVertexAttrib1fNV"); }
         VertexAttrib1fv = (delegate* unmanaged<uint, float*, void>)resolver("glVertexAttrib1fv");
+        s_byName["glVertexAttrib1fv"] = (nint)VertexAttrib1fv;
         if (VertexAttrib1fv is null) { missingCount++; missing?.Add("glVertexAttrib1fv"); }
         VertexAttrib1fvARB = (delegate* unmanaged<uint, float*, void>)resolver("glVertexAttrib1fvARB");
+        s_byName["glVertexAttrib1fvARB"] = (nint)VertexAttrib1fvARB;
         if (VertexAttrib1fvARB is null) { missingCount++; missing?.Add("glVertexAttrib1fvARB"); }
         VertexAttrib1fvNV = (delegate* unmanaged<uint, float*, void>)resolver("glVertexAttrib1fvNV");
+        s_byName["glVertexAttrib1fvNV"] = (nint)VertexAttrib1fvNV;
         if (VertexAttrib1fvNV is null) { missingCount++; missing?.Add("glVertexAttrib1fvNV"); }
         VertexAttrib1hNV = (delegate* unmanaged<uint, ushort, void>)resolver("glVertexAttrib1hNV");
+        s_byName["glVertexAttrib1hNV"] = (nint)VertexAttrib1hNV;
         if (VertexAttrib1hNV is null) { missingCount++; missing?.Add("glVertexAttrib1hNV"); }
         VertexAttrib1hvNV = (delegate* unmanaged<uint, ushort*, void>)resolver("glVertexAttrib1hvNV");
+        s_byName["glVertexAttrib1hvNV"] = (nint)VertexAttrib1hvNV;
         if (VertexAttrib1hvNV is null) { missingCount++; missing?.Add("glVertexAttrib1hvNV"); }
         VertexAttrib1s = (delegate* unmanaged<uint, short, void>)resolver("glVertexAttrib1s");
+        s_byName["glVertexAttrib1s"] = (nint)VertexAttrib1s;
         if (VertexAttrib1s is null) { missingCount++; missing?.Add("glVertexAttrib1s"); }
         VertexAttrib1sARB = (delegate* unmanaged<uint, short, void>)resolver("glVertexAttrib1sARB");
+        s_byName["glVertexAttrib1sARB"] = (nint)VertexAttrib1sARB;
         if (VertexAttrib1sARB is null) { missingCount++; missing?.Add("glVertexAttrib1sARB"); }
         VertexAttrib1sNV = (delegate* unmanaged<uint, short, void>)resolver("glVertexAttrib1sNV");
+        s_byName["glVertexAttrib1sNV"] = (nint)VertexAttrib1sNV;
         if (VertexAttrib1sNV is null) { missingCount++; missing?.Add("glVertexAttrib1sNV"); }
         VertexAttrib1sv = (delegate* unmanaged<uint, short*, void>)resolver("glVertexAttrib1sv");
+        s_byName["glVertexAttrib1sv"] = (nint)VertexAttrib1sv;
         if (VertexAttrib1sv is null) { missingCount++; missing?.Add("glVertexAttrib1sv"); }
         VertexAttrib1svARB = (delegate* unmanaged<uint, short*, void>)resolver("glVertexAttrib1svARB");
+        s_byName["glVertexAttrib1svARB"] = (nint)VertexAttrib1svARB;
         if (VertexAttrib1svARB is null) { missingCount++; missing?.Add("glVertexAttrib1svARB"); }
         VertexAttrib1svNV = (delegate* unmanaged<uint, short*, void>)resolver("glVertexAttrib1svNV");
+        s_byName["glVertexAttrib1svNV"] = (nint)VertexAttrib1svNV;
         if (VertexAttrib1svNV is null) { missingCount++; missing?.Add("glVertexAttrib1svNV"); }
         VertexAttrib2d = (delegate* unmanaged<uint, double, double, void>)resolver("glVertexAttrib2d");
+        s_byName["glVertexAttrib2d"] = (nint)VertexAttrib2d;
         if (VertexAttrib2d is null) { missingCount++; missing?.Add("glVertexAttrib2d"); }
         VertexAttrib2dARB = (delegate* unmanaged<uint, double, double, void>)resolver("glVertexAttrib2dARB");
+        s_byName["glVertexAttrib2dARB"] = (nint)VertexAttrib2dARB;
         if (VertexAttrib2dARB is null) { missingCount++; missing?.Add("glVertexAttrib2dARB"); }
         VertexAttrib2dNV = (delegate* unmanaged<uint, double, double, void>)resolver("glVertexAttrib2dNV");
+        s_byName["glVertexAttrib2dNV"] = (nint)VertexAttrib2dNV;
         if (VertexAttrib2dNV is null) { missingCount++; missing?.Add("glVertexAttrib2dNV"); }
         VertexAttrib2dv = (delegate* unmanaged<uint, double*, void>)resolver("glVertexAttrib2dv");
+        s_byName["glVertexAttrib2dv"] = (nint)VertexAttrib2dv;
         if (VertexAttrib2dv is null) { missingCount++; missing?.Add("glVertexAttrib2dv"); }
         VertexAttrib2dvARB = (delegate* unmanaged<uint, double*, void>)resolver("glVertexAttrib2dvARB");
+        s_byName["glVertexAttrib2dvARB"] = (nint)VertexAttrib2dvARB;
         if (VertexAttrib2dvARB is null) { missingCount++; missing?.Add("glVertexAttrib2dvARB"); }
         VertexAttrib2dvNV = (delegate* unmanaged<uint, double*, void>)resolver("glVertexAttrib2dvNV");
+        s_byName["glVertexAttrib2dvNV"] = (nint)VertexAttrib2dvNV;
         if (VertexAttrib2dvNV is null) { missingCount++; missing?.Add("glVertexAttrib2dvNV"); }
         VertexAttrib2f = (delegate* unmanaged<uint, float, float, void>)resolver("glVertexAttrib2f");
+        s_byName["glVertexAttrib2f"] = (nint)VertexAttrib2f;
         if (VertexAttrib2f is null) { missingCount++; missing?.Add("glVertexAttrib2f"); }
         VertexAttrib2fARB = (delegate* unmanaged<uint, float, float, void>)resolver("glVertexAttrib2fARB");
+        s_byName["glVertexAttrib2fARB"] = (nint)VertexAttrib2fARB;
         if (VertexAttrib2fARB is null) { missingCount++; missing?.Add("glVertexAttrib2fARB"); }
         VertexAttrib2fNV = (delegate* unmanaged<uint, float, float, void>)resolver("glVertexAttrib2fNV");
+        s_byName["glVertexAttrib2fNV"] = (nint)VertexAttrib2fNV;
         if (VertexAttrib2fNV is null) { missingCount++; missing?.Add("glVertexAttrib2fNV"); }
         VertexAttrib2fv = (delegate* unmanaged<uint, float*, void>)resolver("glVertexAttrib2fv");
+        s_byName["glVertexAttrib2fv"] = (nint)VertexAttrib2fv;
         if (VertexAttrib2fv is null) { missingCount++; missing?.Add("glVertexAttrib2fv"); }
         VertexAttrib2fvARB = (delegate* unmanaged<uint, float*, void>)resolver("glVertexAttrib2fvARB");
+        s_byName["glVertexAttrib2fvARB"] = (nint)VertexAttrib2fvARB;
         if (VertexAttrib2fvARB is null) { missingCount++; missing?.Add("glVertexAttrib2fvARB"); }
         VertexAttrib2fvNV = (delegate* unmanaged<uint, float*, void>)resolver("glVertexAttrib2fvNV");
+        s_byName["glVertexAttrib2fvNV"] = (nint)VertexAttrib2fvNV;
         if (VertexAttrib2fvNV is null) { missingCount++; missing?.Add("glVertexAttrib2fvNV"); }
         VertexAttrib2hNV = (delegate* unmanaged<uint, ushort, ushort, void>)resolver("glVertexAttrib2hNV");
+        s_byName["glVertexAttrib2hNV"] = (nint)VertexAttrib2hNV;
         if (VertexAttrib2hNV is null) { missingCount++; missing?.Add("glVertexAttrib2hNV"); }
         VertexAttrib2hvNV = (delegate* unmanaged<uint, ushort*, void>)resolver("glVertexAttrib2hvNV");
+        s_byName["glVertexAttrib2hvNV"] = (nint)VertexAttrib2hvNV;
         if (VertexAttrib2hvNV is null) { missingCount++; missing?.Add("glVertexAttrib2hvNV"); }
         VertexAttrib2s = (delegate* unmanaged<uint, short, short, void>)resolver("glVertexAttrib2s");
+        s_byName["glVertexAttrib2s"] = (nint)VertexAttrib2s;
         if (VertexAttrib2s is null) { missingCount++; missing?.Add("glVertexAttrib2s"); }
         VertexAttrib2sARB = (delegate* unmanaged<uint, short, short, void>)resolver("glVertexAttrib2sARB");
+        s_byName["glVertexAttrib2sARB"] = (nint)VertexAttrib2sARB;
         if (VertexAttrib2sARB is null) { missingCount++; missing?.Add("glVertexAttrib2sARB"); }
         VertexAttrib2sNV = (delegate* unmanaged<uint, short, short, void>)resolver("glVertexAttrib2sNV");
+        s_byName["glVertexAttrib2sNV"] = (nint)VertexAttrib2sNV;
         if (VertexAttrib2sNV is null) { missingCount++; missing?.Add("glVertexAttrib2sNV"); }
         VertexAttrib2sv = (delegate* unmanaged<uint, short*, void>)resolver("glVertexAttrib2sv");
+        s_byName["glVertexAttrib2sv"] = (nint)VertexAttrib2sv;
         if (VertexAttrib2sv is null) { missingCount++; missing?.Add("glVertexAttrib2sv"); }
         VertexAttrib2svARB = (delegate* unmanaged<uint, short*, void>)resolver("glVertexAttrib2svARB");
+        s_byName["glVertexAttrib2svARB"] = (nint)VertexAttrib2svARB;
         if (VertexAttrib2svARB is null) { missingCount++; missing?.Add("glVertexAttrib2svARB"); }
         VertexAttrib2svNV = (delegate* unmanaged<uint, short*, void>)resolver("glVertexAttrib2svNV");
+        s_byName["glVertexAttrib2svNV"] = (nint)VertexAttrib2svNV;
         if (VertexAttrib2svNV is null) { missingCount++; missing?.Add("glVertexAttrib2svNV"); }
         VertexAttrib3d = (delegate* unmanaged<uint, double, double, double, void>)resolver("glVertexAttrib3d");
+        s_byName["glVertexAttrib3d"] = (nint)VertexAttrib3d;
         if (VertexAttrib3d is null) { missingCount++; missing?.Add("glVertexAttrib3d"); }
         VertexAttrib3dARB = (delegate* unmanaged<uint, double, double, double, void>)resolver("glVertexAttrib3dARB");
+        s_byName["glVertexAttrib3dARB"] = (nint)VertexAttrib3dARB;
         if (VertexAttrib3dARB is null) { missingCount++; missing?.Add("glVertexAttrib3dARB"); }
         VertexAttrib3dNV = (delegate* unmanaged<uint, double, double, double, void>)resolver("glVertexAttrib3dNV");
+        s_byName["glVertexAttrib3dNV"] = (nint)VertexAttrib3dNV;
         if (VertexAttrib3dNV is null) { missingCount++; missing?.Add("glVertexAttrib3dNV"); }
         VertexAttrib3dv = (delegate* unmanaged<uint, double*, void>)resolver("glVertexAttrib3dv");
+        s_byName["glVertexAttrib3dv"] = (nint)VertexAttrib3dv;
         if (VertexAttrib3dv is null) { missingCount++; missing?.Add("glVertexAttrib3dv"); }
         VertexAttrib3dvARB = (delegate* unmanaged<uint, double*, void>)resolver("glVertexAttrib3dvARB");
+        s_byName["glVertexAttrib3dvARB"] = (nint)VertexAttrib3dvARB;
         if (VertexAttrib3dvARB is null) { missingCount++; missing?.Add("glVertexAttrib3dvARB"); }
         VertexAttrib3dvNV = (delegate* unmanaged<uint, double*, void>)resolver("glVertexAttrib3dvNV");
+        s_byName["glVertexAttrib3dvNV"] = (nint)VertexAttrib3dvNV;
         if (VertexAttrib3dvNV is null) { missingCount++; missing?.Add("glVertexAttrib3dvNV"); }
         VertexAttrib3f = (delegate* unmanaged<uint, float, float, float, void>)resolver("glVertexAttrib3f");
+        s_byName["glVertexAttrib3f"] = (nint)VertexAttrib3f;
         if (VertexAttrib3f is null) { missingCount++; missing?.Add("glVertexAttrib3f"); }
         VertexAttrib3fARB = (delegate* unmanaged<uint, float, float, float, void>)resolver("glVertexAttrib3fARB");
+        s_byName["glVertexAttrib3fARB"] = (nint)VertexAttrib3fARB;
         if (VertexAttrib3fARB is null) { missingCount++; missing?.Add("glVertexAttrib3fARB"); }
         VertexAttrib3fNV = (delegate* unmanaged<uint, float, float, float, void>)resolver("glVertexAttrib3fNV");
+        s_byName["glVertexAttrib3fNV"] = (nint)VertexAttrib3fNV;
         if (VertexAttrib3fNV is null) { missingCount++; missing?.Add("glVertexAttrib3fNV"); }
         VertexAttrib3fv = (delegate* unmanaged<uint, float*, void>)resolver("glVertexAttrib3fv");
+        s_byName["glVertexAttrib3fv"] = (nint)VertexAttrib3fv;
         if (VertexAttrib3fv is null) { missingCount++; missing?.Add("glVertexAttrib3fv"); }
         VertexAttrib3fvARB = (delegate* unmanaged<uint, float*, void>)resolver("glVertexAttrib3fvARB");
+        s_byName["glVertexAttrib3fvARB"] = (nint)VertexAttrib3fvARB;
         if (VertexAttrib3fvARB is null) { missingCount++; missing?.Add("glVertexAttrib3fvARB"); }
         VertexAttrib3fvNV = (delegate* unmanaged<uint, float*, void>)resolver("glVertexAttrib3fvNV");
+        s_byName["glVertexAttrib3fvNV"] = (nint)VertexAttrib3fvNV;
         if (VertexAttrib3fvNV is null) { missingCount++; missing?.Add("glVertexAttrib3fvNV"); }
         VertexAttrib3hNV = (delegate* unmanaged<uint, ushort, ushort, ushort, void>)resolver("glVertexAttrib3hNV");
+        s_byName["glVertexAttrib3hNV"] = (nint)VertexAttrib3hNV;
         if (VertexAttrib3hNV is null) { missingCount++; missing?.Add("glVertexAttrib3hNV"); }
         VertexAttrib3hvNV = (delegate* unmanaged<uint, ushort*, void>)resolver("glVertexAttrib3hvNV");
+        s_byName["glVertexAttrib3hvNV"] = (nint)VertexAttrib3hvNV;
         if (VertexAttrib3hvNV is null) { missingCount++; missing?.Add("glVertexAttrib3hvNV"); }
         VertexAttrib3s = (delegate* unmanaged<uint, short, short, short, void>)resolver("glVertexAttrib3s");
+        s_byName["glVertexAttrib3s"] = (nint)VertexAttrib3s;
         if (VertexAttrib3s is null) { missingCount++; missing?.Add("glVertexAttrib3s"); }
         VertexAttrib3sARB = (delegate* unmanaged<uint, short, short, short, void>)resolver("glVertexAttrib3sARB");
+        s_byName["glVertexAttrib3sARB"] = (nint)VertexAttrib3sARB;
         if (VertexAttrib3sARB is null) { missingCount++; missing?.Add("glVertexAttrib3sARB"); }
         VertexAttrib3sNV = (delegate* unmanaged<uint, short, short, short, void>)resolver("glVertexAttrib3sNV");
+        s_byName["glVertexAttrib3sNV"] = (nint)VertexAttrib3sNV;
         if (VertexAttrib3sNV is null) { missingCount++; missing?.Add("glVertexAttrib3sNV"); }
         VertexAttrib3sv = (delegate* unmanaged<uint, short*, void>)resolver("glVertexAttrib3sv");
+        s_byName["glVertexAttrib3sv"] = (nint)VertexAttrib3sv;
         if (VertexAttrib3sv is null) { missingCount++; missing?.Add("glVertexAttrib3sv"); }
         VertexAttrib3svARB = (delegate* unmanaged<uint, short*, void>)resolver("glVertexAttrib3svARB");
+        s_byName["glVertexAttrib3svARB"] = (nint)VertexAttrib3svARB;
         if (VertexAttrib3svARB is null) { missingCount++; missing?.Add("glVertexAttrib3svARB"); }
         VertexAttrib3svNV = (delegate* unmanaged<uint, short*, void>)resolver("glVertexAttrib3svNV");
+        s_byName["glVertexAttrib3svNV"] = (nint)VertexAttrib3svNV;
         if (VertexAttrib3svNV is null) { missingCount++; missing?.Add("glVertexAttrib3svNV"); }
         VertexAttrib4Nbv = (delegate* unmanaged<uint, sbyte*, void>)resolver("glVertexAttrib4Nbv");
+        s_byName["glVertexAttrib4Nbv"] = (nint)VertexAttrib4Nbv;
         if (VertexAttrib4Nbv is null) { missingCount++; missing?.Add("glVertexAttrib4Nbv"); }
         VertexAttrib4NbvARB = (delegate* unmanaged<uint, sbyte*, void>)resolver("glVertexAttrib4NbvARB");
+        s_byName["glVertexAttrib4NbvARB"] = (nint)VertexAttrib4NbvARB;
         if (VertexAttrib4NbvARB is null) { missingCount++; missing?.Add("glVertexAttrib4NbvARB"); }
         VertexAttrib4Niv = (delegate* unmanaged<uint, int*, void>)resolver("glVertexAttrib4Niv");
+        s_byName["glVertexAttrib4Niv"] = (nint)VertexAttrib4Niv;
         if (VertexAttrib4Niv is null) { missingCount++; missing?.Add("glVertexAttrib4Niv"); }
         VertexAttrib4NivARB = (delegate* unmanaged<uint, int*, void>)resolver("glVertexAttrib4NivARB");
+        s_byName["glVertexAttrib4NivARB"] = (nint)VertexAttrib4NivARB;
         if (VertexAttrib4NivARB is null) { missingCount++; missing?.Add("glVertexAttrib4NivARB"); }
         VertexAttrib4Nsv = (delegate* unmanaged<uint, short*, void>)resolver("glVertexAttrib4Nsv");
+        s_byName["glVertexAttrib4Nsv"] = (nint)VertexAttrib4Nsv;
         if (VertexAttrib4Nsv is null) { missingCount++; missing?.Add("glVertexAttrib4Nsv"); }
         VertexAttrib4NsvARB = (delegate* unmanaged<uint, short*, void>)resolver("glVertexAttrib4NsvARB");
+        s_byName["glVertexAttrib4NsvARB"] = (nint)VertexAttrib4NsvARB;
         if (VertexAttrib4NsvARB is null) { missingCount++; missing?.Add("glVertexAttrib4NsvARB"); }
         VertexAttrib4Nub = (delegate* unmanaged<uint, byte, byte, byte, byte, void>)resolver("glVertexAttrib4Nub");
+        s_byName["glVertexAttrib4Nub"] = (nint)VertexAttrib4Nub;
         if (VertexAttrib4Nub is null) { missingCount++; missing?.Add("glVertexAttrib4Nub"); }
         VertexAttrib4NubARB = (delegate* unmanaged<uint, byte, byte, byte, byte, void>)resolver("glVertexAttrib4NubARB");
+        s_byName["glVertexAttrib4NubARB"] = (nint)VertexAttrib4NubARB;
         if (VertexAttrib4NubARB is null) { missingCount++; missing?.Add("glVertexAttrib4NubARB"); }
         VertexAttrib4Nubv = (delegate* unmanaged<uint, byte*, void>)resolver("glVertexAttrib4Nubv");
+        s_byName["glVertexAttrib4Nubv"] = (nint)VertexAttrib4Nubv;
         if (VertexAttrib4Nubv is null) { missingCount++; missing?.Add("glVertexAttrib4Nubv"); }
         VertexAttrib4NubvARB = (delegate* unmanaged<uint, byte*, void>)resolver("glVertexAttrib4NubvARB");
+        s_byName["glVertexAttrib4NubvARB"] = (nint)VertexAttrib4NubvARB;
         if (VertexAttrib4NubvARB is null) { missingCount++; missing?.Add("glVertexAttrib4NubvARB"); }
         VertexAttrib4Nuiv = (delegate* unmanaged<uint, uint*, void>)resolver("glVertexAttrib4Nuiv");
+        s_byName["glVertexAttrib4Nuiv"] = (nint)VertexAttrib4Nuiv;
         if (VertexAttrib4Nuiv is null) { missingCount++; missing?.Add("glVertexAttrib4Nuiv"); }
         VertexAttrib4NuivARB = (delegate* unmanaged<uint, uint*, void>)resolver("glVertexAttrib4NuivARB");
+        s_byName["glVertexAttrib4NuivARB"] = (nint)VertexAttrib4NuivARB;
         if (VertexAttrib4NuivARB is null) { missingCount++; missing?.Add("glVertexAttrib4NuivARB"); }
         VertexAttrib4Nusv = (delegate* unmanaged<uint, ushort*, void>)resolver("glVertexAttrib4Nusv");
+        s_byName["glVertexAttrib4Nusv"] = (nint)VertexAttrib4Nusv;
         if (VertexAttrib4Nusv is null) { missingCount++; missing?.Add("glVertexAttrib4Nusv"); }
         VertexAttrib4NusvARB = (delegate* unmanaged<uint, ushort*, void>)resolver("glVertexAttrib4NusvARB");
+        s_byName["glVertexAttrib4NusvARB"] = (nint)VertexAttrib4NusvARB;
         if (VertexAttrib4NusvARB is null) { missingCount++; missing?.Add("glVertexAttrib4NusvARB"); }
         VertexAttrib4bv = (delegate* unmanaged<uint, sbyte*, void>)resolver("glVertexAttrib4bv");
+        s_byName["glVertexAttrib4bv"] = (nint)VertexAttrib4bv;
         if (VertexAttrib4bv is null) { missingCount++; missing?.Add("glVertexAttrib4bv"); }
         VertexAttrib4bvARB = (delegate* unmanaged<uint, sbyte*, void>)resolver("glVertexAttrib4bvARB");
+        s_byName["glVertexAttrib4bvARB"] = (nint)VertexAttrib4bvARB;
         if (VertexAttrib4bvARB is null) { missingCount++; missing?.Add("glVertexAttrib4bvARB"); }
         VertexAttrib4d = (delegate* unmanaged<uint, double, double, double, double, void>)resolver("glVertexAttrib4d");
+        s_byName["glVertexAttrib4d"] = (nint)VertexAttrib4d;
         if (VertexAttrib4d is null) { missingCount++; missing?.Add("glVertexAttrib4d"); }
         VertexAttrib4dARB = (delegate* unmanaged<uint, double, double, double, double, void>)resolver("glVertexAttrib4dARB");
+        s_byName["glVertexAttrib4dARB"] = (nint)VertexAttrib4dARB;
         if (VertexAttrib4dARB is null) { missingCount++; missing?.Add("glVertexAttrib4dARB"); }
         VertexAttrib4dNV = (delegate* unmanaged<uint, double, double, double, double, void>)resolver("glVertexAttrib4dNV");
+        s_byName["glVertexAttrib4dNV"] = (nint)VertexAttrib4dNV;
         if (VertexAttrib4dNV is null) { missingCount++; missing?.Add("glVertexAttrib4dNV"); }
         VertexAttrib4dv = (delegate* unmanaged<uint, double*, void>)resolver("glVertexAttrib4dv");
+        s_byName["glVertexAttrib4dv"] = (nint)VertexAttrib4dv;
         if (VertexAttrib4dv is null) { missingCount++; missing?.Add("glVertexAttrib4dv"); }
         VertexAttrib4dvARB = (delegate* unmanaged<uint, double*, void>)resolver("glVertexAttrib4dvARB");
+        s_byName["glVertexAttrib4dvARB"] = (nint)VertexAttrib4dvARB;
         if (VertexAttrib4dvARB is null) { missingCount++; missing?.Add("glVertexAttrib4dvARB"); }
         VertexAttrib4dvNV = (delegate* unmanaged<uint, double*, void>)resolver("glVertexAttrib4dvNV");
+        s_byName["glVertexAttrib4dvNV"] = (nint)VertexAttrib4dvNV;
         if (VertexAttrib4dvNV is null) { missingCount++; missing?.Add("glVertexAttrib4dvNV"); }
         VertexAttrib4f = (delegate* unmanaged<uint, float, float, float, float, void>)resolver("glVertexAttrib4f");
+        s_byName["glVertexAttrib4f"] = (nint)VertexAttrib4f;
         if (VertexAttrib4f is null) { missingCount++; missing?.Add("glVertexAttrib4f"); }
         VertexAttrib4fARB = (delegate* unmanaged<uint, float, float, float, float, void>)resolver("glVertexAttrib4fARB");
+        s_byName["glVertexAttrib4fARB"] = (nint)VertexAttrib4fARB;
         if (VertexAttrib4fARB is null) { missingCount++; missing?.Add("glVertexAttrib4fARB"); }
         VertexAttrib4fNV = (delegate* unmanaged<uint, float, float, float, float, void>)resolver("glVertexAttrib4fNV");
+        s_byName["glVertexAttrib4fNV"] = (nint)VertexAttrib4fNV;
         if (VertexAttrib4fNV is null) { missingCount++; missing?.Add("glVertexAttrib4fNV"); }
         VertexAttrib4fv = (delegate* unmanaged<uint, float*, void>)resolver("glVertexAttrib4fv");
+        s_byName["glVertexAttrib4fv"] = (nint)VertexAttrib4fv;
         if (VertexAttrib4fv is null) { missingCount++; missing?.Add("glVertexAttrib4fv"); }
         VertexAttrib4fvARB = (delegate* unmanaged<uint, float*, void>)resolver("glVertexAttrib4fvARB");
+        s_byName["glVertexAttrib4fvARB"] = (nint)VertexAttrib4fvARB;
         if (VertexAttrib4fvARB is null) { missingCount++; missing?.Add("glVertexAttrib4fvARB"); }
         VertexAttrib4fvNV = (delegate* unmanaged<uint, float*, void>)resolver("glVertexAttrib4fvNV");
+        s_byName["glVertexAttrib4fvNV"] = (nint)VertexAttrib4fvNV;
         if (VertexAttrib4fvNV is null) { missingCount++; missing?.Add("glVertexAttrib4fvNV"); }
         VertexAttrib4hNV = (delegate* unmanaged<uint, ushort, ushort, ushort, ushort, void>)resolver("glVertexAttrib4hNV");
+        s_byName["glVertexAttrib4hNV"] = (nint)VertexAttrib4hNV;
         if (VertexAttrib4hNV is null) { missingCount++; missing?.Add("glVertexAttrib4hNV"); }
         VertexAttrib4hvNV = (delegate* unmanaged<uint, ushort*, void>)resolver("glVertexAttrib4hvNV");
+        s_byName["glVertexAttrib4hvNV"] = (nint)VertexAttrib4hvNV;
         if (VertexAttrib4hvNV is null) { missingCount++; missing?.Add("glVertexAttrib4hvNV"); }
         VertexAttrib4iv = (delegate* unmanaged<uint, int*, void>)resolver("glVertexAttrib4iv");
+        s_byName["glVertexAttrib4iv"] = (nint)VertexAttrib4iv;
         if (VertexAttrib4iv is null) { missingCount++; missing?.Add("glVertexAttrib4iv"); }
         VertexAttrib4ivARB = (delegate* unmanaged<uint, int*, void>)resolver("glVertexAttrib4ivARB");
+        s_byName["glVertexAttrib4ivARB"] = (nint)VertexAttrib4ivARB;
         if (VertexAttrib4ivARB is null) { missingCount++; missing?.Add("glVertexAttrib4ivARB"); }
         VertexAttrib4s = (delegate* unmanaged<uint, short, short, short, short, void>)resolver("glVertexAttrib4s");
+        s_byName["glVertexAttrib4s"] = (nint)VertexAttrib4s;
         if (VertexAttrib4s is null) { missingCount++; missing?.Add("glVertexAttrib4s"); }
         VertexAttrib4sARB = (delegate* unmanaged<uint, short, short, short, short, void>)resolver("glVertexAttrib4sARB");
+        s_byName["glVertexAttrib4sARB"] = (nint)VertexAttrib4sARB;
         if (VertexAttrib4sARB is null) { missingCount++; missing?.Add("glVertexAttrib4sARB"); }
         VertexAttrib4sNV = (delegate* unmanaged<uint, short, short, short, short, void>)resolver("glVertexAttrib4sNV");
+        s_byName["glVertexAttrib4sNV"] = (nint)VertexAttrib4sNV;
         if (VertexAttrib4sNV is null) { missingCount++; missing?.Add("glVertexAttrib4sNV"); }
         VertexAttrib4sv = (delegate* unmanaged<uint, short*, void>)resolver("glVertexAttrib4sv");
+        s_byName["glVertexAttrib4sv"] = (nint)VertexAttrib4sv;
         if (VertexAttrib4sv is null) { missingCount++; missing?.Add("glVertexAttrib4sv"); }
         VertexAttrib4svARB = (delegate* unmanaged<uint, short*, void>)resolver("glVertexAttrib4svARB");
+        s_byName["glVertexAttrib4svARB"] = (nint)VertexAttrib4svARB;
         if (VertexAttrib4svARB is null) { missingCount++; missing?.Add("glVertexAttrib4svARB"); }
         VertexAttrib4svNV = (delegate* unmanaged<uint, short*, void>)resolver("glVertexAttrib4svNV");
+        s_byName["glVertexAttrib4svNV"] = (nint)VertexAttrib4svNV;
         if (VertexAttrib4svNV is null) { missingCount++; missing?.Add("glVertexAttrib4svNV"); }
         VertexAttrib4ubNV = (delegate* unmanaged<uint, byte, byte, byte, byte, void>)resolver("glVertexAttrib4ubNV");
+        s_byName["glVertexAttrib4ubNV"] = (nint)VertexAttrib4ubNV;
         if (VertexAttrib4ubNV is null) { missingCount++; missing?.Add("glVertexAttrib4ubNV"); }
         VertexAttrib4ubv = (delegate* unmanaged<uint, byte*, void>)resolver("glVertexAttrib4ubv");
+        s_byName["glVertexAttrib4ubv"] = (nint)VertexAttrib4ubv;
         if (VertexAttrib4ubv is null) { missingCount++; missing?.Add("glVertexAttrib4ubv"); }
         VertexAttrib4ubvARB = (delegate* unmanaged<uint, byte*, void>)resolver("glVertexAttrib4ubvARB");
+        s_byName["glVertexAttrib4ubvARB"] = (nint)VertexAttrib4ubvARB;
         if (VertexAttrib4ubvARB is null) { missingCount++; missing?.Add("glVertexAttrib4ubvARB"); }
         VertexAttrib4ubvNV = (delegate* unmanaged<uint, byte*, void>)resolver("glVertexAttrib4ubvNV");
+        s_byName["glVertexAttrib4ubvNV"] = (nint)VertexAttrib4ubvNV;
         if (VertexAttrib4ubvNV is null) { missingCount++; missing?.Add("glVertexAttrib4ubvNV"); }
         VertexAttrib4uiv = (delegate* unmanaged<uint, uint*, void>)resolver("glVertexAttrib4uiv");
+        s_byName["glVertexAttrib4uiv"] = (nint)VertexAttrib4uiv;
         if (VertexAttrib4uiv is null) { missingCount++; missing?.Add("glVertexAttrib4uiv"); }
         VertexAttrib4uivARB = (delegate* unmanaged<uint, uint*, void>)resolver("glVertexAttrib4uivARB");
+        s_byName["glVertexAttrib4uivARB"] = (nint)VertexAttrib4uivARB;
         if (VertexAttrib4uivARB is null) { missingCount++; missing?.Add("glVertexAttrib4uivARB"); }
         VertexAttrib4usv = (delegate* unmanaged<uint, ushort*, void>)resolver("glVertexAttrib4usv");
+        s_byName["glVertexAttrib4usv"] = (nint)VertexAttrib4usv;
         if (VertexAttrib4usv is null) { missingCount++; missing?.Add("glVertexAttrib4usv"); }
         VertexAttrib4usvARB = (delegate* unmanaged<uint, ushort*, void>)resolver("glVertexAttrib4usvARB");
+        s_byName["glVertexAttrib4usvARB"] = (nint)VertexAttrib4usvARB;
         if (VertexAttrib4usvARB is null) { missingCount++; missing?.Add("glVertexAttrib4usvARB"); }
         VertexAttribArrayObjectATI = (delegate* unmanaged<uint, int, uint, byte, int, uint, uint, void>)resolver("glVertexAttribArrayObjectATI");
+        s_byName["glVertexAttribArrayObjectATI"] = (nint)VertexAttribArrayObjectATI;
         if (VertexAttribArrayObjectATI is null) { missingCount++; missing?.Add("glVertexAttribArrayObjectATI"); }
         VertexAttribBinding = (delegate* unmanaged<uint, uint, void>)resolver("glVertexAttribBinding");
+        s_byName["glVertexAttribBinding"] = (nint)VertexAttribBinding;
         if (VertexAttribBinding is null) { missingCount++; missing?.Add("glVertexAttribBinding"); }
         VertexAttribDivisor = (delegate* unmanaged<uint, uint, void>)resolver("glVertexAttribDivisor");
+        s_byName["glVertexAttribDivisor"] = (nint)VertexAttribDivisor;
         if (VertexAttribDivisor is null) { missingCount++; missing?.Add("glVertexAttribDivisor"); }
         VertexAttribDivisorARB = (delegate* unmanaged<uint, uint, void>)resolver("glVertexAttribDivisorARB");
+        s_byName["glVertexAttribDivisorARB"] = (nint)VertexAttribDivisorARB;
         if (VertexAttribDivisorARB is null) { missingCount++; missing?.Add("glVertexAttribDivisorARB"); }
         VertexAttribFormat = (delegate* unmanaged<uint, int, uint, byte, uint, void>)resolver("glVertexAttribFormat");
+        s_byName["glVertexAttribFormat"] = (nint)VertexAttribFormat;
         if (VertexAttribFormat is null) { missingCount++; missing?.Add("glVertexAttribFormat"); }
         VertexAttribFormatNV = (delegate* unmanaged<uint, int, uint, byte, int, void>)resolver("glVertexAttribFormatNV");
+        s_byName["glVertexAttribFormatNV"] = (nint)VertexAttribFormatNV;
         if (VertexAttribFormatNV is null) { missingCount++; missing?.Add("glVertexAttribFormatNV"); }
         VertexAttribI1i = (delegate* unmanaged<uint, int, void>)resolver("glVertexAttribI1i");
+        s_byName["glVertexAttribI1i"] = (nint)VertexAttribI1i;
         if (VertexAttribI1i is null) { missingCount++; missing?.Add("glVertexAttribI1i"); }
         VertexAttribI1iEXT = (delegate* unmanaged<uint, int, void>)resolver("glVertexAttribI1iEXT");
+        s_byName["glVertexAttribI1iEXT"] = (nint)VertexAttribI1iEXT;
         if (VertexAttribI1iEXT is null) { missingCount++; missing?.Add("glVertexAttribI1iEXT"); }
         VertexAttribI1iv = (delegate* unmanaged<uint, int*, void>)resolver("glVertexAttribI1iv");
+        s_byName["glVertexAttribI1iv"] = (nint)VertexAttribI1iv;
         if (VertexAttribI1iv is null) { missingCount++; missing?.Add("glVertexAttribI1iv"); }
         VertexAttribI1ivEXT = (delegate* unmanaged<uint, int*, void>)resolver("glVertexAttribI1ivEXT");
+        s_byName["glVertexAttribI1ivEXT"] = (nint)VertexAttribI1ivEXT;
         if (VertexAttribI1ivEXT is null) { missingCount++; missing?.Add("glVertexAttribI1ivEXT"); }
         VertexAttribI1ui = (delegate* unmanaged<uint, uint, void>)resolver("glVertexAttribI1ui");
+        s_byName["glVertexAttribI1ui"] = (nint)VertexAttribI1ui;
         if (VertexAttribI1ui is null) { missingCount++; missing?.Add("glVertexAttribI1ui"); }
         VertexAttribI1uiEXT = (delegate* unmanaged<uint, uint, void>)resolver("glVertexAttribI1uiEXT");
+        s_byName["glVertexAttribI1uiEXT"] = (nint)VertexAttribI1uiEXT;
         if (VertexAttribI1uiEXT is null) { missingCount++; missing?.Add("glVertexAttribI1uiEXT"); }
         VertexAttribI1uiv = (delegate* unmanaged<uint, uint*, void>)resolver("glVertexAttribI1uiv");
+        s_byName["glVertexAttribI1uiv"] = (nint)VertexAttribI1uiv;
         if (VertexAttribI1uiv is null) { missingCount++; missing?.Add("glVertexAttribI1uiv"); }
         VertexAttribI1uivEXT = (delegate* unmanaged<uint, uint*, void>)resolver("glVertexAttribI1uivEXT");
+        s_byName["glVertexAttribI1uivEXT"] = (nint)VertexAttribI1uivEXT;
         if (VertexAttribI1uivEXT is null) { missingCount++; missing?.Add("glVertexAttribI1uivEXT"); }
         VertexAttribI2i = (delegate* unmanaged<uint, int, int, void>)resolver("glVertexAttribI2i");
+        s_byName["glVertexAttribI2i"] = (nint)VertexAttribI2i;
         if (VertexAttribI2i is null) { missingCount++; missing?.Add("glVertexAttribI2i"); }
         VertexAttribI2iEXT = (delegate* unmanaged<uint, int, int, void>)resolver("glVertexAttribI2iEXT");
+        s_byName["glVertexAttribI2iEXT"] = (nint)VertexAttribI2iEXT;
         if (VertexAttribI2iEXT is null) { missingCount++; missing?.Add("glVertexAttribI2iEXT"); }
         VertexAttribI2iv = (delegate* unmanaged<uint, int*, void>)resolver("glVertexAttribI2iv");
+        s_byName["glVertexAttribI2iv"] = (nint)VertexAttribI2iv;
         if (VertexAttribI2iv is null) { missingCount++; missing?.Add("glVertexAttribI2iv"); }
         VertexAttribI2ivEXT = (delegate* unmanaged<uint, int*, void>)resolver("glVertexAttribI2ivEXT");
+        s_byName["glVertexAttribI2ivEXT"] = (nint)VertexAttribI2ivEXT;
         if (VertexAttribI2ivEXT is null) { missingCount++; missing?.Add("glVertexAttribI2ivEXT"); }
         VertexAttribI2ui = (delegate* unmanaged<uint, uint, uint, void>)resolver("glVertexAttribI2ui");
+        s_byName["glVertexAttribI2ui"] = (nint)VertexAttribI2ui;
         if (VertexAttribI2ui is null) { missingCount++; missing?.Add("glVertexAttribI2ui"); }
         VertexAttribI2uiEXT = (delegate* unmanaged<uint, uint, uint, void>)resolver("glVertexAttribI2uiEXT");
+        s_byName["glVertexAttribI2uiEXT"] = (nint)VertexAttribI2uiEXT;
         if (VertexAttribI2uiEXT is null) { missingCount++; missing?.Add("glVertexAttribI2uiEXT"); }
         VertexAttribI2uiv = (delegate* unmanaged<uint, uint*, void>)resolver("glVertexAttribI2uiv");
+        s_byName["glVertexAttribI2uiv"] = (nint)VertexAttribI2uiv;
         if (VertexAttribI2uiv is null) { missingCount++; missing?.Add("glVertexAttribI2uiv"); }
         VertexAttribI2uivEXT = (delegate* unmanaged<uint, uint*, void>)resolver("glVertexAttribI2uivEXT");
+        s_byName["glVertexAttribI2uivEXT"] = (nint)VertexAttribI2uivEXT;
         if (VertexAttribI2uivEXT is null) { missingCount++; missing?.Add("glVertexAttribI2uivEXT"); }
         VertexAttribI3i = (delegate* unmanaged<uint, int, int, int, void>)resolver("glVertexAttribI3i");
+        s_byName["glVertexAttribI3i"] = (nint)VertexAttribI3i;
         if (VertexAttribI3i is null) { missingCount++; missing?.Add("glVertexAttribI3i"); }
         VertexAttribI3iEXT = (delegate* unmanaged<uint, int, int, int, void>)resolver("glVertexAttribI3iEXT");
+        s_byName["glVertexAttribI3iEXT"] = (nint)VertexAttribI3iEXT;
         if (VertexAttribI3iEXT is null) { missingCount++; missing?.Add("glVertexAttribI3iEXT"); }
         VertexAttribI3iv = (delegate* unmanaged<uint, int*, void>)resolver("glVertexAttribI3iv");
+        s_byName["glVertexAttribI3iv"] = (nint)VertexAttribI3iv;
         if (VertexAttribI3iv is null) { missingCount++; missing?.Add("glVertexAttribI3iv"); }
         VertexAttribI3ivEXT = (delegate* unmanaged<uint, int*, void>)resolver("glVertexAttribI3ivEXT");
+        s_byName["glVertexAttribI3ivEXT"] = (nint)VertexAttribI3ivEXT;
         if (VertexAttribI3ivEXT is null) { missingCount++; missing?.Add("glVertexAttribI3ivEXT"); }
         VertexAttribI3ui = (delegate* unmanaged<uint, uint, uint, uint, void>)resolver("glVertexAttribI3ui");
+        s_byName["glVertexAttribI3ui"] = (nint)VertexAttribI3ui;
         if (VertexAttribI3ui is null) { missingCount++; missing?.Add("glVertexAttribI3ui"); }
         VertexAttribI3uiEXT = (delegate* unmanaged<uint, uint, uint, uint, void>)resolver("glVertexAttribI3uiEXT");
+        s_byName["glVertexAttribI3uiEXT"] = (nint)VertexAttribI3uiEXT;
         if (VertexAttribI3uiEXT is null) { missingCount++; missing?.Add("glVertexAttribI3uiEXT"); }
         VertexAttribI3uiv = (delegate* unmanaged<uint, uint*, void>)resolver("glVertexAttribI3uiv");
+        s_byName["glVertexAttribI3uiv"] = (nint)VertexAttribI3uiv;
         if (VertexAttribI3uiv is null) { missingCount++; missing?.Add("glVertexAttribI3uiv"); }
         VertexAttribI3uivEXT = (delegate* unmanaged<uint, uint*, void>)resolver("glVertexAttribI3uivEXT");
+        s_byName["glVertexAttribI3uivEXT"] = (nint)VertexAttribI3uivEXT;
         if (VertexAttribI3uivEXT is null) { missingCount++; missing?.Add("glVertexAttribI3uivEXT"); }
         VertexAttribI4bv = (delegate* unmanaged<uint, sbyte*, void>)resolver("glVertexAttribI4bv");
+        s_byName["glVertexAttribI4bv"] = (nint)VertexAttribI4bv;
         if (VertexAttribI4bv is null) { missingCount++; missing?.Add("glVertexAttribI4bv"); }
         VertexAttribI4bvEXT = (delegate* unmanaged<uint, sbyte*, void>)resolver("glVertexAttribI4bvEXT");
+        s_byName["glVertexAttribI4bvEXT"] = (nint)VertexAttribI4bvEXT;
         if (VertexAttribI4bvEXT is null) { missingCount++; missing?.Add("glVertexAttribI4bvEXT"); }
         VertexAttribI4i = (delegate* unmanaged<uint, int, int, int, int, void>)resolver("glVertexAttribI4i");
+        s_byName["glVertexAttribI4i"] = (nint)VertexAttribI4i;
         if (VertexAttribI4i is null) { missingCount++; missing?.Add("glVertexAttribI4i"); }
         VertexAttribI4iEXT = (delegate* unmanaged<uint, int, int, int, int, void>)resolver("glVertexAttribI4iEXT");
+        s_byName["glVertexAttribI4iEXT"] = (nint)VertexAttribI4iEXT;
         if (VertexAttribI4iEXT is null) { missingCount++; missing?.Add("glVertexAttribI4iEXT"); }
         VertexAttribI4iv = (delegate* unmanaged<uint, int*, void>)resolver("glVertexAttribI4iv");
+        s_byName["glVertexAttribI4iv"] = (nint)VertexAttribI4iv;
         if (VertexAttribI4iv is null) { missingCount++; missing?.Add("glVertexAttribI4iv"); }
         VertexAttribI4ivEXT = (delegate* unmanaged<uint, int*, void>)resolver("glVertexAttribI4ivEXT");
+        s_byName["glVertexAttribI4ivEXT"] = (nint)VertexAttribI4ivEXT;
         if (VertexAttribI4ivEXT is null) { missingCount++; missing?.Add("glVertexAttribI4ivEXT"); }
         VertexAttribI4sv = (delegate* unmanaged<uint, short*, void>)resolver("glVertexAttribI4sv");
+        s_byName["glVertexAttribI4sv"] = (nint)VertexAttribI4sv;
         if (VertexAttribI4sv is null) { missingCount++; missing?.Add("glVertexAttribI4sv"); }
         VertexAttribI4svEXT = (delegate* unmanaged<uint, short*, void>)resolver("glVertexAttribI4svEXT");
+        s_byName["glVertexAttribI4svEXT"] = (nint)VertexAttribI4svEXT;
         if (VertexAttribI4svEXT is null) { missingCount++; missing?.Add("glVertexAttribI4svEXT"); }
         VertexAttribI4ubv = (delegate* unmanaged<uint, byte*, void>)resolver("glVertexAttribI4ubv");
+        s_byName["glVertexAttribI4ubv"] = (nint)VertexAttribI4ubv;
         if (VertexAttribI4ubv is null) { missingCount++; missing?.Add("glVertexAttribI4ubv"); }
         VertexAttribI4ubvEXT = (delegate* unmanaged<uint, byte*, void>)resolver("glVertexAttribI4ubvEXT");
+        s_byName["glVertexAttribI4ubvEXT"] = (nint)VertexAttribI4ubvEXT;
         if (VertexAttribI4ubvEXT is null) { missingCount++; missing?.Add("glVertexAttribI4ubvEXT"); }
         VertexAttribI4ui = (delegate* unmanaged<uint, uint, uint, uint, uint, void>)resolver("glVertexAttribI4ui");
+        s_byName["glVertexAttribI4ui"] = (nint)VertexAttribI4ui;
         if (VertexAttribI4ui is null) { missingCount++; missing?.Add("glVertexAttribI4ui"); }
         VertexAttribI4uiEXT = (delegate* unmanaged<uint, uint, uint, uint, uint, void>)resolver("glVertexAttribI4uiEXT");
+        s_byName["glVertexAttribI4uiEXT"] = (nint)VertexAttribI4uiEXT;
         if (VertexAttribI4uiEXT is null) { missingCount++; missing?.Add("glVertexAttribI4uiEXT"); }
         VertexAttribI4uiv = (delegate* unmanaged<uint, uint*, void>)resolver("glVertexAttribI4uiv");
+        s_byName["glVertexAttribI4uiv"] = (nint)VertexAttribI4uiv;
         if (VertexAttribI4uiv is null) { missingCount++; missing?.Add("glVertexAttribI4uiv"); }
         VertexAttribI4uivEXT = (delegate* unmanaged<uint, uint*, void>)resolver("glVertexAttribI4uivEXT");
+        s_byName["glVertexAttribI4uivEXT"] = (nint)VertexAttribI4uivEXT;
         if (VertexAttribI4uivEXT is null) { missingCount++; missing?.Add("glVertexAttribI4uivEXT"); }
         VertexAttribI4usv = (delegate* unmanaged<uint, ushort*, void>)resolver("glVertexAttribI4usv");
+        s_byName["glVertexAttribI4usv"] = (nint)VertexAttribI4usv;
         if (VertexAttribI4usv is null) { missingCount++; missing?.Add("glVertexAttribI4usv"); }
         VertexAttribI4usvEXT = (delegate* unmanaged<uint, ushort*, void>)resolver("glVertexAttribI4usvEXT");
+        s_byName["glVertexAttribI4usvEXT"] = (nint)VertexAttribI4usvEXT;
         if (VertexAttribI4usvEXT is null) { missingCount++; missing?.Add("glVertexAttribI4usvEXT"); }
         VertexAttribIFormat = (delegate* unmanaged<uint, int, uint, uint, void>)resolver("glVertexAttribIFormat");
+        s_byName["glVertexAttribIFormat"] = (nint)VertexAttribIFormat;
         if (VertexAttribIFormat is null) { missingCount++; missing?.Add("glVertexAttribIFormat"); }
         VertexAttribIFormatNV = (delegate* unmanaged<uint, int, uint, int, void>)resolver("glVertexAttribIFormatNV");
+        s_byName["glVertexAttribIFormatNV"] = (nint)VertexAttribIFormatNV;
         if (VertexAttribIFormatNV is null) { missingCount++; missing?.Add("glVertexAttribIFormatNV"); }
         VertexAttribIPointer = (delegate* unmanaged<uint, int, uint, int, void*, void>)resolver("glVertexAttribIPointer");
+        s_byName["glVertexAttribIPointer"] = (nint)VertexAttribIPointer;
         if (VertexAttribIPointer is null) { missingCount++; missing?.Add("glVertexAttribIPointer"); }
         VertexAttribIPointerEXT = (delegate* unmanaged<uint, int, uint, int, void*, void>)resolver("glVertexAttribIPointerEXT");
+        s_byName["glVertexAttribIPointerEXT"] = (nint)VertexAttribIPointerEXT;
         if (VertexAttribIPointerEXT is null) { missingCount++; missing?.Add("glVertexAttribIPointerEXT"); }
         VertexAttribL1d = (delegate* unmanaged<uint, double, void>)resolver("glVertexAttribL1d");
+        s_byName["glVertexAttribL1d"] = (nint)VertexAttribL1d;
         if (VertexAttribL1d is null) { missingCount++; missing?.Add("glVertexAttribL1d"); }
         VertexAttribL1dEXT = (delegate* unmanaged<uint, double, void>)resolver("glVertexAttribL1dEXT");
+        s_byName["glVertexAttribL1dEXT"] = (nint)VertexAttribL1dEXT;
         if (VertexAttribL1dEXT is null) { missingCount++; missing?.Add("glVertexAttribL1dEXT"); }
         VertexAttribL1dv = (delegate* unmanaged<uint, double*, void>)resolver("glVertexAttribL1dv");
+        s_byName["glVertexAttribL1dv"] = (nint)VertexAttribL1dv;
         if (VertexAttribL1dv is null) { missingCount++; missing?.Add("glVertexAttribL1dv"); }
         VertexAttribL1dvEXT = (delegate* unmanaged<uint, double*, void>)resolver("glVertexAttribL1dvEXT");
+        s_byName["glVertexAttribL1dvEXT"] = (nint)VertexAttribL1dvEXT;
         if (VertexAttribL1dvEXT is null) { missingCount++; missing?.Add("glVertexAttribL1dvEXT"); }
         VertexAttribL1i64NV = (delegate* unmanaged<uint, long, void>)resolver("glVertexAttribL1i64NV");
+        s_byName["glVertexAttribL1i64NV"] = (nint)VertexAttribL1i64NV;
         if (VertexAttribL1i64NV is null) { missingCount++; missing?.Add("glVertexAttribL1i64NV"); }
         VertexAttribL1i64vNV = (delegate* unmanaged<uint, long*, void>)resolver("glVertexAttribL1i64vNV");
+        s_byName["glVertexAttribL1i64vNV"] = (nint)VertexAttribL1i64vNV;
         if (VertexAttribL1i64vNV is null) { missingCount++; missing?.Add("glVertexAttribL1i64vNV"); }
         VertexAttribL1ui64ARB = (delegate* unmanaged<uint, ulong, void>)resolver("glVertexAttribL1ui64ARB");
+        s_byName["glVertexAttribL1ui64ARB"] = (nint)VertexAttribL1ui64ARB;
         if (VertexAttribL1ui64ARB is null) { missingCount++; missing?.Add("glVertexAttribL1ui64ARB"); }
         VertexAttribL1ui64NV = (delegate* unmanaged<uint, ulong, void>)resolver("glVertexAttribL1ui64NV");
+        s_byName["glVertexAttribL1ui64NV"] = (nint)VertexAttribL1ui64NV;
         if (VertexAttribL1ui64NV is null) { missingCount++; missing?.Add("glVertexAttribL1ui64NV"); }
         VertexAttribL1ui64vARB = (delegate* unmanaged<uint, ulong*, void>)resolver("glVertexAttribL1ui64vARB");
+        s_byName["glVertexAttribL1ui64vARB"] = (nint)VertexAttribL1ui64vARB;
         if (VertexAttribL1ui64vARB is null) { missingCount++; missing?.Add("glVertexAttribL1ui64vARB"); }
         VertexAttribL1ui64vNV = (delegate* unmanaged<uint, ulong*, void>)resolver("glVertexAttribL1ui64vNV");
+        s_byName["glVertexAttribL1ui64vNV"] = (nint)VertexAttribL1ui64vNV;
         if (VertexAttribL1ui64vNV is null) { missingCount++; missing?.Add("glVertexAttribL1ui64vNV"); }
         VertexAttribL2d = (delegate* unmanaged<uint, double, double, void>)resolver("glVertexAttribL2d");
+        s_byName["glVertexAttribL2d"] = (nint)VertexAttribL2d;
         if (VertexAttribL2d is null) { missingCount++; missing?.Add("glVertexAttribL2d"); }
         VertexAttribL2dEXT = (delegate* unmanaged<uint, double, double, void>)resolver("glVertexAttribL2dEXT");
+        s_byName["glVertexAttribL2dEXT"] = (nint)VertexAttribL2dEXT;
         if (VertexAttribL2dEXT is null) { missingCount++; missing?.Add("glVertexAttribL2dEXT"); }
         VertexAttribL2dv = (delegate* unmanaged<uint, double*, void>)resolver("glVertexAttribL2dv");
+        s_byName["glVertexAttribL2dv"] = (nint)VertexAttribL2dv;
         if (VertexAttribL2dv is null) { missingCount++; missing?.Add("glVertexAttribL2dv"); }
         VertexAttribL2dvEXT = (delegate* unmanaged<uint, double*, void>)resolver("glVertexAttribL2dvEXT");
+        s_byName["glVertexAttribL2dvEXT"] = (nint)VertexAttribL2dvEXT;
         if (VertexAttribL2dvEXT is null) { missingCount++; missing?.Add("glVertexAttribL2dvEXT"); }
         VertexAttribL2i64NV = (delegate* unmanaged<uint, long, long, void>)resolver("glVertexAttribL2i64NV");
+        s_byName["glVertexAttribL2i64NV"] = (nint)VertexAttribL2i64NV;
         if (VertexAttribL2i64NV is null) { missingCount++; missing?.Add("glVertexAttribL2i64NV"); }
         VertexAttribL2i64vNV = (delegate* unmanaged<uint, long*, void>)resolver("glVertexAttribL2i64vNV");
+        s_byName["glVertexAttribL2i64vNV"] = (nint)VertexAttribL2i64vNV;
         if (VertexAttribL2i64vNV is null) { missingCount++; missing?.Add("glVertexAttribL2i64vNV"); }
         VertexAttribL2ui64NV = (delegate* unmanaged<uint, ulong, ulong, void>)resolver("glVertexAttribL2ui64NV");
+        s_byName["glVertexAttribL2ui64NV"] = (nint)VertexAttribL2ui64NV;
         if (VertexAttribL2ui64NV is null) { missingCount++; missing?.Add("glVertexAttribL2ui64NV"); }
         VertexAttribL2ui64vNV = (delegate* unmanaged<uint, ulong*, void>)resolver("glVertexAttribL2ui64vNV");
+        s_byName["glVertexAttribL2ui64vNV"] = (nint)VertexAttribL2ui64vNV;
         if (VertexAttribL2ui64vNV is null) { missingCount++; missing?.Add("glVertexAttribL2ui64vNV"); }
         VertexAttribL3d = (delegate* unmanaged<uint, double, double, double, void>)resolver("glVertexAttribL3d");
+        s_byName["glVertexAttribL3d"] = (nint)VertexAttribL3d;
         if (VertexAttribL3d is null) { missingCount++; missing?.Add("glVertexAttribL3d"); }
         VertexAttribL3dEXT = (delegate* unmanaged<uint, double, double, double, void>)resolver("glVertexAttribL3dEXT");
+        s_byName["glVertexAttribL3dEXT"] = (nint)VertexAttribL3dEXT;
         if (VertexAttribL3dEXT is null) { missingCount++; missing?.Add("glVertexAttribL3dEXT"); }
         VertexAttribL3dv = (delegate* unmanaged<uint, double*, void>)resolver("glVertexAttribL3dv");
+        s_byName["glVertexAttribL3dv"] = (nint)VertexAttribL3dv;
         if (VertexAttribL3dv is null) { missingCount++; missing?.Add("glVertexAttribL3dv"); }
         VertexAttribL3dvEXT = (delegate* unmanaged<uint, double*, void>)resolver("glVertexAttribL3dvEXT");
+        s_byName["glVertexAttribL3dvEXT"] = (nint)VertexAttribL3dvEXT;
         if (VertexAttribL3dvEXT is null) { missingCount++; missing?.Add("glVertexAttribL3dvEXT"); }
         VertexAttribL3i64NV = (delegate* unmanaged<uint, long, long, long, void>)resolver("glVertexAttribL3i64NV");
+        s_byName["glVertexAttribL3i64NV"] = (nint)VertexAttribL3i64NV;
         if (VertexAttribL3i64NV is null) { missingCount++; missing?.Add("glVertexAttribL3i64NV"); }
         VertexAttribL3i64vNV = (delegate* unmanaged<uint, long*, void>)resolver("glVertexAttribL3i64vNV");
+        s_byName["glVertexAttribL3i64vNV"] = (nint)VertexAttribL3i64vNV;
         if (VertexAttribL3i64vNV is null) { missingCount++; missing?.Add("glVertexAttribL3i64vNV"); }
         VertexAttribL3ui64NV = (delegate* unmanaged<uint, ulong, ulong, ulong, void>)resolver("glVertexAttribL3ui64NV");
+        s_byName["glVertexAttribL3ui64NV"] = (nint)VertexAttribL3ui64NV;
         if (VertexAttribL3ui64NV is null) { missingCount++; missing?.Add("glVertexAttribL3ui64NV"); }
         VertexAttribL3ui64vNV = (delegate* unmanaged<uint, ulong*, void>)resolver("glVertexAttribL3ui64vNV");
+        s_byName["glVertexAttribL3ui64vNV"] = (nint)VertexAttribL3ui64vNV;
         if (VertexAttribL3ui64vNV is null) { missingCount++; missing?.Add("glVertexAttribL3ui64vNV"); }
         VertexAttribL4d = (delegate* unmanaged<uint, double, double, double, double, void>)resolver("glVertexAttribL4d");
+        s_byName["glVertexAttribL4d"] = (nint)VertexAttribL4d;
         if (VertexAttribL4d is null) { missingCount++; missing?.Add("glVertexAttribL4d"); }
         VertexAttribL4dEXT = (delegate* unmanaged<uint, double, double, double, double, void>)resolver("glVertexAttribL4dEXT");
+        s_byName["glVertexAttribL4dEXT"] = (nint)VertexAttribL4dEXT;
         if (VertexAttribL4dEXT is null) { missingCount++; missing?.Add("glVertexAttribL4dEXT"); }
         VertexAttribL4dv = (delegate* unmanaged<uint, double*, void>)resolver("glVertexAttribL4dv");
+        s_byName["glVertexAttribL4dv"] = (nint)VertexAttribL4dv;
         if (VertexAttribL4dv is null) { missingCount++; missing?.Add("glVertexAttribL4dv"); }
         VertexAttribL4dvEXT = (delegate* unmanaged<uint, double*, void>)resolver("glVertexAttribL4dvEXT");
+        s_byName["glVertexAttribL4dvEXT"] = (nint)VertexAttribL4dvEXT;
         if (VertexAttribL4dvEXT is null) { missingCount++; missing?.Add("glVertexAttribL4dvEXT"); }
         VertexAttribL4i64NV = (delegate* unmanaged<uint, long, long, long, long, void>)resolver("glVertexAttribL4i64NV");
+        s_byName["glVertexAttribL4i64NV"] = (nint)VertexAttribL4i64NV;
         if (VertexAttribL4i64NV is null) { missingCount++; missing?.Add("glVertexAttribL4i64NV"); }
         VertexAttribL4i64vNV = (delegate* unmanaged<uint, long*, void>)resolver("glVertexAttribL4i64vNV");
+        s_byName["glVertexAttribL4i64vNV"] = (nint)VertexAttribL4i64vNV;
         if (VertexAttribL4i64vNV is null) { missingCount++; missing?.Add("glVertexAttribL4i64vNV"); }
         VertexAttribL4ui64NV = (delegate* unmanaged<uint, ulong, ulong, ulong, ulong, void>)resolver("glVertexAttribL4ui64NV");
+        s_byName["glVertexAttribL4ui64NV"] = (nint)VertexAttribL4ui64NV;
         if (VertexAttribL4ui64NV is null) { missingCount++; missing?.Add("glVertexAttribL4ui64NV"); }
         VertexAttribL4ui64vNV = (delegate* unmanaged<uint, ulong*, void>)resolver("glVertexAttribL4ui64vNV");
+        s_byName["glVertexAttribL4ui64vNV"] = (nint)VertexAttribL4ui64vNV;
         if (VertexAttribL4ui64vNV is null) { missingCount++; missing?.Add("glVertexAttribL4ui64vNV"); }
         VertexAttribLFormat = (delegate* unmanaged<uint, int, uint, uint, void>)resolver("glVertexAttribLFormat");
+        s_byName["glVertexAttribLFormat"] = (nint)VertexAttribLFormat;
         if (VertexAttribLFormat is null) { missingCount++; missing?.Add("glVertexAttribLFormat"); }
         VertexAttribLFormatNV = (delegate* unmanaged<uint, int, uint, int, void>)resolver("glVertexAttribLFormatNV");
+        s_byName["glVertexAttribLFormatNV"] = (nint)VertexAttribLFormatNV;
         if (VertexAttribLFormatNV is null) { missingCount++; missing?.Add("glVertexAttribLFormatNV"); }
         VertexAttribLPointer = (delegate* unmanaged<uint, int, uint, int, void*, void>)resolver("glVertexAttribLPointer");
+        s_byName["glVertexAttribLPointer"] = (nint)VertexAttribLPointer;
         if (VertexAttribLPointer is null) { missingCount++; missing?.Add("glVertexAttribLPointer"); }
         VertexAttribLPointerEXT = (delegate* unmanaged<uint, int, uint, int, void*, void>)resolver("glVertexAttribLPointerEXT");
+        s_byName["glVertexAttribLPointerEXT"] = (nint)VertexAttribLPointerEXT;
         if (VertexAttribLPointerEXT is null) { missingCount++; missing?.Add("glVertexAttribLPointerEXT"); }
         VertexAttribP1ui = (delegate* unmanaged<uint, uint, byte, uint, void>)resolver("glVertexAttribP1ui");
+        s_byName["glVertexAttribP1ui"] = (nint)VertexAttribP1ui;
         if (VertexAttribP1ui is null) { missingCount++; missing?.Add("glVertexAttribP1ui"); }
         VertexAttribP1uiv = (delegate* unmanaged<uint, uint, byte, uint*, void>)resolver("glVertexAttribP1uiv");
+        s_byName["glVertexAttribP1uiv"] = (nint)VertexAttribP1uiv;
         if (VertexAttribP1uiv is null) { missingCount++; missing?.Add("glVertexAttribP1uiv"); }
         VertexAttribP2ui = (delegate* unmanaged<uint, uint, byte, uint, void>)resolver("glVertexAttribP2ui");
+        s_byName["glVertexAttribP2ui"] = (nint)VertexAttribP2ui;
         if (VertexAttribP2ui is null) { missingCount++; missing?.Add("glVertexAttribP2ui"); }
         VertexAttribP2uiv = (delegate* unmanaged<uint, uint, byte, uint*, void>)resolver("glVertexAttribP2uiv");
+        s_byName["glVertexAttribP2uiv"] = (nint)VertexAttribP2uiv;
         if (VertexAttribP2uiv is null) { missingCount++; missing?.Add("glVertexAttribP2uiv"); }
         VertexAttribP3ui = (delegate* unmanaged<uint, uint, byte, uint, void>)resolver("glVertexAttribP3ui");
+        s_byName["glVertexAttribP3ui"] = (nint)VertexAttribP3ui;
         if (VertexAttribP3ui is null) { missingCount++; missing?.Add("glVertexAttribP3ui"); }
         VertexAttribP3uiv = (delegate* unmanaged<uint, uint, byte, uint*, void>)resolver("glVertexAttribP3uiv");
+        s_byName["glVertexAttribP3uiv"] = (nint)VertexAttribP3uiv;
         if (VertexAttribP3uiv is null) { missingCount++; missing?.Add("glVertexAttribP3uiv"); }
         VertexAttribP4ui = (delegate* unmanaged<uint, uint, byte, uint, void>)resolver("glVertexAttribP4ui");
+        s_byName["glVertexAttribP4ui"] = (nint)VertexAttribP4ui;
         if (VertexAttribP4ui is null) { missingCount++; missing?.Add("glVertexAttribP4ui"); }
         VertexAttribP4uiv = (delegate* unmanaged<uint, uint, byte, uint*, void>)resolver("glVertexAttribP4uiv");
+        s_byName["glVertexAttribP4uiv"] = (nint)VertexAttribP4uiv;
         if (VertexAttribP4uiv is null) { missingCount++; missing?.Add("glVertexAttribP4uiv"); }
         VertexAttribParameteriAMD = (delegate* unmanaged<uint, uint, int, void>)resolver("glVertexAttribParameteriAMD");
+        s_byName["glVertexAttribParameteriAMD"] = (nint)VertexAttribParameteriAMD;
         if (VertexAttribParameteriAMD is null) { missingCount++; missing?.Add("glVertexAttribParameteriAMD"); }
         VertexAttribPointer = (delegate* unmanaged<uint, int, uint, byte, int, void*, void>)resolver("glVertexAttribPointer");
+        s_byName["glVertexAttribPointer"] = (nint)VertexAttribPointer;
         if (VertexAttribPointer is null) { missingCount++; missing?.Add("glVertexAttribPointer"); }
         VertexAttribPointerARB = (delegate* unmanaged<uint, int, uint, byte, int, void*, void>)resolver("glVertexAttribPointerARB");
+        s_byName["glVertexAttribPointerARB"] = (nint)VertexAttribPointerARB;
         if (VertexAttribPointerARB is null) { missingCount++; missing?.Add("glVertexAttribPointerARB"); }
         VertexAttribPointerNV = (delegate* unmanaged<uint, int, uint, int, void*, void>)resolver("glVertexAttribPointerNV");
+        s_byName["glVertexAttribPointerNV"] = (nint)VertexAttribPointerNV;
         if (VertexAttribPointerNV is null) { missingCount++; missing?.Add("glVertexAttribPointerNV"); }
         VertexAttribs1dvNV = (delegate* unmanaged<uint, int, double*, void>)resolver("glVertexAttribs1dvNV");
+        s_byName["glVertexAttribs1dvNV"] = (nint)VertexAttribs1dvNV;
         if (VertexAttribs1dvNV is null) { missingCount++; missing?.Add("glVertexAttribs1dvNV"); }
         VertexAttribs1fvNV = (delegate* unmanaged<uint, int, float*, void>)resolver("glVertexAttribs1fvNV");
+        s_byName["glVertexAttribs1fvNV"] = (nint)VertexAttribs1fvNV;
         if (VertexAttribs1fvNV is null) { missingCount++; missing?.Add("glVertexAttribs1fvNV"); }
         VertexAttribs1hvNV = (delegate* unmanaged<uint, int, ushort*, void>)resolver("glVertexAttribs1hvNV");
+        s_byName["glVertexAttribs1hvNV"] = (nint)VertexAttribs1hvNV;
         if (VertexAttribs1hvNV is null) { missingCount++; missing?.Add("glVertexAttribs1hvNV"); }
         VertexAttribs1svNV = (delegate* unmanaged<uint, int, short*, void>)resolver("glVertexAttribs1svNV");
+        s_byName["glVertexAttribs1svNV"] = (nint)VertexAttribs1svNV;
         if (VertexAttribs1svNV is null) { missingCount++; missing?.Add("glVertexAttribs1svNV"); }
         VertexAttribs2dvNV = (delegate* unmanaged<uint, int, double*, void>)resolver("glVertexAttribs2dvNV");
+        s_byName["glVertexAttribs2dvNV"] = (nint)VertexAttribs2dvNV;
         if (VertexAttribs2dvNV is null) { missingCount++; missing?.Add("glVertexAttribs2dvNV"); }
         VertexAttribs2fvNV = (delegate* unmanaged<uint, int, float*, void>)resolver("glVertexAttribs2fvNV");
+        s_byName["glVertexAttribs2fvNV"] = (nint)VertexAttribs2fvNV;
         if (VertexAttribs2fvNV is null) { missingCount++; missing?.Add("glVertexAttribs2fvNV"); }
         VertexAttribs2hvNV = (delegate* unmanaged<uint, int, ushort*, void>)resolver("glVertexAttribs2hvNV");
+        s_byName["glVertexAttribs2hvNV"] = (nint)VertexAttribs2hvNV;
         if (VertexAttribs2hvNV is null) { missingCount++; missing?.Add("glVertexAttribs2hvNV"); }
         VertexAttribs2svNV = (delegate* unmanaged<uint, int, short*, void>)resolver("glVertexAttribs2svNV");
+        s_byName["glVertexAttribs2svNV"] = (nint)VertexAttribs2svNV;
         if (VertexAttribs2svNV is null) { missingCount++; missing?.Add("glVertexAttribs2svNV"); }
         VertexAttribs3dvNV = (delegate* unmanaged<uint, int, double*, void>)resolver("glVertexAttribs3dvNV");
+        s_byName["glVertexAttribs3dvNV"] = (nint)VertexAttribs3dvNV;
         if (VertexAttribs3dvNV is null) { missingCount++; missing?.Add("glVertexAttribs3dvNV"); }
         VertexAttribs3fvNV = (delegate* unmanaged<uint, int, float*, void>)resolver("glVertexAttribs3fvNV");
+        s_byName["glVertexAttribs3fvNV"] = (nint)VertexAttribs3fvNV;
         if (VertexAttribs3fvNV is null) { missingCount++; missing?.Add("glVertexAttribs3fvNV"); }
         VertexAttribs3hvNV = (delegate* unmanaged<uint, int, ushort*, void>)resolver("glVertexAttribs3hvNV");
+        s_byName["glVertexAttribs3hvNV"] = (nint)VertexAttribs3hvNV;
         if (VertexAttribs3hvNV is null) { missingCount++; missing?.Add("glVertexAttribs3hvNV"); }
         VertexAttribs3svNV = (delegate* unmanaged<uint, int, short*, void>)resolver("glVertexAttribs3svNV");
+        s_byName["glVertexAttribs3svNV"] = (nint)VertexAttribs3svNV;
         if (VertexAttribs3svNV is null) { missingCount++; missing?.Add("glVertexAttribs3svNV"); }
         VertexAttribs4dvNV = (delegate* unmanaged<uint, int, double*, void>)resolver("glVertexAttribs4dvNV");
+        s_byName["glVertexAttribs4dvNV"] = (nint)VertexAttribs4dvNV;
         if (VertexAttribs4dvNV is null) { missingCount++; missing?.Add("glVertexAttribs4dvNV"); }
         VertexAttribs4fvNV = (delegate* unmanaged<uint, int, float*, void>)resolver("glVertexAttribs4fvNV");
+        s_byName["glVertexAttribs4fvNV"] = (nint)VertexAttribs4fvNV;
         if (VertexAttribs4fvNV is null) { missingCount++; missing?.Add("glVertexAttribs4fvNV"); }
         VertexAttribs4hvNV = (delegate* unmanaged<uint, int, ushort*, void>)resolver("glVertexAttribs4hvNV");
+        s_byName["glVertexAttribs4hvNV"] = (nint)VertexAttribs4hvNV;
         if (VertexAttribs4hvNV is null) { missingCount++; missing?.Add("glVertexAttribs4hvNV"); }
         VertexAttribs4svNV = (delegate* unmanaged<uint, int, short*, void>)resolver("glVertexAttribs4svNV");
+        s_byName["glVertexAttribs4svNV"] = (nint)VertexAttribs4svNV;
         if (VertexAttribs4svNV is null) { missingCount++; missing?.Add("glVertexAttribs4svNV"); }
         VertexAttribs4ubvNV = (delegate* unmanaged<uint, int, byte*, void>)resolver("glVertexAttribs4ubvNV");
+        s_byName["glVertexAttribs4ubvNV"] = (nint)VertexAttribs4ubvNV;
         if (VertexAttribs4ubvNV is null) { missingCount++; missing?.Add("glVertexAttribs4ubvNV"); }
         VertexBindingDivisor = (delegate* unmanaged<uint, uint, void>)resolver("glVertexBindingDivisor");
+        s_byName["glVertexBindingDivisor"] = (nint)VertexBindingDivisor;
         if (VertexBindingDivisor is null) { missingCount++; missing?.Add("glVertexBindingDivisor"); }
         VertexBlendARB = (delegate* unmanaged<int, void>)resolver("glVertexBlendARB");
+        s_byName["glVertexBlendARB"] = (nint)VertexBlendARB;
         if (VertexBlendARB is null) { missingCount++; missing?.Add("glVertexBlendARB"); }
         VertexBlendEnvfATI = (delegate* unmanaged<uint, float, void>)resolver("glVertexBlendEnvfATI");
+        s_byName["glVertexBlendEnvfATI"] = (nint)VertexBlendEnvfATI;
         if (VertexBlendEnvfATI is null) { missingCount++; missing?.Add("glVertexBlendEnvfATI"); }
         VertexBlendEnviATI = (delegate* unmanaged<uint, int, void>)resolver("glVertexBlendEnviATI");
+        s_byName["glVertexBlendEnviATI"] = (nint)VertexBlendEnviATI;
         if (VertexBlendEnviATI is null) { missingCount++; missing?.Add("glVertexBlendEnviATI"); }
         VertexFormatNV = (delegate* unmanaged<int, uint, int, void>)resolver("glVertexFormatNV");
+        s_byName["glVertexFormatNV"] = (nint)VertexFormatNV;
         if (VertexFormatNV is null) { missingCount++; missing?.Add("glVertexFormatNV"); }
         VertexP2ui = (delegate* unmanaged<uint, uint, void>)resolver("glVertexP2ui");
+        s_byName["glVertexP2ui"] = (nint)VertexP2ui;
         if (VertexP2ui is null) { missingCount++; missing?.Add("glVertexP2ui"); }
         VertexP2uiv = (delegate* unmanaged<uint, uint*, void>)resolver("glVertexP2uiv");
+        s_byName["glVertexP2uiv"] = (nint)VertexP2uiv;
         if (VertexP2uiv is null) { missingCount++; missing?.Add("glVertexP2uiv"); }
         VertexP3ui = (delegate* unmanaged<uint, uint, void>)resolver("glVertexP3ui");
+        s_byName["glVertexP3ui"] = (nint)VertexP3ui;
         if (VertexP3ui is null) { missingCount++; missing?.Add("glVertexP3ui"); }
         VertexP3uiv = (delegate* unmanaged<uint, uint*, void>)resolver("glVertexP3uiv");
+        s_byName["glVertexP3uiv"] = (nint)VertexP3uiv;
         if (VertexP3uiv is null) { missingCount++; missing?.Add("glVertexP3uiv"); }
         VertexP4ui = (delegate* unmanaged<uint, uint, void>)resolver("glVertexP4ui");
+        s_byName["glVertexP4ui"] = (nint)VertexP4ui;
         if (VertexP4ui is null) { missingCount++; missing?.Add("glVertexP4ui"); }
         VertexP4uiv = (delegate* unmanaged<uint, uint*, void>)resolver("glVertexP4uiv");
+        s_byName["glVertexP4uiv"] = (nint)VertexP4uiv;
         if (VertexP4uiv is null) { missingCount++; missing?.Add("glVertexP4uiv"); }
         VertexPointerEXT = (delegate* unmanaged<int, uint, int, int, void*, void>)resolver("glVertexPointerEXT");
+        s_byName["glVertexPointerEXT"] = (nint)VertexPointerEXT;
         if (VertexPointerEXT is null) { missingCount++; missing?.Add("glVertexPointerEXT"); }
         VertexPointerListIBM = (delegate* unmanaged<int, uint, int, void**, int, void>)resolver("glVertexPointerListIBM");
+        s_byName["glVertexPointerListIBM"] = (nint)VertexPointerListIBM;
         if (VertexPointerListIBM is null) { missingCount++; missing?.Add("glVertexPointerListIBM"); }
         VertexPointervINTEL = (delegate* unmanaged<int, uint, void**, void>)resolver("glVertexPointervINTEL");
+        s_byName["glVertexPointervINTEL"] = (nint)VertexPointervINTEL;
         if (VertexPointervINTEL is null) { missingCount++; missing?.Add("glVertexPointervINTEL"); }
         VertexStream1dATI = (delegate* unmanaged<uint, double, void>)resolver("glVertexStream1dATI");
+        s_byName["glVertexStream1dATI"] = (nint)VertexStream1dATI;
         if (VertexStream1dATI is null) { missingCount++; missing?.Add("glVertexStream1dATI"); }
         VertexStream1dvATI = (delegate* unmanaged<uint, double*, void>)resolver("glVertexStream1dvATI");
+        s_byName["glVertexStream1dvATI"] = (nint)VertexStream1dvATI;
         if (VertexStream1dvATI is null) { missingCount++; missing?.Add("glVertexStream1dvATI"); }
         VertexStream1fATI = (delegate* unmanaged<uint, float, void>)resolver("glVertexStream1fATI");
+        s_byName["glVertexStream1fATI"] = (nint)VertexStream1fATI;
         if (VertexStream1fATI is null) { missingCount++; missing?.Add("glVertexStream1fATI"); }
         VertexStream1fvATI = (delegate* unmanaged<uint, float*, void>)resolver("glVertexStream1fvATI");
+        s_byName["glVertexStream1fvATI"] = (nint)VertexStream1fvATI;
         if (VertexStream1fvATI is null) { missingCount++; missing?.Add("glVertexStream1fvATI"); }
         VertexStream1iATI = (delegate* unmanaged<uint, int, void>)resolver("glVertexStream1iATI");
+        s_byName["glVertexStream1iATI"] = (nint)VertexStream1iATI;
         if (VertexStream1iATI is null) { missingCount++; missing?.Add("glVertexStream1iATI"); }
         VertexStream1ivATI = (delegate* unmanaged<uint, int*, void>)resolver("glVertexStream1ivATI");
+        s_byName["glVertexStream1ivATI"] = (nint)VertexStream1ivATI;
         if (VertexStream1ivATI is null) { missingCount++; missing?.Add("glVertexStream1ivATI"); }
         VertexStream1sATI = (delegate* unmanaged<uint, short, void>)resolver("glVertexStream1sATI");
+        s_byName["glVertexStream1sATI"] = (nint)VertexStream1sATI;
         if (VertexStream1sATI is null) { missingCount++; missing?.Add("glVertexStream1sATI"); }
         VertexStream1svATI = (delegate* unmanaged<uint, short*, void>)resolver("glVertexStream1svATI");
+        s_byName["glVertexStream1svATI"] = (nint)VertexStream1svATI;
         if (VertexStream1svATI is null) { missingCount++; missing?.Add("glVertexStream1svATI"); }
         VertexStream2dATI = (delegate* unmanaged<uint, double, double, void>)resolver("glVertexStream2dATI");
+        s_byName["glVertexStream2dATI"] = (nint)VertexStream2dATI;
         if (VertexStream2dATI is null) { missingCount++; missing?.Add("glVertexStream2dATI"); }
         VertexStream2dvATI = (delegate* unmanaged<uint, double*, void>)resolver("glVertexStream2dvATI");
+        s_byName["glVertexStream2dvATI"] = (nint)VertexStream2dvATI;
         if (VertexStream2dvATI is null) { missingCount++; missing?.Add("glVertexStream2dvATI"); }
         VertexStream2fATI = (delegate* unmanaged<uint, float, float, void>)resolver("glVertexStream2fATI");
+        s_byName["glVertexStream2fATI"] = (nint)VertexStream2fATI;
         if (VertexStream2fATI is null) { missingCount++; missing?.Add("glVertexStream2fATI"); }
         VertexStream2fvATI = (delegate* unmanaged<uint, float*, void>)resolver("glVertexStream2fvATI");
+        s_byName["glVertexStream2fvATI"] = (nint)VertexStream2fvATI;
         if (VertexStream2fvATI is null) { missingCount++; missing?.Add("glVertexStream2fvATI"); }
         VertexStream2iATI = (delegate* unmanaged<uint, int, int, void>)resolver("glVertexStream2iATI");
+        s_byName["glVertexStream2iATI"] = (nint)VertexStream2iATI;
         if (VertexStream2iATI is null) { missingCount++; missing?.Add("glVertexStream2iATI"); }
         VertexStream2ivATI = (delegate* unmanaged<uint, int*, void>)resolver("glVertexStream2ivATI");
+        s_byName["glVertexStream2ivATI"] = (nint)VertexStream2ivATI;
         if (VertexStream2ivATI is null) { missingCount++; missing?.Add("glVertexStream2ivATI"); }
         VertexStream2sATI = (delegate* unmanaged<uint, short, short, void>)resolver("glVertexStream2sATI");
+        s_byName["glVertexStream2sATI"] = (nint)VertexStream2sATI;
         if (VertexStream2sATI is null) { missingCount++; missing?.Add("glVertexStream2sATI"); }
         VertexStream2svATI = (delegate* unmanaged<uint, short*, void>)resolver("glVertexStream2svATI");
+        s_byName["glVertexStream2svATI"] = (nint)VertexStream2svATI;
         if (VertexStream2svATI is null) { missingCount++; missing?.Add("glVertexStream2svATI"); }
         VertexStream3dATI = (delegate* unmanaged<uint, double, double, double, void>)resolver("glVertexStream3dATI");
+        s_byName["glVertexStream3dATI"] = (nint)VertexStream3dATI;
         if (VertexStream3dATI is null) { missingCount++; missing?.Add("glVertexStream3dATI"); }
         VertexStream3dvATI = (delegate* unmanaged<uint, double*, void>)resolver("glVertexStream3dvATI");
+        s_byName["glVertexStream3dvATI"] = (nint)VertexStream3dvATI;
         if (VertexStream3dvATI is null) { missingCount++; missing?.Add("glVertexStream3dvATI"); }
         VertexStream3fATI = (delegate* unmanaged<uint, float, float, float, void>)resolver("glVertexStream3fATI");
+        s_byName["glVertexStream3fATI"] = (nint)VertexStream3fATI;
         if (VertexStream3fATI is null) { missingCount++; missing?.Add("glVertexStream3fATI"); }
         VertexStream3fvATI = (delegate* unmanaged<uint, float*, void>)resolver("glVertexStream3fvATI");
+        s_byName["glVertexStream3fvATI"] = (nint)VertexStream3fvATI;
         if (VertexStream3fvATI is null) { missingCount++; missing?.Add("glVertexStream3fvATI"); }
         VertexStream3iATI = (delegate* unmanaged<uint, int, int, int, void>)resolver("glVertexStream3iATI");
+        s_byName["glVertexStream3iATI"] = (nint)VertexStream3iATI;
         if (VertexStream3iATI is null) { missingCount++; missing?.Add("glVertexStream3iATI"); }
         VertexStream3ivATI = (delegate* unmanaged<uint, int*, void>)resolver("glVertexStream3ivATI");
+        s_byName["glVertexStream3ivATI"] = (nint)VertexStream3ivATI;
         if (VertexStream3ivATI is null) { missingCount++; missing?.Add("glVertexStream3ivATI"); }
         VertexStream3sATI = (delegate* unmanaged<uint, short, short, short, void>)resolver("glVertexStream3sATI");
+        s_byName["glVertexStream3sATI"] = (nint)VertexStream3sATI;
         if (VertexStream3sATI is null) { missingCount++; missing?.Add("glVertexStream3sATI"); }
         VertexStream3svATI = (delegate* unmanaged<uint, short*, void>)resolver("glVertexStream3svATI");
+        s_byName["glVertexStream3svATI"] = (nint)VertexStream3svATI;
         if (VertexStream3svATI is null) { missingCount++; missing?.Add("glVertexStream3svATI"); }
         VertexStream4dATI = (delegate* unmanaged<uint, double, double, double, double, void>)resolver("glVertexStream4dATI");
+        s_byName["glVertexStream4dATI"] = (nint)VertexStream4dATI;
         if (VertexStream4dATI is null) { missingCount++; missing?.Add("glVertexStream4dATI"); }
         VertexStream4dvATI = (delegate* unmanaged<uint, double*, void>)resolver("glVertexStream4dvATI");
+        s_byName["glVertexStream4dvATI"] = (nint)VertexStream4dvATI;
         if (VertexStream4dvATI is null) { missingCount++; missing?.Add("glVertexStream4dvATI"); }
         VertexStream4fATI = (delegate* unmanaged<uint, float, float, float, float, void>)resolver("glVertexStream4fATI");
+        s_byName["glVertexStream4fATI"] = (nint)VertexStream4fATI;
         if (VertexStream4fATI is null) { missingCount++; missing?.Add("glVertexStream4fATI"); }
         VertexStream4fvATI = (delegate* unmanaged<uint, float*, void>)resolver("glVertexStream4fvATI");
+        s_byName["glVertexStream4fvATI"] = (nint)VertexStream4fvATI;
         if (VertexStream4fvATI is null) { missingCount++; missing?.Add("glVertexStream4fvATI"); }
         VertexStream4iATI = (delegate* unmanaged<uint, int, int, int, int, void>)resolver("glVertexStream4iATI");
+        s_byName["glVertexStream4iATI"] = (nint)VertexStream4iATI;
         if (VertexStream4iATI is null) { missingCount++; missing?.Add("glVertexStream4iATI"); }
         VertexStream4ivATI = (delegate* unmanaged<uint, int*, void>)resolver("glVertexStream4ivATI");
+        s_byName["glVertexStream4ivATI"] = (nint)VertexStream4ivATI;
         if (VertexStream4ivATI is null) { missingCount++; missing?.Add("glVertexStream4ivATI"); }
         VertexStream4sATI = (delegate* unmanaged<uint, short, short, short, short, void>)resolver("glVertexStream4sATI");
+        s_byName["glVertexStream4sATI"] = (nint)VertexStream4sATI;
         if (VertexStream4sATI is null) { missingCount++; missing?.Add("glVertexStream4sATI"); }
         VertexStream4svATI = (delegate* unmanaged<uint, short*, void>)resolver("glVertexStream4svATI");
+        s_byName["glVertexStream4svATI"] = (nint)VertexStream4svATI;
         if (VertexStream4svATI is null) { missingCount++; missing?.Add("glVertexStream4svATI"); }
         VertexWeightPointerEXT = (delegate* unmanaged<int, uint, int, void*, void>)resolver("glVertexWeightPointerEXT");
+        s_byName["glVertexWeightPointerEXT"] = (nint)VertexWeightPointerEXT;
         if (VertexWeightPointerEXT is null) { missingCount++; missing?.Add("glVertexWeightPointerEXT"); }
         VertexWeightfEXT = (delegate* unmanaged<float, void>)resolver("glVertexWeightfEXT");
+        s_byName["glVertexWeightfEXT"] = (nint)VertexWeightfEXT;
         if (VertexWeightfEXT is null) { missingCount++; missing?.Add("glVertexWeightfEXT"); }
         VertexWeightfvEXT = (delegate* unmanaged<float*, void>)resolver("glVertexWeightfvEXT");
+        s_byName["glVertexWeightfvEXT"] = (nint)VertexWeightfvEXT;
         if (VertexWeightfvEXT is null) { missingCount++; missing?.Add("glVertexWeightfvEXT"); }
         VertexWeighthNV = (delegate* unmanaged<ushort, void>)resolver("glVertexWeighthNV");
+        s_byName["glVertexWeighthNV"] = (nint)VertexWeighthNV;
         if (VertexWeighthNV is null) { missingCount++; missing?.Add("glVertexWeighthNV"); }
         VertexWeighthvNV = (delegate* unmanaged<ushort*, void>)resolver("glVertexWeighthvNV");
+        s_byName["glVertexWeighthvNV"] = (nint)VertexWeighthvNV;
         if (VertexWeighthvNV is null) { missingCount++; missing?.Add("glVertexWeighthvNV"); }
         VideoCaptureNV = (delegate* unmanaged<uint, uint*, ulong*, uint>)resolver("glVideoCaptureNV");
+        s_byName["glVideoCaptureNV"] = (nint)VideoCaptureNV;
         if (VideoCaptureNV is null) { missingCount++; missing?.Add("glVideoCaptureNV"); }
         VideoCaptureStreamParameterdvNV = (delegate* unmanaged<uint, uint, uint, double*, void>)resolver("glVideoCaptureStreamParameterdvNV");
+        s_byName["glVideoCaptureStreamParameterdvNV"] = (nint)VideoCaptureStreamParameterdvNV;
         if (VideoCaptureStreamParameterdvNV is null) { missingCount++; missing?.Add("glVideoCaptureStreamParameterdvNV"); }
         VideoCaptureStreamParameterfvNV = (delegate* unmanaged<uint, uint, uint, float*, void>)resolver("glVideoCaptureStreamParameterfvNV");
+        s_byName["glVideoCaptureStreamParameterfvNV"] = (nint)VideoCaptureStreamParameterfvNV;
         if (VideoCaptureStreamParameterfvNV is null) { missingCount++; missing?.Add("glVideoCaptureStreamParameterfvNV"); }
         VideoCaptureStreamParameterivNV = (delegate* unmanaged<uint, uint, uint, int*, void>)resolver("glVideoCaptureStreamParameterivNV");
+        s_byName["glVideoCaptureStreamParameterivNV"] = (nint)VideoCaptureStreamParameterivNV;
         if (VideoCaptureStreamParameterivNV is null) { missingCount++; missing?.Add("glVideoCaptureStreamParameterivNV"); }
         Viewport = (delegate* unmanaged<int, int, int, int, void>)resolver("glViewport");
+        s_byName["glViewport"] = (nint)Viewport;
         if (Viewport is null) { missingCount++; missing?.Add("glViewport"); }
         ViewportArrayv = (delegate* unmanaged<uint, int, float*, void>)resolver("glViewportArrayv");
+        s_byName["glViewportArrayv"] = (nint)ViewportArrayv;
         if (ViewportArrayv is null) { missingCount++; missing?.Add("glViewportArrayv"); }
         ViewportIndexedf = (delegate* unmanaged<uint, float, float, float, float, void>)resolver("glViewportIndexedf");
+        s_byName["glViewportIndexedf"] = (nint)ViewportIndexedf;
         if (ViewportIndexedf is null) { missingCount++; missing?.Add("glViewportIndexedf"); }
         ViewportIndexedfv = (delegate* unmanaged<uint, float*, void>)resolver("glViewportIndexedfv");
+        s_byName["glViewportIndexedfv"] = (nint)ViewportIndexedfv;
         if (ViewportIndexedfv is null) { missingCount++; missing?.Add("glViewportIndexedfv"); }
         ViewportPositionWScaleNV = (delegate* unmanaged<uint, float, float, void>)resolver("glViewportPositionWScaleNV");
+        s_byName["glViewportPositionWScaleNV"] = (nint)ViewportPositionWScaleNV;
         if (ViewportPositionWScaleNV is null) { missingCount++; missing?.Add("glViewportPositionWScaleNV"); }
         ViewportSwizzleNV = (delegate* unmanaged<uint, uint, uint, uint, uint, void>)resolver("glViewportSwizzleNV");
+        s_byName["glViewportSwizzleNV"] = (nint)ViewportSwizzleNV;
         if (ViewportSwizzleNV is null) { missingCount++; missing?.Add("glViewportSwizzleNV"); }
         WaitSemaphoreEXT = (delegate* unmanaged<uint, uint, uint*, uint, uint*, uint*, void>)resolver("glWaitSemaphoreEXT");
+        s_byName["glWaitSemaphoreEXT"] = (nint)WaitSemaphoreEXT;
         if (WaitSemaphoreEXT is null) { missingCount++; missing?.Add("glWaitSemaphoreEXT"); }
         WaitSemaphoreui64NVX = (delegate* unmanaged<uint, int, uint*, ulong*, void>)resolver("glWaitSemaphoreui64NVX");
+        s_byName["glWaitSemaphoreui64NVX"] = (nint)WaitSemaphoreui64NVX;
         if (WaitSemaphoreui64NVX is null) { missingCount++; missing?.Add("glWaitSemaphoreui64NVX"); }
         WaitSync = (delegate* unmanaged<nint, uint, ulong, void>)resolver("glWaitSync");
+        s_byName["glWaitSync"] = (nint)WaitSync;
         if (WaitSync is null) { missingCount++; missing?.Add("glWaitSync"); }
         WaitVkSemaphoreNV = (delegate* unmanaged<ulong, void>)resolver("glWaitVkSemaphoreNV");
+        s_byName["glWaitVkSemaphoreNV"] = (nint)WaitVkSemaphoreNV;
         if (WaitVkSemaphoreNV is null) { missingCount++; missing?.Add("glWaitVkSemaphoreNV"); }
         WeightPathsNV = (delegate* unmanaged<uint, int, uint*, float*, void>)resolver("glWeightPathsNV");
+        s_byName["glWeightPathsNV"] = (nint)WeightPathsNV;
         if (WeightPathsNV is null) { missingCount++; missing?.Add("glWeightPathsNV"); }
         WeightPointerARB = (delegate* unmanaged<int, uint, int, void*, void>)resolver("glWeightPointerARB");
+        s_byName["glWeightPointerARB"] = (nint)WeightPointerARB;
         if (WeightPointerARB is null) { missingCount++; missing?.Add("glWeightPointerARB"); }
         WeightbvARB = (delegate* unmanaged<int, sbyte*, void>)resolver("glWeightbvARB");
+        s_byName["glWeightbvARB"] = (nint)WeightbvARB;
         if (WeightbvARB is null) { missingCount++; missing?.Add("glWeightbvARB"); }
         WeightdvARB = (delegate* unmanaged<int, double*, void>)resolver("glWeightdvARB");
+        s_byName["glWeightdvARB"] = (nint)WeightdvARB;
         if (WeightdvARB is null) { missingCount++; missing?.Add("glWeightdvARB"); }
         WeightfvARB = (delegate* unmanaged<int, float*, void>)resolver("glWeightfvARB");
+        s_byName["glWeightfvARB"] = (nint)WeightfvARB;
         if (WeightfvARB is null) { missingCount++; missing?.Add("glWeightfvARB"); }
         WeightivARB = (delegate* unmanaged<int, int*, void>)resolver("glWeightivARB");
+        s_byName["glWeightivARB"] = (nint)WeightivARB;
         if (WeightivARB is null) { missingCount++; missing?.Add("glWeightivARB"); }
         WeightsvARB = (delegate* unmanaged<int, short*, void>)resolver("glWeightsvARB");
+        s_byName["glWeightsvARB"] = (nint)WeightsvARB;
         if (WeightsvARB is null) { missingCount++; missing?.Add("glWeightsvARB"); }
         WeightubvARB = (delegate* unmanaged<int, byte*, void>)resolver("glWeightubvARB");
+        s_byName["glWeightubvARB"] = (nint)WeightubvARB;
         if (WeightubvARB is null) { missingCount++; missing?.Add("glWeightubvARB"); }
         WeightuivARB = (delegate* unmanaged<int, uint*, void>)resolver("glWeightuivARB");
+        s_byName["glWeightuivARB"] = (nint)WeightuivARB;
         if (WeightuivARB is null) { missingCount++; missing?.Add("glWeightuivARB"); }
         WeightusvARB = (delegate* unmanaged<int, ushort*, void>)resolver("glWeightusvARB");
+        s_byName["glWeightusvARB"] = (nint)WeightusvARB;
         if (WeightusvARB is null) { missingCount++; missing?.Add("glWeightusvARB"); }
         WindowPos2dARB = (delegate* unmanaged<double, double, void>)resolver("glWindowPos2dARB");
+        s_byName["glWindowPos2dARB"] = (nint)WindowPos2dARB;
         if (WindowPos2dARB is null) { missingCount++; missing?.Add("glWindowPos2dARB"); }
         WindowPos2dMESA = (delegate* unmanaged<double, double, void>)resolver("glWindowPos2dMESA");
+        s_byName["glWindowPos2dMESA"] = (nint)WindowPos2dMESA;
         if (WindowPos2dMESA is null) { missingCount++; missing?.Add("glWindowPos2dMESA"); }
         WindowPos2dvARB = (delegate* unmanaged<double*, void>)resolver("glWindowPos2dvARB");
+        s_byName["glWindowPos2dvARB"] = (nint)WindowPos2dvARB;
         if (WindowPos2dvARB is null) { missingCount++; missing?.Add("glWindowPos2dvARB"); }
         WindowPos2dvMESA = (delegate* unmanaged<double*, void>)resolver("glWindowPos2dvMESA");
+        s_byName["glWindowPos2dvMESA"] = (nint)WindowPos2dvMESA;
         if (WindowPos2dvMESA is null) { missingCount++; missing?.Add("glWindowPos2dvMESA"); }
         WindowPos2fARB = (delegate* unmanaged<float, float, void>)resolver("glWindowPos2fARB");
+        s_byName["glWindowPos2fARB"] = (nint)WindowPos2fARB;
         if (WindowPos2fARB is null) { missingCount++; missing?.Add("glWindowPos2fARB"); }
         WindowPos2fMESA = (delegate* unmanaged<float, float, void>)resolver("glWindowPos2fMESA");
+        s_byName["glWindowPos2fMESA"] = (nint)WindowPos2fMESA;
         if (WindowPos2fMESA is null) { missingCount++; missing?.Add("glWindowPos2fMESA"); }
         WindowPos2fvARB = (delegate* unmanaged<float*, void>)resolver("glWindowPos2fvARB");
+        s_byName["glWindowPos2fvARB"] = (nint)WindowPos2fvARB;
         if (WindowPos2fvARB is null) { missingCount++; missing?.Add("glWindowPos2fvARB"); }
         WindowPos2fvMESA = (delegate* unmanaged<float*, void>)resolver("glWindowPos2fvMESA");
+        s_byName["glWindowPos2fvMESA"] = (nint)WindowPos2fvMESA;
         if (WindowPos2fvMESA is null) { missingCount++; missing?.Add("glWindowPos2fvMESA"); }
         WindowPos2iARB = (delegate* unmanaged<int, int, void>)resolver("glWindowPos2iARB");
+        s_byName["glWindowPos2iARB"] = (nint)WindowPos2iARB;
         if (WindowPos2iARB is null) { missingCount++; missing?.Add("glWindowPos2iARB"); }
         WindowPos2iMESA = (delegate* unmanaged<int, int, void>)resolver("glWindowPos2iMESA");
+        s_byName["glWindowPos2iMESA"] = (nint)WindowPos2iMESA;
         if (WindowPos2iMESA is null) { missingCount++; missing?.Add("glWindowPos2iMESA"); }
         WindowPos2ivARB = (delegate* unmanaged<int*, void>)resolver("glWindowPos2ivARB");
+        s_byName["glWindowPos2ivARB"] = (nint)WindowPos2ivARB;
         if (WindowPos2ivARB is null) { missingCount++; missing?.Add("glWindowPos2ivARB"); }
         WindowPos2ivMESA = (delegate* unmanaged<int*, void>)resolver("glWindowPos2ivMESA");
+        s_byName["glWindowPos2ivMESA"] = (nint)WindowPos2ivMESA;
         if (WindowPos2ivMESA is null) { missingCount++; missing?.Add("glWindowPos2ivMESA"); }
         WindowPos2sARB = (delegate* unmanaged<short, short, void>)resolver("glWindowPos2sARB");
+        s_byName["glWindowPos2sARB"] = (nint)WindowPos2sARB;
         if (WindowPos2sARB is null) { missingCount++; missing?.Add("glWindowPos2sARB"); }
         WindowPos2sMESA = (delegate* unmanaged<short, short, void>)resolver("glWindowPos2sMESA");
+        s_byName["glWindowPos2sMESA"] = (nint)WindowPos2sMESA;
         if (WindowPos2sMESA is null) { missingCount++; missing?.Add("glWindowPos2sMESA"); }
         WindowPos2svARB = (delegate* unmanaged<short*, void>)resolver("glWindowPos2svARB");
+        s_byName["glWindowPos2svARB"] = (nint)WindowPos2svARB;
         if (WindowPos2svARB is null) { missingCount++; missing?.Add("glWindowPos2svARB"); }
         WindowPos2svMESA = (delegate* unmanaged<short*, void>)resolver("glWindowPos2svMESA");
+        s_byName["glWindowPos2svMESA"] = (nint)WindowPos2svMESA;
         if (WindowPos2svMESA is null) { missingCount++; missing?.Add("glWindowPos2svMESA"); }
         WindowPos3dARB = (delegate* unmanaged<double, double, double, void>)resolver("glWindowPos3dARB");
+        s_byName["glWindowPos3dARB"] = (nint)WindowPos3dARB;
         if (WindowPos3dARB is null) { missingCount++; missing?.Add("glWindowPos3dARB"); }
         WindowPos3dMESA = (delegate* unmanaged<double, double, double, void>)resolver("glWindowPos3dMESA");
+        s_byName["glWindowPos3dMESA"] = (nint)WindowPos3dMESA;
         if (WindowPos3dMESA is null) { missingCount++; missing?.Add("glWindowPos3dMESA"); }
         WindowPos3dvARB = (delegate* unmanaged<double*, void>)resolver("glWindowPos3dvARB");
+        s_byName["glWindowPos3dvARB"] = (nint)WindowPos3dvARB;
         if (WindowPos3dvARB is null) { missingCount++; missing?.Add("glWindowPos3dvARB"); }
         WindowPos3dvMESA = (delegate* unmanaged<double*, void>)resolver("glWindowPos3dvMESA");
+        s_byName["glWindowPos3dvMESA"] = (nint)WindowPos3dvMESA;
         if (WindowPos3dvMESA is null) { missingCount++; missing?.Add("glWindowPos3dvMESA"); }
         WindowPos3fARB = (delegate* unmanaged<float, float, float, void>)resolver("glWindowPos3fARB");
+        s_byName["glWindowPos3fARB"] = (nint)WindowPos3fARB;
         if (WindowPos3fARB is null) { missingCount++; missing?.Add("glWindowPos3fARB"); }
         WindowPos3fMESA = (delegate* unmanaged<float, float, float, void>)resolver("glWindowPos3fMESA");
+        s_byName["glWindowPos3fMESA"] = (nint)WindowPos3fMESA;
         if (WindowPos3fMESA is null) { missingCount++; missing?.Add("glWindowPos3fMESA"); }
         WindowPos3fvARB = (delegate* unmanaged<float*, void>)resolver("glWindowPos3fvARB");
+        s_byName["glWindowPos3fvARB"] = (nint)WindowPos3fvARB;
         if (WindowPos3fvARB is null) { missingCount++; missing?.Add("glWindowPos3fvARB"); }
         WindowPos3fvMESA = (delegate* unmanaged<float*, void>)resolver("glWindowPos3fvMESA");
+        s_byName["glWindowPos3fvMESA"] = (nint)WindowPos3fvMESA;
         if (WindowPos3fvMESA is null) { missingCount++; missing?.Add("glWindowPos3fvMESA"); }
         WindowPos3iARB = (delegate* unmanaged<int, int, int, void>)resolver("glWindowPos3iARB");
+        s_byName["glWindowPos3iARB"] = (nint)WindowPos3iARB;
         if (WindowPos3iARB is null) { missingCount++; missing?.Add("glWindowPos3iARB"); }
         WindowPos3iMESA = (delegate* unmanaged<int, int, int, void>)resolver("glWindowPos3iMESA");
+        s_byName["glWindowPos3iMESA"] = (nint)WindowPos3iMESA;
         if (WindowPos3iMESA is null) { missingCount++; missing?.Add("glWindowPos3iMESA"); }
         WindowPos3ivARB = (delegate* unmanaged<int*, void>)resolver("glWindowPos3ivARB");
+        s_byName["glWindowPos3ivARB"] = (nint)WindowPos3ivARB;
         if (WindowPos3ivARB is null) { missingCount++; missing?.Add("glWindowPos3ivARB"); }
         WindowPos3ivMESA = (delegate* unmanaged<int*, void>)resolver("glWindowPos3ivMESA");
+        s_byName["glWindowPos3ivMESA"] = (nint)WindowPos3ivMESA;
         if (WindowPos3ivMESA is null) { missingCount++; missing?.Add("glWindowPos3ivMESA"); }
         WindowPos3sARB = (delegate* unmanaged<short, short, short, void>)resolver("glWindowPos3sARB");
+        s_byName["glWindowPos3sARB"] = (nint)WindowPos3sARB;
         if (WindowPos3sARB is null) { missingCount++; missing?.Add("glWindowPos3sARB"); }
         WindowPos3sMESA = (delegate* unmanaged<short, short, short, void>)resolver("glWindowPos3sMESA");
+        s_byName["glWindowPos3sMESA"] = (nint)WindowPos3sMESA;
         if (WindowPos3sMESA is null) { missingCount++; missing?.Add("glWindowPos3sMESA"); }
         WindowPos3svARB = (delegate* unmanaged<short*, void>)resolver("glWindowPos3svARB");
+        s_byName["glWindowPos3svARB"] = (nint)WindowPos3svARB;
         if (WindowPos3svARB is null) { missingCount++; missing?.Add("glWindowPos3svARB"); }
         WindowPos3svMESA = (delegate* unmanaged<short*, void>)resolver("glWindowPos3svMESA");
+        s_byName["glWindowPos3svMESA"] = (nint)WindowPos3svMESA;
         if (WindowPos3svMESA is null) { missingCount++; missing?.Add("glWindowPos3svMESA"); }
         WindowPos4dMESA = (delegate* unmanaged<double, double, double, double, void>)resolver("glWindowPos4dMESA");
+        s_byName["glWindowPos4dMESA"] = (nint)WindowPos4dMESA;
         if (WindowPos4dMESA is null) { missingCount++; missing?.Add("glWindowPos4dMESA"); }
         WindowPos4dvMESA = (delegate* unmanaged<double*, void>)resolver("glWindowPos4dvMESA");
+        s_byName["glWindowPos4dvMESA"] = (nint)WindowPos4dvMESA;
         if (WindowPos4dvMESA is null) { missingCount++; missing?.Add("glWindowPos4dvMESA"); }
         WindowPos4fMESA = (delegate* unmanaged<float, float, float, float, void>)resolver("glWindowPos4fMESA");
+        s_byName["glWindowPos4fMESA"] = (nint)WindowPos4fMESA;
         if (WindowPos4fMESA is null) { missingCount++; missing?.Add("glWindowPos4fMESA"); }
         WindowPos4fvMESA = (delegate* unmanaged<float*, void>)resolver("glWindowPos4fvMESA");
+        s_byName["glWindowPos4fvMESA"] = (nint)WindowPos4fvMESA;
         if (WindowPos4fvMESA is null) { missingCount++; missing?.Add("glWindowPos4fvMESA"); }
         WindowPos4iMESA = (delegate* unmanaged<int, int, int, int, void>)resolver("glWindowPos4iMESA");
+        s_byName["glWindowPos4iMESA"] = (nint)WindowPos4iMESA;
         if (WindowPos4iMESA is null) { missingCount++; missing?.Add("glWindowPos4iMESA"); }
         WindowPos4ivMESA = (delegate* unmanaged<int*, void>)resolver("glWindowPos4ivMESA");
+        s_byName["glWindowPos4ivMESA"] = (nint)WindowPos4ivMESA;
         if (WindowPos4ivMESA is null) { missingCount++; missing?.Add("glWindowPos4ivMESA"); }
         WindowPos4sMESA = (delegate* unmanaged<short, short, short, short, void>)resolver("glWindowPos4sMESA");
+        s_byName["glWindowPos4sMESA"] = (nint)WindowPos4sMESA;
         if (WindowPos4sMESA is null) { missingCount++; missing?.Add("glWindowPos4sMESA"); }
         WindowPos4svMESA = (delegate* unmanaged<short*, void>)resolver("glWindowPos4svMESA");
+        s_byName["glWindowPos4svMESA"] = (nint)WindowPos4svMESA;
         if (WindowPos4svMESA is null) { missingCount++; missing?.Add("glWindowPos4svMESA"); }
         WindowRectanglesEXT = (delegate* unmanaged<uint, int, int*, void>)resolver("glWindowRectanglesEXT");
+        s_byName["glWindowRectanglesEXT"] = (nint)WindowRectanglesEXT;
         if (WindowRectanglesEXT is null) { missingCount++; missing?.Add("glWindowRectanglesEXT"); }
         WriteMaskEXT = (delegate* unmanaged<uint, uint, uint, uint, uint, uint, void>)resolver("glWriteMaskEXT");
+        s_byName["glWriteMaskEXT"] = (nint)WriteMaskEXT;
         if (WriteMaskEXT is null) { missingCount++; missing?.Add("glWriteMaskEXT"); }
         MissingCount = missingCount;
     }

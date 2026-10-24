@@ -194,6 +194,31 @@ GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/Hub-Game-develop/Byta.git
 python3 tools/fetch_natives.py     # 之后按需重建原生实现
 ```
 
+## WebGL2（浏览器里跑同一套 API）
+
+Byta 的 GL 调用有一层门面（`GlApi`）：**有后端时转发给后端，没有时直连原生函数指针**。
+所以同一份渲染代码既能在本机跑原生 GL，也能在浏览器里跑 WebGL2：
+
+```csharp
+var capabilities = await BytaBrowserRuntime.InitializeAsync("byta-canvas");
+
+using var program = GlProgram.FromSource(vertex, fragment);   // 与原生完全一致
+using var vao = GlVertexArray.Create();
+vao.Bind();
+GlDraw.ElementsInstanced(PrimitiveType.Triangles, 36, IndexType.UnsignedInt, 0, 49);
+```
+
+- 演示：`https://hub-game-develop.github.io/Byta/`（由 `build.yml` 构建并部署）
+- 覆盖范围：**GLES 3.0 核心**，即 WebGL2 能给的全部；桌面 GL 专有的命令
+  （`glBufferStorage`、`glMapBuffer`、`glDebugMessageCallback`）会抛
+  `GlNotSupportedException`，可以先用 `GlApi.IsAvailable("glBufferStorage")` 判断。
+- DSA 的 `glProgramUniform*` 在 WebGL 下自动退化为 `glUseProgram` + `glUniform*`。
+- 着色器版本自动切换：原生用 `#version 410`，WebGL 用 `#version 300 es`（并自动补 `precision`）。
+  `uniformMatrix4fv` 的 `transpose=true` 在 WebGL 里非法，`GlUniform` 会自动改成物理转置 + `false`。
+
+代价：原生路径多一次可预测的分支（`Backend is null`），实测在噪声级别，
+换来的是"一套代码、两个平台"。
+
 ## 构建
 
 ```bash

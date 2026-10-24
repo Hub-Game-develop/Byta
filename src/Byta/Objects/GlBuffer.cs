@@ -26,11 +26,11 @@ public readonly unsafe struct GlBuffer : IDisposable
 
     public static GlBuffer Create(BufferTarget target = BufferTarget.ArrayBuffer)
     {
-        if (GL.GenBuffers is null)
+        if (!GlApi.HasGenBuffers)
             throw new GlNotSupportedException("glGenBuffers", "需要 OpenGL 1.5+");
 
         uint id;
-        GL.GenBuffers(1, &id);
+        GlApi.GenBuffers(1, &id);
         if (id == 0)
             throw new GlException("glGenBuffers 返回了 0 号对象");
         return new GlBuffer(id, target);
@@ -44,7 +44,7 @@ public readonly unsafe struct GlBuffer : IDisposable
     public void Allocate(nuint sizeBytes, BufferUsage usage = BufferUsage.DynamicDraw)
     {
         Bind();
-        GL.BufferData((uint)Target, (nint)sizeBytes, null, (uint)usage);
+        GlApi.BufferData((uint)Target, (nint)sizeBytes, null, (uint)usage);
     }
 
     /// <summary>分配 + 一次上传（<c>fixed</c> 固定 Span，无拷贝、无分配）。</summary>
@@ -52,7 +52,7 @@ public readonly unsafe struct GlBuffer : IDisposable
     {
         Bind();
         fixed (T* p = data)
-            GL.BufferData((uint)Target, (nint)((nuint)data.Length * (nuint)sizeof(T)), p, (uint)usage);
+            GlApi.BufferData((uint)Target, (nint)((nuint)data.Length * (nuint)sizeof(T)), p, (uint)usage);
     }
 
     /// <summary>原地更新一段数据，<paramref name="elementOffset"/> 以元素为单位。</summary>
@@ -60,14 +60,14 @@ public readonly unsafe struct GlBuffer : IDisposable
     {
         Bind();
         fixed (T* p = data)
-            GL.BufferSubData((uint)Target, (nint)elementOffset * sizeof(T), (nint)((nuint)data.Length * (nuint)sizeof(T)), p);
+            GlApi.BufferSubData((uint)Target, (nint)elementOffset * sizeof(T), (nint)((nuint)data.Length * (nuint)sizeof(T)), p);
     }
 
     /// <summary>按字节偏移更新。</summary>
     public void Upload(nint source, nuint sizeBytes, nuint destinationOffsetBytes = 0)
     {
         Bind();
-        GL.BufferSubData((uint)Target, (nint)destinationOffsetBytes, (nint)sizeBytes, (void*)source);
+        GlApi.BufferSubData((uint)Target, (nint)destinationOffsetBytes, (nint)sizeBytes, (void*)source);
     }
 
     /// <summary>
@@ -77,19 +77,19 @@ public readonly unsafe struct GlBuffer : IDisposable
     public void Orphan(nuint sizeBytes, BufferUsage usage = BufferUsage.StreamDraw)
     {
         Bind();
-        GL.BufferData((uint)Target, (nint)sizeBytes, null, (uint)usage);
+        GlApi.BufferData((uint)Target, (nint)sizeBytes, null, (uint)usage);
     }
 
     public void* Map(MapAccess access)
     {
         Bind();
-        return GL.MapBuffer((uint)Target, (uint)access);
+        return GlApi.MapBuffer((uint)Target, (uint)access);
     }
 
     public void Unmap()
     {
         Bind();
-        GL.UnmapBuffer((uint)Target);
+        GlApi.UnmapBuffer((uint)Target);
     }
 
     /// <summary>把另一段区间拷进本缓冲（GPU 侧拷贝，不经过 CPU）。</summary>
@@ -97,9 +97,9 @@ public readonly unsafe struct GlBuffer : IDisposable
     {
         if (source.Id == Id)
             return;
-        GL.BindBuffer(GL.COPY_READ_BUFFER, source.Id);
-        GL.BindBuffer(GL.COPY_WRITE_BUFFER, Id);
-        GL.CopyBufferSubData(GL.COPY_READ_BUFFER, GL.COPY_WRITE_BUFFER, (nint)sourceOffsetBytes, (nint)destinationOffsetBytes, (nint)sizeBytes);
+        GlApi.BindBuffer(GL.COPY_READ_BUFFER, source.Id);
+        GlApi.BindBuffer(GL.COPY_WRITE_BUFFER, Id);
+        GlApi.CopyBufferSubData(GL.COPY_READ_BUFFER, GL.COPY_WRITE_BUFFER, (nint)sourceOffsetBytes, (nint)destinationOffsetBytes, (nint)sizeBytes);
         GlState.Invalidate();
     }
 
@@ -111,6 +111,6 @@ public readonly unsafe struct GlBuffer : IDisposable
         // 解绑后删除：避免缓存在对象已销毁后仍指向它
         GlState.BindBuffer(Target, 0);
         uint id = Id;
-        GL.DeleteBuffers(1, &id);
+        GlApi.DeleteBuffers(1, &id);
     }
 }

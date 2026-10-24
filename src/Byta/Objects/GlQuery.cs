@@ -19,23 +19,23 @@ public readonly unsafe struct GlQuery : IDisposable
 
     public static GlQuery Create(QueryTarget target = QueryTarget.TimeElapsed)
     {
-        if (GL.GenQueries is null)
+        if (!GlApi.HasGenQueries)
             throw new GlNotSupportedException("glGenQueries", "需要 OpenGL 1.5+");
 
         uint id;
-        GL.GenQueries(1, &id);
+        GlApi.GenQueries(1, &id);
         return new GlQuery(id, target);
     }
 
-    public void Begin() => GL.BeginQuery((uint)Target, Id);
+    public void Begin() => GlApi.BeginQuery((uint)Target, Id);
 
-    public void End() => GL.EndQuery((uint)Target);
+    public void End() => GlApi.EndQuery((uint)Target);
 
     /// <summary>结果是否已经可用（非阻塞）。</summary>
     public bool IsResultAvailable()
     {
         uint available = 0;
-        GL.GetQueryObjectuiv(Id, GL.QUERY_RESULT_AVAILABLE, &available);
+        GlApi.GetQueryObjectuiv(Id, GL.QUERY_RESULT_AVAILABLE, &available);
         return available != 0;
     }
 
@@ -43,17 +43,17 @@ public readonly unsafe struct GlQuery : IDisposable
     public ulong GetResult(bool wait = true)
     {
         uint ready = 0;
-        GL.GetQueryObjectuiv(Id, GL.QUERY_RESULT_AVAILABLE, &ready);
+        GlApi.GetQueryObjectuiv(Id, GL.QUERY_RESULT_AVAILABLE, &ready);
         if (ready == 0)
         {
             if (!wait)
                 return 0;
             while (ready == 0)
-                GL.GetQueryObjectuiv(Id, GL.QUERY_RESULT_AVAILABLE, &ready);
+                GlApi.GetQueryObjectuiv(Id, GL.QUERY_RESULT_AVAILABLE, &ready);
         }
 
         uint value = 0;
-        GL.GetQueryObjectuiv(Id, GL.QUERY_RESULT, &value);
+        GlApi.GetQueryObjectuiv(Id, GL.QUERY_RESULT, &value);
         return value;
     }
 
@@ -65,6 +65,6 @@ public readonly unsafe struct GlQuery : IDisposable
         if (Id == 0)
             return;
         uint id = Id;
-        GL.DeleteQueries(1, &id);
+        GlApi.DeleteQueries(1, &id);
     }
 }

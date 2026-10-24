@@ -1,0 +1,109 @@
+@page "/"
+@using Byta
+@using Byta.Browser
+@using Byta.Sample.Web
+@implements IDisposable
+
+<main>
+    <h1>Byta · WebGL2</h1>
+    <div class="sub">
+        这一帧由 <strong>Byta 的同一套 API</strong>（GlBuffer / GlProgram / GlDraw）驱动，
+        只是把 GL 调用转发给了浏览器的 WebGL2 —— 任何有浏览器的平台都能跑，包括没有 OpenGL 驱动的 Windows。
+    </div>
+
+    <canvas id="byta-canvas"></canvas>
+
+    <div class="bar">
+        <button @onclick="ToggleAsync" disabled="@(_scene is null)">@(_running ? "暂停" : "继续")</button>
+        <button class="ghost" @onclick="RenderOnce" disabled="@(_scene is null)">渲染单帧</button>
+        <button class="ghost" @onclick="ReadPixels">回读中心像素</button>
+    </div>
+
+    <pre>@_status</pre>
+</main>
+
+@code {
+    private WebScene? _scene;
+    private Timer? _timer;
+    private bool _running = true;
+    private bool _initialized;
+    private float _time;
+    private string _status = "正在初始化 WebGL2…";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender || _initialized)
+            return;
+
+        _initialized = true;
+        try
+        {
+            GlCapabilities capabilities = await BytaBrowserRuntime.InitializeAsync("byta-canvas");
+
+            _scene = new WebScene();
+            _scene.Initialize();
+
+            _status = $"""
+                后端     : {GlApi.Backend?.Name}
+                上下文   : {capabilities}
+                能力     : glBufferStorage {(GlApi.IsAvailable("glBufferStorage") ? "可用" : "不可用（WebGL 只有 GLES 3.0）")}
+                实例     : {_scene.InstanceCount} 个立方体，{_scene.IndexCount} 个索引
+                """;
+
+            _timer = new Timer(_ => Advance(), null, 0, 33);
+        }
+        catch (Exception ex)
+        {
+            _status = "初始化失败：\n" + ex;
+        }
+
+        StateHasChanged();
+    }
+
+    private void Advance()
+    {
+        if (!_running || _scene is null)
+            return;
+
+        try
+        {
+            _time += 0.016f;
+            _scene.Render(_time);
+        }
+        catch (Exception ex)
+        {
+            _status = "渲染出错：\n" + ex.Message;
+        }
+    }
+
+    private Task ToggleAsync()
+    {
+        _running = !_running;
+        return Task.CompletedTask;
+    }
+
+    private Task RenderOnce()
+    {
+        if (_scene is not null)
+        {
+            _time += 0.05f;
+            _scene.Render(_time);
+        }
+        return Task.CompletedTask;
+    }
+
+    private Task ReadPixels()
+    {
+        // 从默认帧缓冲读中心像素：这条链路能过，说明绘制真的落到了 canvas 上
+        if (_scene is not null)
+            _status = _scene.ReadCenterPixel();
+        StateHasChanged();
+        return Task.CompletedTask;
+    }
+
+    public void Dispose()
+    {
+        _timer?.Dispose();
+        _scene?.Dispose();
+    }
+}

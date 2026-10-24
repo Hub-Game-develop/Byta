@@ -31,17 +31,17 @@ internal static unsafe class GlNative
 {
     public static string? GetString(uint name)
     {
-        if (GL.GetString is null)
+        if (!GlApi.HasGetString)
             return null;
-        var p = GL.GetString(name);
+        var p = GlApi.GetString(name);
         return p is null ? null : System.Runtime.InteropServices.Marshal.PtrToStringUTF8((nint)p);
     }
 
     public static string? GetStringi(uint name, uint index)
     {
-        if (GL.GetStringi is null)
+        if (!GlApi.HasGetStringi)
             return null;
-        var p = GL.GetStringi(name, index);
+        var p = GlApi.GetStringi(name, index);
         return p is null ? null : System.Runtime.InteropServices.Marshal.PtrToStringUTF8((nint)p);
     }
 
@@ -49,16 +49,16 @@ internal static unsafe class GlNative
     public static int GetInt(uint pname)
     {
         int value = 0;
-        if (GL.GetIntegerv is not null)
-            GL.GetIntegerv(pname, &value);
+        if (GlApi.HasGetIntegerv)
+            GlApi.GetIntegerv(pname, &value);
         return value;
     }
 
     public static uint GetError()
     {
-        if (GL.GetError is null)
+        if (!GlApi.HasGetError)
             return 0;
-        return GL.GetError();
+        return GlApi.GetError();
     }
 
     public static string ErrorName(uint error) => error switch

@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>Byta.Browser</AssemblyName>
+    <RootNamespace>Byta.Browser</RootNamespace>
+    <TargetFramework>net10.0</TargetFramework>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <!-- 这个库只在 browser 里加载；普通 TFM 只是为了让非 WASM 的构建（含 CI 的构建检查）能编译。 -->
+    <NoWarn>$(NoWarn);CA1416</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Byta\Byta.csproj" />
+  </ItemGroup>
+
+  <!-- 静态资源随库分发：Blazor 应用会通过 _content/Byta.Browser/byta-gl.js 拿到它 -->
+  <ItemGroup>
+    <Content Include="wwwroot\**\*" Pack="true" PackagePath="staticwebassets\" Visible="false" />
+  </ItemGroup>
+
+</Project>

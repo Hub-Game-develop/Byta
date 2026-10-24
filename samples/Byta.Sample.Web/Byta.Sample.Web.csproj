@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <IsPackable>false</IsPackable>
+    <RootNamespace>Byta.Sample.Web</RootNamespace>
+    <!-- 单线程 WASM 就够；开 AOT 会让发布慢很多，先关掉 -->
+    <RunAOTCompilation>false</RunAOTCompilation>
+    <PublishTrimmed>false</PublishTrimmed>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Byta.Browser\Byta.Browser.csproj" />
+  </ItemGroup>
+
+  <!-- JS 由 Byta.Browser 提供，这里复制到 demo 的 wwwroot，加载路径统一为 ./byta-gl.js -->
+  <ItemGroup>
+    <Content Include="..\..\src\Byta.Browser\wwwroot\byta-gl.js" Link="wwwroot\byta-gl.js" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

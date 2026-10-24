@@ -380,11 +380,17 @@ def emit_commands(cmds: dict[str, Command], out_dir: str):
     L.append("")
 
     # 加载器
+    L.append("    private static readonly Dictionary<string, nint> s_byName = new(3000);")
+    L.append("")
+    L.append("    /// <summary>按 GL 原名（如 <c>glGenBuffers</c>）取入口点；当前上下文不提供时返回 0。</summary>")
+    L.append("    public static nint Resolve(string name) => s_byName.TryGetValue(name, out nint p) ? p : 0;")
+    L.append("")
     L.append("    static void ResolveAll(GlProcResolver resolver, List<string>? missing)")
     L.append("    {")
     L.append("        int missingCount = 0;")
     for c in sorted(cmds.values(), key=lambda x: x.cs_name):
         L.append(f'        {c.cs_name} = ({c.signature})resolver("{c.name}");')
+        L.append(f'        s_byName["{c.name}"] = (nint){c.cs_name};')
         L.append(f"        if ({c.cs_name} is null) {{ missingCount++; missing?.Add(\"{c.name}\"); }}")
     L.append("        MissingCount = missingCount;")
     L.append("    }")
@@ -393,6 +399,221 @@ def emit_commands(cmds: dict[str, Command], out_dir: str):
     path = os.path.join(out_dir, "Gl.Commands.g.cs")
     write(path, L)
     return path
+
+
+# ---------------------------------------------------------------------------
+# 后端抽象：WebGL2 能实现的命令子集
+#
+# WebGL2 == OpenGL ES 3.0（加上少量扩展）。所以这里列的是 **GLES 3.0 核心**里有的命令。
+# 桌面 GL 专有的东西（DSA 的 glProgramUniform*、glBufferStorage、glMapBuffer、
+# glDebugMessageControl、glDrawElementsBaseVertex/Indirect）都不在内。
+# ---------------------------------------------------------------------------
+WEBGL_COMMANDS: set[str] = {
+    # 状态
+    "glEnable", "glDisable", "glDepthFunc", "glDepthMask", "glDepthRangef",
+    "glCullFace", "glFrontFace", "glBlendFunc", "glBlendFuncSeparate",
+    "glBlendEquation", "glBlendEquationSeparate", "glColorMask",
+    "glScissor", "glStencilFunc", "glStencilMask", "glStencilOp",
+    "glViewport", "glClear", "glClearColor", "glClearDepth", "glClearStencil",
+    "glLineWidth", "glPolygonOffset", "glPixelStorei",
+    # 缓冲
+    "glGenBuffers", "glDeleteBuffers", "glBindBuffer",
+    "glBufferData", "glBufferSubData", "glCopyBufferSubData",
+    "glUnmapBuffer", "glMapBufferRange",
+    "glBindBufferBase", "glBindBufferRange",
+    # VAO / 顶点属性
+    "glGenVertexArrays", "glDeleteVertexArrays", "glBindVertexArray",
+    "glEnableVertexAttribArray", "glDisableVertexAttribArray",
+    "glVertexAttribPointer", "glVertexAttribIPointer", "glVertexAttribDivisor",
+    # 着色器与程序
+    "glCreateShader", "glShaderSource", "glCompileShader", "glGetShaderiv",
+    "glGetShaderInfoLog", "glDeleteShader",
+    "glCreateProgram", "glAttachShader", "glDetachShader", "glLinkProgram",
+    "glValidateProgram", "glGetProgramiv", "glGetProgramInfoLog", "glDeleteProgram",
+    "glUseProgram", "glGetAttribLocation", "glGetUniformLocation",
+    "glBindAttribLocation", "glGetUniformBlockIndex", "glUniformBlockBinding",
+    # uniform（非 DSA）
+    "glUniform1f", "glUniform2f", "glUniform3f", "glUniform4f",
+    "glUniform1i", "glUniform2i", "glUniform3i", "glUniform4i",
+    "glUniform1ui", "glUniform2ui", "glUniform3ui", "glUniform4ui",
+    "glUniform1fv", "glUniform2fv", "glUniform3fv", "glUniform4fv",
+    "glUniform1iv", "glUniform2iv", "glUniform3iv", "glUniform4iv",
+    "glUniform1uiv", "glUniform2uiv", "glUniform3uiv", "glUniform4uiv",
+    "glUniformMatrix2fv", "glUniformMatrix3fv", "glUniformMatrix4fv",
+    "glUniformMatrix2x3fv", "glUniformMatrix3x2fv",
+    "glUniformMatrix2x4fv", "glUniformMatrix4x2fv",
+    "glUniformMatrix3x4fv", "glUniformMatrix4x3fv",
+    # 纹理
+    "glGenTextures", "glDeleteTextures", "glBindTexture", "glActiveTexture",
+    "glTexImage2D", "glTexSubImage2D", "glTexStorage2D",
+    "glTexParameteri", "glTexParameterf", "glGenerateMipmap",
+    # FBO / RBO
+    "glGenFramebuffers", "glDeleteFramebuffers", "glBindFramebuffer",
+    "glFramebufferTexture2D", "glFramebufferRenderbuffer",
+    "glCheckFramebufferStatus", "glDrawBuffers", "glReadBuffer",
+    "glGenRenderbuffers", "glDeleteRenderbuffers", "glBindRenderbuffer",
+    "glRenderbufferStorage", "glReadPixels",
+    # 绘制
+    "glDrawArrays", "glDrawElements", "glDrawRangeElements",
+    "glDrawArraysInstanced", "glDrawElementsInstanced",
+    # 查询
+    "glGenQueries", "glDeleteQueries", "glBeginQuery", "glEndQuery",
+    "glGetQueryObjectuiv",
+    # 杂项
+    "glFinish", "glFlush", "glGetError", "glGetString", "glGetStringi",
+    "glGetIntegerv", "glGetFloatv", "glIsEnabled",
+}
+
+# 桌面 GL 有 DSA（glProgramUniform*），WebGL 没有 —— 退化成 glUseProgram + glUniform*。
+DSA_FALLBACK: dict[str, str] = {
+    "glProgramUniform1f": "glUniform1f",
+    "glProgramUniform2f": "glUniform2f",
+    "glProgramUniform3f": "glUniform3f",
+    "glProgramUniform4f": "glUniform4f",
+    "glProgramUniform1i": "glUniform1i",
+    "glProgramUniform1ui": "glUniform1ui",
+    "glProgramUniform1fv": "glUniform1fv",
+    "glProgramUniform2fv": "glUniform2fv",
+    "glProgramUniform3fv": "glUniform3fv",
+    "glProgramUniform4fv": "glUniform4fv",
+    "glProgramUniformMatrix4fv": "glUniformMatrix4fv",
+    "glProgramUniformMatrix3x2fv": "glUniformMatrix3x2fv",
+}
+
+
+def _param_decl(c: Command) -> str:
+    return ", ".join(f"{p.cs_type} {p.name}" for p in c.params)
+
+
+def _arg_list(c: Command, skip: int = 0) -> str:
+    return ", ".join(p.name for p in c.params[skip:])
+
+
+def emit_api(cmds: dict[str, Command], out_dir: str):
+    """生成 IGlBackend 接口与 GlApi 门面。
+
+    门面保持与 GL 完全相同的签名，所以调用点只需要把 ``GL.X(`` 换成 ``GlApi.X(``。
+    原生路径下只多一次静态字段判空（分支预测几乎 100% 命中），WebGL 下转发到后端。
+    """
+    supported = [c for c in cmds.values() if c.name in WEBGL_COMMANDS]
+    supported.sort(key=lambda c: c.cs_name)
+
+    L: list[str] = [
+        "// SPDX-License-Identifier: MIT",
+        "// <auto-generated> 由 tools/glgen/gen.py 从 Khronos gl.xml 生成，请勿手改。 </auto-generated>",
+        "#pragma warning disable CS1591",
+        "#nullable enable",
+        "using System.Runtime.CompilerServices;",
+        "using Byta.Bindings;",
+        "",
+        "namespace Byta;",
+        "",
+        "/// <summary>",
+        "/// 可替换的 GL 实现。当前唯一的非原生实现是 WebGL2（浏览器里通过 JS 互操作调用）。",
+        "/// <para>",
+        "/// 签名与 <c>GL</c> 的入口点表完全一致（含裸指针）—— 这样 <see cref=\"GlApi\"/> 的转发",
+        "/// 是零转换的；实现方自己把指针包成 <c>Span</c> 交给运行时。",
+        "/// </para>",
+        "/// </summary>",
+        "public unsafe interface IGlBackend",
+        "{",
+        "    /// <summary>实现名，用于诊断输出。</summary>",
+        "    string Name { get; }",
+        "",
+        "    /// <summary>是否支持某个命令（按 GL 原名判断，如 <c>glBufferStorage</c>）。</summary>",
+        "    bool Supports(string command);",
+        "",
+    ]
+    for c in supported:
+        L.append(f"    {c.ret_cs} {c.cs_name}({_param_decl(c)});")
+    L.append("}")
+    L.append("")
+
+    # ---- 门面
+    L += [
+        "/// <summary>",
+        "/// GL 调用的统一入口：有 <see cref=\"IGlBackend\"/> 时转发给它，否则直连原生函数指针。",
+        "/// <para>",
+        "/// 原生路径下每次调用只多一次可预测的分支，实测开销在噪声级别；",
+        "/// 换来的是同一份渲染代码既能在本机跑原生 GL，也能在浏览器里跑 WebGL2。",
+        "/// </para>",
+        "/// </summary>",
+        "public static unsafe class GlApi",
+        "{",
+        "    /// <summary>当前活动后端；<c>null</c> 表示走原生函数指针。</summary>",
+        "    public static IGlBackend? Backend { get; private set; }",
+        "",
+        "    public static bool IsBackendActive => Backend is not null;",
+        "",
+        "    /// <summary>切换渲染后端。<paramref name=\"backend\"/> 为 <c>null</c> 时回到原生入口点表。</summary>",
+        "    public static void UseBackend(IGlBackend? backend)",
+        "    {",
+        "        Backend = backend;",
+        "        GlState.Invalidate();",
+        "    }",
+        "",
+        "    /// <summary>按 GL 原名查询命令是否可用（原生看入口点表，后端看它自己的支持列表）。</summary>",
+        "    public static bool IsAvailable(string command)",
+        "    {",
+        "        if (Backend is { } backend)",
+        "            return backend.Supports(command);",
+        "        return GL.Resolve(command) != 0;",
+        "    }",
+        "",
+    ]
+
+    for c in sorted(cmds.values(), key=lambda x: x.cs_name):
+        args = _arg_list(c)
+        decl = _param_decl(c)
+        is_supported = c.name in WEBGL_COMMANDS
+        dsa_target = DSA_FALLBACK.get(c.name)
+
+        L.append(f"    public static bool Has{c.cs_name} => Backend is {{ }} b ? b.Supports(\"{c.name}\") : GL.{c.cs_name} is not null;")
+        L.append("")
+
+        if is_supported:
+            L.append(f"    [MethodImpl(MethodImplOptions.AggressiveInlining)]")
+            L.append(f"    public static unsafe {c.ret_cs} {c.cs_name}({decl})")
+            L.append("    {")
+            if c.ret_cs == "void":
+                L.append(f"        if (Backend is {{ }} backend) {{ backend.{c.cs_name}({args}); return; }}")
+                L.append(f"        GL.{c.cs_name}({args});")
+            else:
+                L.append(f"        if (Backend is {{ }} backend) return backend.{c.cs_name}({args});")
+                L.append(f"        return GL.{c.cs_name}({args});")
+            L.append("    }")
+        elif dsa_target:
+            target = cmds[dsa_target]
+            # 门面签名保留 program 参数；后端只收到 location 之后的部分
+            tail_decl = ", ".join(f"{p.cs_type} {p.name}" for p in c.params[1:])
+            tail_args = ", ".join(p.name for p in c.params[1:])
+            decl_tail = f", {tail_decl}" if tail_decl else ""
+            args_tail = f", {tail_args}" if tail_args else ""
+            L.append(f"    [MethodImpl(MethodImplOptions.AggressiveInlining)]")
+            L.append(f"    public static unsafe {c.ret_cs} {c.cs_name}({decl})")
+            L.append("    {")
+            L.append("        if (Backend is not null)")
+            L.append("        {")
+            L.append(f"            // WebGL 没有 DSA：先切程序（走状态缓存，保持前后端一致），再用非 DSA 的 uniform 调用")
+            L.append(f"            GlState.UseProgram({c.params[0].name});")
+            L.append(f"            Backend.{target.cs_name}({args_tail.lstrip(', ')});")
+            L.append("            return;")
+            L.append("        }")
+            L.append(f"        GL.{c.cs_name}({args});")
+            L.append("    }")
+        else:
+            L.append(f"    /// <summary>该命令在 WebGL 后端上不可用（GLES 3.0 没有）。</summary>")
+            L.append(f"    public static unsafe {c.ret_cs} {c.cs_name}({decl})")
+            L.append("    {")
+            L.append("        if (Backend is { } backend)")
+            L.append(f"            throw new GlNotSupportedException(\"{c.name}\", $\"实现 {{backend.Name}} 不支持该命令（桌面 GL 专有）\");")
+            ret = "" if c.ret_cs == "void" else "return "
+            L.append(f"        {ret}GL.{c.cs_name}({args});")
+            L.append("    }")
+        L.append("")
+
+    L.append("}")
+    write(os.path.join(out_dir, "Gl.Api.g.cs"), L)
 
 
 def write(path: str, lines: list[str]):
@@ -406,6 +627,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--xml", default="registry/gl.xml")
     ap.add_argument("--out", default="src/Byta.Bindings/Generated")
+    ap.add_argument("--out-api", default="src/Byta/Generated")
+    ap.add_argument("--api-only", action="store_true", help="只重新生成门面，不动绑定")
     args = ap.parse_args()
 
     root = ET.parse(args.xml).getroot()
@@ -414,14 +637,18 @@ def main():
 
     print(f"命令: {len(cmds)} 条（注册表引用 {len(needed)} 条，跳过 {len(skipped)} 条）")
     print(f"常量: {len(consts)} 条")
+    print(f"WebGL2 可覆盖: {len([c for c in cmds.values() if c.name in WEBGL_COMMANDS])} 条")
     if skipped:
         print("跳过示例: " + ", ".join(s.split(" ")[0] for s in skipped[:8]))
     if conflicts:
         print(f"常量值冲突 {len(conflicts)} 处（保留首个定义）")
 
     os.makedirs(args.out, exist_ok=True)
-    emit_constants(consts, args.out)
-    emit_commands(cmds, args.out)
+    if not args.api_only:
+        emit_constants(consts, args.out)
+        emit_commands(cmds, args.out)
+    os.makedirs(args.out_api, exist_ok=True)
+    emit_api(cmds, args.out_api)
     print("完成。")
 
 

@@ -18,11 +18,11 @@ public readonly unsafe struct GlVertexArray : IDisposable
 
     public static GlVertexArray Create()
     {
-        if (GL.GenVertexArrays is null)
+        if (!GlApi.HasGenVertexArrays)
             throw new GlNotSupportedException("glGenVertexArrays", "需要 OpenGL 3.0+ 或 ARB_vertex_array_object");
 
         uint id;
-        GL.GenVertexArrays(1, &id);
+        GlApi.GenVertexArrays(1, &id);
         if (id == 0)
             throw new GlException("glGenVertexArrays 返回了 0 号对象");
         return new GlVertexArray(id);
@@ -38,8 +38,8 @@ public readonly unsafe struct GlVertexArray : IDisposable
         int location, int components, VertexAttribType type,
         bool normalized = false, int strideBytes = 0, int offsetBytes = 0)
     {
-        GL.EnableVertexAttribArray((uint)location);
-        GL.VertexAttribPointer(
+        GlApi.EnableVertexAttribArray((uint)location);
+        GlApi.VertexAttribPointer(
             (uint)location, components, (uint)type,
             normalized ? (byte)1 : (byte)0,
             strideBytes, (void*)(nint)offsetBytes);
@@ -48,14 +48,14 @@ public readonly unsafe struct GlVertexArray : IDisposable
     /// <summary>整数属性（<c>glVertexAttribIPointer</c>），常用于骨骼索引之类。</summary>
     public static void IntegerAttribute(int location, int components, VertexAttribType type, int strideBytes = 0, int offsetBytes = 0)
     {
-        GL.EnableVertexAttribArray((uint)location);
-        GL.VertexAttribIPointer((uint)location, components, (uint)type, strideBytes, (void*)(nint)offsetBytes);
+        GlApi.EnableVertexAttribArray((uint)location);
+        GlApi.VertexAttribIPointer((uint)location, components, (uint)type, strideBytes, (void*)(nint)offsetBytes);
     }
 
     /// <summary>实例化绘制的步进除数（0 = 每顶点前进，1 = 每实例前进）。</summary>
-    public static void Divisor(int location, uint divisor) => GL.VertexAttribDivisor((uint)location, divisor);
+    public static void Divisor(int location, uint divisor) => GlApi.VertexAttribDivisor((uint)location, divisor);
 
-    public static void DisableAttribute(int location) => GL.DisableVertexAttribArray((uint)location);
+    public static void DisableAttribute(int location) => GlApi.DisableVertexAttribArray((uint)location);
 
     /// <summary>
     /// 一步配置一个"交错顶点布局"。
@@ -91,7 +91,7 @@ public readonly unsafe struct GlVertexArray : IDisposable
             return;
         GlState.BindVertexArray(0);
         uint id = Id;
-        GL.DeleteVertexArrays(1, &id);
+        GlApi.DeleteVertexArrays(1, &id);
     }
 }
 

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Byta — WebGL2 渲染</title>
+    <base href="/" />
+    <style>
+        :root { color-scheme: dark; }
+        body { margin: 0; background: #0b0d13; color: #e6e8ee;
+               font: 15px/1.6 -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; }
+        main { max-width: 960px; margin: 0 auto; padding: 28px 20px 60px; }
+        h1 { font-size: 22px; font-weight: 600; margin: 0 0 6px; }
+        .sub { color: #8b93a7; margin-bottom: 20px; font-size: 13px; }
+        canvas { width: 100%; max-width: 960px; aspect-ratio: 16 / 9; display: block;
+                 border-radius: 10px; background: #05070c; box-shadow: 0 8px 30px #0008; }
+        .bar { display: flex; gap: 10px; align-items: center; margin: 16px 0; flex-wrap: wrap; }
+        button { background: #2b6cff; color: #fff; border: 0; border-radius: 8px;
+                 padding: 9px 18px; font-size: 14px; cursor: pointer; }
+        button:disabled { opacity: .45; cursor: default; }
+        button.ghost { background: #1b2030; color: #cfd6e6; }
+        pre { background: #10141f; border: 1px solid #1d2434; border-radius: 10px;
+              padding: 14px 16px; overflow: auto; font-size: 12.5px; color: #9fb0cc; }
+    </style>
+</head>
+
+<body>
+    <div id="app">正在加载…</div>
+    <script src="_framework/blazor.webassembly.js"></script>
+</body>
+
+</html>

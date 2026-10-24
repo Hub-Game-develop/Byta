@@ -94,7 +94,7 @@ public sealed unsafe class GlCapabilities
         var version = GlVersion.Parse(versionString);
 
         bool core;
-        if (version.AtLeast(3, 2) && GL.GetIntegerv is not null)
+        if (version.AtLeast(3, 2) && GlApi.HasGetIntegerv)
         {
             int mask = GlNative.GetInt(GL.CONTEXT_PROFILE_MASK);
             core = (mask & (int)GL.CONTEXT_CORE_PROFILE_BIT) != 0;
@@ -105,7 +105,7 @@ public sealed unsafe class GlCapabilities
         }
 
         var extensions = new HashSet<string>(StringComparer.Ordinal);
-        if (GL.GetStringi is not null && version.AtLeast(3, 0))
+        if (GlApi.HasGetStringi && version.AtLeast(3, 0))
         {
             int count = GlNative.GetInt(GL.NUM_EXTENSIONS);
             for (uint i = 0; i < (uint)count; i++)

@@ -14,11 +14,11 @@ public readonly unsafe struct GlTexture2D : IDisposable
 
     public static GlTexture2D Create()
     {
-        if (GL.GenTextures is null)
+        if (!GlApi.HasGenTextures)
             throw new GlNotSupportedException("glGenTextures", "需要 OpenGL 1.1+");
 
         uint id;
-        GL.GenTextures(1, &id);
+        GlApi.GenTextures(1, &id);
         if (id == 0)
             throw new GlException("glGenTextures 返回了 0 号对象");
         return new GlTexture2D(id);
@@ -43,7 +43,7 @@ public readonly unsafe struct GlTexture2D : IDisposable
         int w = width, h = height;
         for (int level = 0; level < levels; level++)
         {
-            GL.TexImage2D(GL.TEXTURE_2D, level, (int)internalFormat, w, h, 0, pixelFormat, pixelType, null);
+            GlApi.TexImage2D(GL.TEXTURE_2D, level, (int)internalFormat, w, h, 0, pixelFormat, pixelType, null);
             w = Math.Max(1, w >> 1);
             h = Math.Max(1, h >> 1);
         }
@@ -59,9 +59,9 @@ public readonly unsafe struct GlTexture2D : IDisposable
             throw new ArgumentException($"像素数据不足：需要 {expected} 字节，实际 {pixels.Length} 字节。", nameof(pixels));
 
         Bind();
-        GL.PixelStorei(GL.UNPACK_ALIGNMENT, 1);
+        GlApi.PixelStorei(GL.UNPACK_ALIGNMENT, 1);
         fixed (byte* p = pixels)
-            GL.TexImage2D(GL.TEXTURE_2D, level, (int)internalFormat, width, height, 0, pixelFormat, pixelType, p);
+            GlApi.TexImage2D(GL.TEXTURE_2D, level, (int)internalFormat, width, height, 0, pixelFormat, pixelType, p);
     }
 
     public void Upload<T>(TextureFormat format, int width, int height, ReadOnlySpan<T> pixels, int level = 0)
@@ -79,29 +79,29 @@ public readonly unsafe struct GlTexture2D : IDisposable
             throw new ArgumentException($"像素数据不足：需要 {expected} 字节，实际 {pixels.Length} 字节。", nameof(pixels));
 
         Bind();
-        GL.PixelStorei(GL.UNPACK_ALIGNMENT, 1);
+        GlApi.PixelStorei(GL.UNPACK_ALIGNMENT, 1);
         fixed (byte* p = pixels)
-            GL.TexSubImage2D(GL.TEXTURE_2D, level, x, y, width, height, pixelFormat, pixelType, p);
+            GlApi.TexSubImage2D(GL.TEXTURE_2D, level, x, y, width, height, pixelFormat, pixelType, p);
     }
 
     public void SetFilters(TextureFilter minification, TextureFilter magnification)
     {
         Bind();
-        GL.TexParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, (int)minification);
-        GL.TexParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, (int)magnification);
+        GlApi.TexParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, (int)minification);
+        GlApi.TexParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, (int)magnification);
     }
 
     public void SetWrap(TextureWrap s, TextureWrap t)
     {
         Bind();
-        GL.TexParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, (int)s);
-        GL.TexParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, (int)t);
+        GlApi.TexParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, (int)s);
+        GlApi.TexParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, (int)t);
     }
 
     public void GenerateMipmaps()
     {
         Bind();
-        GL.GenerateMipmap(GL.TEXTURE_2D);
+        GlApi.GenerateMipmap(GL.TEXTURE_2D);
     }
 
     public void Dispose()
@@ -111,7 +111,7 @@ public readonly unsafe struct GlTexture2D : IDisposable
         // 贴图删除后驱动会自动把它从所有单元解绑，缓存必须一起失效
         GlState.InvalidateTextures();
         uint id = Id;
-        GL.DeleteTextures(1, &id);
+        GlApi.DeleteTextures(1, &id);
     }
 }
 

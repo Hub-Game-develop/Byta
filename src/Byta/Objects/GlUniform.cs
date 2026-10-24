@@ -26,73 +26,73 @@ public readonly unsafe struct GlUniform
     public bool IsValid => Location >= 0;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Set(float value) => GL.ProgramUniform1f((uint)Program, Location, value);
+    public void Set(float value) => GlApi.ProgramUniform1f((uint)Program, Location, value);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Set(float x, float y) => GL.ProgramUniform2f((uint)Program, Location, x, y);
+    public void Set(float x, float y) => GlApi.ProgramUniform2f((uint)Program, Location, x, y);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Set(float x, float y, float z) => GL.ProgramUniform3f((uint)Program, Location, x, y, z);
+    public void Set(float x, float y, float z) => GlApi.ProgramUniform3f((uint)Program, Location, x, y, z);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Set(float x, float y, float z, float w) => GL.ProgramUniform4f((uint)Program, Location, x, y, z, w);
+    public void Set(float x, float y, float z, float w) => GlApi.ProgramUniform4f((uint)Program, Location, x, y, z, w);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Set(Vector2 value) => GL.ProgramUniform2f((uint)Program, Location, value.X, value.Y);
+    public void Set(Vector2 value) => GlApi.ProgramUniform2f((uint)Program, Location, value.X, value.Y);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Set(Vector3 value) => GL.ProgramUniform3f((uint)Program, Location, value.X, value.Y, value.Z);
+    public void Set(Vector3 value) => GlApi.ProgramUniform3f((uint)Program, Location, value.X, value.Y, value.Z);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Set(Vector4 value) => GL.ProgramUniform4f((uint)Program, Location, value.X, value.Y, value.Z, value.W);
+    public void Set(Vector4 value) => GlApi.ProgramUniform4f((uint)Program, Location, value.X, value.Y, value.Z, value.W);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Set(int value) => GL.ProgramUniform1i((uint)Program, Location, value);
+    public void Set(int value) => GlApi.ProgramUniform1i((uint)Program, Location, value);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Set(uint value) => GL.ProgramUniform1ui((uint)Program, Location, value);
+    public void Set(uint value) => GlApi.ProgramUniform1ui((uint)Program, Location, value);
 
     /// <summary>上传 4x4 矩阵。GL 期望列主序；<see cref="Matrix4x4"/> 是行主序，通常需要 <paramref name="transpose"/> = true。</summary>
     public void Set(in Matrix4x4 value, bool transpose = false)
     {
         Matrix4x4 copy = value; // 拷到栈上再取地址，不需要 pin
-        GL.ProgramUniformMatrix4fv((uint)Program, Location, 1, transpose ? (byte)1 : (byte)0, (float*)&copy);
+        GlApi.ProgramUniformMatrix4fv((uint)Program, Location, 1, transpose ? (byte)1 : (byte)0, (float*)&copy);
     }
 
     public void Set(in Matrix3x2 value, bool transpose = false)
     {
         Matrix3x2 copy = value;
-        GL.ProgramUniformMatrix3x2fv((uint)Program, Location, 1, transpose ? (byte)1 : (byte)0, (float*)&copy);
+        GlApi.ProgramUniformMatrix3x2fv((uint)Program, Location, 1, transpose ? (byte)1 : (byte)0, (float*)&copy);
     }
 
     /// <summary>float 数组（<c>uniform float[N]</c> 或 vec 数组）。</summary>
     public void Set(ReadOnlySpan<float> values)
     {
         fixed (float* p = values)
-            GL.ProgramUniform1fv((uint)Program, Location, values.Length, p);
+            GlApi.ProgramUniform1fv((uint)Program, Location, values.Length, p);
     }
 
     public void Set(ReadOnlySpan<Vector2> values)
     {
         fixed (Vector2* p = values)
-            GL.ProgramUniform2fv((uint)Program, Location, values.Length, (float*)p);
+            GlApi.ProgramUniform2fv((uint)Program, Location, values.Length, (float*)p);
     }
 
     public void Set(ReadOnlySpan<Vector3> values)
     {
         fixed (Vector3* p = values)
-            GL.ProgramUniform3fv((uint)Program, Location, values.Length, (float*)p);
+            GlApi.ProgramUniform3fv((uint)Program, Location, values.Length, (float*)p);
     }
 
     public void Set(ReadOnlySpan<Vector4> values)
     {
         fixed (Vector4* p = values)
-            GL.ProgramUniform4fv((uint)Program, Location, values.Length, (float*)p);
+            GlApi.ProgramUniform4fv((uint)Program, Location, values.Length, (float*)p);
     }
 
     public void Set(ReadOnlySpan<Matrix4x4> values, bool transpose = false)
     {
         fixed (Matrix4x4* p = values)
-            GL.ProgramUniformMatrix4fv((uint)Program, Location, values.Length, transpose ? (byte)1 : (byte)0, (float*)p);
+            GlApi.ProgramUniformMatrix4fv((uint)Program, Location, values.Length, transpose ? (byte)1 : (byte)0, (float*)p);
     }
 }

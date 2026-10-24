@@ -24,7 +24,7 @@ public sealed unsafe class GlProgram : IDisposable
         if (shaders is null || shaders.Length == 0)
             throw new ArgumentException("至少需要一个已编译的着色器。", nameof(shaders));
 
-        uint program = GL.CreateProgram();
+        uint program = GlApi.CreateProgram();
         if (program == 0)
             throw new GlException("glCreateProgram 返回 0");
 
@@ -32,24 +32,24 @@ public sealed unsafe class GlProgram : IDisposable
         {
             if (!shader.IsValid)
                 throw new ArgumentException("包含未编译成功的着色器。", nameof(shaders));
-            GL.AttachShader(program, shader.Id);
+            GlApi.AttachShader(program, shader.Id);
         }
 
-        GL.LinkProgram(program);
+        GlApi.LinkProgram(program);
 
         int status = 0;
-        GL.GetProgramiv(program, GL.LINK_STATUS, &status);
+        GlApi.GetProgramiv(program, GL.LINK_STATUS, &status);
         if (status == 0)
         {
             string log = GlShader.ReadInfoLog(program, isProgram: true);
-            GL.DeleteProgram(program);
+            GlApi.DeleteProgram(program);
             throw new GlException($"着色器程序链接失败：\n{log}");
         }
 
         // 着色器对象已经可以释放（程序内部保留了自己的一份）
         foreach (var shader in shaders)
         {
-            GL.DetachShader(program, shader.Id);
+            GlApi.DetachShader(program, shader.Id);
             shader.Dispose();
         }
 
@@ -57,7 +57,7 @@ public sealed unsafe class GlProgram : IDisposable
     }
 
     /// <summary>从两段源码一步创建（编译 → 链接 → 释放着色器对象）。</summary>
-    public static GlProgram FromSource(string vertexSource, string fragmentSource, int glslVersion = 410)
+    public static GlProgram FromSource(string vertexSource, string fragmentSource, int glslVersion = 0)
     {
         var vs = GlShader.Compile(GlShaderType.Vertex, vertexSource, glslVersion);
         var fs = GlShader.Compile(GlShaderType.Fragment, fragmentSource, glslVersion);
@@ -99,14 +99,14 @@ public sealed unsafe class GlProgram : IDisposable
     {
         byte[] bytes = System.Text.Encoding.UTF8.GetBytes(name + "\0");
         fixed (byte* p = bytes)
-            return GL.GetAttribLocation(Id, p);
+            return GlApi.GetAttribLocation(Id, p);
     }
 
     public int GetUniformBlockIndex(string name)
     {
         byte[] bytes = System.Text.Encoding.UTF8.GetBytes(name + "\0");
         fixed (byte* p = bytes)
-            return (int)GL.GetUniformBlockIndex(Id, p);
+            return (int)GlApi.GetUniformBlockIndex(Id, p);
     }
 
     /// <summary>把 uniform block 绑到某个 binding point（之后 UBO 也绑到同一个点）。</summary>
@@ -115,7 +115,7 @@ public sealed unsafe class GlProgram : IDisposable
         int index = GetUniformBlockIndex(blockName);
         if (index < 0)
             throw new ArgumentException($"程序里没有名为 '{blockName}' 的 uniform block。", nameof(blockName));
-        GL.UniformBlockBinding(Id, (uint)index, bindingPoint);
+        GlApi.UniformBlockBinding(Id, (uint)index, bindingPoint);
     }
 
     public string GetInfoLog() => GlShader.ReadInfoLog(Id, isProgram: true);
@@ -126,7 +126,7 @@ public sealed unsafe class GlProgram : IDisposable
             return;
         GlState.UseProgram(0);
         uint id = Id;
-        GL.DeleteProgram(id);
+        GlApi.DeleteProgram(id);
     }
 
     private static int QueryUniformLocation(uint program, string name)
@@ -134,6 +134,6 @@ public sealed unsafe class GlProgram : IDisposable
         // 只在缓存未命中时走这里，允许一次短生命周期的分配
         byte[] bytes = System.Text.Encoding.UTF8.GetBytes(name + "\0");
         fixed (byte* p = bytes)
-            return GL.GetUniformLocation(program, p);
+            return GlApi.GetUniformLocation(program, p);
     }
 }

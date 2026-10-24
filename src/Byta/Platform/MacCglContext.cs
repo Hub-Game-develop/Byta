@@ -129,8 +129,8 @@ public sealed unsafe class MacCglContext : IGlContext
 
     public void Flush()
     {
-        if (GL.Flush is not null)
-            GL.Flush();
+        if (GlApi.HasFlush)
+            GlApi.Flush();
     }
 
     /// <summary>解除当前线程的上下文绑定（退出渲染线程前调用）。</summary>

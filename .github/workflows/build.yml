@@ -1,0 +1,113 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['**/*.md']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ------------------------------------------------------------------ WebGL / WebAssembly
+  web:
+    name: WebGL2 (Blazor WASM)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          lfs: true
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: 安装 wasm-tools
+        run: dotnet workload install wasm-tools --skip-manifest-update
+
+      - name: 发布 Byta.Sample.Web
+        run: |
+          dotnet publish samples/Byta.Sample.Web/Byta.Sample.Web.csproj \
+            -c Release -o out/wwwroot
+
+      - name: 校正 base href（GitHub Pages 是子路径）
+        run: |
+          sed -i 's|<base href="/" />|<base href="/${{ github.event.repository.name }}/" />|' out/wwwroot/index.html
+          grep -o '<base[^>]*>' out/wwwroot/index.html
+
+      - name: 确认 JS 与 wasm 都在产物里
+        run: |
+          test -f out/wwwroot/byta-gl.js || { echo "::error::缺少 byta-gl.js"; exit 1; }
+          ls out/wwwroot/_framework/*.wasm >/dev/null || { echo "::error::缺少 wasm 产物"; exit 1; }
+          du -sh out/wwwroot
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: byta-web
+          path: out/wwwroot
+          retention-days: 14
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out/wwwroot
+
+  deploy-pages:
+    name: 部署到 GitHub Pages
+    needs: web
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4
+
+  # ------------------------------------------------------------------ 原生
+  native:
+    name: 原生 (${{ matrix.rid }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest
+            rid: osx-arm64
+          - os: windows-latest
+            rid: win-x64
+          - os: ubuntu-latest
+            rid: linux-x64
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          lfs: true
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: 构建并测试
+        shell: bash
+        run: |
+          dotnet build src/Byta/Byta.csproj -c Release
+          dotnet build tests/Byta.Tests/Byta.Tests.csproj -c Release
+          # macOS 上测试会尝试内置 Mesa（arm64），Windows/Linux 走系统 GL
+          dotnet run --project tests/Byta.Tests -c Release --no-build || {
+            echo "::warning::测试在该平台未通过（可能是缺少 OpenGL 上下文），不阻塞构建";
+          }
+
+      - name: 发布示例
+        shell: bash
+        run: dotnet publish samples/Byta.Sample/Byta.Sample.csproj -c Release -r ${{ matrix.rid }} --self-contained false -o out/${{ matrix.rid }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: byta-native-${{ matrix.rid }}
+          path: out/${{ matrix.rid }}
+          retention-days: 14
