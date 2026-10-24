@@ -149,6 +149,14 @@ public sealed unsafe class WebScene : IDisposable
         return $"uViewProjection={viewProjection}, uCameraPosition={camera}, uTime={time}, programId={_program.Id}";
     }
 
+    /// <summary>渲染一帧后读 GL 错误（WebGL 没有 KHR_debug，只能轮询 glGetError）。</summary>
+    public string ErrorReport()
+    {
+        uint first = GlApi.GetError();
+        uint second = GlApi.GetError();
+        return $"glGetError: 0x{first:X4} / 0x{second:X4}（0 表示无错）";
+    }
+
     /// <summary>从默认帧缓冲读中心像素，用来验证绘制真的落盘了。</summary>
     public string ReadCenterPixel()
     {
