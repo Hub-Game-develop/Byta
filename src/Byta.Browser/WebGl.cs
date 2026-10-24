@@ -23,6 +23,9 @@ internal static partial class WebGl
     [JSImport("info", Module)] internal static partial string Info();
     [JSImport("setupViewport", Module)] internal static partial void SetupViewport(int width, int height, double pixelRatio);
 
+    [JSImport("selfTest", Module)]
+    internal static partial string SelfTest([JSMarshalAs<JSType.MemoryView>] Span<byte> data);
+
     // ---------------------------------------------------------------- 状态
     [JSImport("enable", Module)] internal static partial void Enable(int capability);
     [JSImport("disable", Module)] internal static partial void Disable(int capability);

@@ -10,12 +10,15 @@ public static class BytaBrowserRuntime
 {
     private static bool s_loaded;
 
+    /// <summary>最近一次初始化的诊断信息（排查 JS 互操作问题时用）。</summary>
+    public static string LastDiagnostics { get; private set; } = string.Empty;
+
     /// <summary>
     /// byta-gl.js 的版本号。ES 模块的 URL 是强缓存的，改了 JS 而不改这里的值，
     /// 浏览器会继续用旧文件 —— 表现是"改了代码但错误一模一样"。
     /// 每次修改 byta-gl.js 都要递增它。
     /// </summary>
-    private const string JsVersion = "4";
+    private const string JsVersion = "5";
 
     /// <summary>
     /// 把 <paramref name="canvasId"/> 对应的 canvas 变成 Byta 的渲染目标。
@@ -38,6 +41,21 @@ public static class BytaBrowserRuntime
             throw new GlException($"无法在 #{canvasId} 上创建 WebGL2 上下文（浏览器不支持或已被占用）");
 
         WebGl.SetupViewport(0, 0, pixelRatio);
+
+        // 诊断：把 Span 参数在 JS 侧的真实形态记下来，出错时能定位是编组问题还是逻辑问题
+        try
+        {
+            var probe = new byte[8];
+            var description = WebGl.SelfTest(probe);
+            Console.WriteLine($"[byta] MemoryView 形态: {description}");
+            probe[0] = 0xAB;
+            LastDiagnostics = description;
+        }
+        catch (Exception ex)
+        {
+            LastDiagnostics = "selfTest 失败: " + ex.Message;
+            Console.WriteLine("[byta] " + LastDiagnostics);
+        }
 
         GlApi.UseBackend(new WebGlBackend());
         GlState.Reset();

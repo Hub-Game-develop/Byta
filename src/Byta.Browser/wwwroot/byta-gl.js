@@ -99,6 +99,26 @@ export function setupViewport(width, height, pixelRatio) {
     gl.viewport(0, 0, canvas.width, canvas.height);
 }
 
+// ------------------------------------------------------------------ 诊断
+/** 把 .NET 传来的 Span 参数的真实形态描述出来，用于排查编组问题。 */
+export function selfTest(view) {
+    try {
+        const parts = [];
+        parts.push(`typeof=${typeof view}`);
+        if (view != null) {
+            parts.push(`ctor=${view.constructor ? view.constructor.name : '?'}`);
+            parts.push(`keys=[${Object.keys(view).join(',')}]`);
+            parts.push(`length=${view.length}`);
+            parts.push(`dataCtor=${view.data ? view.data.constructor.name : 'undefined'}`);
+            parts.push(`dataLen=${view.data ? view.data.length : '?'}`);
+            parts.push(`hasBuffer=${view.data ? (view.data.buffer ? 'yes' : 'no') : 'n/a'}`);
+        }
+        return parts.join(' | ');
+    } catch (e) {
+        return 'selfTest 异常: ' + e;
+    }
+}
+
 // ------------------------------------------------------------------ 状态
 export function enable(capability) { gl.enable(capability); }
 export function disable(capability) { gl.disable(capability); }

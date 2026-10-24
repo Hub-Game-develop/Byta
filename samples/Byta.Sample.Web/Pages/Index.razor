@@ -48,6 +48,7 @@
                 上下文   : {capabilities}
                 能力     : glBufferStorage {(GlApi.IsAvailable("glBufferStorage") ? "可用" : "不可用（WebGL 只有 GLES 3.0）")}
                 实例     : {_scene.InstanceCount} 个立方体，{_scene.IndexCount} 个索引
+                诊断     : {BytaBrowserRuntime.LastDiagnostics}
                 """;
 
             _timer = new Timer(_ => Advance(), null, 0, 33);
