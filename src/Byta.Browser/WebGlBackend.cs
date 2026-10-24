@@ -204,11 +204,14 @@ public sealed unsafe class WebGlBackend : WebGlBackendBase
     public override void Uniform4fv(int location, int count, float* value)
         => WebGl.Uniform4fv(location, new Span<byte>(value, count * 4 * sizeof(float)));
 
+    // WebGL 的 uniformMatrix4fv 要求 transpose 必须是 false，传 true 直接 INVALID_VALUE。
+    // 而"行主序数据 + false"恰好等价于转置一次，正是调用方传 transpose=true 想要的，
+    // 所以这里无视 transpose 参数、恒传 0。
     public override void UniformMatrix4fv(int location, int count, byte transpose, float* value)
-        => WebGl.UniformMatrix4fv(location, transpose, new Span<byte>(value, count * 16 * sizeof(float)));
+        => WebGl.UniformMatrix4fv(location, 0, new Span<byte>(value, count * 16 * sizeof(float)));
 
     public override void UniformMatrix3x2fv(int location, int count, byte transpose, float* value)
-        => WebGl.UniformMatrix3x2fv(location, transpose, new Span<byte>(value, count * 6 * sizeof(float)));
+        => WebGl.UniformMatrix3x2fv(location, 0, new Span<byte>(value, count * 6 * sizeof(float)));
 
     // ---------------------------------------------------------------- 纹理
 
