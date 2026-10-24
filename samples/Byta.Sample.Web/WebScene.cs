@@ -3,6 +3,7 @@ using System;
 using System.Numerics;
 using Byta;
 using Byta.Bindings;
+using Byta.Browser;
 
 namespace Byta.Sample.Web;
 
