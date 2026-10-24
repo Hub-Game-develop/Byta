@@ -23,6 +23,9 @@ public sealed unsafe class WebScene : IDisposable
     private GlVertexArray _vao;
     private Matrix4x4 _lastViewProjection;
 
+    /// <summary>诊断：只画一个三角形。</summary>
+    public static bool DiagnosticSingleTriangle { get; set; }
+
     public int IndexCount { get; private set; }
     public int InstanceCount { get; private set; }
     public int Width { get; set; } = 960;
@@ -139,8 +142,18 @@ public sealed unsafe class WebScene : IDisposable
         _program.GetUniform("uTime").Set(time);
 
         _vao.Bind();
-        GlDraw.ElementsInstanced(
-            PrimitiveType.Triangles, IndexCount, IndexType.UnsignedInt, 0, InstanceCount);
+
+        // 诊断开关：只画第一个三角形的 3 个顶点（绕开索引缓冲与实例化）。
+        // 如果这样画面正常，说明问题在 EBO 或实例属性；否则在顶点/矩阵。
+        if (DiagnosticSingleTriangle)
+        {
+            GlDraw.Arrays(PrimitiveType.Triangles, 0, 3);
+        }
+        else
+        {
+            GlDraw.ElementsInstanced(
+                PrimitiveType.Triangles, IndexCount, IndexType.UnsignedInt, 0, InstanceCount);
+        }
     }
 
     /// <summary>uniform 位置诊断：location = -1 说明名字没对上或程序没链接好。</summary>
