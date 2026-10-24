@@ -42,6 +42,7 @@
 
             _scene = new WebScene();
             _scene.Initialize();
+            _scene.Render(0f);   // 先画一帧，uniform 才有值可供回读诊断
 
             _status = $"""
                 后端     : {GlApi.Backend?.Name}
