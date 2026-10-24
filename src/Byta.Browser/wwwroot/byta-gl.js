@@ -36,8 +36,33 @@ function drop(handle) {
 //   * Uint8Array                     —— 直接给了视图
 //   * 其他 TypedArray
 // 这里统一成一个 Uint8Array，后面按目标类型重解释。
+/** 取 WASM 线性内存的 Uint8Array 视图（内存增长后 buffer 会换，所以每次都重新取）。 */
+function wasmHeap() {
+    const module = globalThis.Module;
+    if (module && module.HEAPU8) return module.HEAPU8;
+
+    if (typeof globalThis.getDotnetRuntime === 'function') {
+        const runtime = globalThis.getDotnetRuntime(0);
+        if (runtime && runtime.Module && runtime.Module.HEAPU8) return runtime.Module.HEAPU8;
+    }
+    return null;
+}
+
 function asBytes(view) {
     if (view == null) return new Uint8Array(0);
+
+    // .NET 10 实际传过来的是 Span 的互操作包装：{ _pointer, _length, _viewType }
+    // 按指针在 WASM 线性内存上重新开视图，零拷贝。
+    if (typeof view._pointer === 'number') {
+        const heap = wasmHeap();
+        if (!heap) {
+            throw new Error(
+                `拿不到 WASM 堆（globalThis.Module=${typeof globalThis.Module}，` +
+                `getDotnetRuntime=${typeof globalThis.getDotnetRuntime}）`);
+        }
+        return new Uint8Array(heap.buffer, view._pointer, view._length);
+    }
+
     if (view instanceof Uint8Array) return view;
     if (view.data instanceof Uint8Array) return view.data;
     if (ArrayBuffer.isView(view)) return new Uint8Array(view.buffer, view.byteOffset, view.byteLength);
@@ -111,7 +136,10 @@ export function selfTest(view) {
             parts.push(`length=${view.length}`);
             parts.push(`dataCtor=${view.data ? view.data.constructor.name : 'undefined'}`);
             parts.push(`dataLen=${view.data ? view.data.length : '?'}`);
-            parts.push(`hasBuffer=${view.data ? (view.data.buffer ? 'yes' : 'no') : 'n/a'}`);
+            parts.push(`pointer=${view._pointer}`);
+        parts.push(`wasmLength=${view._length}`);
+        const heap = wasmHeap();
+        parts.push(`heap=${heap ? heap.length : 'null'}`);
         }
         return parts.join(' | ');
     } catch (e) {

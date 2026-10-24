@@ -18,7 +18,7 @@ public static class BytaBrowserRuntime
     /// 浏览器会继续用旧文件 —— 表现是"改了代码但错误一模一样"。
     /// 每次修改 byta-gl.js 都要递增它。
     /// </summary>
-    private const string JsVersion = "6";
+    private const string JsVersion = "7";
 
     /// <summary>
     /// 把 <paramref name="canvasId"/> 对应的 canvas 变成 Byta 的渲染目标。
