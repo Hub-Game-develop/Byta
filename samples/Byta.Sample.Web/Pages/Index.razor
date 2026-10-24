@@ -17,6 +17,7 @@
         <button @onclick="ToggleAsync" disabled="@(_scene is null)">@(_running ? "暂停" : "继续")</button>
         <button class="ghost" @onclick="RenderOnce" disabled="@(_scene is null)">渲染单帧</button>
         <button class="ghost" @onclick="ReadPixels">回读中心像素</button>
+        <button class="ghost" @onclick="ToggleSingle">单三角形：@(WebScene.DiagnosticSingleTriangle ? "开" : "关")</button>
     </div>
 
     <pre>@_status</pre>
@@ -78,6 +79,13 @@
         {
             _status = "渲染出错：\n" + ex.Message;
         }
+    }
+
+    private Task ToggleSingle()
+    {
+        WebScene.DiagnosticSingleTriangle = !WebScene.DiagnosticSingleTriangle;
+        StateHasChanged();
+        return Task.CompletedTask;
     }
 
     private Task ToggleAsync()

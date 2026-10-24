@@ -24,7 +24,7 @@ public sealed unsafe class WebScene : IDisposable
     private Matrix4x4 _lastViewProjection;
 
     /// <summary>诊断：只画一个三角形。</summary>
-    public static bool DiagnosticSingleTriangle { get; set; }
+    public static bool DiagnosticSingleTriangle { get; set; } = true;
 
     public int IndexCount { get; private set; }
     public int InstanceCount { get; private set; }
