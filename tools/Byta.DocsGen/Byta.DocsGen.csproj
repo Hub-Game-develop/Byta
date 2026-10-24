@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <!-- 只反射元数据，不需要（也不该）把 208MB 原生库拷进工具目录 -->
+    <BytaIncludeBundledNative>false</BytaIncludeBundledNative>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Byta\Byta.csproj" />
+    <ProjectReference Include="..\..\src\Byta.Browser\Byta.Browser.csproj" />
+  </ItemGroup>
+
+</Project>

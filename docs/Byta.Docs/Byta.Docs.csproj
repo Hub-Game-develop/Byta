@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <IsPackable>false</IsPackable>
+    <RootNamespace>Byta.Docs</RootNamespace>
+    <AvaloniaUseCompiledBindingsByDefault>false</AvaloniaUseCompiledBindingsByDefault>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- API 模型是构建期生成的 JSON，作为 Avalonia 资源打进程序集：
+         浏览器里读不到随包分发的 XML 文件，但 avares:// 在桌面和 WASM 上都可靠。 -->
+    <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="12.1.0" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="12.1.0" />
+    <!-- CodeHub 分支的 Fluent 控件库（控件统一带 FA 前缀，主题类叫 FluentAvaloniaTheme） -->
+    <PackageReference Include="codehub-fluentui" Version="3.1.0-codehub.1" />
+  </ItemGroup>
+
+</Project>

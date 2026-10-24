@@ -1,0 +1,12 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:views="using:Byta.Docs.Views"
+        x:Class="Byta.Docs.Views.DocsWindow"
+        Title="Byta API"
+        Width="1180" Height="820"
+        MinWidth="820" MinHeight="560"
+        Background="#0A0D12">
+
+  <views:DocsView />
+
+</Window>

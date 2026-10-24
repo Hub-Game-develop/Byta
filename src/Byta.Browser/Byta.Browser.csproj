@@ -12,6 +12,8 @@
     <Description>把 Byta.GL 的同一套 API 转发给浏览器的 WebGL2：AnyCPU、无需 OpenGL 驱动，Windows/macOS/Linux 只要有浏览器就能渲染。覆盖 GLES 3.0 核心；桌面 GL 专有的命令（glBufferStorage、glMapBuffer、glDebugMessageCallback）会抛 GlNotSupportedException，可先用 GlApi.IsAvailable 判断。DSA 的 glProgramUniform* 自动退化为 glUseProgram + glUniform*。</Description>
     <PackageReadmeFile>PACKAGE-README-BROWSER.md</PackageReadmeFile>
     <!-- 这个库只在 browser 里加载；普通 TFM 只是为了让非 WASM 的构建能编译 -->
+    <!-- XML 文档供 API 文档站使用 -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);CA1416;CS1591</NoWarn>
   </PropertyGroup>
 

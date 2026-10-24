@@ -37,13 +37,23 @@ jobs:
           dotnet publish samples/Byta.Sample.Web/Byta.Sample.Web.csproj \
             -c Release -o out
 
-      - name: 生成并复制 API 文档
+      - name: 生成 API 数据（反射 + XML 注释）
         run: |
-          python3 tools/gen_api_docs.py
+          dotnet run --project tools/Byta.DocsGen -c Release -- docs/Byta.Docs/Assets/api.json
+          test -f docs/Byta.Docs/Assets/api.json || { echo "::error::api.json 没生成"; exit 1; }
+          echo "api.json：$(wc -c < docs/Byta.Docs/Assets/api.json) 字节"
+
+      - name: 发布 API 文档站（Avalonia + FluentUI-CodeHub → WASM）
+        run: |
+          dotnet publish docs/Byta.Docs.Browser/Byta.Docs.Browser.csproj \
+            -c Release -o api-out
+          # WebAssembly SDK 的产物可能落在 api-out 或 api-out/wwwroot，两种都认
+          if [ -f api-out/wwwroot/index.html ]; then SRC=api-out/wwwroot; else SRC=api-out; fi
           mkdir -p out/wwwroot/api
-          cp docs/api/index.html out/wwwroot/api/index.html
-          test -f out/wwwroot/api/index.html || { echo "::error::API 文档没生成"; exit 1; }
-          echo "API 文档：$(wc -c < out/wwwroot/api/index.html) 字节"
+          cp -r "$SRC"/. out/wwwroot/api/
+          test -f out/wwwroot/api/index.html || { echo "::error::API 文档站缺少 index.html"; exit 1; }
+          test -f out/wwwroot/api/_framework/dotnet.js || { echo "::error::缺少 _framework/dotnet.js"; exit 1; }
+          du -sh out/wwwroot/api
 
       - name: 校正 base href（GitHub Pages 是子路径）
         run: |

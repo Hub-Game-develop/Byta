@@ -210,6 +210,36 @@ dotnet add package Byta.Browser     # 浏览器：WebGL2 后端（自动带上 B
 只装 `Byta.Browser` 时**不会**把 208 MB 原生库拷进输出目录（包内 targets 会默认
 把 `BytaIncludeBundledNative` 设为 `false`），输出目录约 1.6 MB。
 
+## 文档站
+
+线上地址：**https://hub-game-develop.github.io/Byta/api/**
+
+它不是静态生成的 HTML，而是一个 **Avalonia 12 + FluentUI-CodeHub** 的桌面级应用，
+通过 **Avalonia.Browser 编译成 WASM** 跑在浏览器里 —— 和 Byta 一样，一套 .NET 代码
+同时是桌面程序和网页。
+
+```
+tools/Byta.DocsGen/       # 反射 Byta.dll + Byta.xml → api.json（构建期）
+docs/Byta.Docs/           # 共享 UI（FluentUI-CodeHub 的 FAInfoBar / FASkeleton）
+docs/Byta.Docs.Desktop/   # 桌面宿主，本地可直接跑
+docs/Byta.Docs.Browser/   # WASM 宿主，GitHub Pages 部署的就是它
+```
+
+```bash
+# 生成 API 数据（改了公开 API 后要重跑）
+dotnet run --project tools/Byta.DocsGen -c Release -- docs/Byta.Docs/Assets/api.json
+
+# 本地看效果（桌面版，最快）
+dotnet run --project docs/Byta.Docs.Desktop
+
+# 无头渲染一张截图，检查版式
+dotnet run --project tools/Byta.DocsPreview -- /tmp/docs.png GlBuffer
+```
+
+数据来自**反射 + XML 文档注释**（`GenerateDocumentationFile`），所以签名永远和代码一致，
+不会出现"文档写的方法早就改名了"这种事。`GlApi`（5306 个成员）和 `GL`（8734 个命令）
+这类生成代码只显示类型级摘要，逐条列出会淹没页面。
+
 ## WebGL2（浏览器里跑同一套 API）
 
 Byta 的 GL 调用有一层门面（`GlApi`）：**有后端时转发给后端，没有时直连原生函数指针**。

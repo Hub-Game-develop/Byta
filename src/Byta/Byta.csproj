@@ -7,6 +7,10 @@
     <Title>Byta — 现代、零分配开销的 .NET OpenGL 封装</Title>
     <Description>面向 .NET 的现代 OpenGL 封装：gl.xml 生成的零开销绑定 + 值句柄对象层 + 线程局部状态缓存，热路径零托管分配。实现可插拔：自带 Mesa(EGL, GL 4.6 core) 优先，其次 BYTA_GL_DRIVER 指定的实现，最后回退系统实现（macOS 上即 Apple 的 GL 4.1）。</Description>
     <PackageReadmeFile>PACKAGE-README.md</PackageReadmeFile>
+    <!-- 生成 XML 文档：API 文档站与 NuGet 包的 IDE 提示都靠它。
+         成员注释不全，所以静默 CS1591。 -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
