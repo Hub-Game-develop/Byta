@@ -339,6 +339,26 @@ cd promo
 
 细节见 [promo/README.md](promo/README.md)。
 
+### 电影感版：`promo/cinematic/`
+
+另一支 11 秒短片：**纯黑背景 + 一行 Unifont 像素字 → 突然亮起的碎裂魔方（64 块碎片、
+极速旋转、冷暖光对撞）→ 字幕 → `dotnet add package Byta.GL` → 黑屏**。
+配乐《OverWorld-Infinity》同样由 Python 合成（加法合成钢琴 + FFT 卷积混响），无采样库。
+
+```bash
+cd promo/cinematic
+/Applications/Blender.app/Contents/Resources/5.1/python/bin/python3.13 soundtrack.py     # 合成音乐
+/Applications/Blender.app/Contents/MacOS/Blender -b --factory-startup --python build_cinematic.py
+/Applications/Blender.app/Contents/MacOS/Blender -b byta-cinematic.blend --python render.py -a
+./make_cinematic.sh
+```
+
+- `promo/cinematic/byta-cinematic.blend` —— 源文件（音轨已在 VSE 里）
+- `promo/cinematic/byta-cinematic.mp4` —— 成片，1920×1080 / 24fps / 11s
+- `promo/cinematic/OverWorld-Infinity.wav` —— 11.5s 配乐
+
+细节与踩过的坑见 [promo/cinematic/README.md](promo/cinematic/README.md)。
+
 ## 许可证
 
 MIT，见 [LICENSE](LICENSE)。
