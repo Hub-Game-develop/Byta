@@ -3,3 +3,7 @@ obj/
 *.user
 .DS_Store
 artifacts/
+
+# 宣传动画：240 张 1080p PNG 约 200MB，不进仓库；.blend 与成片进
+promo/frames/
+promo/*.blend1

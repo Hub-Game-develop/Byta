@@ -321,6 +321,24 @@ gh workflow run publish.yml -f version=0.1.1  # 或手动触发并指定版本
 > 否则 Git LFS 指针（134 字节）会被当成 dylib 打进包 —— 包看着正常，实际根本跑不起来。
 > 这个检查是特意加的，别删。
 
+## 宣传动画
+
+`promo/` 里是用 **Blender 5.1 + Python（bpy）** 生成的宣传片，全流程脚本化：
+
+```bash
+cd promo
+/Applications/Blender.app/Contents/MacOS/Blender -b --factory-startup --python build_promo.py   # 重建场景
+/Applications/Blender.app/Contents/MacOS/Blender -b byta-promo.blend --python render.py -a      # 渲染 240 帧
+./make_video.sh                                                                                  # 合成 mp4
+```
+
+- `promo/byta-promo.blend` —— **可直接交付的源文件**，Blender 打开就能改、就能 Render Animation
+- `promo/byta-promo.mp4` —— 成片，1920×1080 / 24fps / 10 秒
+- 场景刻意用项目自己的视觉语言：`#0B0D13` 底色、9×9 立方体阵列（间距 3.05、边长 2.3，
+  就是 demo 那套参数）、深蓝→青蓝渐变、合成器 Glare 光晕
+
+细节见 [promo/README.md](promo/README.md)。
+
 ## 许可证
 
 MIT，见 [LICENSE](LICENSE)。

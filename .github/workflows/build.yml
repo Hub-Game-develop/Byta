@@ -37,6 +37,14 @@ jobs:
           dotnet publish samples/Byta.Sample.Web/Byta.Sample.Web.csproj \
             -c Release -o out
 
+      - name: 生成并复制 API 文档
+        run: |
+          python3 tools/gen_api_docs.py
+          mkdir -p out/wwwroot/api
+          cp docs/api/index.html out/wwwroot/api/index.html
+          test -f out/wwwroot/api/index.html || { echo "::error::API 文档没生成"; exit 1; }
+          echo "API 文档：$(wc -c < out/wwwroot/api/index.html) 字节"
+
       - name: 校正 base href（GitHub Pages 是子路径）
         run: |
           sed -i 's|<base href="/" />|<base href="/${{ github.event.repository.name }}/" />|' out/wwwroot/index.html
