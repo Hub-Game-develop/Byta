@@ -284,6 +284,12 @@ export function getUniformLocation(program, name) {
     return location === null ? -1 : reg(location);
 }
 
+/** 回读一个 mat4 uniform，用于诊断上传是否真的生效。 */
+export function getUniformMatrix4(program, location) {
+    const value = gl.getUniform(obj(program), obj(location));
+    return value ? Array.from(value) : null;
+}
+
 export function uniformBlockBinding(program, blockIndex, binding) {
     gl.uniformBlockBinding(obj(program), blockIndex, binding);
 }

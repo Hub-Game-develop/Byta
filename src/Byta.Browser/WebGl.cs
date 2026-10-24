@@ -16,7 +16,7 @@ namespace Byta.Browser;
 /// </summary>
 internal static partial class WebGl
 {
-    private const string Module = "byta-gl.v8.js";   // 文件名带版本：改 JS 时同步递增，绕开缓存
+    private const string Module = "byta-gl.v9.js";   // 文件名带版本：改 JS 时同步递增，绕开缓存
 
     // ---------------------------------------------------------------- 上下文
     [JSImport("attach", Module)] internal static partial int Attach(string canvasId);
@@ -85,6 +85,9 @@ internal static partial class WebGl
     [JSImport("getProgramInfoLog", Module)] internal static partial string GetProgramInfoLog(int program);
     [JSImport("getAttribLocation", Module)] internal static partial int GetAttribLocation(int program, string name);
     [JSImport("getUniformLocation", Module)] internal static partial int GetUniformLocation(int program, string name);
+    [JSImport("getUniformMatrix4", Module)]
+    internal static partial double[]? GetUniformMatrix4(int program, int location);
+
     [JSImport("uniformBlockBinding", Module)] internal static partial void UniformBlockBinding(int program, int blockIndex, int binding);
 
     // ---------------------------------------------------------------- uniform（非 DSA）

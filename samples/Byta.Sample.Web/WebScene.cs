@@ -20,6 +20,7 @@ public sealed unsafe class WebScene : IDisposable
     private GlBuffer _indices;
     private GlBuffer _instances;
     private GlVertexArray _vao;
+    private Matrix4x4 _lastViewProjection;
 
     public int IndexCount { get; private set; }
     public int InstanceCount { get; private set; }
@@ -131,6 +132,7 @@ public sealed unsafe class WebScene : IDisposable
 
         _program.Use();
         // Matrix4x4 是行主序，GL 要列主序 → transpose: true（后端模式下由 GlUniform 自己转置）
+        _lastViewProjection = viewProjection;
         _program.GetUniform("uViewProjection").Set(viewProjection, transpose: true);
         _program.GetUniform("uCameraPosition").Set(eye);
         _program.GetUniform("uTime").Set(time);
@@ -147,6 +149,29 @@ public sealed unsafe class WebScene : IDisposable
         int camera = _program.GetUniform("uCameraPosition").Location;
         int time = _program.GetUniform("uTime").Location;
         return $"uViewProjection={viewProjection}, uCameraPosition={camera}, uTime={time}, programId={_program.Id}";
+    }
+
+    /// <summary>回读 uViewProjection，和上传的值逐元素对比。</summary>
+    public string MatrixProbe()
+    {
+        var uniform = _program.GetUniform("uViewProjection");
+        var actual = BytaBrowserRuntime.ReadMatrixUniform((uint)uniform.Program, uniform.Location);
+        if (actual is null)
+            return "回读失败（null）";
+
+        var expected = _lastViewProjection;
+        // GL 侧存的是转置后的矩阵，所以对角线仍然对应 M11/M22/M33/M44
+        double d0 = Math.Abs(actual[0] - expected.M11);
+        double d5 = Math.Abs(actual[5] - expected.M22);
+        double d10 = Math.Abs(actual[10] - expected.M33);
+        double d15 = Math.Abs(actual[15] - expected.M44);
+
+        bool identity = Math.Abs(actual[0] - 1) < 1e-6 && Math.Abs(actual[5] - 1) < 1e-6
+                        && Math.Abs(actual[10] - 1) < 1e-6 && Math.Abs(actual[15] - 1) < 1e-6;
+
+        return $"回读{(identity ? "=单位矩阵（上传没生效）" : "成功")}；" +
+               $"a0={actual[0]:F4}(期望{expected.M11:F4}) a5={actual[5]:F4}(期望{expected.M22:F4}) " +
+               $"a15={actual[15]:F4}(期望{expected.M44:F4}) 偏差={Math.Max(Math.Max(d0, d5), Math.Max(d10, d15)):E2}";
     }
 
     /// <summary>渲染一帧后读 GL 错误（WebGL 没有 KHR_debug，只能轮询 glGetError）。</summary>

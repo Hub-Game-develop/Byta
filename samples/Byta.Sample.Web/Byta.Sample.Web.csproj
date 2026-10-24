@@ -22,17 +22,17 @@
 
   <!-- JS 由 Byta.Browser 提供，这里复制到 demo 的 wwwroot，加载路径统一为 ./byta-gl.js -->
   <ItemGroup>
-    <Content Include="..\..\src\Byta.Browser\wwwroot\byta-gl.v8.js" Link="wwwroot\byta-gl.v8.js" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\src\Byta.Browser\wwwroot\byta-gl.v9.js" Link="wwwroot\byta-gl.v9.js" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 
   <!-- Blazor 的 JS 模块导入是相对 _framework/ 解析的（传 "../" 也会被归一掉），
        所以 byta-gl.js 必须真的待在 _framework/ 里。 -->
   <Target Name="CopyBytaGlIntoFramework" AfterTargets="Publish">
-    <Copy SourceFiles="$(PublishDir)wwwroot\byta-gl.v8.js"
+    <Copy SourceFiles="$(PublishDir)wwwroot\byta-gl.v9.js"
           DestinationFolder="$(PublishDir)wwwroot\_framework\"
-          Condition="Exists('$(PublishDir)wwwroot\byta-gl.v8.js')" />
-    <Message Importance="high" Text="byta-gl.v8.js 已复制到 _framework/" />
+          Condition="Exists('$(PublishDir)wwwroot\byta-gl.v9.js')" />
+    <Message Importance="high" Text="byta-gl.v9.js 已复制到 _framework/" />
   </Target>
 
 </Project>

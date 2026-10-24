@@ -18,7 +18,7 @@ public static class BytaBrowserRuntime
     /// 只改内容不改文件名时，浏览器会一直跑旧代码（表现为"改了代码但错误一字不差"）。
     /// 每次修改都要同时改 `<see cref="WebGlJsFile"/>` 的文件名、这里的名字、以及 wwwroot 里的文件。
     /// </summary>
-    private const string WebGlJsFile = "byta-gl.v8.js";
+    private const string WebGlJsFile = "byta-gl.v9.js";
 
     /// <summary>
     /// 把 <paramref name="canvasId"/> 对应的 canvas 变成 Byta 的渲染目标。
@@ -62,6 +62,10 @@ public static class BytaBrowserRuntime
 
         return GlCapabilities.Query();
     }
+
+    /// <summary>回读一个 mat4 uniform（诊断用）。返回 null 表示读不到。</summary>
+    public static double[]? ReadMatrixUniform(uint program, int location)
+        => WebGl.GetUniformMatrix4((int)program, location);
 
     /// <summary>回到原生入口点表（浏览器里通常没有意义，主要给测试用）。</summary>
     public static void Detach() => GlApi.UseBackend(null);
