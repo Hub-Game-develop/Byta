@@ -55,7 +55,7 @@
         }
         catch (Exception ex)
         {
-            _status = "初始化失败：\n" + ex;
+            _status = "初始化失败：\n" + ex + "\n\n诊断：" + BytaBrowserRuntime.LastDiagnostics;
         }
 
         StateHasChanged();

@@ -147,7 +147,17 @@ export function polygonOffset(factor, units) { gl.polygonOffset(factor, units); 
 // ------------------------------------------------------------------ 缓冲
 export function genBuffers(ids) {
     const dst = asU32(ids);
-    for (let i = 0; i < dst.length; i++) dst[i] = reg(gl.createBuffer());
+    if (dst.length === 0) {
+        // 视图长度为 0 说明 .NET 传来的 Span 没被正确解释，直接报出来而不是静默返回 0
+        throw new Error(`genBuffers: 视图长度 0（原始类型 ${typeof ids}，ctor ${ids && ids.constructor && ids.constructor.name}，keys ${ids && Object.keys(ids)}）`);
+    }
+    for (let i = 0; i < dst.length; i++) {
+        const buffer = gl.createBuffer();
+        dst[i] = reg(buffer);
+        if (buffer === null) {
+            throw new Error(`genBuffers: gl.createBuffer() 返回 null（上下文丢失？gl.isContextLost=${gl.isContextLost()}）`);
+        }
+    }
 }
 
 export function deleteBuffers(ids) {
