@@ -5,10 +5,14 @@
 @implements IDisposable
 
 <main>
-    <h1>Byta · WebGL2</h1>
+    <h1>Byta · WebGL2 <span style="font-size:13px;color:#c99;font-weight:400">（实验性）</span></h1>
     <div class="sub">
-        这一帧由 <strong>Byta 的同一套 API</strong>（GlBuffer / GlProgram / GlDraw）驱动，
-        只是把 GL 调用转发给了浏览器的 WebGL2 —— 任何有浏览器的平台都能跑，包括没有 OpenGL 驱动的 Windows。
+        由 <strong>Byta 的同一套 API</strong>（GlBuffer / GlProgram / GlDraw）驱动，只是把 GL 调用
+        转发给了浏览器的 WebGL2 —— 任何有浏览器的平台都能跑，包括没有 OpenGL 驱动的 Windows。
+    </div>
+    <div class="sub" style="color:#d9a441">
+        当前状态：上下文、着色器、缓冲、VAO、绘制调用都已跑通（uniform 回读校验通过），
+        但<b>顶点变换仍有问题，画面构图不正确</b>。实例化场景正在调试。
     </div>
 
     <canvas id="byta-canvas"></canvas>
