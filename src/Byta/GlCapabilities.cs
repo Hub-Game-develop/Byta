@@ -18,6 +18,25 @@ public readonly struct GlVersion(int major, int minor) : IComparable<GlVersion>,
         if (string.IsNullOrEmpty(text))
             return default;
 
+        // WebGL 的 GL_VERSION 形如 "WebGL 2.0 (OpenGL ES 3.0 Chromium)"：
+        // 对 Byta 有意义的是 **ES 版本 3.0**，而不是 WebGL 版本号 2.0 ——
+        // 直接取第一个 token 会得到 0.0，能力判断就全错了。
+        if (text.StartsWith("WebGL", StringComparison.Ordinal))
+        {
+            const string marker = "OpenGL ES ";
+            int at = text.IndexOf(marker, StringComparison.Ordinal);
+            if (at >= 0)
+                return ParseNumeric(text[(at + marker.Length)..]);
+
+            // 没有括号说明时按 WebGL2 == ES 3.0 处理
+            return new GlVersion(3, 0);
+        }
+
+        return ParseNumeric(text);
+    }
+
+    private static GlVersion ParseNumeric(string text)
+    {
         int end = text.IndexOf(' ');
         var token = end < 0 ? text : text[..end];
         var parts = token.Split('.');

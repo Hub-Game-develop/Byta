@@ -220,11 +220,14 @@ public sealed unsafe class WebScene : IDisposable
 
                 var model = Matrix4x4.CreateScale(scale) * Matrix4x4.CreateTranslation(position);
 
-                // Matrix4x4 本身就是行主序存储（M11..M14 是第一行），按字段顺序写出来即可
-                data[index++] = model.M11; data[index++] = model.M12; data[index++] = model.M13; data[index++] = model.M14;
-                data[index++] = model.M21; data[index++] = model.M22; data[index++] = model.M23; data[index++] = model.M24;
-                data[index++] = model.M31; data[index++] = model.M32; data[index++] = model.M33; data[index++] = model.M34;
-                data[index++] = model.M41; data[index++] = model.M42; data[index++] = model.M43; data[index++] = model.M44;
+                // 实例矩阵走的是**顶点属性**，无法像 uniform 那样靠 transpose 参数纠正。
+                // 着色器里 mat4(aModel0..3) 是按列组装的，所以这里必须给列主序 —— 否则
+                // 上传的是转置后的矩阵，立方体会被拉爆、相机看起来像站在它内部。
+                var columnMajor = Matrix4x4.Transpose(model);
+                data[index++] = columnMajor.M11; data[index++] = columnMajor.M12; data[index++] = columnMajor.M13; data[index++] = columnMajor.M14;
+                data[index++] = columnMajor.M21; data[index++] = columnMajor.M22; data[index++] = columnMajor.M23; data[index++] = columnMajor.M24;
+                data[index++] = columnMajor.M31; data[index++] = columnMajor.M32; data[index++] = columnMajor.M33; data[index++] = columnMajor.M34;
+                data[index++] = columnMajor.M41; data[index++] = columnMajor.M42; data[index++] = columnMajor.M43; data[index++] = columnMajor.M44;
             }
         }
 
