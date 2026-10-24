@@ -44,7 +44,7 @@ jobs:
 
       - name: 确认 JS 与 wasm 都在产物里
         run: |
-          test -f out/wwwroot/byta-gl.js || { echo "::error::缺少 byta-gl.js"; exit 1; }
+          ls out/wwwroot/byta-gl.*.js >/dev/null || { echo "::error::缺少 byta-gl.*.js"; exit 1; }
           ls out/wwwroot/_framework/*.wasm >/dev/null || { echo "::error::缺少 wasm 产物"; exit 1; }
           du -sh out/wwwroot
 

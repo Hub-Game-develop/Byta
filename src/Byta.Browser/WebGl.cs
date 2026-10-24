@@ -16,7 +16,7 @@ namespace Byta.Browser;
 /// </summary>
 internal static partial class WebGl
 {
-    private const string Module = "byta-gl.js";
+    private const string Module = "byta-gl.v8.js";   // 文件名带版本：改 JS 时同步递增，绕开缓存
 
     // ---------------------------------------------------------------- 上下文
     [JSImport("attach", Module)] internal static partial int Attach(string canvasId);
