@@ -15,7 +15,7 @@ namespace Byta.Sample.Web;
 /// </summary>
 public sealed unsafe class WebScene : IDisposable
 {
-    private GlProgram _program;
+    private GlProgram _program = default;
     private GlBuffer _vertices;
     private GlBuffer _indices;
     private GlBuffer _instances;
@@ -113,7 +113,7 @@ public sealed unsafe class WebScene : IDisposable
 
         GlState.Enable(GlCapability.DepthTest);
         GlState.Enable(GlCapability.CullFace);
-        GlState.DepthFunc(GlDepthFunc.Less);
+        GlState.DepthFunc(Byta.DepthFunc.Less);
     }
 
     public void Render(float time)
@@ -219,8 +219,12 @@ public sealed unsafe class WebScene : IDisposable
                     (z - (count - 1) / 2f) * spacing);
 
                 var model = Matrix4x4.CreateScale(scale) * Matrix4x4.CreateTranslation(position);
-                model.ToRowMajorArray(data.AsSpan(index, 16));
-                index += 16;
+
+                // Matrix4x4 本身就是行主序存储（M11..M14 是第一行），按字段顺序写出来即可
+                data[index++] = model.M11; data[index++] = model.M12; data[index++] = model.M13; data[index++] = model.M14;
+                data[index++] = model.M21; data[index++] = model.M22; data[index++] = model.M23; data[index++] = model.M24;
+                data[index++] = model.M31; data[index++] = model.M32; data[index++] = model.M33; data[index++] = model.M34;
+                data[index++] = model.M41; data[index++] = model.M42; data[index++] = model.M43; data[index++] = model.M44;
             }
         }
 
