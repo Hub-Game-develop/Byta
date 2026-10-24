@@ -6,18 +6,34 @@
     <TargetFramework>net10.0</TargetFramework>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Nullable>enable</Nullable>
-    <IsPackable>false</IsPackable>
-    <!-- 这个库只在 browser 里加载；普通 TFM 只是为了让非 WASM 的构建（含 CI 的构建检查）能编译。 -->
-    <NoWarn>$(NoWarn);CA1416</NoWarn>
+    <IsPackable>true</IsPackable>
+    <PackageId>Byta.Browser</PackageId>
+    <Title>Byta.Browser — 在浏览器里跑 Byta（WebGL2 后端）</Title>
+    <Description>把 Byta.GL 的同一套 API 转发给浏览器的 WebGL2：AnyCPU、无需 OpenGL 驱动，Windows/macOS/Linux 只要有浏览器就能渲染。覆盖 GLES 3.0 核心；桌面 GL 专有的命令（glBufferStorage、glMapBuffer、glDebugMessageCallback）会抛 GlNotSupportedException，可先用 GlApi.IsAvailable 判断。DSA 的 glProgramUniform* 自动退化为 glUseProgram + glUniform*。</Description>
+    <PackageReadmeFile>PACKAGE-README-BROWSER.md</PackageReadmeFile>
+    <!-- 这个库只在 browser 里加载；普通 TFM 只是为了让非 WASM 的构建能编译 -->
+    <NoWarn>$(NoWarn);CA1416;CS1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Byta\Byta.csproj" />
   </ItemGroup>
 
-  <!-- 静态资源随库分发：Blazor 应用会通过 _content/Byta.Browser/byta-gl.js 拿到它 -->
+  <!-- 静态资源：RCL 约定路径（_content/Byta.Browser/...） -->
   <ItemGroup>
-    <Content Include="wwwroot\**\*" Pack="true" PackagePath="staticwebassets\" Visible="false" />
+    <Content Include="wwwroot\**\*" Pack="true" PackagePath="staticwebassets/" Visible="false" />
+  </ItemGroup>
+
+  <!-- 关键：buildTransitive 让 JS 真正落到使用方的 _framework/ 下。
+       Blazor 的 JSHost.ImportAsync 相对 _framework/ 解析，连 "../" 也会被归一掉，
+       所以光放在 _content/ 里是拿不到的（这一点在示例项目里踩过）。 -->
+  <ItemGroup>
+    <None Include="buildTransitive\Byta.Browser.targets" Pack="true" PackagePath="buildTransitive\" />
+    <None Include="wwwroot\byta-gl.v9.js" Pack="true" PackagePath="buildTransitive\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\PACKAGE-README-BROWSER.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>

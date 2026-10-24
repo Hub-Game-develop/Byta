@@ -194,6 +194,22 @@ GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/Hub-Game-develop/Byta.git
 python3 tools/fetch_natives.py     # 之后按需重建原生实现
 ```
 
+## 安装
+
+```bash
+dotnet add package Byta.GL          # 桌面：对象层 + macOS 内置 Mesa(4.6) 实现
+dotnet add package Byta.Browser     # 浏览器：WebGL2 后端（自动带上 Byta.GL）
+```
+
+| 包 | 用途 | 下载体积 |
+| --- | --- | --- |
+| `Byta.GL` | 对象层 + 内置原生实现 | 67 MB（含 208 MB 未压缩原生库） |
+| `Byta.Browser` | 浏览器 WebGL2 后端 | 38 KB |
+| `Byta.Bindings` | 裸绑定层（上面两个会自动带上，通常不用单独引用） | 168 KB |
+
+只装 `Byta.Browser` 时**不会**把 208 MB 原生库拷进输出目录（包内 targets 会默认
+把 `BytaIncludeBundledNative` 设为 `false`），输出目录约 1.6 MB。
+
 ## WebGL2（浏览器里跑同一套 API）
 
 Byta 的 GL 调用有一层门面（`GlApi`）：**有后端时转发给后端，没有时直连原生函数指针**。

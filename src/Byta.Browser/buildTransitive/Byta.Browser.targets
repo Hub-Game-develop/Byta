@@ -1,0 +1,42 @@
+<Project>
+
+  <!--
+    引用 Byta.Browser 的项目在构建/发布后，需要把 byta-gl.v9.js 放进 wwwroot/_framework/。
+
+    为什么必须显式复制：
+      1. NuGet 的 staticwebassets 只会把它暴露成 _content/Byta.Browser/byta-gl.v9.js；
+      2. 而 Blazor 的 JSHost.ImportAsync 路径是相对 _framework/ 解析的（传 "../" 也会被归一掉），
+         _content/ 那条路径在运行时拿不到。
+
+    另外：浏览器后端用不到 Byta.GL 里那 208MB 原生 Mesa 实现，
+    所以这里默认把 BytaIncludeBundledNative 关掉，避免白白拷贝。
+  -->
+
+  <PropertyGroup>
+    <BytaIncludeBundledNative Condition="'$(BytaIncludeBundledNative)' == ''">false</BytaIncludeBundledNative>
+  </PropertyGroup>
+
+  <Target Name="BytaCopyBrowserRuntimeToBuild"
+          AfterTargets="Build"
+          Condition="Exists('$(MSBuildThisFileDirectory)byta-gl.v9.js') and Exists('$(MSBuildProjectDirectory)\wwwroot')">
+    <MakeDir Directories="$(OutDir)wwwroot\_framework" />
+    <Copy SourceFiles="$(MSBuildThisFileDirectory)byta-gl.v9.js"
+          DestinationFolder="$(OutDir)wwwroot\_framework"
+          SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(MSBuildThisFileDirectory)byta-gl.v9.js"
+          DestinationFolder="$(OutDir)wwwroot"
+          SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="BytaCopyBrowserRuntimeToPublish"
+          AfterTargets="Publish"
+          Condition="Exists('$(MSBuildThisFileDirectory)byta-gl.v9.js') and Exists('$(PublishDir)wwwroot')">
+    <Copy SourceFiles="$(MSBuildThisFileDirectory)byta-gl.v9.js"
+          DestinationFolder="$(PublishDir)wwwroot\_framework"
+          SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(MSBuildThisFileDirectory)byta-gl.v9.js"
+          DestinationFolder="$(PublishDir)wwwroot"
+          SkipUnchangedFiles="true" />
+  </Target>
+
+</Project>

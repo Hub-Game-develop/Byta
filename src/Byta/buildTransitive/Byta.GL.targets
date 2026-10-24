@@ -15,18 +15,38 @@
 
     不想要这 208 MB 的话，在项目里设置：
       <BytaIncludeBundledNative>false</BytaIncludeBundledNative>
+
+    ⚠️ 复制放在 Target 里、且默认值不在顶层写成 true，是必须的：
+       Byta.Browser 会在自己的 targets 里把 BytaIncludeBundledNative 设为 false。
+       如果这里在导入阶段就算出 _BytaCopyBundled=true（顶层 ItemGroup 求值早于
+       那个 PropertyGroup），装了 Byta.Browser 的 Blazor 项目照样会被拷进 208 MB
+       —— 实测就是这样。判断必须延迟到 Target 执行。
   -->
 
   <PropertyGroup>
-    <_BytaBundledNativeRoot>$(MSBuildThisFileDirectory)..\runtimes\osx-arm64\native\</_BytaBundledNativeRoot>
-    <_BytaCopyBundled Condition="'$(BytaIncludeBundledNative)' != 'false' and $([MSBuild]::IsOSPlatform('OSX'))">true</_BytaCopyBundled>
+    <_BytaBundledNativeRoot>$(MSBuildThisFileDirectory)..\native\osx-arm64\</_BytaBundledNativeRoot>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(_BytaCopyBundled)' == 'true' and Exists('$(_BytaBundledNativeRoot)')">
-    <None Include="$(_BytaBundledNativeRoot)**\*"
-          Link="runtimes\osx-arm64\native\%(RecursiveDir)%(Filename)%(Extension)"
-          CopyToOutputDirectory="PreserveNewest"
-          Visible="false" />
-  </ItemGroup>
+  <Target Name="BytaCopyBundledNativeToBuild"
+          AfterTargets="Build"
+          Condition="'$(BytaIncludeBundledNative)' != 'false' and $([MSBuild]::IsOSPlatform('OSX')) and Exists('$(_BytaBundledNativeRoot)')">
+    <ItemGroup>
+      <_BytaNativeFileToBuild Include="$(_BytaBundledNativeRoot)**\*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(_BytaNativeFileToBuild)"
+          DestinationFolder="$(OutDir)runtimes\osx-arm64\native\%(RecursiveDir)"
+          SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="BytaCopyBundledNativeToPublish"
+          AfterTargets="Publish"
+          Condition="'$(BytaIncludeBundledNative)' != 'false' and $([MSBuild]::IsOSPlatform('OSX')) and Exists('$(_BytaBundledNativeRoot)')">
+    <ItemGroup>
+      <_BytaNativeFileToPublish Include="$(_BytaBundledNativeRoot)**\*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(_BytaNativeFileToPublish)"
+          DestinationFolder="$(PublishDir)runtimes\osx-arm64\native\%(RecursiveDir)"
+          SkipUnchangedFiles="true" />
+  </Target>
 
 </Project>

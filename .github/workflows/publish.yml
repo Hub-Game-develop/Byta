@@ -73,12 +73,15 @@ jobs:
           # 是 Blazor WebAssembly，需要 wasm-tools，这个 job 刻意不装（构建它的是 build.yml）。
           dotnet build src/Byta/Byta.csproj -c Release -p:Version=${{ steps.version.outputs.version }}
           dotnet build src/Byta.Bindings/Byta.Bindings.csproj -c Release -p:Version=${{ steps.version.outputs.version }}
+          dotnet build src/Byta.Browser/Byta.Browser.csproj -c Release -p:Version=${{ steps.version.outputs.version }}
 
       - name: 打包
         run: |
           dotnet pack src/Byta.Bindings/Byta.Bindings.csproj -c Release \
             -p:Version=${{ steps.version.outputs.version }} -o out
           dotnet pack src/Byta/Byta.csproj -c Release \
+            -p:Version=${{ steps.version.outputs.version }} -o out
+          dotnet pack src/Byta.Browser/Byta.Browser.csproj -c Release \
             -p:Version=${{ steps.version.outputs.version }} -o out
           ls -lh out
 
@@ -93,8 +96,19 @@ jobs:
             unzip -l "$pkg" | tail -20
             exit 1
           fi
-          unzip -l "$pkg" | grep -q "runtimes/osx-arm64/native/libEGL.1.dylib" \
+          unzip -l "$pkg" | grep -q "native/osx-arm64/libEGL.1.dylib" \
             || { echo "::error::包里缺少原生实现"; exit 1; }
+
+          # Byta.Browser：JS 与 buildTransitive 目标缺一不可 ——
+          # 少了 js 是"能装不能用"，少了 targets 是"js 落不到 _framework/"。
+          browser=$(ls out/Byta.Browser.*.nupkg | head -1)
+          unzip -l "$browser" | grep -q "buildTransitive/byta-gl.v9.js" \
+            || { echo "::error::Byta.Browser 里没有 buildTransitive/byta-gl.v9.js"; exit 1; }
+          unzip -l "$browser" | grep -q "buildTransitive/Byta.Browser.targets" \
+            || { echo "::error::Byta.Browser 里没有 buildTransitive/Byta.Browser.targets"; exit 1; }
+          unzip -l "$browser" | grep -q "lib/net10.0/Byta.Browser.dll" \
+            || { echo "::error::Byta.Browser 里没有程序集"; exit 1; }
+          echo "Byta.Browser 包结构 OK（$(stat -c%s "$browser") 字节）"
 
       - name: 获取 nuget.org 短期密钥（OIDC）
         id: nuget-login
@@ -105,6 +119,13 @@ jobs:
       - name: 发布 Byta.Bindings
         run: |
           dotnet nuget push "out/Byta.Bindings.${{ steps.version.outputs.version }}.nupkg" \
+            --api-key "${{ steps.nuget-login.outputs.NUGET_API_KEY }}" \
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate
+
+      - name: 发布 Byta.Browser
+        run: |
+          dotnet nuget push "out/Byta.Browser.${{ steps.version.outputs.version }}.nupkg" \
             --api-key "${{ steps.nuget-login.outputs.NUGET_API_KEY }}" \
             --source https://api.nuget.org/v3/index.json \
             --skip-duplicate

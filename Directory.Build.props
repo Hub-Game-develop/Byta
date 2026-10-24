@@ -14,7 +14,7 @@
 
   <!-- 打包元数据：对 NuGet 包生效，示例/测试项目通过 IsPackable=false 排除 -->
   <PropertyGroup>
-    <Version>0.1.1</Version>
+    <Version>0.2.0</Version>
     <Authors>Hub-Game-develop</Authors>
     <Company>Hub-Game-develop</Company>
     <Product>Byta</Product>

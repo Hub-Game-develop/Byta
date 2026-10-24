@@ -28,11 +28,15 @@ GlDraw.ElementsInstanced(PrimitiveType.Triangles, 36, IndexType.UnsignedInt, 0, 
 ## 本包包含什么
 
 - `lib/net10.0/Byta.dll` —— 对象层（Buffer / VertexArray / Shader / Program / Uniform / Texture2D / Framebuffer / Query）
-- `runtimes/osx-arm64/native/` —— macOS Apple Silicon 的内置 GL 实现（Mesa 26.2.5 + llvmpipe，约 208 MB）
+- `native/osx-arm64/` —— macOS Apple Silicon 的内置 GL 实现（Mesa 26.2.5 + llvmpipe，约 208 MB）
 
-引用本包后，构建时 `runtimes/osx-arm64/native` 会自动复制到你的输出目录
-（由包内 `buildTransitive/Byta.GL.targets` 完成 —— NuGet 原生约定只在指定
-`RuntimeIdentifier` 时才复制，普通项目会拿不到）。
+引用本包后，构建时这些原生库会被复制到你的 `runtimes/osx-arm64/native/`
+（由包内 `buildTransitive/Byta.GL.targets` 完成）。
+
+> 包内刻意没有用 `runtimes/<rid>/native` 这个“约定路径”：SDK 会对它做
+> “当前 RID 的 native 资产自动复制”，完全绕过下面的开关（实测装了
+> `Byta.Browser` 的 Blazor 项目照样被拷进 208 MB）。放在 `native/` 下才能
+> 让开关真正生效。
 
 不想要这 208 MB 就在项目里关掉，Byta 会自动回退系统实现：
 
@@ -45,6 +49,8 @@ GlDraw.ElementsInstanced(PrimitiveType.Triangles, 36, IndexType.UnsignedInt, 0, 
 ## 相关包
 
 - `Byta.Bindings` —— 裸绑定层（本包会自动带上，通常不用单独引用）
+- `Byta.Browser` —— 在浏览器里跑同一套 API（WebGL2 后端），AnyCPU、不依赖 OpenGL 驱动。
+  它会自动带上本包，并把 `BytaIncludeBundledNative` 默认设为 `false`（浏览器用不到原生 Mesa）
 
 ## 文档
 
