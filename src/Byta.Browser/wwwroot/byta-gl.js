@@ -30,21 +30,34 @@ function drop(handle) {
 }
 
 // ------------------------------------------------------------------ MemoryView
-function byteLength(view) {
-    // .NET 的 MemoryView 同时给出 data(Uint8Array) 和 length(元素数)
-    return view.length !== undefined ? view.length : view.data.length;
+//
+// .NET 把 [JSMarshalAs<JSType.MemoryView>] 的 Span 传过来时，JS 侧可能是：
+//   * { data: Uint8Array, length }  —— MemoryView 包装
+//   * Uint8Array                     —— 直接给了视图
+//   * 其他 TypedArray
+// 这里统一成一个 Uint8Array，后面按目标类型重解释。
+function asBytes(view) {
+    if (view == null) return new Uint8Array(0);
+    if (view instanceof Uint8Array) return view;
+    if (view.data instanceof Uint8Array) return view.data;
+    if (ArrayBuffer.isView(view)) return new Uint8Array(view.buffer, view.byteOffset, view.byteLength);
+    if (view instanceof ArrayBuffer) return new Uint8Array(view);
+    return new Uint8Array(0);
 }
 
 function asU32(view) {
-    return new Uint32Array(view.data.buffer, view.data.byteOffset, byteLength(view) >> 2);
+    const bytes = asBytes(view);
+    return new Uint32Array(bytes.buffer, bytes.byteOffset, bytes.byteLength >> 2);
 }
 
 function asI32(view) {
-    return new Int32Array(view.data.buffer, view.data.byteOffset, byteLength(view) >> 2);
+    const bytes = asBytes(view);
+    return new Int32Array(bytes.buffer, bytes.byteOffset, bytes.byteLength >> 2);
 }
 
 function asF32(view) {
-    return new Float32Array(view.data.buffer, view.data.byteOffset, byteLength(view) >> 2);
+    const bytes = asBytes(view);
+    return new Float32Array(bytes.buffer, bytes.byteOffset, bytes.byteLength >> 2);
 }
 
 // ------------------------------------------------------------------ 上下文
@@ -128,12 +141,13 @@ export function deleteBuffers(ids) {
 export function bindBuffer(target, buffer) { gl.bindBuffer(target, obj(buffer)); }
 
 export function bufferData(target, size, data, usage) {
-    if (byteLength(data) === 0) gl.bufferData(target, size, usage);
-    else gl.bufferData(target, data.data, usage);
+    const bytes = asBytes(data);
+    if (bytes.byteLength === 0) gl.bufferData(target, size, usage);
+    else gl.bufferData(target, bytes, usage);
 }
 
 export function bufferSubData(target, offset, size, data) {
-    gl.bufferSubData(target, offset, data.data);
+    gl.bufferSubData(target, offset, asBytes(data));
 }
 
 // ------------------------------------------------------------------ VAO
@@ -256,13 +270,15 @@ export function texParameteri(target, pname, value) { gl.texParameteri(target, p
 export function generateMipmap(target) { gl.generateMipmap(target); }
 
 export function texImage2D(target, level, internalFormat, width, height, border, format, type, pixels) {
-    const data = byteLength(pixels) === 0 ? null : pixels.data;
-    gl.texImage2D(target, level, internalFormat, width, height, border, format, type, data);
+    const bytes = asBytes(pixels);
+    gl.texImage2D(target, level, internalFormat, width, height, border, format, type,
+        bytes.byteLength === 0 ? null : bytes);
 }
 
 export function texSubImage2D(target, level, xOffset, yOffset, width, height, format, type, pixels) {
-    const data = byteLength(pixels) === 0 ? null : pixels.data;
-    gl.texSubImage2D(target, level, xOffset, yOffset, width, height, format, type, data);
+    const bytes = asBytes(pixels);
+    gl.texSubImage2D(target, level, xOffset, yOffset, width, height, format, type,
+        bytes.byteLength === 0 ? null : bytes);
 }
 
 // ------------------------------------------------------------------ FBO / RBO
@@ -315,7 +331,7 @@ export function renderbufferStorage(target, internalFormat, width, height) {
 }
 
 export function readPixels(x, y, width, height, format, type, pixels) {
-    gl.readPixels(x, y, width, height, format, type, pixels.data);
+    gl.readPixels(x, y, width, height, format, type, asBytes(pixels));
 }
 
 // ------------------------------------------------------------------ 绘制
