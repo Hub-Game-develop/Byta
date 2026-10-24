@@ -28,8 +28,8 @@
        Blazor 的 JSHost.ImportAsync 相对 _framework/ 解析，连 "../" 也会被归一掉，
        所以光放在 _content/ 里是拿不到的（这一点在示例项目里踩过）。 -->
   <ItemGroup>
-    <None Include="buildTransitive\Byta.Browser.targets" Pack="true" PackagePath="buildTransitive\" />
-    <None Include="wwwroot\byta-gl.v9.js" Pack="true" PackagePath="buildTransitive\" />
+    <None Include="buildTransitive\Byta.Browser.targets" Pack="true" PackagePath="buildTransitive/" />
+    <None Include="wwwroot\byta-gl.v9.js" Pack="true" PackagePath="buildTransitive/" />
   </ItemGroup>
 
   <ItemGroup>

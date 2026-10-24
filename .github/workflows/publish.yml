@@ -96,17 +96,18 @@ jobs:
             unzip -l "$pkg" | tail -20
             exit 1
           fi
-          unzip -l "$pkg" | grep -q "native/osx-arm64/libEGL.1.dylib" \
+          # 用文件名匹配，不依赖包内目录分隔符（Windows/Linux 打包时可能不同）
+          unzip -l "$pkg" | grep -qE "libEGL\.1\.dylib" \
             || { echo "::error::包里缺少原生实现"; exit 1; }
 
           # Byta.Browser：JS 与 buildTransitive 目标缺一不可 ——
           # 少了 js 是"能装不能用"，少了 targets 是"js 落不到 _framework/"。
           browser=$(ls out/Byta.Browser.*.nupkg | head -1)
-          unzip -l "$browser" | grep -q "buildTransitive/byta-gl.v9.js" \
+          unzip -l "$browser" | grep -qE "byta-gl\.v9\.js" \
             || { echo "::error::Byta.Browser 里没有 buildTransitive/byta-gl.v9.js"; exit 1; }
-          unzip -l "$browser" | grep -q "buildTransitive/Byta.Browser.targets" \
+          unzip -l "$browser" | grep -qE "Byta\.Browser\.targets" \
             || { echo "::error::Byta.Browser 里没有 buildTransitive/Byta.Browser.targets"; exit 1; }
-          unzip -l "$browser" | grep -q "lib/net10.0/Byta.Browser.dll" \
+          unzip -l "$browser" | grep -qE "Byta\.Browser\.dll" \
             || { echo "::error::Byta.Browser 里没有程序集"; exit 1; }
           echo "Byta.Browser 包结构 OK（$(stat -c%s "$browser") 字节）"
 

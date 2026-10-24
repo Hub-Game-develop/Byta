@@ -26,8 +26,8 @@
          资产自动复制到输出目录"，完全绕过 BytaIncludeBundledNative 开关（实测装了
          Byta.Browser 的 Blazor 项目照样被拷进 208MB）。放到 native/ 下，由
          buildTransitive/Byta.GL.targets 里的 Target 统一控制。 -->
-    <None Include="runtimes\osx-arm64\native\**\*" Pack="true" PackagePath="native\osx-arm64\" />
-    <None Include="buildTransitive\Byta.GL.targets" Pack="true" PackagePath="buildTransitive\" />
+    <None Include="runtimes\osx-arm64\native\**\*" Pack="true" PackagePath="native/osx-arm64/" />
+    <None Include="buildTransitive\Byta.GL.targets" Pack="true" PackagePath="buildTransitive/" />
   </ItemGroup>
 
 </Project>
