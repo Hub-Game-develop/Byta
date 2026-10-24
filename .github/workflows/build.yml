@@ -35,7 +35,7 @@ jobs:
       - name: 发布 Byta.Sample.Web
         run: |
           dotnet publish samples/Byta.Sample.Web/Byta.Sample.Web.csproj \
-            -c Release -o out/wwwroot
+            -c Release -o out
 
       - name: 校正 base href（GitHub Pages 是子路径）
         run: |
