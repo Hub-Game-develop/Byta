@@ -140,6 +140,15 @@ public sealed unsafe class WebScene : IDisposable
             PrimitiveType.Triangles, IndexCount, IndexType.UnsignedInt, 0, InstanceCount);
     }
 
+    /// <summary>uniform 位置诊断：location = -1 说明名字没对上或程序没链接好。</summary>
+    public string UniformReport()
+    {
+        int viewProjection = _program.GetUniform("uViewProjection").Location;
+        int camera = _program.GetUniform("uCameraPosition").Location;
+        int time = _program.GetUniform("uTime").Location;
+        return $"uViewProjection={viewProjection}, uCameraPosition={camera}, uTime={time}, programId={_program.Id}";
+    }
+
     /// <summary>从默认帧缓冲读中心像素，用来验证绘制真的落盘了。</summary>
     public string ReadCenterPixel()
     {
