@@ -20,7 +20,10 @@ public static class BytaBrowserRuntime
     {
         if (!s_loaded)
         {
-            await JSHost.ImportAsync("byta-gl.js", "./byta-gl.js");
+            // 注意路径基准：Blazor 的模块导入是相对于 _framework/ 解析的，
+            // 所以 "./byta-gl.js" 会变成 /_framework/byta-gl.js（404）。
+            // "../byta-gl.js" 才落在站点根（或 Pages 子路径）下，和 index.html 同级。
+            await JSHost.ImportAsync("byta-gl.js", "../byta-gl.js");
             s_loaded = true;
         }
 
